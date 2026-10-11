@@ -1,0 +1,35 @@
+# Diseño del kernel Q4 OMEGA
+
+## Contrato
+
+Cada llamada calcula `Y[M,1024] = W[1024,512] × X[M,512]`, con Q4 firmado por peso, escala FP16 por fila/grupo de 32, activaciones INT8 firmadas y escala FP16 por activación/grupo. Se especializan `M=1,4,8,16`. Ocho instancias lógicas de estos pesos suman los 4.194.304 parámetros del contrato. El kernel no conoce Python, ATen ni ggml.
+
+## Layout estático y primitiva
+
+`PackedWeights` conserva cuatro bits por coeficiente. Sus primeros 262.144 bytes almacenan los códigos y los 32.768 bytes siguientes las escalas FP16. Total: 294.912 bytes por matriz (288 KiB), sin padding lógico. El orden es `[tile_o8][grupo16][bloque_k4][fila_o8][dos bytes]`; cada par de bytes contiene cuatro nibbles `q+8`, en orden de K. La región completa se crea una vez por matriz y es apta para asignarse con `t0common::Buffer`/`PageRegion`.
+
+El desplazamiento `q+8` hace representables los pesos como `u8` en VPDPBUSD. Para cada bloque K4, una carga contigua y alineada de 16 bytes alimenta `AND 0x0f`, desplazamiento y máscara de nibbles; dos `unpack` producen 32 códigos ordenados por fila. Se transmite el DWORD de cuatro activaciones firmado a las ocho lanes. `vpdpbusd` acumula un dot K4 por cada una de ocho filas de salida. La corrección exacta es `dot_signed = dot_unsigned − 8·sum(x_group)`, porque `Σ(q+8)x − 8Σx = Σqx`. El máximo parcial por lane queda muy por debajo de INT32; ningún producto intermedio se satura.
+
+La lane dword representa una fila de salida, no un tramo de K que luego haya que reducir horizontalmente. Así, cada grupo termina con ocho dots enteros exactos, ocho escalas contiguas se convierten con F16C (`vcvtph2ps`), y el resultado se almacena en ocho posiciones contiguas. No se convierte cada código a float ni se hace una reducción horizontal del grupo.
+
+## Layout dinámico y kernel puro
+
+`prepare_activations` es una operación separada y reutilizable: agrupa los 32 INT8 por fila/grupo en ocho DWORD K4, calcula una vez `sum(x)` por grupo, convierte las escalas FP16 de activación a FP32 y conserva sus bits FP16 originales para el control exacto. El tamaño lógico es 672 bytes por fila: 512 B de DWORDs, 64 B de escalas FP32, 64 B de sumas INT32 y 32 B de escalas FP16. La preparación no depende de filas O.
+
+`run` no valida, asigna, despacha por ISA, imprime ni instrumenta. El mismo entry point recibe una región de pesos; el llamador puede preparar 1 o N `PackedWeights` independientes en regiones `Buffer`/`PageRegion` y reutilizar la misma función. Para M=1 ejecuta un tile de activación. Para M=4/8/16 usa `m_tile=4`: carga y decodifica una vez cada bloque de pesos y aplica ese vector a cuatro activaciones antes de avanzar; M=8/16 recorren tiles de cuatro activaciones. En los acumuladores se mantiene un vector FP32 por activación y tile de ocho salidas. Los grupos se acumulan en orden ascendente 0…15. Tras cada dot INT32 exacto se convierte a FP32 y se hace un producto de escalas FP32 seguido de un FMA en el acumulador. La salida se escribe una sola vez por tile.
+
+La escala del peso se carga como ocho mitades consecutivas según el layout `[tile_o8][grupo][fila]`, y se convierte vectorialmente una vez por tile/grupo, fuera del bucle K4. La escala de activación ya está en FP32 en el buffer preparado. No hay conversión escalar repetida por salida ni por bloque K.
+
+## Semántica numérica
+
+Los dots por grupo son iguales en INT32 al oráculo independiente. La salida FP32 procesa grupos en orden ascendente, usando escala `FP32(weight_half) * FP32(activation_half)` y FMA. No hay reordenamiento de grupos ni acumulación binaria64 en la ruta. La aceptación de salida la determina `t0common::verify_s12`; la tolerancia histórica sigue como diagnóstico. Se exigen además salida finita, salida exactamente cero con S=0, cancelación exacta unitaria, y valores enteros exactos en el barrido de coordenadas.
+
+El control de almacenamiento reconstruye Q4/INT8 y los bits FP16 desde los buffers efectivos. Las contrapruebas mutan códigos y bits de escala, también con entrada nula, y deben ser rechazadas por igualdad de representación.
+
+## ISA, build y límites
+
+`q4_kernel.cpp` se compila con MSVC `/O2 /arch:AVX2 /fp:precise` y `__AVXVNNI__`, equivalente a la selección AVX-VNNI-256 del adaptador ggml de referencia. El verificador común se compila por separado con `/fp:strict`; no se usa `/fp:fast`. La QA comprueba CPUID y el estado AVX del SO antes de ejecutar. No hay fallback de ISA.
+
+El punto de inspección de instrucciones es el bucle K4 de `run_tile`: para M=1 hay un VPDPBUSD por bloque K4; con `m_tile=4`, cuatro VPDPBUSD reutilizan cada vector de pesos. Hay un load de 16 bytes y seis operaciones SIMD de extracción/orden de nibbles por bloque decodificado; los loads/broadcasts de activación escalan con `m_tile`. El escalado FP32 (conversión de escalas y FMA) ocurre al terminar los ocho bloques K4 del grupo, fuera de ese bucle. La tabla final de `logs/STATIC_INSTRUCTION_COUNTS.md` debe leerse junto con el `dumpbin /disasm` conservado: el compilador puede plegar o reordenar instrucciones.
+
+No se afirma aquí `G_ggml`, `G_Torch`, `D′`, residencia ni rendimiento: no se ejecutó ni se temporizó ninguna comparación. El harness de cualificación corresponde a la fase posterior.

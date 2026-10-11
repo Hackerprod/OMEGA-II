@@ -1,0 +1,20 @@
+# Conteo estático de instrucciones
+
+Fuente: `dumpbin /disasm obj\q4_kernel.obj`; se cuenta el cuerpo del salto hacia atrás más corto de `run_tile`, incluidos los loads/broadcasts de operandos y el salto. No es una medida dinámica.
+
+| m | tile activaciones | VPDPBUSD | cargas | decode | conversiones | FMA | otras | total | VPDPBUSD/total |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 1 | 1 | 2 | 6 | 0 | 0 | 4 | 13 | 7.69% |
+| 4 | 4 | 4 | 5 | 6 | 0 | 0 | 4 | 19 | 21.05% |
+| 8 | 4 | 4 | 5 | 6 | 0 | 0 | 4 | 19 | 21.05% |
+| 16 | 4 | 4 | 5 | 6 | 0 | 0 | 4 | 19 | 21.05% |
+
+## Comparación de estructura con ggml/llama.cpp-0.6.0
+
+La plana `ggml_vec_dot_q4_0_q8_0` procesa un bloque de 32: carga Q4/Q8, expande y centra Q4, ejecuta `vpdpbusd` (ruta `__AVXVNNI__`), convierte parciales, escala/FMA y reduce horizontalmente ocho lanes. En esa función el bloque se procesa para una fila; no reutiliza una expansión Q4 entre ocho filas de salida.
+
+Las rutas repack `ggml_gemv_q4_0_8x8_q8_0` y `ggml_gemm_q4_0_8x8_q8_0` ya bloquean filas/columnas y reutilizan activaciones; su fuente organiza el resultado mediante shuffles/blends y acumula varias salidas. La compilación VNNI usa VPDPBUSD en la primitiva compartida, pero requiere preparación/interleave propia. No se asigna un conteo único de instrucciones a ggml: sus funciones dependen de dispatch, macros, forma, interleave y objeto cargado; el recuento de esta tabla sí corresponde literalmente al objeto OMEGA inspeccionado.
+
+Normalizado por salida y bloque de 32 entradas, la plana ggml tiene un VPDPBUSD por fila (el helper `mul_sum_us8_pairs_float` lo aplica al vector expandido de 32 bytes); OMEGA produce ocho VPDPBUSD para ocho filas, el mismo total por trabajo, pero comparte cada decode Q4 entre ese tile de filas. Para `m_tile=4`, las 32 instrucciones cubren ocho filas por cuatro activaciones y siguen siendo una por salida/bloque; ese tile comparte la expansión entre cuatro activaciones. La diferencia de OMEGA está en reutilizar Q4 y distribuir las lanes directamente entre filas, evitando la reducción horizontal de la plana. Repack GEMV/GEMM también matriciza, pero usa interleave y permutaciones; sus conteos deben extraerse del objeto exacto de la vara si se quiere una comparación binaria, no inferirse de otra configuración.
+
+La ruta OMEGA reduce el bucle aritmético a un bloque Q4 compacto, seis instrucciones de extracción por tile de 8 filas y una VPDPBUSD por cada cuatro K para m=1, o cuatro VPDPBUSD con ese mismo decode para m_tile=4. La conversión FP16 y el FMA de escalado quedan fuera del bucle K4. El bucle no contiene conversiones ni spills; el prologue ABI guarda registros no volátiles fuera de él.

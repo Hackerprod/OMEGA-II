@@ -1,0 +1,4 @@
+STATIC m=1 vpdpbusd=1 loads=2 decode=6 conversions=0 fma=0 other=4 total=13 fraction=0.076923
+STATIC m=4 vpdpbusd=4 loads=5 decode=6 conversions=0 fma=0 other=4 total=19 fraction=0.210526
+STATIC m=8 vpdpbusd=4 loads=5 decode=6 conversions=0 fma=0 other=4 total=19 fraction=0.210526
+STATIC m=16 vpdpbusd=4 loads=5 decode=6 conversions=0 fma=0 other=4 total=19 fraction=0.210526

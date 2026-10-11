@@ -1,0 +1,213 @@
+#include "q4_kernel.hpp"
+
+#include <immintrin.h>
+#include <cstring>
+
+namespace omega_q4 {
+namespace {
+
+constexpr std::size_t code_offset(int ot, int g, int kb) noexcept {
+    return ((std::size_t(ot) * kGroups + g) * kK4 + kb) * 16;
+}
+constexpr std::size_t scale_offset(int o, int g) noexcept {
+    return kCodeBytes + ((std::size_t(o / kRows) * kGroups + g) * kRows + (o % kRows)) * sizeof(std::uint16_t);
+}
+
+inline __m256i expand_q4x8(const std::uint8_t* p) noexcept {
+    const __m128i packed = _mm_load_si128(reinterpret_cast<const __m128i*>(p));
+    const __m128i mask = _mm_set1_epi8(0x0f);
+    const __m128i lo = _mm_and_si128(packed, mask);
+    const __m128i hi = _mm_and_si128(_mm_srli_epi16(packed, 4), mask);
+    const __m128i rows0_3 = _mm_unpacklo_epi8(lo, hi);
+    const __m128i rows4_7 = _mm_unpackhi_epi8(lo, hi);
+    __m256i codes = _mm256_castsi128_si256(rows0_3);
+    return _mm256_inserti128_si256(codes, rows4_7, 1);
+}
+
+inline __m256i dpbusd(__m256i acc, __m256i unsigned_weights, std::uint32_t activation4) noexcept {
+    const __m256i x = _mm256_set1_epi32(static_cast<int>(activation4));
+    return _mm256_dpbusd_avx_epi32(acc, unsigned_weights, x);
+}
+
+template<int M_TILE>
+void run_tile(const std::uint8_t* w, const std::uint32_t* qwords, const float* xs,
+              const std::int32_t* xsum, float* y) noexcept {
+    for (int ot = 0; ot < kOutput / kRows; ++ot) {
+        __m256 acc[M_TILE];
+        for (int r = 0; r < M_TILE; ++r) acc[r] = _mm256_setzero_ps();
+        for (int g = 0; g < kGroups; ++g) {
+            __m256i idot[M_TILE];
+            for (int r = 0; r < M_TILE; ++r) idot[r] = _mm256_setzero_si256();
+            for (int kb = 0; kb < kK4; ++kb) {
+                const __m256i wu = expand_q4x8(w + code_offset(ot, g, kb));
+                for (int r = 0; r < M_TILE; ++r) {
+                    const std::uint32_t xv = qwords[std::size_t(r) * kGroups * kK4 + std::size_t(g) * kK4 + kb];
+                    idot[r] = dpbusd(idot[r], wu, xv);
+                }
+            }
+            const __m128i half_bits = _mm_load_si128(reinterpret_cast<const __m128i*>(w + scale_offset(ot * kRows, g)));
+            const __m256 scale_w = _mm256_cvtph_ps(half_bits);
+            for (int r = 0; r < M_TILE; ++r) {
+                const std::int32_t correction = xsum[std::size_t(r) * kGroups + g] * 8;
+                const __m256i signed_dot = _mm256_sub_epi32(idot[r], _mm256_set1_epi32(correction));
+                const __m256 dot_f = _mm256_cvtepi32_ps(signed_dot);
+                const __m256 scale = _mm256_mul_ps(scale_w, _mm256_set1_ps(xs[std::size_t(r) * kGroups + g]));
+                acc[r] = _mm256_fmadd_ps(dot_f, scale, acc[r]);
+            }
+        }
+        for (int r = 0; r < M_TILE; ++r) {
+            _mm256_store_ps(y + std::size_t(r) * kOutput + ot * kRows, acc[r]);
+        }
+    }
+}
+
+template<int M_TILE>
+void run_all(const PackedWeights& weights, const PackedActivations& a, float* y) noexcept {
+    for (int base = 0; base < a.m; base += M_TILE) {
+        // Prepared activation slices are contiguous in each of the three planes.
+        const std::size_t qbytes_per_row = kGroups * kK4 * sizeof(std::uint32_t);
+        const std::size_t sbytes_per_row = kGroups * sizeof(float);
+        const std::size_t plane_scales = std::size_t(a.m) * qbytes_per_row;
+        const std::size_t plane_sums = plane_scales + std::size_t(a.m) * sbytes_per_row;
+        const auto* qall = reinterpret_cast<const std::uint32_t*>(a.bytes.data());
+        const auto* sall = reinterpret_cast<const float*>(a.bytes.data() + plane_scales);
+        const auto* sumall = reinterpret_cast<const std::int32_t*>(a.bytes.data() + plane_sums);
+        run_tile<M_TILE>(weights.bytes.data(), qall + std::size_t(base) * kGroups * kK4,
+                         sall + std::size_t(base) * kGroups, sumall + std::size_t(base) * kGroups,
+                         y + std::size_t(base) * kOutput);
+    }
+}
+
+} // namespace
+
+std::size_t activation_bytes(int m) {
+    return std::size_t(m) * kGroups * kK4 * sizeof(std::uint32_t) +
+           std::size_t(m) * kGroups * (sizeof(float) + sizeof(std::int32_t) + sizeof(std::uint16_t));
+}
+
+void prepare_weights(const t0common::Cell& c, PackedWeights& dst) {
+    dst.bytes.resize(kWeightBytes);
+    auto* packed = dst.bytes.data();
+    for (int ot = 0; ot < kOutput / kRows; ++ot) {
+        for (int g = 0; g < kGroups; ++g) {
+            for (int kb = 0; kb < kK4; ++kb) {
+                auto* block = packed + code_offset(ot, g, kb);
+                for (int row = 0; row < kRows; ++row) {
+                    const int o = ot * kRows + row;
+                    const int k = g * 32 + kb * 4;
+                    const auto q0 = static_cast<std::uint8_t>(c.wq[o * kInput + k] + 8);
+                    const auto q1 = static_cast<std::uint8_t>(c.wq[o * kInput + k + 1] + 8);
+                    const auto q2 = static_cast<std::uint8_t>(c.wq[o * kInput + k + 2] + 8);
+                    const auto q3 = static_cast<std::uint8_t>(c.wq[o * kInput + k + 3] + 8);
+                    block[row * 2] = static_cast<std::uint8_t>(q0 | (q1 << 4));
+                    block[row * 2 + 1] = static_cast<std::uint8_t>(q2 | (q3 << 4));
+                }
+            }
+            for (int row = 0; row < kRows; ++row) {
+                const int o = ot * kRows + row;
+                std::memcpy(packed + scale_offset(o, g), &c.ws_half[o * kGroups + g], sizeof(std::uint16_t));
+            }
+        }
+    }
+}
+
+void prepare_activations(const t0common::Cell& c, PackedActivations& dst) {
+    dst.m = c.M;
+    dst.bytes.resize(activation_bytes(c.M));
+    const std::size_t qbytes = std::size_t(c.M) * kGroups * kK4 * sizeof(std::uint32_t);
+    const std::size_t sbytes = std::size_t(c.M) * kGroups * sizeof(float);
+    auto* q = reinterpret_cast<std::uint32_t*>(dst.bytes.data());
+    auto* scale = reinterpret_cast<float*>(dst.bytes.data() + qbytes);
+    auto* sums = reinterpret_cast<std::int32_t*>(dst.bytes.data() + qbytes + sbytes);
+    auto* half = reinterpret_cast<std::uint16_t*>(dst.bytes.data() + qbytes + sbytes + std::size_t(c.M) * kGroups * sizeof(std::int32_t));
+    for (int m = 0; m < c.M; ++m) {
+        for (int g = 0; g < kGroups; ++g) {
+            std::int32_t sum = 0;
+            for (int kb = 0; kb < kK4; ++kb) {
+                std::uint32_t v = 0;
+                for (int j = 0; j < 4; ++j) {
+                    const auto b = static_cast<std::uint8_t>(c.xq[m * kInput + g * 32 + kb * 4 + j]);
+                    v |= std::uint32_t(b) << (j * 8);
+                    sum += c.xq[m * kInput + g * 32 + kb * 4 + j];
+                }
+                q[(std::size_t(m) * kGroups + g) * kK4 + kb] = v;
+            }
+            scale[std::size_t(m) * kGroups + g] = c.xs[m * kGroups + g];
+            sums[std::size_t(m) * kGroups + g] = sum;
+            half[std::size_t(m) * kGroups + g] = c.xs_half[m * kGroups + g];
+        }
+    }
+}
+
+void run(const PackedWeights& weights, const PackedActivations& a, float* output) noexcept {
+    switch (a.m) {
+        case 1: run_all<1>(weights, a, output); break;
+        case 4: run_all<4>(weights, a, output); break;
+        case 8: run_all<4>(weights, a, output); break;
+        case 16: run_all<4>(weights, a, output); break;
+        default: break;
+    }
+}
+
+void qa_group_dots(const PackedWeights& weights, const PackedActivations& a, std::int32_t* dots) noexcept {
+    const auto* q = reinterpret_cast<const std::uint32_t*>(a.bytes.data());
+    const auto* xsum = reinterpret_cast<const std::int32_t*>(a.bytes.data() +
+        std::size_t(a.m) * kGroups * kK4 * sizeof(std::uint32_t) + std::size_t(a.m) * kGroups * sizeof(float));
+    for (int m = 0; m < a.m; ++m) for (int ot = 0; ot < kOutput / kRows; ++ot) for (int g = 0; g < kGroups; ++g) {
+        __m256i acc = _mm256_setzero_si256();
+        for (int kb = 0; kb < kK4; ++kb) {
+            const __m256i wu = expand_q4x8(weights.bytes.data() + code_offset(ot, g, kb));
+            acc = dpbusd(acc, wu, q[(std::size_t(m) * kGroups + g) * kK4 + kb]);
+        }
+        acc = _mm256_sub_epi32(acc, _mm256_set1_epi32(xsum[std::size_t(m) * kGroups + g] * 8));
+        alignas(32) std::int32_t lanes[kRows];
+        _mm256_store_si256(reinterpret_cast<__m256i*>(lanes), acc);
+        for (int r = 0; r < kRows; ++r) dots[(std::size_t(m) * kOutput + ot * kRows + r) * kGroups + g] = lanes[r];
+    }
+}
+
+bool qa_reconstruct(const PackedWeights& weights, std::vector<std::int8_t>& wq,
+                    std::vector<std::uint16_t>& ws) noexcept {
+    if (weights.bytes.size() != kWeightBytes) return false;
+    wq.resize(std::size_t(kOutput) * kInput);
+    ws.resize(std::size_t(kOutput) * kGroups);
+    const auto* packed = weights.bytes.data();
+    for (int ot = 0; ot < kOutput / kRows; ++ot) for (int g = 0; g < kGroups; ++g) {
+        for (int row = 0; row < kRows; ++row) {
+            const int o = ot * kRows + row;
+            std::memcpy(&ws[o * kGroups + g], packed + scale_offset(o, g), sizeof(std::uint16_t));
+            for (int kb = 0; kb < kK4; ++kb) {
+                const auto* b = packed + code_offset(ot, g, kb) + row * 2;
+                const int k = g * 32 + kb * 4;
+                wq[o * kInput + k] = static_cast<std::int8_t>((b[0] & 15) - 8);
+                wq[o * kInput + k + 1] = static_cast<std::int8_t>((b[0] >> 4) - 8);
+                wq[o * kInput + k + 2] = static_cast<std::int8_t>((b[1] & 15) - 8);
+                wq[o * kInput + k + 3] = static_cast<std::int8_t>((b[1] >> 4) - 8);
+            }
+        }
+    }
+    return true;
+}
+
+bool qa_reconstruct_activations(const PackedActivations& a, std::vector<std::int8_t>& xq,
+                                std::vector<std::uint16_t>& xs) noexcept {
+    if (a.m != 1 && a.m != 4 && a.m != 8 && a.m != 16) return false;
+    if (a.bytes.size() != activation_bytes(a.m)) return false;
+    xq.resize(std::size_t(a.m) * kInput);
+    xs.resize(std::size_t(a.m) * kGroups);
+    const auto* q = reinterpret_cast<const std::uint32_t*>(a.bytes.data());
+    const std::size_t qbytes = std::size_t(a.m) * kGroups * kK4 * sizeof(std::uint32_t);
+    const std::size_t sbytes = std::size_t(a.m) * kGroups * sizeof(float);
+    const std::size_t sumbytes = std::size_t(a.m) * kGroups * sizeof(std::int32_t);
+    const auto* half = reinterpret_cast<const std::uint16_t*>(a.bytes.data() + qbytes + sbytes + sumbytes);
+    for (int m = 0; m < a.m; ++m) for (int g = 0; g < kGroups; ++g) {
+        xs[std::size_t(m) * kGroups + g] = half[std::size_t(m) * kGroups + g];
+        for (int kb = 0; kb < kK4; ++kb) {
+            const std::uint32_t v = q[(std::size_t(m) * kGroups + g) * kK4 + kb];
+            for (int j = 0; j < 4; ++j) xq[std::size_t(m) * kInput + g * 32 + kb * 4 + j] = static_cast<std::int8_t>(v >> (j * 8));
+        }
+    }
+    return true;
+}
+
+} // namespace omega_q4

@@ -1,0 +1,13 @@
+PAGE_POLICY m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY m=16 checks=53 failures=0 status=PASS
+QA_NUMERICAL m=1 cells=10/10 sweep=PASS status=PASS
+QA_NUMERICAL m=4 cells=10/10 sweep=PASS status=PASS
+QA_NUMERICAL m=8 cells=10/10 sweep=PASS status=PASS
+QA_NUMERICAL m=16 cells=10/10 sweep=PASS status=PASS
+REFERENCE_LIKE m=1 status=PASS
+REFERENCE_LIKE m=4 status=PASS
+REFERENCE_LIKE m=8 status=PASS
+REFERENCE_LIKE m=16 status=PASS
+KERNEL_QA_GATE=PASS
