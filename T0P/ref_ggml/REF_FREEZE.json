@@ -817,7 +817,7 @@
     "state": "HISTORIAL_PRE_S13",
     "preserved_under": "HISTORIAL_preS13.S12_reevaluation_preS13"
   },
-  "revision": "S12 reevaluation",
+  "revision": "S15 governing state; S14 and earlier retained as history",
   "HISTORIAL_preS13": {
     "adapter_source_sha256": "6F85CAF29D35BE018D5ADE2087B497F7A652B5944D03FADBC25D6ED6F3D5D71E",
     "S12_adapter_source_sha256": "2d0325c8e337be72af367b9e559aebe654a91c7b46446d5857a8d9bb95b1d6da",
@@ -905,7 +905,7 @@
     "dynamic_route_isolation": "PASS",
     "repack_disassembly_sha256": "1c510ca6fb19621f3ef0e8975a167556bbe36b6d991332e337d327e584baf4bc"
   },
-  "GOVERNING_S14": {
+  "HISTORIAL_S14": {
     "candidate_status": {
       "ggml_flat": {
         "QA_NUMERICAL": "PASS",
@@ -973,5 +973,58 @@
       "adapter_exit_code": 0,
       "negative_gate_tests": "PASS"
     }
+  },
+  "GOVERNING_S15": {
+    "decision": "S-15 blockers A and B closed; ggml Y remains directly bound to common large-page output region",
+    "candidate_status": {
+      "ggml_flat": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      },
+      "ggml_repack": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      }
+    },
+    "qa": {
+      "cells_per_route": 40,
+      "coordinate_sweep": "512/512 exact for m=1,4,8,16; failures=0; mandatory",
+      "exact_group_dots_per_route": 2375680,
+      "exact_cancellation": "PASS",
+      "S12": "PASS",
+      "representation": "PASS",
+      "mandatory_gate": "PASS"
+    },
+    "memory": {
+      "page_records": "240/240 expected; every record has queried_pages>0 and Valid=queried=LargePage",
+      "output": "flat ggml_mul_mat dst and repack output point directly to common t0common::Buffer; no output copy",
+      "privilege": "AVAILABLE"
+    },
+    "dispatch": "PASS in governing execution; use_ref=false; callback reached for m=1 and optimized matrix route for m=4,8,16; repack direct upstream GEMV/GEMM calls; 218 VPDPBUSD in repack object.",
+    "logs": {
+      "raw": "adapter/qa_s15_governing.txt",
+      "raw_sha256": "a736fc9201eb5e0b24b1fc36efd992d6a999136940cf5f069dd995149713cea5",
+      "exit_code": "adapter/qa_s15_exit_code.txt (0)",
+      "gate": "adapter/qa_gate_s15_governing.txt",
+      "gate_sha256": "d9c3b9f6c7fe01992a040d4812a24e6749f314004256df9a4246f6a4396216e0",
+      "gate_verdict": "PASS"
+    },
+    "hashes": {
+      "main.cpp": "11bc6be35d0c1cfca2afc02015a3c825d9981f2dc7400d42ecfeb371c55e585c",
+      "adapter.exe": "3dcbad85a709739474bff7a176be4c5b7e85e7939c14db67316843aa071109c7",
+      "common.cpp": "7be077b6816bc72d1711693b804ada6b052dc3696d92c70a1acb759db1d4edbd",
+      "qa_gate.py": "be7d608d3d03bcfaaeb9cca175129d8ba296e98c96bdda982b0c46b221b2dabe",
+      "PAGE_EXPECTED_S15.json": "aa8e25c5f1b0e93b0741ca32169757a9da1f980211151a91ffc383276c52b027",
+      "qa_gate_tests.py": "230bf65c5944928933cecbe1a769f49a0164b79c6280d6335ee5036226007829"
+    },
+    "negative_gate_tests": "PASS for both references; absent region, one row, contradictory duplicate, zero pages, invalid page, and Sol 119/120 deletion rejected",
+    "traceability_gaps": [
+      "qa_gate.py_preS14 no es byte a byte idéntico al gate precedente; se conserva como copia histórica, no como reproducción exacta.",
+      "Los .lib/.exp de la compilación histórica previa no se recuperaron; los artefactos actuales se compilaron y documentaron en esta ejecución, sin afirmar reproducción byte a byte."
+    ]
   }
 }

@@ -1,18 +1,20 @@
 # Freeze de referencia Torch CPU
 
-## HISTORIAL ? S-12/S-13
+## HISTORIAL
 
-Los resultados S-12/S-13 son historial y quedan reemplazados por los veredictos S-14 de abajo. Los fixtures congelados y sus hashes permanecen intactos.
+S-12, S-13 y S-14 quedan como historial en `REF_FREEZE.json`. El HOLD por privilegio ausente describe corridas anteriores y está sustituido por S-15. Se conservan estas lagunas: `qa_gate.py_preS14` no es byte a byte idéntico al gate anterior; los `.lib/.exp` históricos no se recuperaron. No se afirman reproducciones byte a byte. Los fixtures congelados no se modificaron.
 
-## GOBERNANTE ? S-14
+## GOBERNANTE — S-15
 
-Los buffers efectivos X/W/Wt usan `from_blob` con deleter sobre common Buffer. No se clonan a regiones que abandonen el asignador. QA completa: 130 filas; S-12, representaci?n exacta, barridos 512/512 por M y cancelaci?n exacta pasan. Group-dot isolation: 2.375.680 comprobaciones para mm, matmul y linear; 81.920 para mv (m=1). `mkldnn_linear` queda diagn?stico/no comparable.
+La QA gobernante terminó con código 0. `mm`, `matmul`, `linear` y `mv` (solo m=1) pasan los cuatro estados. `Y` se preasigna en common Buffer con forma y strides finales y se entrega a `at::mm_out`, `at::matmul_out`, `at::linear_out` o `at::mv_out`. En cada llamada se comprueban `data_ptr`, storage pointer, forma, strides y bytes; no hay copia posterior. Las consultas incluyen `Y` y sus páginas reportan `Valid=1` y `LargePage=1`.
+
+S-12, representaciones exactas, barridos de 512 posiciones, cancelación exacta, aislamiento `EXACT_GROUP_DOT_ISOLATION` y despacho de las variantes `_out` pasan. Hay 390/390 registros de memoria esperados. `mkldnn_linear` sigue diagnóstico/no comparable. Las pruebas unitarias del verificador S-12 también pasan (`adapter/verifier_unit_tests_s15.txt`).
 
 | Candidata | QA_NUMERICAL | DISPATCH_QUALIFIED | PAGE_POLICY | REFERENCE_READY |
 |---|---|---|---|---|
-| mm | PASS | PASS | HOLD | HOLD |
-| matmul | PASS | PASS | HOLD | HOLD |
-| linear | PASS | PASS | HOLD | HOLD |
-| mv (m=1) | PASS | PASS | HOLD | HOLD |
+| mm | PASS | PASS | PASS | PASS |
+| matmul | PASS | PASS | PASS | PASS |
+| linear | PASS | PASS | PASS | PASS |
+| mv (m=1) | PASS | PASS | PASS | PASS |
 
-`QueryWorkingSetEx` inspeccion? las regiones efectivas: p?ginas v?lidas, `LargePage=0`. El token no contiene `SeLockMemoryPrivilege`, as? que PAGE_POLICY queda HOLD de recurso. No se cambi? la pol?tica del sistema. El mismo ejecutable queda listo para probar p?ginas grandes con el privilegio concedido en una sesi?n nueva.
+Logs gobernantes: [`adapter/qa_s15_governing.txt`](adapter/qa_s15_governing.txt), SHA-256 `b03332562ae5d65f1b3928680beb54c30550fdcd18ddd3627c353ba99d08c2de`; gate [`adapter/qa_gate_s15_governing.txt`](adapter/qa_gate_s15_governing.txt), SHA-256 `4bd5036988a36bf813f63607e4f20d91c0e0c0fa95d373a4a4b7e0f26e4acb5b`. Hashes de `ref_torch.cpp`: `213b8b99199e50ecd6c3523d4b0a638659eb7d167513ddbe7a3060eb0e04c9de`; `qa_gate.py`: `be7d608d3d03bcfaaeb9cca175129d8ba296e98c96bdda982b0c46b221b2dabe`; `PAGE_EXPECTED_S15.json`: `aa8e25c5f1b0e93b0741ca32169757a9da1f980211151a91ffc383276c52b027`. Detalles e identidades adicionales están en `REF_FREEZE.json`.

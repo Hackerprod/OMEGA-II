@@ -1,6 +1,6 @@
 {
   "campaign": "T0P-Q4-RESIDENCY",
-  "revision": "S13 governing state; previous S12 fields retained as history",
+  "revision": "S15 governing state; S14 and earlier retained as history",
   "torch_version": "2.11.0+cu128",
   "binary": "CPU ATen only; CUDA-enabled wheel package",
   "dimensions": {
@@ -594,7 +594,6 @@
     ]
   },
   "ambiguities_open": [
-    "SeLockMemoryPrivilege is absent from the token; normal allocation is verified under HOLD_RESOURCE.",
     "mkldnn_linear is diagnostic and excluded because its opaque effective storage cannot be inspected."
   ],
   "artifacts": {
@@ -638,7 +637,18 @@
     "T0P/ref_torch/adapter/qa_gate_results.txt": "87d8a94548b2490503c5c5e6af52866ec0d3fd11a63fc53baa3c7b359885b7ed",
     "T0P/ref_torch/adapter/qa_exit_code.txt": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
     "T0P/common/bound_exact_verify.py": "c4cd8eceeeb6ebf23c0dd454736e1dfd849614d13dbbad7ba24fc60fd5b96ec7",
-    "T0P/common/qa_gate.py": "74e09114d866d980fb2325f1c283960147ed0733f527984aea370b2572b327f6"
+    "T0P/common/qa_gate.py": "74e09114d866d980fb2325f1c283960147ed0733f527984aea370b2572b327f6",
+    "S15_governing_logs": {
+      "raw": {
+        "path": "adapter/qa_s15_governing.txt",
+        "sha256": "b03332562ae5d65f1b3928680beb54c30550fdcd18ddd3627c353ba99d08c2de"
+      },
+      "gate": {
+        "path": "adapter/qa_gate_s15_governing.txt",
+        "sha256": "4bd5036988a36bf813f63607e4f20d91c0e0c0fa95d373a4a4b7e0f26e4acb5b"
+      },
+      "exit_code": 0
+    }
   },
   "S12_reevaluation": {
     "state": "HISTORIAL_PRE_S13",
@@ -702,34 +712,7 @@
       }
     }
   },
-  "ESTADO_GOBERNANTE_S13": {
-    "adapter_source_sha256": "347f45fe4f5260c5b100bbf65231d797f219fd5a4d65d2bc8b6fe2b6172886be",
-    "common_source_sha256": "ff8fb4241fe33a6504c0b11ecf4ab3736b818ad6fd92f4e3aec4a405c292a6ad",
-    "candidates": "mm, matmul, linear; mv only m=1; mkldnn_linear diagnostic / NOT_COMPARABLE_PAGE_POLICY",
-    "exact_group_dot_isolation": {
-      "mm_checks": 2375680,
-      "mm_failures": 0,
-      "matmul_checks": 2375680,
-      "matmul_failures": 0,
-      "linear_checks": 2375680,
-      "linear_failures": 0,
-      "mv_checks": 81920,
-      "mv_failures": 0
-    },
-    "exact_cancellation": {
-      "per_route_checks": 29696,
-      "per_route_failures": 0
-    },
-    "representation": "PASS for effective X, W and Wt",
-    "large_pages": "HOLD_RESOURCE: SeLockMemoryPrivilege absent; QueryWorkingSetEx PASS, LargePage=false",
-    "machine_gate": "PASS; process exit 0; qa_gate.py FINAL_VERDICT=PASS",
-    "performance_timed": false,
-    "adapter_binary_sha256": "df0ce72a96108aad37b731d4a90b92e8ecaeebe213f3ec8c94c5f7a773059a08",
-    "exact_rational_B_checks": 2030,
-    "page_queries": 120,
-    "page_query_failures": 0
-  },
-  "GOVERNING_S14": {
+  "HISTORIAL_S14": {
     "candidates": {
       "mm": {
         "QA_NUMERICAL": "PASS",
@@ -783,5 +766,117 @@
       "common.cpp": "7be077b6816bc72d1711693b804ada6b052dc3696d92c70a1acb759db1d4edbd",
       "qa_gate.py": "1f97e0ea5dad947da26b249645c40d9630f49421449aa5e7cc6940632d650dc0"
     }
+  },
+  "GOVERNING_S15": {
+    "decision": "S-15 blockers A and B closed; S-15 governing QA",
+    "candidates": {
+      "mm": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      },
+      "matmul": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      },
+      "linear": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      },
+      "mv": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      }
+    },
+    "candidate_scope": "mm/matmul/linear; mv solo m=1; mkldnn_linear permanece diagnóstico/no comparable",
+    "qa": {
+      "candidate_rows": 130,
+      "S12": "PASS",
+      "representation": "PASS exacta",
+      "coordinate_sweep": "512/512 exact per M; failures=0",
+      "exact_group_dots": {
+        "mm": 2375680,
+        "matmul": 2375680,
+        "linear": 2375680,
+        "mv_m1": 81920
+      },
+      "exact_cancellation": "PASS",
+      "overall_numerical_equivalence": "PASS",
+      "benchmark_timed": false
+    },
+    "output_memory": {
+      "allocator": "t0common::Buffer con large pages; Y preasignada con forma/strides definitivos y entregada directamente a ATen",
+      "operators": {
+        "mm": "at::mm_out",
+        "matmul": "at::matmul_out",
+        "linear": "at::linear_out",
+        "mv": "at::mv_out (m=1)"
+      },
+      "write_check": "data_ptr y storage pointer conservados; forma, strides y bytes sin cambios; no copia posterior",
+      "query_working_set_ex": "390/390 registros esperados; todas las páginas consultadas Valid=1 y LargePage=1",
+      "large_page_privilege": "AVAILABLE en el token del proceso"
+    },
+    "dispatch": "PASS; cada función _out quedó registrada y ejecutada. `OUT_WRITE` verifica dirección/storage de Y; operadores ATen observados en dispatch_candidate.",
+    "logs": {
+      "raw": "adapter/qa_s15_governing.txt",
+      "raw_sha256": "b03332562ae5d65f1b3928680beb54c30550fdcd18ddd3627c353ba99d08c2de",
+      "exit_code": "adapter/qa_s15_exit_code.txt (0)",
+      "gate": "adapter/qa_gate_s15_governing.txt",
+      "gate_sha256": "4bd5036988a36bf813f63607e4f20d91c0e0c0fa95d373a4a4b7e0f26e4acb5b",
+      "gate_verdict": "PASS",
+      "verifier_unit": {
+        "path": "adapter/verifier_unit_tests_s15.txt",
+        "sha256": "1a58d1810c13559b7e00000ac8a07be9c1e8c254d2b6dddcbafdcd4172e6f37b",
+        "verdict": "PASS"
+      }
+    },
+    "hashes": {
+      "ref_torch.cpp": "213b8b99199e50ecd6c3523d4b0a638659eb7d167513ddbe7a3060eb0e04c9de",
+      "ref_torch.exe": "55e43af54de839da52612257c78f6b78cdcfe99d1248d5c82e137ddbd0b3d1cf",
+      "common.cpp": "7be077b6816bc72d1711693b804ada6b052dc3696d92c70a1acb759db1d4edbd",
+      "qa_gate.py": "be7d608d3d03bcfaaeb9cca175129d8ba296e98c96bdda982b0c46b221b2dabe",
+      "PAGE_EXPECTED_S15.json": "aa8e25c5f1b0e93b0741ca32169757a9da1f980211151a91ffc383276c52b027",
+      "qa_gate_tests.py": "230bf65c5944928933cecbe1a769f49a0164b79c6280d6335ee5036226007829",
+      "verifier_unit_tests_s15.txt": "1a58d1810c13559b7e00000ac8a07be9c1e8c254d2b6dddcbafdcd4172e6f37b"
+    },
+    "negative_gate_tests": "PASS for both references; absent region, one row, contradictory duplicate, zero pages, invalid page, and Sol 119/120 deletion rejected",
+    "traceability_gaps": [
+      "qa_gate.py_preS14 no es byte a byte idéntico al gate precedente; se conserva como copia histórica, no como reproducción exacta.",
+      "Los .lib/.exp de la compilación histórica previa no se recuperaron; los artefactos actuales se compilaron y documentaron en esta ejecución, sin afirmar reproducción byte a byte."
+    ]
+  },
+  "HISTORIAL_S13": {
+    "adapter_source_sha256": "347f45fe4f5260c5b100bbf65231d797f219fd5a4d65d2bc8b6fe2b6172886be",
+    "common_source_sha256": "ff8fb4241fe33a6504c0b11ecf4ab3736b818ad6fd92f4e3aec4a405c292a6ad",
+    "candidates": "mm, matmul, linear; mv only m=1; mkldnn_linear diagnostic / NOT_COMPARABLE_PAGE_POLICY",
+    "exact_group_dot_isolation": {
+      "mm_checks": 2375680,
+      "mm_failures": 0,
+      "matmul_checks": 2375680,
+      "matmul_failures": 0,
+      "linear_checks": 2375680,
+      "linear_failures": 0,
+      "mv_checks": 81920,
+      "mv_failures": 0
+    },
+    "exact_cancellation": {
+      "per_route_checks": 29696,
+      "per_route_failures": 0
+    },
+    "representation": "PASS for effective X, W and Wt",
+    "large_pages": "HOLD_RESOURCE: SeLockMemoryPrivilege absent; QueryWorkingSetEx PASS, LargePage=false",
+    "machine_gate": "PASS; process exit 0; qa_gate.py FINAL_VERDICT=PASS",
+    "performance_timed": false,
+    "adapter_binary_sha256": "df0ce72a96108aad37b731d4a90b92e8ecaeebe213f3ec8c94c5f7a773059a08",
+    "exact_rational_B_checks": 2030,
+    "page_queries": 120,
+    "page_query_failures": 0
   }
 }
