@@ -7,7 +7,7 @@
 
 namespace t0common {
 constexpr int O=1024, I=512, G=16;
-enum class Fixture { Uniform, MixedCancellation, VariedScales, Sub127, Extremes, ZeroInput, SingleCoordinate, CancellationHigh, CancellationExtreme, Count };
+enum class Fixture { Uniform, MixedCancellation, VariedScales, Sub127, Extremes, ZeroInput, SingleCoordinate, CancellationHigh, CancellationExtreme, ExactCancellation, Count };
 struct Cell {
     int M=0; Fixture fixture=Fixture::Uniform;
     std::vector<std::int8_t> wq, xq;

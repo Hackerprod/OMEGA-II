@@ -1,4 +1,4 @@
-﻿# Congelación de referencia ggml
+# Congelación de referencia ggml
 
 ## Fuente y build
 
@@ -48,3 +48,22 @@ La variante `cancellation_high` da S/|r|≈2049; `cancellation_extreme` usa canc
 
 
 Límite de inspección de ggml: `ggml_mul_mat` entrega solo la salida final escalada desde el callback del trait y su símbolo no está exportado ni tiene PDB. Las funciones upstream repack enlazadas directamente, GEMV/GEMM, tampoco exponen el arreglo de dots INT32 por grupo. La API común `exact_group_dots()` existe y sus pruebas de oráculo pasan, pero no se pudo alimentar con resultados internos del kernel sin alterar upstream; por eso los productos exactos de los kernels quedan como limitación abierta.
+
+## ESTADO GOBERNANTE S-13 (2026-10-11)
+
+El detalle ejecutado está en `adapter/QA_RESULTS.md` y la salida en `adapter/qa_output.txt`. S-12, representación, 29.696 salidas exactas de cancelación por ruta y 2.375.680 dots aislados por ruta pasan. El objeto repack upstream actual contiene 218 `VPDPBUSD` (hash `f263ccfa407e36106e4f94bb2e66ae65fd5e0d7487f288a6198c7d36489eec38`). El callback plano se alcanzó solo en m=1; m=4,8,16 registran `reached=false`, por lo que el gate es FAIL y no se autoriza el freeze definitivo.
+
+La frontera estática incluye peso/plano y repack estático, contexto, grafo, plan, scratch y salida. Para la frontera dinámica de entradas preparadas, plano copia la activación Q8_0 original al buffer reutilizado; repack añade empaquetado lossless `block_q8_0x4`. `run_once_*` no hace verificaciones QA, reconstrucciones, allocations del adaptador ni relleno NaN. Este adaptador es QA; no se hicieron mediciones.
+
+`SeLockMemoryPrivilege` no aparece en `whoami /priv` ni en el token. Se registra HOLD de recurso; las asignaciones normales reales se comprobaron con `QueryWorkingSetEx` y `LargePage=false`. No se cambió ninguna política de seguridad.
+
+Las declaraciones de las secciones previas que decían que callback, dots internos o familia de cancelación seguían abiertos pertenecen al HISTORIAL S-12. El bloque actual y `GOVERNING_S13` del JSON gobiernan.
+
+## Correcci?n de estado gobernante S-13 ? cierre final
+
+La corrida final alcanza el callback plano para m=1,4,8,16 (no solo m=1): m?dulo `ggml-cpu.dll`, SHA-256 `cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23`, RVA `0xc8ad0`, captura INT3/VEH durante `ggml_mul_mat`, retorno `base+0x455a`. El desensamblado de esa funci?n contiene `VPDPBUSD` (p. ej. RVA `0xc8baf`); el archivo est? en `adapter/ggml_cpu_disasm.txt`. El gate ejecutado pasa 80/80 celdas. El bloque S-13 anterior queda como HISTORIAL de una corrida intermedia.
+
+
+E3 final: se a?adieron `prepare_static(..., Flat|Repack|QA)` y `prepare_dynamic(..., Flat|Repack|QA)`. Flat no crea pesos/activaciones repack; Repack construye block_q4_0x8 directamente de los c?digos can?nicos y empaqueta activaciones Q8_0x4 directamente de la celda; `QA` es el ?nico modo combinado. La comprobaci?n `STATIC_ROUTE_ISOLATION` pasa. La frontera uno son los buffers est?ticos/contexto/plan; la frontera dos es la preparaci?n din?mica propia de la candidata m?s su kernel. El adaptador se ejecuta solo como QA y no se cronometr?.
+
+Comprobaci?n final E3: `STATIC_ROUTE_ISOLATION` y `DYNAMIC_ROUTE_ISOLATION` pasan en la corrida gobernante; el gate exige ambos.

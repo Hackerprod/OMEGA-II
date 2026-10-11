@@ -1,4 +1,4 @@
-﻿# Datos comunes T0P Q4
+# Datos comunes T0P Q4
 
 `common.hpp/.cpp` contiene generador determinista, formato canónico, conversiones ggml/OMEGA, referencia FP64 S-12 y diagnósticos. `reference64()` entrega r64, S, S+ y B por elemento; `reference()` conserva FP32 solo como diagnóstico. Las reglas de la referencia S-12, el redondeo dirigido, las APIs de control exacto y fixtures nuevos están descritos más abajo.
 
@@ -16,9 +16,17 @@ Por salida y término j, `t_j=(qW_j*sW_g)(qX_j*sX_g)`, `S=sum |t_j|` se calcula 
 
 ## Fixtures
 
-`NEW_FIXTURES_FROZEN.json` congela semillas, construcciones y SHA-256 de las 16 celdas añadidas; su SHA-256 es `NEW_FIXTURES_FROZEN.sha256`. Se generó antes de ejecutar QA sobre esas celdas. `zero_input` exige salida exacta cero. `single_coordinate` hace una salida entera exactamente representable al activar la coordenada 0; el barrido de coordenadas 0..511 pasa con igualdad exacta en 512 lotes por M. `cancellation_high` deja S/|r|≈2049; `cancellation_extreme` deja r=2^-24 y S/|r|≈9.55e11. El sentido exacto de la familia “casi exacta” se mantiene como ambigüedad abierta para Sol porque MD/38 aparece truncado.
+`NEW_FIXTURES_FROZEN.json` congela semillas, construcciones y SHA-256 de las 16 celdas añadidas; su SHA-256 es `NEW_FIXTURES_FROZEN.sha256`. Se generó antes de ejecutar QA sobre esas celdas. `zero_input` exige salida exacta cero. `single_coordinate` hace una salida entera exactamente representable al activar la coordenada 0; el barrido de coordenadas 0..511 pasa con igualdad exacta en 512 lotes por M. `cancellation_high` deja S/|r|=2049; `cancellation_extreme` deja r=2^-24 y S/|r|≈9.55e11. S-13 fija “casi exacta” como r distinto de cero y S/|r|≥1024.
 
 ## Conversiones externas
 
 `ggml_q4_0()` preserva bits FP16 y traslada q a nibbles con bias +8; `ggml_q8_0()` copia escalas FP16 e INT8; `omega_q4_18()` copia nibbles signed y escala FP16. No se recalcula ni se requantiza escala.
 
+
+## Estado gobernante S-13
+
+El manifiesto congelado original y su SHA-256 no se modifican. `NEW_FIXTURES_FROZEN_addendum1.json` (SHA-256 en el `.sha256` compañero) preregistra `cancellation_exact_groups` para M=1,4,8,16 y EXACT_GROUP_DOT_ISOLATION antes de ejecutar ambas QA. La cancelación exacta usa grupos +28448 y -28448, r=0, S=56896 y exige salida ±0 exacta. `ERRATA_cancellation_high.md` corrige κ de 2048 a 2049.
+
+El verificador y todos sus consumidores se compilan con `/fp:strict`; el código consulta y valida `fesetround` y `_controlfp_s` al cambiar y restaurar el entorno. `verifier_unit_tests()` usa operandos `volatile` de runtime en suma, resta, multiplicación y división dirigidas; verifica restauración al volver a la operación llamadora y compara B con el cálculo de mayor precisión. Se mantienen las pruebas S-12 de frontera, NaN, Inf, tamaño, mutaciones exactas y salida cero.
+
+La comprobaci?n independiente `bound_exact_verify.py` contrasta el B emitido por `common.cpp` con un or?culo de `fractions.Fraction` que representa exactamente los FP16 y la f?rmula racional de gamma; pas? 2.030 casos (10 fixtures, m=1/4/8/16, slots y outputs variados). El generador `bound_exact_dump.cpp` se compila con `/fp:strict` desde `common/build.cmd`.

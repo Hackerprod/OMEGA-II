@@ -1,4 +1,4 @@
-﻿# Freeze de referencia Torch CPU â€” T0P-Q4-RESIDENCY
+# Freeze de referencia Torch CPU â€” T0P-Q4-RESIDENCY
 
 ## Cambio de esta revisiÃ³n
 
@@ -41,3 +41,17 @@ La tolerancia antigua se sigue calculando por celda; muchas filas la incumplen, 
 Abierto: el fixture `single_coordinate` actual prueba la posiciÃ³n 0 y no recorre las 512; la cuestiÃ³n de la variante casi exacta sigue remitida a Sol como ambigÃ¼edad de definiciÃ³n aunque esta construcciÃ³n cumple S/|r|â‰¥1e5. `mkldnn_linear` conserva el impedimento de inspecciÃ³n fÃ­sica de pÃ¡ginas.
 
 
+
+## ESTADO GOBERNANTE S-13 (2026-10-11)
+
+- Recompilación con `/fp:strict`; `--unit` finalizó 0. La prueba ejecutable cubre operaciones dirigidas runtime, restauración al volver al llamador, cotas, NaN/Inf, tamaño y mutaciones.
+- Las rutas gobernantes mm, matmul, linear y mv (solo m=1) pasaron la QA numérica, la cancelación exacta (+28448/−28448, salida exactamente cero) y la barrida conservada de coordenadas. `EXACT_GROUP_DOT_ISOLATION`: mm/matmul/linear, 2.375.680 cada una; mv, 81.920; cero fallos.
+- Representación de almacenamiento efectivo: X, W y Wt coinciden con los mapas canónicos; Wt se valida desde el tensor contiguo realmente entregado a mm/matmul. `QueryWorkingSetEx` pasó sobre los clones efectivos. `whoami /priv` y `GetTokenInformation` muestran `SeLockMemoryPrivilege` ausente; HOLD de recurso, asignación normal observada, `LargePage=false`, sin cambios de política.
+- `mkldnn_linear` permanece como diagnóstico, fuera del conjunto gobernante por asignación opaca y política de páginas. No se cronometró.
+- El ejecutable devuelve 0 si pasan controles y el parser `common/qa_gate.py torch adapter/verify_common_all.txt` emite `FINAL_VERDICT=PASS`.
+
+Las secciones anteriores y sus conteos describen el historial S-12; este bloque y `GOVERNING_S13` del JSON son el estado vigente.
+
+## Correcci?n de estado gobernante S-13 ? cierre final
+
+Despu?s del rebuild, Torch termin? QA con c?digo 0 y el gate emite PASS para 130/130 celdas. `QueryWorkingSetEx` consult? todas las p?ginas de los buffers efectivos X, W y Wt: 120 consultas, todas v?lidas y `LargePage=false`. Se mantiene HOLD de recurso porque `SeLockMemoryPrivilege` no est? concedido. El bloque S-13 anterior es HISTORIAL de la corrida previa al control por p?gina.

@@ -101,3 +101,37 @@ Cada combinación (M, coordenada) es un lote canónico independiente: hay 512 po
 | 16 | repack | 512 | 0 | 0 |
 
 Precisión de la limitación de productos de grupo: `ggml_mul_mat` expone solo el tensor final ya escalado desde el callback Q4_0 del trait; el símbolo runtime no está exportado ni hay PDB. Las llamadas directas `ggml_gemv_q4_0_8x8_q8_0` y `ggml_gemm_q4_0_8x8_q8_0` devuelven solo salidas agregadas y no tienen hook/ABI para leer los 16 acumuladores INT32. No se modificó el upstream ni se sustituyó la primitiva por un cálculo escalar; por ello los dots por grupo de la primitiva no quedan certificados, aunque `exact_group_dots()` y su oráculo común sí pasan sus pruebas de API.
+
+## ESTADO GOBERNANTE — S-13 (2026-10-11)
+
+- Se ejecutaron 80 celdas (10 fixtures × 4 M × flat/repack): S-12, finitud y representación exacta pasaron. La variante `cancellation_exact_groups` pasó 29.696 salidas por ruta, todas exactamente ±0. El sweep de 512 coordenadas conserva 2.048 lotes por ruta, cero fallos.
+- `EXACT_GROUP_DOT_ISOLATION`: ggml flat, 2.375.680 comprobaciones, 0 fallos; repack, 2.375.680, 0 fallos. Se usaron los cinco fixtures congelados, escalas unitarias y 16 grupos para cada M.
+- Despacho plano: el breakpoint INT3/VEH alcanzó la dirección del trait en m=1. m=4,8,16: `reached=false`; se registraron módulo `ggml-cpu.dll`, SHA-256 `cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23`, RVA `0xc8ad0` y contexto para cada intento. Por ello el gate obligatorio final es FAIL y el adaptador sale con código 2.
+- Repack enlaza directamente `ggml_gemv_q4_0_8x8_q8_0` en m=1 y `ggml_gemm_q4_0_8x8_q8_0` en m≥4. `repack_x86.cpp` upstream se compiló con `/arch:AVX2 /D__AVXVNNI__`; `dumpbin /disasm` encontró 218 `VPDPBUSD`. SHA-256 objeto actual: `f263ccfa407e36106e4f94bb2e66ae65fd5e0d7487f288a6198c7d36489eec38`. Hash histórico citado por Sol para el objeto sin VNNI: `cc3223ed3d4afff5c7f665059b30ca6e75425891254fb01d8b0a624b8f477f3b`; la recompilación histórica reproducida localmente queda conservada como `obj/repack_x86_preS13.obj`, SHA-256 `52c82e43008604654eda786c7359d697b7ba67927405d9a0086ca719afcdfba4`, 0 `VPDPBUSD` (no coincide byte a byte con el hash histórico citado).
+- Frontera documentada (MD/35): estática = pesos Q4 y repack estático, contexto/grafo/plan, scratch y buffers de salida. Dinámica plana = copia Q8_0 original al buffer de activación reutilizado; dinámica repack = esa preparación más empaquetado lossless a `block_q8_0x4`. `run_once_flat/repack` no contiene callbacks, reconstrucción de pesos, comprobaciones QA ni relleno NaN. Esta carpeta solo contiene el adaptador de QA y no se ejecutaron tiempos.
+- Páginas: `whoami /priv` no lista `SeLockMemoryPrivilege`; `GetTokenInformation` confirma ausencia y no se tocaron políticas. HOLD de recurso; `QueryWorkingSetEx` pasó en buffers efectivos y marcó `LargePage=false`, asignación normal.
+- Gate/parser: `common/qa_gate.py ggml adapter/qa_output.txt` emite FAIL por despacho m≥4; todos los controles numéricos y de representación listados arriba pasan.
+
+Las secciones anteriores describen el historial S-8…S-12 y no sustituyen este estado gobernante.## ESTADO GOBERNANTE ? S-13 (2026-10-11, cierre final)
+
+- QA final: 80/80 celdas pasan S-12, finitud y representaci?n; barrido de 512 coordenadas conservado. Cancelaci?n exacta: 29.696 comprobaciones por ruta, 0 fallos; salida exactamente cero.
+- `EXACT_GROUP_DOT_ISOLATION`: flat 2.375.680/0 y repack 2.375.680/0.
+- Callback plano: INT3 + VEH alcanz? `ggml-cpu.dll` en m=1,4,8,16. SHA-256 DLL `cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23`; RVA `0xc8ad0`; retorno `base+0x455a`. `ggml_cpu_disasm.txt` muestra el callback desde `0xc8ad0` y `VPDPBUSD` en RVAs `0xc8baf`, `0xc8c0a`, `0xc8c5f`, `0xc8caf`, `0xc8d3a`.
+- Repack upstream: 218 `VPDPBUSD`; objeto actual SHA-256 `5fcb938e96e740d31f936e7cb0b1ae500baa50bdbd3c981af96d1430b4907688`; objeto recompilado con flags anteriores conservado en `obj/repack_x86_preS13.obj` (0 VNNI; hash local `52c82e43008604654eda786c7359d697b7ba67927405d9a0086ca719afcdfba4`). Hash hist?rico citado por Sol: `cc3223ed3d4afff5c7f665059b30ca6e75425891254fb01d8b0a624b8f477f3b`.
+- Fronteras MD/35 documentadas: est?tica = pesos, repack est?tico, contexto/grafo/plan, scratch y salida; din?mica flat = activaci?n Q8_0 en buffer reutilizado; din?mica repack = preparaci?n de activaci?n m?s empaquetado lossless Q8_0x4. Las comprobaciones QA quedan fuera de `run_once_*`; esta carpeta contiene el adaptador de QA y no hubo cronometraje.
+- P?ginas: `SeLockMemoryPrivilege` ausente de `whoami /priv` y del token (`GetTokenInformation`); HOLD de recurso, asignaci?n normal, `QueryWorkingSetEx` sobre buffers efectivos con `LargePage=false`; no se cambi? pol?tica.
+- Gate final: `qa_gate.py` emite PASS para 80/80 celdas; el ejecutable reporta `MANDATORY_GATE=PASS`.
+
+Las secciones previas son HISTORIAL. Este bloque y `ESTADO_GOBERNANTE_S13` del JSON gobiernan.
+
+
+### Cierre final de p?ginas efectivas
+
+Tras ejecutar ambos kernels se consultaron todas las p?ginas cubiertas por cada buffer de pesos, activaciones y salida efectivo mediante `QueryWorkingSetEx`: 230 consultas de buffer, 0 fallos (cada p?gina result? v?lida). El gate final pasa 80/80 celdas y el proceso termina con c?digo 0.
+
+
+### Fronteras MD/35 ? APIs finales
+
+`prepare_static(data,m,fixture,Flat)` crea solo Q4_0 plano, contexto/grafo/plan/scratch y salida plana; `Repack` crea solo block_q4_0x8 y salida repack, sin contexto/grafo plano; `QA` combina ambos solo para controles comparativos. `STATIC_ROUTE_ISOLATION` compara sus layouts con el combinado y pasa. `prepare_dynamic(...,Flat)` copia Q8_0 al buffer reutilizado; `Repack` empaqueta directamente desde los c?digos/escalas can?nicos a block_q8_0x4 (para M=1 escribe el Q8_0 requerido por GEMV); `QA` crea ambos para reconstrucci?n. Ninguna rama din?mica de candidata crea el trabajo de la otra. `run_once_flat/repack` solo ejecuta su kernel. Se documentan entradas preparadas como frontera uno; preparaci?n din?mica de la candidata m?s kernel como frontera dos. No se tomaron tiempos.
+
+Comprobaci?n final E3: `STATIC_ROUTE_ISOLATION` y `DYNAMIC_ROUTE_ISOLATION` pasan en la corrida gobernante; el gate exige ambos.

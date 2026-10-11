@@ -1,0 +1,1 @@
+Fe de erratas — cancellation_high`n`nLa variante congelada cancellation_high tiene κ = S / |r| = 2049. Sus contribuciones no nulas son +28448 y −28448(1 + 2^-10). La cifra 2048 del manifiesto NEW_FIXTURES_FROZEN.json es incorrecta. El manifiesto y su SHA-256 se conservan sin cambios; esta nota corrige su descripción.

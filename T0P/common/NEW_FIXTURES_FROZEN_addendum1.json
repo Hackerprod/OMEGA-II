@@ -1,0 +1,25 @@
+{
+  "addendum": "NEW_FIXTURES_FROZEN_addendum1",
+  "preregistered_before_execution": true,
+  "basis": "Sol S-13a/S-13b, MD/39; original NEW_FIXTURES_FROZEN.json and .sha256 remain immutable",
+  "exact_cancellation": {
+    "fixture_id": "cancellation_exact_groups",
+    "M": [1,4,8,16], "I": 512, "O": 1024, "groups": 16,
+    "construction": "For every output row o and M row m, qW[o,0..31]=+7, qW[o,32..63]=-7, all remaining qW=0; qX[m,0..63]=127, all remaining qX=0; all 32 weight and activation group scales are FP16 1.0 (0x3c00). Thus group dots are +28448,-28448,0,..., r=0, S=56896; output must equal exactly +0 or -0.",
+    "expected_output": "exact zero for every (m,o)",
+    "canonical_sha256": {"m1":"17ed9c44dc5b2b0cdd4291fea93a61896c139698cc1fcd21553f2fc47c42b308","m4":"d26403564db9709f3c09d042f6a382bd6d61881579e80390c69a28d53963562d","m8":"3bea76b1a4f826186fd1568701ca45e3927db188c06c25ca064af4d33ae754d7","m16":"947bf6fa881e55ea1ff83eb42d8dbd3dd8b720602602bac704935c522e6de97d"}
+  },
+  "EXACT_GROUP_DOT_ISOLATION": {
+    "control_name": "EXACT_GROUP_DOT_ISOLATION",
+    "fixtures": ["uniform","mixed_cancellation","varied_scales","sub127","extremes"],
+    "M": [1,4,8,16], "groups": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], "I": 512, "O": 1024,
+    "scales": "replace all weight and activation scales by FP16 1.0 (0x3c00)",
+    "activation_mask": "for each selected g, retain the 32 canonical qX codes at indices [32*g,32*g+31] for each m and set all other activation codes to zero",
+    "weights": "retain all 32 canonical qW codes per output row and selected group; all groups participate in weights but only selected activations are nonzero",
+    "routes": ["ggml_mul_mat flat Q4_0/Q8_0 (m=1 GEMV dispatch and m>=4 GEMM dispatch)","upstream lossless repack GEMV m=1","upstream lossless repack GEMM m>=4","Torch mm","Torch matmul","Torch linear","Torch mv when m=1"],
+    "acceptance": "for every tested m,o,g, compare double(Y[m,o]) directly to the INT32 oracle sum_j(qW[o,j]*qX[m,j]) over selected g; exact equality, no tolerance and no conversion of Y to integer; absolute bound <=32512",
+    "coverage": ["multiple active terms","positive and negative accumulations","mixed signs","different slot patterns","all five frozen dense fixtures"],
+    "expected_checks_per_route": 2375680,
+    "frozen_fixture_source": "T0P/common/NEW_FIXTURES_FROZEN.json plus its frozen canonical data hashes; no source fixture changes"
+  }
+}
