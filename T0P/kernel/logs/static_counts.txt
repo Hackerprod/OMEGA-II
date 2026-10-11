@@ -1,4 +1,4 @@
-STATIC m=1 vpdpbusd=18 loads=11 decode=27 conversions=0 fma=0 spills=0 other=4 total=60 fraction=0.300000
+STATIC m=1 vpdpbusd=16 loads=10 decode=24 conversions=0 fma=0 spills=0 other=4 total=54 fraction=0.296296
 STATIC m=4 vpdpbusd=32 loads=20 decode=12 conversions=0 fma=0 spills=0 other=4 total=68 fraction=0.470588
 STATIC m=8 vpdpbusd=32 loads=20 decode=12 conversions=0 fma=0 spills=0 other=4 total=68 fraction=0.470588
 STATIC m=16 vpdpbusd=32 loads=20 decode=12 conversions=0 fma=0 spills=0 other=4 total=68 fraction=0.470588

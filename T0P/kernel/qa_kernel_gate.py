@@ -20,12 +20,62 @@ U64_MAX = (1 << 64) - 1
 
 def page_rows(expected_path):
     obj = json.loads(Path(expected_path).read_text(encoding="utf-8"))
-    return obj["buffers"], obj["dwPageSize"]
+    sizes = obj["expected_bytes"]
+    governing = obj["governing_sizes"]
+    required = {"weights", "activations", "Y", "dots"}
+    if set(sizes) != required:
+        raise ValueError("expected_bytes debe fijar weights, activations, Y y dots")
+    if sizes["weights"] != 294912 or sizes["activations"] != "672*m" or \
+       sizes["Y"] != "4096*m" or sizes["dots"] != "65536*m":
+        raise ValueError("tamaños PAGE contractuales incorrectos")
+    if governing != {"n_W": 294912, "n_X": "672*m", "n_Y": "4096*m", "n_dots_QA": "65536*m"}:
+        raise ValueError("governing_sizes PAGE contractuales incorrectos")
+    return obj["buffers"], obj["dwPageSize"], sizes
+
+
+def expected_bytes(buffer, m):
+    return {"weights": 294912, "activations": 672 * m,
+            "Y": 4096 * m, "dots": 65536 * m}.get(buffer, 0)
+
+
+def record_valid(buffer, m, address, n, q, v, large, status, lp, page):
+    # The logical allocation size is checked before page coverage is calculated.
+    if m not in MS or n != expected_bytes(buffer, m):
+        return False
+    good = (0 < address <= U64_MAX and 0 < n <= U64_MAX and n <= U64_MAX - address)
+    if not good:
+        return False
+    off = address % page
+    span = off + n
+    if span > U64_MAX - (page - 1):
+        return False
+    qexp = (span + page - 1) // page
+    return q == qexp and q > 0 and q == v == large and status == "PASS" and lp == "true"
+
+
+def self_test():
+    page = 4096
+    if record_valid("weights", 1, 0x1000, 1, 1, 1, 1, "PASS", "true", page):
+        raise AssertionError("bytes=1 para pesos se aceptó")
+    if record_valid("weights", 1, 0x1000, 294912, 1, 1, 1, "PASS", "true", page):
+        raise AssertionError("contadores incoherentes se aceptaron")
+    for name, m in (("activations", 4), ("Y", 8), ("dots", 16)):
+        expected = expected_bytes(name, m)
+        if record_valid(name, m, 0x1000, expected - 1, 1, 1, 1, "PASS", "true", page):
+            raise AssertionError(f"tamaño incorrecto {name} se aceptó")
+    wanted = {("a", 1), ("b", 1)}
+    if {("a", 1)} == wanted:
+        raise AssertionError("ausencia no detectada")
+    duplicate_rows = [("a", 1), ("a", 1)]
+    if len(duplicate_rows) == len(set(duplicate_rows)):
+        raise AssertionError("duplicación no detectada")
+    print("KERNEL_GATE_SELF_TEST=PASS cases=bytes1,missing,duplicate,incoherent_counters,wrong_X,wrong_Y,wrong_dots")
+    return 0
 
 
 def main(log_path, expected_path):
     text = Path(log_path).read_text(encoding="utf-8", errors="replace")
-    buffers, page = page_rows(expected_path)
+    buffers, page, sizes = page_rows(expected_path)
     if not isinstance(page, int) or page <= 0 or page > U64_MAX:
         raise ValueError("dwPageSize inválido")
     pat = (r"PAGE fixture=(\S+) m=(\d+) candidate=omega_q4 buffer=(\S+) function=(\S+) "
@@ -38,15 +88,7 @@ def main(log_path, expected_path):
             print(f"PAGE_DUPLICATE key={key}")
             return 1
         a, n, q, v, l = int(ahex, 16), int(nstr), int(qstr), int(vstr), int(lstr)
-        good = (0 < a <= U64_MAX and 0 < n <= U64_MAX and n <= U64_MAX - a)
-        qexp = 0
-        if good:
-            off = a % page
-            span = off + n
-            good = span <= U64_MAX - (page - 1)
-            if good:
-                qexp = (span + page - 1) // page
-        good = good and q == qexp and q > 0 and q == v == l and status == "PASS" and lp == "true"
+        good = record_valid(b, int(m), a, n, q, v, l, status, lp, page)
         found[key] = good
     wanted = set()
     for f in FIXTURES:
@@ -93,12 +135,14 @@ def main(log_path, expected_path):
     for m in MS:
         ref_ok = ref_like and numerical_by_m[m]
         print(f"REFERENCE_LIKE m={m} status={'PASS' if ref_ok else 'FAIL'}")
-    final = coverage and all(numerical_by_m.values()) and ref_like and "PAGE_POLICY=PASS" in text
+    final = coverage and all(numerical_by_m.values()) and ref_like and "PAGE_POLICY=PASS" in text and "QA_NUMERICAL=PASS" in text
     print(f"KERNEL_QA_GATE={'PASS' if final else 'FAIL'}")
     return 0 if final else 2
 
 
 if __name__ == "__main__":
+    if len(sys.argv) == 2 and sys.argv[1] == "--self-test":
+        sys.exit(self_test())
     if len(sys.argv) != 3:
         print("usage: qa_kernel_gate.py <qa log> <PAGE_EXPECTED_KERNEL.json>", file=sys.stderr)
         sys.exit(2)

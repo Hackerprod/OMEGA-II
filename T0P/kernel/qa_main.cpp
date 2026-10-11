@@ -92,7 +92,8 @@ void print_s12_failures(const char* route, const Cell& c, const t0common::S12Ver
 }
 
 bool negative_representation_checks(const Cell& c, omega_q4::PackedWeights& w,
-                                    omega_q4::PackedActivations& x) {
+                                    omega_q4::PackedActivations& x,
+                                    bool& rejects_fp32_byte, bool& rejects_sum_byte) {
     std::vector<std::int8_t> wq, xq;
     std::vector<std::uint16_t> wh, xh;
     if (!omega_q4::qa_reconstruct(w, wq, wh) || !omega_q4::qa_reconstruct_activations(x, xq, xh)) return false;
@@ -101,20 +102,29 @@ bool negative_representation_checks(const Cell& c, omega_q4::PackedWeights& w,
     w.bytes[0] = original_code;
     auto* scale_bits = reinterpret_cast<std::uint16_t*>(w.bytes.data() + omega_q4::kCodeBytes);
     const auto original_scale = scale_bits[0]; scale_bits[0] ^= 1;
-    const bool scale_rejected = omega_q4::qa_reconstruct(w, wq, wh) && wh != c.ws_half;
+    const bool scale_rejected = !omega_q4::qa_reconstruct(w, wq, wh) || wh != c.ws_half;
     scale_bits[0] = original_scale;
     auto* act_q = reinterpret_cast<std::uint32_t*>(x.bytes.data());
     const auto original_x = act_q[0]; act_q[0] ^= 1;
-    const bool xcode_rejected = omega_q4::qa_reconstruct_activations(x, xq, xh) && xq != c.xq;
+    const bool xcode_rejected = !omega_q4::qa_reconstruct_activations(x, xq, xh) || xq != c.xq;
     act_q[0] = original_x;
     const std::size_t xq_bytes = std::size_t(c.M) * G * 8 * sizeof(std::uint32_t);
     const std::size_t xs_bytes = std::size_t(c.M) * G * sizeof(float);
     const std::size_t sum_bytes = std::size_t(c.M) * G * sizeof(std::int32_t);
+    auto* scale_plane = x.bytes.data() + xq_bytes;
+    scale_plane[0] ^= 1;
+    rejects_fp32_byte = !omega_q4::qa_reconstruct_activations(x, xq, xh);
+    scale_plane[0] ^= 1;
+    auto* sum_plane = x.bytes.data() + xq_bytes + xs_bytes;
+    sum_plane[0] ^= 1;
+    rejects_sum_byte = !omega_q4::qa_reconstruct_activations(x, xq, xh);
+    sum_plane[0] ^= 1;
     auto* xhalf = reinterpret_cast<std::uint16_t*>(x.bytes.data() + xq_bytes + xs_bytes + sum_bytes);
     const auto original_xscale = xhalf[0]; xhalf[0] ^= 1;
-    const bool xscale_rejected = omega_q4::qa_reconstruct_activations(x, xq, xh) && !equal_bits(xh, c.xs_half);
+    const bool xscale_rejected = !omega_q4::qa_reconstruct_activations(x, xq, xh) || !equal_bits(xh, c.xs_half);
     xhalf[0] = original_xscale;
     return code_rejected && scale_rejected && xcode_rejected && xscale_rejected &&
+           rejects_fp32_byte && rejects_sum_byte &&
            omega_q4::qa_reconstruct(w, wq, wh) && wq == c.wq && equal_bits(wh, c.ws_half) &&
            omega_q4::qa_reconstruct_activations(x, xq, xh) && xq == c.xq && equal_bits(xh, c.xs_half);
 }
@@ -150,7 +160,8 @@ bool run_cells(const std::string& data_dir, bool& pages_pass) {
         std::vector<std::uint16_t> rws, rxs;
         const bool repr = omega_q4::qa_reconstruct(w, rw, rws) && rw == c.wq && equal_bits(rws, c.ws_half) &&
                           omega_q4::qa_reconstruct_activations(x, rx, rxs) && rx == c.xq && equal_bits(rxs, c.xs_half);
-        const bool negative = negative_representation_checks(c, w, x);
+        bool rejects_fp32_byte = false, rejects_sum_byte = false;
+        const bool negative = negative_representation_checks(c, w, x, rejects_fp32_byte, rejects_sum_byte);
         ++negative_checks; if (!negative) ++negative_failures;
         const std::vector<float> output(y.begin(), y.end());
         const auto s12 = t0common::verify_s12(c, output);
@@ -171,7 +182,10 @@ bool run_cells(const std::string& data_dir, bool& pages_pass) {
                   << " S12_failures=" << s12.failures << " max_error_over_B=" << std::setprecision(12)
                   << s12.max_error_over_B << " old_tolerance_pass=" << (old.pass ? 1 : 0)
                   << " old_tolerance_failures=" << old.failures << " representation=" << (repr ? "PASS" : "FAIL")
-                  << " negative_representation=" << (negative ? "PASS" : "FAIL") << " exact_output_failures=" << exact
+                  << " negative_representation=" << (negative ? "PASS" : "FAIL")
+                  << " negative_fp32_byte=" << (rejects_fp32_byte ? "REJECTED" : "ACCEPTED")
+                  << " negative_sum_byte=" << (rejects_sum_byte ? "REJECTED" : "ACCEPTED")
+                  << " exact_output_failures=" << exact
                   << " hash=" << c.sha256 << "\n";
         print_s12_failures("omega_q4", c, s12);
         pass = pass && s12.pass && finite && repr && negative && zero_exact;

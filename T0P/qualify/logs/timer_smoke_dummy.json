@@ -1,0 +1,12 @@
+{
+  "label":"DUMMY",
+  "payload":"integer_loop_only",
+  "qpc_frequency_hz":10000000,
+  "qpc_ticks":1064805,
+  "duration_seconds_dummy":0.106481,
+  "iterations":134217728,
+  "affinity_mask":1,
+  "affinity_verified":true,
+  "TIMED_REGION_MIN_seconds":0.100,
+  "status":"PASS"
+}

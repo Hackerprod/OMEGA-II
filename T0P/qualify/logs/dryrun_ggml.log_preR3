@@ -1,0 +1,34 @@
+LARGE_PAGE_PRIVILEGE=AVAILABLE
+PAGE fixture=uniform m=1 candidate=ggml_flat buffer=weights function=static_prepare alias=dryrun_weights address=0x1a8c2600000 bytes=294912 queried_pages=72 valid_pages=72 large_pages=72 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=1 candidate=ggml_flat buffer=activations function=dynamic_prepare alias=dryrun_flat_X address=0x1a8c4c00000 bytes=544 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=1 candidate=ggml_flat buffer=Y function=output alias=dryrun_Y address=0x1a8c2800000 bytes=4096 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS
+DRY_ROUTE candidate=ggml_flat m=1 status=PASS numerical=PASS page=PASS dispatch=ggml_graph_compute_use_ref_false timing_fields=null
+PAGE fixture=uniform m=1 candidate=ggml_repack buffer=weights function=static_prepare alias=dryrun_weights address=0x1a8c2600000 bytes=294912 queried_pages=72 valid_pages=72 large_pages=72 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=1 candidate=ggml_repack buffer=activations function=dynamic_prepare alias=dryrun_repack_X address=0x1a8c2a00000 bytes=544 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=1 candidate=ggml_repack buffer=Y function=output alias=dryrun_Y address=0x1a8c2800000 bytes=4096 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS
+DRY_ROUTE candidate=ggml_repack m=1 status=PASS numerical=PASS page=PASS dispatch=upstream_gemv timing_fields=null
+PAGE fixture=uniform m=4 candidate=ggml_flat buffer=weights function=static_prepare alias=dryrun_weights address=0x1a8c2800000 bytes=294912 queried_pages=72 valid_pages=72 large_pages=72 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=4 candidate=ggml_flat buffer=activations function=dynamic_prepare alias=dryrun_flat_X address=0x1a8c4e00000 bytes=2176 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=4 candidate=ggml_flat buffer=Y function=output alias=dryrun_Y address=0x1a8c2a00000 bytes=16384 queried_pages=4 valid_pages=4 large_pages=4 QueryWorkingSetEx=PASS
+DRY_ROUTE candidate=ggml_flat m=4 status=PASS numerical=PASS page=PASS dispatch=ggml_graph_compute_use_ref_false timing_fields=null
+PAGE fixture=uniform m=4 candidate=ggml_repack buffer=weights function=static_prepare alias=dryrun_weights address=0x1a8c2800000 bytes=294912 queried_pages=72 valid_pages=72 large_pages=72 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=4 candidate=ggml_repack buffer=activations function=dynamic_prepare alias=dryrun_repack_X address=0x1a8c2c00000 bytes=2176 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=4 candidate=ggml_repack buffer=Y function=output alias=dryrun_Y address=0x1a8c2a00000 bytes=16384 queried_pages=4 valid_pages=4 large_pages=4 QueryWorkingSetEx=PASS
+DRY_ROUTE candidate=ggml_repack m=4 status=PASS numerical=PASS page=PASS dispatch=upstream_gemm timing_fields=null
+PAGE fixture=uniform m=8 candidate=ggml_flat buffer=weights function=static_prepare alias=dryrun_weights address=0x1a8c2800000 bytes=294912 queried_pages=72 valid_pages=72 large_pages=72 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=8 candidate=ggml_flat buffer=activations function=dynamic_prepare alias=dryrun_flat_X address=0x1a8c4e00000 bytes=4352 queried_pages=2 valid_pages=2 large_pages=2 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=8 candidate=ggml_flat buffer=Y function=output alias=dryrun_Y address=0x1a8c2a00000 bytes=32768 queried_pages=8 valid_pages=8 large_pages=8 QueryWorkingSetEx=PASS
+DRY_ROUTE candidate=ggml_flat m=8 status=PASS numerical=PASS page=PASS dispatch=ggml_graph_compute_use_ref_false timing_fields=null
+PAGE fixture=uniform m=8 candidate=ggml_repack buffer=weights function=static_prepare alias=dryrun_weights address=0x1a8c2800000 bytes=294912 queried_pages=72 valid_pages=72 large_pages=72 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=8 candidate=ggml_repack buffer=activations function=dynamic_prepare alias=dryrun_repack_X address=0x1a8c2c00000 bytes=4352 queried_pages=2 valid_pages=2 large_pages=2 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=8 candidate=ggml_repack buffer=Y function=output alias=dryrun_Y address=0x1a8c2a00000 bytes=32768 queried_pages=8 valid_pages=8 large_pages=8 QueryWorkingSetEx=PASS
+DRY_ROUTE candidate=ggml_repack m=8 status=PASS numerical=PASS page=PASS dispatch=upstream_gemm timing_fields=null
+PAGE fixture=uniform m=16 candidate=ggml_flat buffer=weights function=static_prepare alias=dryrun_weights address=0x1a8c2800000 bytes=294912 queried_pages=72 valid_pages=72 large_pages=72 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=16 candidate=ggml_flat buffer=activations function=dynamic_prepare alias=dryrun_flat_X address=0x1a8c4e00000 bytes=8704 queried_pages=3 valid_pages=3 large_pages=3 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=16 candidate=ggml_flat buffer=Y function=output alias=dryrun_Y address=0x1a8c2a00000 bytes=65536 queried_pages=16 valid_pages=16 large_pages=16 QueryWorkingSetEx=PASS
+DRY_ROUTE candidate=ggml_flat m=16 status=PASS numerical=PASS page=PASS dispatch=ggml_graph_compute_use_ref_false timing_fields=null
+PAGE fixture=uniform m=16 candidate=ggml_repack buffer=weights function=static_prepare alias=dryrun_weights address=0x1a8c2800000 bytes=294912 queried_pages=72 valid_pages=72 large_pages=72 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=16 candidate=ggml_repack buffer=activations function=dynamic_prepare alias=dryrun_repack_X address=0x1a8c2c00000 bytes=8704 queried_pages=3 valid_pages=3 large_pages=3 QueryWorkingSetEx=PASS
+PAGE fixture=uniform m=16 candidate=ggml_repack buffer=Y function=output alias=dryrun_Y address=0x1a8c2a00000 bytes=65536 queried_pages=16 valid_pages=16 large_pages=16 QueryWorkingSetEx=PASS
+DRY_ROUTE candidate=ggml_repack m=16 status=PASS numerical=PASS page=PASS dispatch=upstream_gemm timing_fields=null
+DRY_REFERENCE_GGML status=PASS timed=false

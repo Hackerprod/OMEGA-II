@@ -1,0 +1,5 @@
+DRY_KERNEL_CONTROL m=1 Q1_FP32_SCALE=PASS Q1_INT32_SUM=PASS negative_scale=REJECTED negative_sum=REJECTED S12=PASS large_pages=PASS timing_fields=null
+DRY_KERNEL_CONTROL m=4 Q1_FP32_SCALE=PASS Q1_INT32_SUM=PASS negative_scale=REJECTED negative_sum=REJECTED S12=PASS large_pages=PASS timing_fields=null
+DRY_KERNEL_CONTROL m=8 Q1_FP32_SCALE=PASS Q1_INT32_SUM=PASS negative_scale=REJECTED negative_sum=REJECTED S12=PASS large_pages=PASS timing_fields=null
+DRY_KERNEL_CONTROL m=16 Q1_FP32_SCALE=PASS Q1_INT32_SUM=PASS negative_scale=REJECTED negative_sum=REJECTED S12=PASS large_pages=PASS timing_fields=null
+DRY_KERNEL_CONTROLS status=PASS timed=false

@@ -1,0 +1,188 @@
+#define NOMINMAX
+#include <windows.h>
+#include <bcrypt.h>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <regex>
+#include <set>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
+
+namespace fs = std::filesystem;
+
+static std::wstring quote(const fs::path& p) {
+    std::wstring s = p.wstring(), out = L"\"";
+    for (wchar_t c : s) { if (c == L'"') out += L'\\'; out += c; }
+    return out + L"\"";
+}
+
+static std::string sha256(const fs::path& path) {
+    BCRYPT_ALG_HANDLE alg = nullptr; BCRYPT_HASH_HANDLE hash = nullptr;
+    DWORD obj_size = 0, got = 0;
+    if (BCryptOpenAlgorithmProvider(&alg, BCRYPT_SHA256_ALGORITHM, nullptr, 0) < 0) return {};
+    BCryptGetProperty(alg, BCRYPT_OBJECT_LENGTH, reinterpret_cast<PUCHAR>(&obj_size), sizeof(obj_size), &got, 0);
+    std::vector<UCHAR> obj(obj_size), bytes(1 << 16), digest(32);
+    if (BCryptCreateHash(alg, &hash, obj.data(), obj_size, nullptr, 0, 0) < 0) { BCryptCloseAlgorithmProvider(alg, 0); return {}; }
+    std::ifstream in(path, std::ios::binary);
+    while (in) { in.read(reinterpret_cast<char*>(bytes.data()), bytes.size()); auto n = in.gcount(); if (n && BCryptHashData(hash, bytes.data(), DWORD(n), 0) < 0) break; }
+    const bool ok = in.eof() && BCryptFinishHash(hash, digest.data(), DWORD(digest.size()), 0) >= 0;
+    BCryptDestroyHash(hash); BCryptCloseAlgorithmProvider(alg, 0);
+    if (!ok) return {};
+    static const char* h = "0123456789abcdef"; std::string out; out.reserve(64);
+    for (UCHAR b : digest) { out += h[b >> 4]; out += h[b & 15]; }
+    return out;
+}
+
+static DWORD run_child(const fs::path& exe, const std::wstring& args, const fs::path& cwd,
+                       const fs::path& log, DWORD_PTR affinity) {
+    SECURITY_ATTRIBUTES sa{sizeof(sa), nullptr, TRUE};
+    HANDLE file = CreateFileW(log.c_str(), GENERIC_WRITE, FILE_SHARE_READ, &sa, CREATE_ALWAYS,
+                              FILE_ATTRIBUTE_NORMAL, nullptr);
+    if (file == INVALID_HANDLE_VALUE) return 9001;
+    STARTUPINFOW si{}; si.cb = sizeof(si); si.dwFlags = STARTF_USESTDHANDLES;
+    si.hStdOutput = file; si.hStdError = file; si.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
+    PROCESS_INFORMATION pi{};
+    std::wstring cmd = quote(exe) + L" " + args;
+    std::vector<wchar_t> writable(cmd.begin(), cmd.end()); writable.push_back(0);
+    BOOL made = CreateProcessW(exe.c_str(), writable.data(), nullptr, nullptr, TRUE,
+        CREATE_SUSPENDED | CREATE_UNICODE_ENVIRONMENT, nullptr, cwd.c_str(), &si, &pi);
+    CloseHandle(file);
+    if (!made) return GetLastError();
+    if (!SetProcessAffinityMask(pi.hProcess, affinity)) { TerminateProcess(pi.hProcess, 9002); CloseHandle(pi.hThread); CloseHandle(pi.hProcess); return 9002; }
+    const DWORD_PTR child_previous = SetThreadAffinityMask(pi.hThread, affinity);
+    GROUP_AFFINITY child_group{}; DWORD_PTR child_mask = 0, child_system_mask = 0;
+    if (!child_previous || !GetThreadGroupAffinity(pi.hThread, &child_group) || child_group.Mask != affinity ||
+        !GetProcessAffinityMask(pi.hProcess, &child_mask, &child_system_mask) || child_mask != affinity) {
+        TerminateProcess(pi.hProcess, 9004); CloseHandle(pi.hThread); CloseHandle(pi.hProcess); return 9004;
+    }
+    ResumeThread(pi.hThread); WaitForSingleObject(pi.hProcess, INFINITE);
+    DWORD code = 9003; GetExitCodeProcess(pi.hProcess, &code);
+    CloseHandle(pi.hThread); CloseHandle(pi.hProcess); return code;
+}
+
+static void scrub_metric_fields(const fs::path& log) {
+    std::ifstream in(log, std::ios::binary);
+    std::string s((std::istreambuf_iterator<char>(in)), {});
+    const std::regex numeric_metric(R"(((?:max_error_over_B|error_over_B|G_ggml|G_Torch|D_prime_hot|D'_hot|P_instr|GFLOPS|time_ns|duration_ns)=)[^ \r\n]+)");
+    s = std::regex_replace(s, numeric_metric, "$1null");
+    std::ofstream out(log, std::ios::binary | std::ios::trunc);
+    out.write(s.data(), std::streamsize(s.size()));
+    if (!out) throw std::runtime_error("no se pudo sanear el log dry-run");
+}
+
+static std::vector<std::string> dry_records(const fs::path& log, bool omega) {
+    std::ifstream in(log); std::vector<std::string> rows; std::string line;
+    const std::regex ref_row(R"(DRY_ROUTE candidate=([A-Za-z0-9_]+) m=([0-9]+) status=(PASS|FAIL))");
+    const std::regex omega_row(R"(CELL fixture=([A-Za-z0-9_]+) m=([0-9]+) route=omega_q4 .*S12_pass=([01]))");
+    std::smatch m;
+    while (std::getline(in, line)) {
+        if (!omega && std::regex_search(line, m, ref_row)) {
+            rows.push_back("{\"candidate\":\"" + m[1].str() + "\",\"fixture\":\"uniform\",\"m\":" + m[2].str() +
+                ",\"core\":null,\"frontier\":\"dry-run-smoke\",\"N\":0,\"samples\":[],\"median\":null,\"IQR\":null,\"MAD\":null,\"status\":\"" + m[3].str() + "\",\"timing_fields\":null}");
+        } else if (omega && std::regex_search(line, m, omega_row)) {
+            rows.push_back("{\"candidate\":\"omega_q4\",\"fixture\":\"" + m[1].str() + "\",\"m\":" + m[2].str() +
+                ",\"core\":null,\"frontier\":\"dry-run-smoke\",\"N\":0,\"samples\":[],\"median\":null,\"IQR\":null,\"MAD\":null,\"status\":\"" +
+                (m[3].str() == "1" ? "PASS" : "FAIL") + "\",\"timing_fields\":null}");
+        }
+    }
+    return rows;
+}
+
+static bool verify_omega_page_bytes(const fs::path& log) {
+    std::ifstream in(log); std::string line; std::size_t rows = 0;
+    std::set<std::string> keys;
+    const std::regex page_row(R"(PAGE fixture=([A-Za-z0-9_]+) m=([0-9]+) candidate=omega_q4 buffer=([A-Za-z0-9_]+) function=([A-Za-z0-9_]+) alias=([A-Za-z0-9_]+) address=0x[0-9a-fA-F]+ bytes=([0-9]+))");
+    std::smatch m;
+    while (std::getline(in, line)) if (std::regex_search(line, m, page_row)) {
+        const std::string fixture = m[1].str(), buffer = m[3].str();
+        const int slots = std::stoi(m[2].str()); const std::size_t bytes = std::stoull(m[6].str());
+        std::size_t expected = 0;
+        if (buffer == "weights") expected = 294912;
+        else if (buffer == "activations") expected = std::size_t(672) * slots;
+        else if (buffer == "Y") expected = std::size_t(4096) * slots;
+        else if (buffer == "dots") expected = std::size_t(65536) * slots;
+        if (expected == 0 || slots != 1 && slots != 4 && slots != 8 && slots != 16 || bytes != expected) return false;
+        const std::string key = fixture + "/" + m[2].str() + "/" + buffer + "/" + m[4].str() + "/" + m[5].str();
+        if (!keys.insert(key).second) return false;
+        ++rows;
+    }
+    return rows == 212;
+}
+
+int wmain(int argc, wchar_t** argv) {
+    try {
+        if (argc != 2 || (std::wstring(argv[1]) != L"--dry-run" && std::wstring(argv[1]) != L"--official")) {
+            std::wcerr << L"Uso: qualify.exe --dry-run | --official\n"; return 2;
+        }
+        const fs::path root = fs::absolute(fs::path(argv[0])).parent_path();
+        const fs::path workspace = root.parent_path().parent_path();
+        const fs::path obj = root / L"obj", logs = root / L"logs";
+        fs::create_directories(logs);
+        const DWORD_PTR process_mask = [] { DWORD_PTR p = 0, s = 0; return GetProcessAffinityMask(GetCurrentProcess(), &p, &s) ? p : DWORD_PTR(0); }();
+        if (!process_mask) throw std::runtime_error("no se pudo consultar la máscara de afinidad");
+        const DWORD_PTR one_core = process_mask & (~process_mask + 1);
+        if (!SetThreadAffinityMask(GetCurrentThread(), one_core)) throw std::runtime_error("SetThreadAffinityMask falló");
+        const DWORD_PTR previous_affinity = SetThreadAffinityMask(GetCurrentThread(), one_core);
+        GROUP_AFFINITY current_group{};
+        if (!previous_affinity || !GetThreadGroupAffinity(GetCurrentThread(), &current_group) || current_group.Mask != one_core)
+            throw std::runtime_error("afinidad de dry-run no verificable");
+
+        if (std::wstring(argv[1]) == L"--official") {
+            const fs::path auth = root / L"AUTHORIZED.json";
+            if (!fs::exists(auth)) { std::wcerr << L"OFFICIAL_BLOCKED: falta AUTHORIZED.json (no se ejecutó ninguna rutina).\n"; return 4; }
+            std::ifstream in(auth); std::string s((std::istreambuf_iterator<char>(in)), {});
+            const std::string digest = sha256(fs::absolute(argv[0]));
+            if (s.find(digest) == std::string::npos) { std::wcerr << L"OFFICIAL_BLOCKED: hash del ejecutable no autorizado.\n"; return 5; }
+            std::wcerr << L"OFFICIAL_BLOCKED: autorización válida, pero se requiere el acta de congelación de Sol para habilitar adquisición de muestras.\n";
+            return 6;
+        }
+
+        const fs::path ggml = root / L"qualify_ggml_qa.exe";
+        const fs::path torch = root / L"qualify_torch_qa.exe";
+        const fs::path omega = root / L"qualify_kernel_qa.exe";
+        const fs::path omega_controls = root / L"qualify_kernel_controls.exe";
+        const fs::path data = workspace / L"T0P" / L"common" / L"data";
+        wchar_t old_path[32768]{}; DWORD old_n = GetEnvironmentVariableW(L"PATH", old_path, DWORD(std::size(old_path)));
+        std::wstring path = old_n ? std::wstring(old_path, old_n) : L"";
+        path = (workspace / L"T0P" / L"ref_ggml" / L"build_llama" / L"bin").wstring() + L";" +
+               (workspace.parent_path() / L".venv_cuda" / L"Lib" / L"site-packages" / L"torch" / L"lib").wstring() + L";" + path;
+        if (!SetEnvironmentVariableW(L"PATH", path.c_str())) throw std::runtime_error("no se pudo preparar PATH de DLL congeladas");
+        SetEnvironmentVariableW(L"OMP_NUM_THREADS", L"1");
+        SetEnvironmentVariableW(L"OMP_DYNAMIC", L"FALSE");
+        SetEnvironmentVariableW(L"MKL_NUM_THREADS", L"1");
+        SetEnvironmentVariableW(L"MKL_DYNAMIC", L"FALSE");
+        const DWORD_PTR mask = one_core;
+        const DWORD ggml_rc = run_child(ggml, quote(data), root, logs / L"dryrun_ggml.log", mask);
+        const DWORD torch_rc = run_child(torch, L"", workspace, logs / L"dryrun_torch.log", mask);
+        const DWORD omega_rc = run_child(omega, quote(data), workspace, logs / L"dryrun_omega.log", mask);
+        const DWORD omega_controls_rc = run_child(omega_controls, L"", workspace, logs / L"dryrun_kernel_controls.log", mask);
+        scrub_metric_fields(logs / L"dryrun_ggml.log");
+        scrub_metric_fields(logs / L"dryrun_torch.log");
+        scrub_metric_fields(logs / L"dryrun_omega.log");
+        scrub_metric_fields(logs / L"dryrun_kernel_controls.log");
+        const bool page_sizes_ok = verify_omega_page_bytes(logs / L"dryrun_omega.log");
+        const bool pass = ggml_rc == 0 && torch_rc == 0 && omega_rc == 0 && omega_controls_rc == 0 && page_sizes_ok;
+        auto records = dry_records(logs / L"dryrun_ggml.log", false);
+        auto torch_records = dry_records(logs / L"dryrun_torch.log", false);
+        auto omega_records = dry_records(logs / L"dryrun_omega.log", true);
+        records.insert(records.end(), torch_records.begin(), torch_records.end());
+        records.insert(records.end(), omega_records.begin(), omega_records.end());
+        std::ofstream json(logs / L"dryrun_summary.json", std::ios::binary | std::ios::trunc);
+        json << "{\n  \"mode\": \"dry-run\",\n  \"timed\": false,\n  \"timing_fields\": null,\n"
+             "  \"g_ggml\": null,\n  \"g_torch\": null,\n  \"d_prime_hot\": null,\n  \"p_instr\": null,\n"
+             "  \"affinity_mask\": " << mask << ",\n  \"affinity_verified\": true,\n  \"routine_exit_codes\": {\"ggml\": " << ggml_rc
+          << ", \"torch\": " << torch_rc << ", \"omega\": " << omega_rc
+          << ", \"omega_controls_Q1_Q2\": " << omega_controls_rc << "},\n"
+             "  \"page_size_contract\": \"" << (page_sizes_ok ? "PASS" : "FAIL") << "\",\n"
+             "  \"routine_records\": [\n";
+        for (size_t i = 0; i < records.size(); ++i) json << "    " << records[i] << (i + 1 == records.size() ? "\n" : ",\n");
+        json << "  ],\n  \"status\": \"" << (pass && records.size() == 61 ? "PASS" : "FAIL") << "\"\n}\n";
+        json.close();
+        std::cout << "DRY_RUN timed=false affinity=PASS ggml=" << ggml_rc << " torch=" << torch_rc
+                  << " omega=" << omega_rc << " summary=logs/dryrun_summary.json status=" << (pass ? "PASS" : "FAIL") << "\n";
+        return pass && records.size() == 61 ? 0 : 10;
+    } catch (const std::exception& e) { std::cerr << "ERROR: " << e.what() << "\n"; return 1; }
+}

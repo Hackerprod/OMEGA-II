@@ -1,0 +1,68 @@
+LARGE_PAGE_PRIVILEGE=AVAILABLE
+[W1011 15:50:50.000000000 Context.cpp:231] Warning: TF32 acceleration on top of oneDNN is available for Intel GPUs. The current Torch version does not have Intel GPU Support. (function setAllowTF32OneDNN)
+OUT_WRITE candidate=torch_mm function=at::mm_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=4096 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=1 candidate=torch_mm buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=2048 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=1 candidate=torch_mm buffer=Wt function=weight alias=dryrun_W address=0x17443600000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=1 candidate=torch_mm buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=4096 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_mm m=1 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_matmul function=at::matmul_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=4096 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=1 candidate=torch_matmul buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=2048 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=1 candidate=torch_matmul buffer=Wt function=weight alias=dryrun_W address=0x17443600000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=1 candidate=torch_matmul buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=4096 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_matmul m=1 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_linear function=at::linear_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=4096 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=1 candidate=torch_linear buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=2048 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=1 candidate=torch_linear buffer=W function=weight alias=dryrun_W address=0x17443400000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=1 candidate=torch_linear buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=4096 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_linear m=1 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_mv function=at::mv_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=4096 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=1 candidate=torch_mv buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=2048 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=1 candidate=torch_mv buffer=W function=weight alias=dryrun_W address=0x17443400000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=1 candidate=torch_mv buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=4096 queried_pages=1 valid_pages=1 large_pages=1 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_mv m=1 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_mm function=at::mm_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=16384 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=4 candidate=torch_mm buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=8192 queried_pages=2 valid_pages=2 large_pages=2 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=4 candidate=torch_mm buffer=Wt function=weight alias=dryrun_W address=0x17443600000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=4 candidate=torch_mm buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=16384 queried_pages=4 valid_pages=4 large_pages=4 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_mm m=4 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_matmul function=at::matmul_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=16384 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=4 candidate=torch_matmul buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=8192 queried_pages=2 valid_pages=2 large_pages=2 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=4 candidate=torch_matmul buffer=Wt function=weight alias=dryrun_W address=0x17443600000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=4 candidate=torch_matmul buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=16384 queried_pages=4 valid_pages=4 large_pages=4 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_matmul m=4 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_linear function=at::linear_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=16384 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=4 candidate=torch_linear buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=8192 queried_pages=2 valid_pages=2 large_pages=2 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=4 candidate=torch_linear buffer=W function=weight alias=dryrun_W address=0x17443400000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=4 candidate=torch_linear buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=16384 queried_pages=4 valid_pages=4 large_pages=4 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_linear m=4 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_mm function=at::mm_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=32768 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=8 candidate=torch_mm buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=16384 queried_pages=4 valid_pages=4 large_pages=4 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=8 candidate=torch_mm buffer=Wt function=weight alias=dryrun_W address=0x17443600000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=8 candidate=torch_mm buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=32768 queried_pages=8 valid_pages=8 large_pages=8 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_mm m=8 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_matmul function=at::matmul_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=32768 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=8 candidate=torch_matmul buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=16384 queried_pages=4 valid_pages=4 large_pages=4 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=8 candidate=torch_matmul buffer=Wt function=weight alias=dryrun_W address=0x17443600000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=8 candidate=torch_matmul buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=32768 queried_pages=8 valid_pages=8 large_pages=8 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_matmul m=8 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_linear function=at::linear_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=32768 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=8 candidate=torch_linear buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=16384 queried_pages=4 valid_pages=4 large_pages=4 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=8 candidate=torch_linear buffer=W function=weight alias=dryrun_W address=0x17443400000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=8 candidate=torch_linear buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=32768 queried_pages=8 valid_pages=8 large_pages=8 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_linear m=8 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_mm function=at::mm_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=65536 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=16 candidate=torch_mm buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=32768 queried_pages=8 valid_pages=8 large_pages=8 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=16 candidate=torch_mm buffer=Wt function=weight alias=dryrun_W address=0x17443600000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=16 candidate=torch_mm buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=65536 queried_pages=16 valid_pages=16 large_pages=16 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_mm m=16 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_matmul function=at::matmul_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=65536 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=16 candidate=torch_matmul buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=32768 queried_pages=8 valid_pages=8 large_pages=8 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=16 candidate=torch_matmul buffer=Wt function=weight alias=dryrun_W address=0x17443600000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=16 candidate=torch_matmul buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=65536 queried_pages=16 valid_pages=16 large_pages=16 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_matmul m=16 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+OUT_WRITE candidate=torch_linear function=at::linear_out data_ptr=0x17443800000 storage_ptr=0x17443800000 bytes=65536 shape_preserved=true storage_preserved=true status=PASS
+PAGE fixture=uniform m=16 candidate=torch_linear buffer=X function=input alias=dryrun_X address=0x17442c00000 bytes=32768 queried_pages=8 valid_pages=8 large_pages=8 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=16 candidate=torch_linear buffer=W function=weight alias=dryrun_W address=0x17443400000 bytes=2097152 queried_pages=512 valid_pages=512 large_pages=512 QueryWorkingSetEx=PASS LargePage=true
+PAGE fixture=uniform m=16 candidate=torch_linear buffer=Y function=output alias=dryrun_Y address=0x17443800000 bytes=65536 queried_pages=16 valid_pages=16 large_pages=16 QueryWorkingSetEx=PASS LargePage=true
+DRY_ROUTE candidate=torch_linear m=16 status=PASS numerical=PASS page=PASS dispatch_observed=true timing_fields=null
+DRY_REFERENCE_TORCH status=PASS timed=false

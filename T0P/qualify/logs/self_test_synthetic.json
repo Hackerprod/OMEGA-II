@@ -1,0 +1,13 @@
+{
+  "label":"SYNTHETIC",
+  "seed":85596130,
+  "N":31,
+  "statistics":{"median":1.25,"IQR":0.0015,"MAD":0.0008},
+  "g_ggml_boundary":0.90,
+  "g_torch_boundary":1.20,
+  "D_prime_boundary":2.00,
+  "plateau_12_14_max_relative_difference":0.03,
+  "rho_marginal_boundary":0.50,
+  "negative_cases":["missing_cell_core_frontier","N_not_31","PAGE_incomplete","S12_fail","AUTHORIZED_exe_hash_mismatch","seed_missing"],
+  "status":"PASS"
+}

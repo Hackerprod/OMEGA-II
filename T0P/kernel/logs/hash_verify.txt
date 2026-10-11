@@ -1,1 +1,1 @@
-SHA256_MANIFEST status=PASS checked=31 entries=31 failures=0 excluded=SHA256SUMS_kernel.txt,logs/hash_verify.txt
+SHA256_MANIFEST status=PASS checked=50 entries=50 failures=0 excluded=SHA256SUMS_kernel.txt,logs/hash_verify.txt

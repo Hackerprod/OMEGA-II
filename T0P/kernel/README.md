@@ -9,8 +9,12 @@ Kernel AVX-VNNI-256 y QA no cronometrada para una matriz `1024×512`, con `m={1,
 - `qa_kernel_gate.py` y `PAGE_EXPECTED_KERNEL.json`: gate de cobertura de las asignaciones efectivas, con fórmula de página S-16.
 - `build.cmd`: compilación MSVC, `dumpbin /disasm` y ejecución de QA; no mide tiempo.
 - `KERNEL_DESIGN.md`: decisiones de layout, flujo y semántica.
-- `logs/STATIC_INSTRUCTION_COUNTS.md`: conteo estático del bucle K4 extraído de `dumpbin /disasm`, incluyendo cargas/broadcasts y spills.
+- `logs/STATIC_INSTRUCTION_COUNTS.md`: conteo estático de K4 y cargas/almacenamientos de pila fuera de K4, extraído de `dumpbin /disasm`.
 
 Desde la raíz del proyecto: `cmd /c T0P\kernel\build.cmd`. La salida cruda queda bajo `T0P\kernel\logs\`; los objetos y el ejecutable permanecen en esta carpeta.
 
 `qa_kernel.exe` requiere AVX-VNNI-256 anunciado por CPUID y regiones large-page disponibles para los buffers consultados. Termina con código distinto de cero si falla cualquier gate. La QA usa las 40 celdas actuales de `T0P\common\data` (20 celdas históricas y 20 addenda). No contiene temporización del operador.
+
+## Manifiesto
+
+`SHA256SUMS_kernel.txt` excluye `__pycache__/inspect_disasm.cpython-313.pyc`, entrada ausente del manifiesto previo: era cache de Python, no un artefacto reproducible. El manifiesto anterior se conserva como `SHA256SUMS_kernel.txt_r2`.

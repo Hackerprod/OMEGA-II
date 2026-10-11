@@ -29,7 +29,7 @@ inline __m256i dpbusd(__m256i acc, __m256i unsigned_weights, std::uint32_t activ
 template<int T>
 inline void run_m1_tile_chain(const std::uint8_t* w, int ot0, int g, int kp,
                              __m256i x0, __m256i x1, __m256i* dots) noexcept {
-    if constexpr (T < 9) {
+    if constexpr (T < 8) {
         __m256i wl, wh;
         expand_q4_pair(w + code_offset(ot0 + T, g, kp), wl, wh);
         dots[T] = _mm256_dpbusd_avx_epi32(dots[T], wl, x0);
@@ -55,15 +55,15 @@ template<int M_TILE>
 __declspec(noinline) void run_tile(const std::uint8_t* w, const std::uint32_t* qwords, const float* xs,
                                    const std::int32_t* xsum, float* y) noexcept {
     if constexpr (M_TILE == 1) {
-        // Four output tiles share each activation broadcast; two parity sums
-        // keep the low/high K4 VPDPBUSD chains independent.
+        // Eight output tiles share each activation broadcast; the low/high
+        // K4 VPDPBUSD chains remain independent without overlapping tiles.
         for (int ot0 = 0; ot0 < kOutput / kRows; ot0 += 8) {
-            const int ot = ot0 == kOutput / kRows - 8 ? ot0 - 1 : ot0;
-            __m256 acc[9];
-            for (int t = 0; t < 9; ++t) acc[t] = _mm256_setzero_ps();
+            const int ot = ot0;
+            __m256 acc[8];
+            for (int t = 0; t < 8; ++t) acc[t] = _mm256_setzero_ps();
             for (int g = 0; g < kGroups; ++g) {
-                __m256i dots[9];
-                for (int t = 0; t < 9; ++t) dots[t] = _mm256_setzero_si256();
+                __m256i dots[8];
+                for (int t = 0; t < 8; ++t) dots[t] = _mm256_setzero_si256();
                 for (int kp = 0; kp < kK4 / 2; ++kp) {
                     const std::size_t qi = std::size_t(g) * kK4 + kp * 2;
                     const __m256i x0 = _mm256_set1_epi32(static_cast<int>(qwords[qi]));
@@ -71,7 +71,7 @@ __declspec(noinline) void run_tile(const std::uint8_t* w, const std::uint32_t* q
                     run_m1_tile_chain<0>(w, ot, g, kp, x0, x1, dots);
                 }
                 const std::int32_t correction = xsum[g] * 8;
-                for (int t = 0; t < 9; ++t) {
+                for (int t = 0; t < 8; ++t) {
                     const __m128i half_bits = _mm_load_si128(reinterpret_cast<const __m128i*>(w + scale_offset((ot + t) * kRows, g)));
                     const __m256 scale_w = _mm256_cvtph_ps(half_bits);
                     const __m256i signed_dot = _mm256_sub_epi32(dots[t], _mm256_set1_epi32(correction));
@@ -80,7 +80,7 @@ __declspec(noinline) void run_tile(const std::uint8_t* w, const std::uint32_t* q
                     acc[t] = _mm256_fmadd_ps(dot_f, scale, acc[t]);
                 }
             }
-            for (int t = 0; t < 9; ++t) _mm256_store_ps(y + (ot + t) * kRows, acc[t]);
+            for (int t = 0; t < 8; ++t) _mm256_store_ps(y + (ot + t) * kRows, acc[t]);
         }
     } else {
         for (int base = 0; base < M_TILE; base += 4) {
@@ -288,13 +288,25 @@ bool qa_reconstruct_activations(const PackedActivations& a, std::vector<std::int
     const std::size_t qbytes = std::size_t(a.m) * kGroups * kK4 * sizeof(std::uint32_t);
     const std::size_t sbytes = std::size_t(a.m) * kGroups * sizeof(float);
     const std::size_t sumbytes = std::size_t(a.m) * kGroups * sizeof(std::int32_t);
+    const auto* scales = reinterpret_cast<const float*>(a.bytes.data() + qbytes);
+    const auto* sums = reinterpret_cast<const std::int32_t*>(a.bytes.data() + qbytes + sbytes);
     const auto* half = reinterpret_cast<const std::uint16_t*>(a.bytes.data() + qbytes + sbytes + sumbytes);
     for (int m = 0; m < a.m; ++m) for (int g = 0; g < kGroups; ++g) {
-        xs[std::size_t(m) * kGroups + g] = half[std::size_t(m) * kGroups + g];
+        const std::size_t ix = std::size_t(m) * kGroups + g;
+        const std::uint16_t h = half[ix];
+        const float decoded = _mm_cvtss_f32(_mm_cvtph_ps(_mm_cvtsi32_si128(h)));
+        if (std::memcmp(&scales[ix], &decoded, sizeof(decoded)) != 0) return false;
+        xs[ix] = h;
+        std::int32_t expected_sum = 0;
         for (int kb = 0; kb < kK4; ++kb) {
             const std::uint32_t v = q[(std::size_t(m) * kGroups + g) * kK4 + kb];
-            for (int j = 0; j < 4; ++j) xq[std::size_t(m) * kInput + g * 32 + kb * 4 + j] = static_cast<std::int8_t>(v >> (j * 8));
+            for (int j = 0; j < 4; ++j) {
+                const auto code = static_cast<std::int8_t>(v >> (j * 8));
+                xq[std::size_t(m) * kInput + g * 32 + kb * 4 + j] = code;
+                expected_sum += code;
+            }
         }
+        if (sums[ix] != expected_sum) return false;
     }
     return true;
 }
