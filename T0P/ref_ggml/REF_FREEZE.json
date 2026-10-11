@@ -48,10 +48,10 @@
   "adapter": {
     "status": "COMPILED_AND_RUN_QA",
     "source": "adapter/main.cpp",
-    "source_sha256": "3443096a32825142af671fa339fc7b479b70c38b17c6ee92b781c4d25ebb8f4f",
+    "source_sha256": "368423f33e73cc2fdf63f934a1e522019c0ef12398d3711ae57e7c286e5bc656",
     "binary": "adapter/adapter.exe",
-    "binary_sha256": "7962aeef13b780602124a421023535bc3f32dc03d88ecf73b6c20bb14a4db4f6",
-    "operation": "QA only: ggml_mul_mat flat trait; direct upstream repack GEMV M=1 and GEMM M>=4; no timings.",
+    "binary_sha256": "0e1d802a7ad2f0f618039833f158bd214a4ea7c694d759ef1c9979fbf25f1fdf",
+    "operation": "S-14 plana ggml_mul_mat use_ref=false; repack upstream GEMV/GEMM; QA sin cronometraje",
     "routes": {
       "flat": "ggml_mul_mat -> Q4_0 CPU type-trait vec_dot callback (runtime address/RVA observed in ggml-cpu.dll; source maps it to ggml_vec_dot_q4_0_q8_0 -> AVX-VNNI vpdpbusd; runtime symbol identity limited by absent export/PDB)",
       "repack_m1": "direct upstream ggml_gemv_q4_0_8x8_q8_0 call; supports M=1",
@@ -120,21 +120,42 @@
     "source": "T0P/common canonical cells"
   },
   "dispatch_evidence": {
-    "flat": {
-      "method": "runtime Q4_0 type-trait callback address/RVA in loaded ggml-cpu.dll",
-      "result": "callback reached during ggml_mul_mat at m=1,4,8,16",
-      "rva": "0xc8ad0",
-      "limitation": "runtime function name is not exported and PDB is absent; address and arithmetic are established by callback breakpoint, DLL hash and disassembly",
-      "address": "0x7ffabd6c8ad0",
-      "disassembly": "adapter/ggml_cpu_disasm.txt; VPDPBUSD in callback function at RVA 0xc8baf, 0xc8c0a, 0xc8c5f, 0xc8caf, 0xc8d3a",
-      "evidence_log": "adapter/qa_output.txt"
+    "flat_governing": {
+      "configuration": "ggml_mul_mat; plan.use_ref=false; GGML_LLAMAFILE conservado",
+      "m1": {
+        "callback_reached": true,
+        "module": "ggml-cpu.dll",
+        "sha256": "cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23",
+        "base": "0x7ffabad00000",
+        "rva": "0xc8ad0",
+        "return": "0x7ffabad0455a",
+        "route": "ggml_vec_dot_q4_0_q8_0; sgemm attempted and returned false before trait fallback"
+      },
+      "m4_m8_m16": {
+        "route": "llamafile_sgemm",
+        "runtime": {
+          "module": "ggml-cpu.dll",
+          "sha256": "cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23",
+          "base": "0x7ffabad00000",
+          "rva": "0xc4dc0",
+          "caller_return": "0x7ffabad02a92",
+          "breakpoint": "INT3 entry"
+        },
+        "callback_reached": false,
+        "arithmetic": "Q4_0 x Q8_0 AVX2 tinyBLAS_Q0_AVX",
+        "return_evidence": "Callsite tests AL; false branches to fallback; callback absent, so true return inferred from source and runtime"
+      }
     },
     "repack": {
-      "limitation": "direct linked source functions because DLL does not export the symbols",
-      "method": "direct upstream kernel function pointer call",
-      "gemv": "executed for all M=1 cases",
-      "gemm": "executed for all M=4,8,16 cases",
-      "compiled_from": "arch/x86/repack.cpp unchanged into adapter"
+      "source": "upstream arch/x86/repack.cpp sin cambios",
+      "object_sha256": "4823ad6760b2ee22aa27855bbac2d89b0bb1e081639898415d7b7d854c74f98e",
+      "vpdpbusd_count": 218,
+      "routes": {
+        "1": "ggml_gemv_q4_0_8x8_q8_0",
+        "4": "ggml_gemm_q4_0_8x8_q8_0",
+        "8": "ggml_gemm_q4_0_8x8_q8_0",
+        "16": "ggml_gemm_q4_0_8x8_q8_0"
+      }
     }
   },
   "repack_adapter": {
@@ -829,7 +850,26 @@
       }
     }
   },
-  "ESTADO_GOBERNANTE_S13": {
+  "qa_final": {
+    "log": "adapter/qa_output.txt",
+    "process_exit_code": 0,
+    "gate": "adapter/qa_gate_results.txt FINAL_VERDICT=PASS",
+    "cells": "80/80",
+    "page_queries": 230,
+    "page_query_failures": 0,
+    "exact_cancellation_checks_per_route": 29696,
+    "exact_cancellation_failures_per_route": 0,
+    "exact_group_dot_isolation": {
+      "flat_checks": 2375680,
+      "flat_failures": 0,
+      "repack_checks": 2375680,
+      "repack_failures": 0
+    },
+    "coordinate_sweep": "512 positions per M; both routes; zero failures",
+    "static_route_isolation": "PASS",
+    "dynamic_route_isolation": "PASS"
+  },
+  "HISTORIAL_S13": {
     "adapter_source_sha256": "3443096a32825142af671fa339fc7b479b70c38b17c6ee92b781c4d25ebb8f4f",
     "repack_source": "llama.cpp-0.6.0/ggml/src/ggml-cpu/arch/x86/repack.cpp",
     "repack_object_sha256": "164709fc775ccb6beed59bd16290fb686d483302e7d4cc3faf10ccd87ad2833a",
@@ -865,23 +905,60 @@
     "dynamic_route_isolation": "PASS",
     "repack_disassembly_sha256": "1c510ca6fb19621f3ef0e8975a167556bbe36b6d991332e337d327e584baf4bc"
   },
-  "qa_final": {
-    "log": "adapter/qa_output.txt",
-    "process_exit_code": 0,
-    "gate": "adapter/qa_gate_results.txt FINAL_VERDICT=PASS",
-    "cells": "80/80",
-    "page_queries": 230,
-    "page_query_failures": 0,
-    "exact_cancellation_checks_per_route": 29696,
-    "exact_cancellation_failures_per_route": 0,
-    "exact_group_dot_isolation": {
-      "flat_checks": 2375680,
-      "flat_failures": 0,
-      "repack_checks": 2375680,
-      "repack_failures": 0
+  "GOVERNING_S14": {
+    "candidate_status": {
+      "ggml_flat": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "HOLD",
+        "REFERENCE_READY": "HOLD"
+      },
+      "ggml_repack": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "HOLD",
+        "REFERENCE_READY": "HOLD"
+      }
     },
-    "coordinate_sweep": "512 positions per M; both routes; zero failures",
-    "static_route_isolation": "PASS",
-    "dynamic_route_isolation": "PASS"
+    "qa": {
+      "cells_per_route": 40,
+      "coordinate_sweep": "512/512 exact for m=1,4,8,16; failures=0; mandatory",
+      "exact_group_dots_per_route": 2375680,
+      "exact_cancellation": "PASS"
+    },
+    "memory": {
+      "allocator": "common PageRegion/Buffer; MEM_LARGE_PAGES; GetLargePageMinimum rounding; own-token AdjustTokenPrivileges only; aligned normal fallback marked",
+      "token": "SeLockMemoryPrivilege absent; resource HOLD",
+      "QueryWorkingSetEx": "Valid=1; LargePage=0"
+    },
+    "gate": {
+      "source_sha256": "1f97e0ea5dad947da26b249645c40d9630f49421449aa5e7cc6940632d650dc0",
+      "negative_tests": "PASS: injected sweep failure; missing mandatory control; privilege present with nonlarge pages"
+    },
+    "dispatch": {
+      "candidate": "ggml_flat use_ref=false; ggml_repack separate upstream path",
+      "module": "ggml-cpu.dll",
+      "module_sha256": "cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23",
+      "base": "0x7ffabad00000",
+      "m1": {
+        "route": "ggml_vec_dot_q4_0_q8_0 callback",
+        "rva": "0xc8ad0",
+        "return": "0x7ffabad0455a"
+      },
+      "m4_m8_m16": {
+        "route": "llamafile_sgemm; callback absent; true inferred from callsite AL test/fallback branch",
+        "rva": "0xc4dc0",
+        "return": "0x7ffabad02a92",
+        "arithmetic": "Q4_0 x Q8_0 tinyBLAS AVX2"
+      },
+      "evidence": "adapter/dispatch_s14_evidence.txt; adapter/dispatch_s14_disassembly.txt",
+      "outside_timer": true
+    },
+    "sources": {
+      "main.cpp": "368423f33e73cc2fdf63f934a1e522019c0ef12398d3711ae57e7c286e5bc656",
+      "adapter.exe": "0e1d802a7ad2f0f618039833f158bd214a4ea7c694d759ef1c9979fbf25f1fdf",
+      "common.cpp": "7be077b6816bc72d1711693b804ada6b052dc3696d92c70a1acb759db1d4edbd",
+      "qa_gate.py": "1f97e0ea5dad947da26b249645c40d9630f49421449aa5e7cc6940632d650dc0"
+    }
   }
 }

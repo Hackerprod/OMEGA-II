@@ -1,57 +1,18 @@
-# Freeze de referencia Torch CPU â€” T0P-Q4-RESIDENCY
+# Freeze de referencia Torch CPU
 
-## Cambio de esta revisiÃ³n
+## HISTORIAL ? S-12/S-13
 
-El adaptador consume las 20 celdas canÃ³nicas de `T0P/common/data` (M=1,4,8,16 por cinco fixtures) y usa el generador, la referencia INT32/double y el verificador comunes. El formato serializado, hashes y conversiones ggml/OMEGA estÃ¡n documentados en [common/README.md](../common/README.md). El test ejecutable del verificador acepta una salida vÃ¡lida y rechaza NaN, Inf y una salida finita fuera de tolerancia.
+Los resultados S-12/S-13 son historial y quedan reemplazados por los veredictos S-14 de abajo. Los fixtures congelados y sus hashes permanecen intactos.
 
-Se evaluaron sin cronÃ³metro `at::mm`, `at::matmul`, `at::linear`, `at::mv` para M=1 y la ruta explÃ­cita `at::mkldnn_linear`. El detalle celda a celda estÃ¡ en `adapter/verify_common_all.txt`. Las candidatas densas tienen errores fuera de tolerancia en la mayorÃ­a de fixtures; por ello quedan `NOT_COMPARABLE` para esas celdas. MÃ¡ximo observado global: absoluto 1.28125, relativo 0.00421186945661 (el relativo excluye referencias exactamente cero; los errores absolutos de esas referencias sÃ­ cuentan). Los mÃ¡ximos por candidata y M estÃ¡n en el log y el JSON. No se selecciona una candidata de rendimiento a partir de estos resultados.
+## GOBERNANTE ? S-14
 
-## Torch, precisiÃ³n y concurrencia
+Los buffers efectivos X/W/Wt usan `from_blob` con deleter sobre common Buffer. No se clonan a regiones que abandonen el asignador. QA completa: 130 filas; S-12, representaci?n exacta, barridos 512/512 por M y cancelaci?n exacta pasan. Group-dot isolation: 2.375.680 comprobaciones para mm, matmul y linear; 81.920 para mv (m=1). `mkldnn_linear` queda diagn?stico/no comparable.
 
-Se usa el paquete instalado Torch 2.11.0+cu128 solo con tensores CPU. Antes de ATen se fijan `OMP_NUM_THREADS=1`, `MKL_NUM_THREADS=1`, `OMP_DYNAMIC=FALSE`, `MKL_DYNAMIC=FALSE`, intra-op=1 e inter-op=1; el log confirma los seis valores efectivos. El proceso de validaciÃ³n es un Ãºnico hilo y cada celda estÃ¡ protegida por `NoGradGuard`; no crea worker threads.
+| Candidata | QA_NUMERICAL | DISPATCH_QUALIFIED | PAGE_POLICY | REFERENCE_READY |
+|---|---|---|---|---|
+| mm | PASS | PASS | HOLD | HOLD |
+| matmul | PASS | PASS | HOLD | HOLD |
+| linear | PASS | PASS | HOLD | HOLD |
+| mv (m=1) | PASS | PASS | HOLD | HOLD |
 
-Se leyÃ³ el `ATen/Context.h` del venv. La API `setFloat32Precision` fija y el getter confirma `generic/all=ieee`, `mkldnn/matmul=ieee`, `cuda/matmul=ieee`. TambiÃ©n se registran `float32MatmulPrecision`, TF32 CuBLAS/CuDNN/oneDNN, controles FP16/BF16 de reducciÃ³n expuestos por ese header y autocast CPU/CUDA. Los valores efectivos constan en el log.
-
-Para `from_blob(...).clone()`, las direcciones que se consultan y registran son las de los clones usados realmente: X, W `[O,I]` y W transpuesto contiguo `[I,O]`. Para cada tensor se registra direcciÃ³n, tamaÃ±o, alineaciÃ³n, regiÃ³n de memoria, estado/tipo/protecciÃ³n y allocation base; la asignaciÃ³n observada es privada, comprometida y PAGE_READWRITE. W y Wt son representaciones persistentes de 2 MiB cada una por celda; X es dinÃ¡mico de 2 KiB, 8 KiB, 16 KiB o 32 KiB.
-
-## Ruta oneDNN y atribuciÃ³n
-
-La ruta explÃ­cita sÃ­ ejecuta `aten::mkldnn_linear` y su resultado se convierte con `to_dense()` fuera de cualquier cronÃ³metro. Se preparan X y W en layout MKLDNN antes de ejecutar el operador. Los valores se contrastan con el verificador comÃºn. ATen informa literalmente `Cannot access data pointer of Tensor that doesn't have storage` al intentar inspeccionar la asignaciÃ³n opaca empaquetada; no es posible confirmar sus pÃ¡ginas/asignador con la API instalada. Queda `NOT_COMPARABLE_PAGE_POLICY`, aunque la operaciÃ³n y su dispatch estÃ¡n disponibles. No se interpreta `hasMKLDNN` como prueba de dispatch.
-
-Se instalÃ³ un callback global `RecordFunction` fuera de cualquier cronÃ³metro. Evidencia registrada por candidata: `mm â†’ aten::mm`; `matmul â†’ aten::matmul, aten::mm`; `linear â†’ aten::linear, aten::matmul, aten::mm`; `mv â†’ aten::mv, aten::addmv_`; oneDNN explÃ­cito â†’ `aten::mkldnn_linear` (mÃ¡s la conversiÃ³n `aten::to_dense`). No se afirma quÃ© biblioteca BLAS interna ejecuta cada `aten::mm`.
-
-## Dependencias y compilaciÃ³n
-
-El proceso enumerÃ³ 37 mÃ³dulos cargados usando `EnumProcessModules` y `GetModuleFileNameEx`; el manifiesto registra las rutas absolutas, tamaÃ±o en disco, tamaÃ±o mapeado y SHA-256 de cada uno, incluidos `torch_cpu.dll`, `c10.dll`, `libiomp5md.dll`, runtimes de MSVC y DLL CUDA cargadas por la distribuciÃ³n. No todos se usan por los tensores CPU; se incluyen porque el proceso los cargÃ³.
-
-Build MSVC x64 con SDK 10.0.26100.0 y toolset 14.44.35207 mediante `adapter/build.cmd`. El build enlaza las fuentes comunes y Torch; el generador independiente se construye con `common/build.cmd`. Hashes de los binarios, fuentes, 20 celdas, log y mÃ³dulos: `SHA256SUMS_ref_torch.txt`; el script de freeze verificÃ³ todas las entradas contra disco. Todo resultado compilado estÃ¡ dentro de `T0P/common` o `T0P/ref_torch`.
-
-## Estado y ambigÃ¼edades abiertas
-
-No se hizo benchmark cronometrado. La prueba corriÃ³ 20 celdas y registrÃ³ errores de todas las candidatas disponibles; la unidad del verificador pasÃ³. Las rutas densas permanecen registradas, pero sus celdas fallidas no son comparables bajo la tolerancia de aceptaciÃ³n. El oneDNN explÃ­cito permanece fuera de candidatas comparables por la asignaciÃ³n/polÃ­tica de pÃ¡ginas opaca.
-
-Siguen abiertas la inspecciÃ³n externa de pÃ¡ginas del almacenamiento MKLDNN; la elegibilidad de Torch FP32 para una futura vara tras los fallos numÃ©ricos observados; y la afinidad/ejecuciÃ³n del futuro harness de varios workers. No se resuelven con una mediciÃ³n cronometrada. `ref_ggml` y `T0\SHA256SUMS.txt` no se modificaron.
-
-## ReevaluaciÃ³n S-12 (2026-10-11)
-
-Se aplicÃ³ `reference64()` y `verify_s12()` a 36 celdas (nueve fixtures Ã— cuatro M). `mm`, `matmul` y `linear` pasan S-12 en 36/36; `mv` en M=1 pasa 9/9. RepresentaciÃ³n FP32 efectiva X/W coincide exactamente con la desquantizaciÃ³n canÃ³nica y cada salida registra el operador recibido (`aten::mm`, `aten::matmul`/`aten::mm`, `aten::linear` y dispatch anidado, `aten::mv`/`aten::addmv_`). `mkldnn_linear` tiene salida numÃ©rica S-12 vÃ¡lida en 36/36 y dispatch `aten::mkldnn_linear`, pero el estado final es NOT_COMPARABLE por la polÃ­tica de pÃ¡ginas/alocaciÃ³n no inspeccionable del tensor opaco.
-
-La tolerancia antigua se sigue calculando por celda; muchas filas la incumplen, sin gate. El log completo es `adapter/verify_common_all.txt`. No se cronometrÃ³. Los fixtures S-12 nuevos estÃ¡n congelados en `../common/NEW_FIXTURES_FROZEN.json` antes de QA.
-
-Abierto: el fixture `single_coordinate` actual prueba la posiciÃ³n 0 y no recorre las 512; la cuestiÃ³n de la variante casi exacta sigue remitida a Sol como ambigÃ¼edad de definiciÃ³n aunque esta construcciÃ³n cumple S/|r|â‰¥1e5. `mkldnn_linear` conserva el impedimento de inspecciÃ³n fÃ­sica de pÃ¡ginas.
-
-
-
-## ESTADO GOBERNANTE S-13 (2026-10-11)
-
-- Recompilación con `/fp:strict`; `--unit` finalizó 0. La prueba ejecutable cubre operaciones dirigidas runtime, restauración al volver al llamador, cotas, NaN/Inf, tamaño y mutaciones.
-- Las rutas gobernantes mm, matmul, linear y mv (solo m=1) pasaron la QA numérica, la cancelación exacta (+28448/−28448, salida exactamente cero) y la barrida conservada de coordenadas. `EXACT_GROUP_DOT_ISOLATION`: mm/matmul/linear, 2.375.680 cada una; mv, 81.920; cero fallos.
-- Representación de almacenamiento efectivo: X, W y Wt coinciden con los mapas canónicos; Wt se valida desde el tensor contiguo realmente entregado a mm/matmul. `QueryWorkingSetEx` pasó sobre los clones efectivos. `whoami /priv` y `GetTokenInformation` muestran `SeLockMemoryPrivilege` ausente; HOLD de recurso, asignación normal observada, `LargePage=false`, sin cambios de política.
-- `mkldnn_linear` permanece como diagnóstico, fuera del conjunto gobernante por asignación opaca y política de páginas. No se cronometró.
-- El ejecutable devuelve 0 si pasan controles y el parser `common/qa_gate.py torch adapter/verify_common_all.txt` emite `FINAL_VERDICT=PASS`.
-
-Las secciones anteriores y sus conteos describen el historial S-12; este bloque y `GOVERNING_S13` del JSON son el estado vigente.
-
-## Correcci?n de estado gobernante S-13 ? cierre final
-
-Despu?s del rebuild, Torch termin? QA con c?digo 0 y el gate emite PASS para 130/130 celdas. `QueryWorkingSetEx` consult? todas las p?ginas de los buffers efectivos X, W y Wt: 120 consultas, todas v?lidas y `LargePage=false`. Se mantiene HOLD de recurso porque `SeLockMemoryPrivilege` no est? concedido. El bloque S-13 anterior es HISTORIAL de la corrida previa al control por p?gina.
+`QueryWorkingSetEx` inspeccion? las regiones efectivas: p?ginas v?lidas, `LargePage=0`. El token no contiene `SeLockMemoryPrivilege`, as? que PAGE_POLICY queda HOLD de recurso. No se cambi? la pol?tica del sistema. El mismo ejecutable queda listo para probar p?ginas grandes con el privilegio concedido en una sesi?n nueva.

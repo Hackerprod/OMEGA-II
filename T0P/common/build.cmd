@@ -1,4 +1,4 @@
-@echo off
+﻿@echo off
 setlocal
 set "COMMON_DIR=%~dp0"
 set "VS=C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools"
@@ -9,9 +9,10 @@ cl /nologo /c /O2 /std:c++17 /EHsc /MD /DNDEBUG /fp:strict /D_WIN32_WINNT=0x0A00
 if errorlevel 1 exit /b %errorlevel%
 cl /nologo /c /O2 /std:c++17 /EHsc /MD /DNDEBUG /D_WIN32_WINNT=0x0A00 /I"%COMMON_DIR%." "%COMMON_DIR%generate_main.cpp" /Fo:"%COMMON_DIR%obj\generate_main.obj"
 if errorlevel 1 exit /b %errorlevel%
-link /INCREMENTAL:NO "%COMMON_DIR%obj\common.obj" "%COMMON_DIR%obj\generate_main.obj" /OUT:"%COMMON_DIR%generate_cells.exe"
+link /INCREMENTAL:NO "%COMMON_DIR%obj\common.obj" "%COMMON_DIR%obj\generate_main.obj" advapi32.lib /OUT:"%COMMON_DIR%generate_cells.exe"
 if errorlevel 1 exit /b %errorlevel%
 cl /nologo /c /O2 /std:c++17 /EHsc /MD /DNDEBUG /fp:strict /D_WIN32_WINNT=0x0A00 /I"%COMMON_DIR%." "%COMMON_DIR%bound_exact_dump.cpp" /Fo:"%COMMON_DIR%obj\bound_exact_dump.obj"
 if errorlevel 1 exit /b %errorlevel%
-link /INCREMENTAL:NO "%COMMON_DIR%obj\common.obj" "%COMMON_DIR%obj\bound_exact_dump.obj" /OUT:"%COMMON_DIR%obj\bound_exact_dump.exe"
+link /INCREMENTAL:NO "%COMMON_DIR%obj\common.obj" "%COMMON_DIR%obj\bound_exact_dump.obj" advapi32.lib /OUT:"%COMMON_DIR%obj\bound_exact_dump.exe"
 exit /b %errorlevel%
+

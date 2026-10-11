@@ -1,4 +1,4 @@
-#include "common.hpp"
+﻿#include "common.hpp"
 #include <algorithm>
 #include <cmath>
 #include <cstring>
@@ -9,9 +9,20 @@
 #include <cfenv>
 #include <limits>
 #include <float.h>
+#define NOMINMAX
+#include <windows.h>
+#include <memory>
 #pragma fenv_access(on)
 
-namespace t0common { namespace {
+namespace t0common {
+namespace { bool large_privilege_enabled=false; }
+PageRegion::PageRegion(std::size_t n){reset(n);}
+PageRegion::PageRegion(PageRegion&& o) noexcept : data(o.data),bytes(o.bytes),large(o.large){o.data=nullptr;o.bytes=0;o.large=false;}
+PageRegion& PageRegion::operator=(PageRegion&& o) noexcept {if(this!=&o){reset();data=o.data;bytes=o.bytes;large=o.large;o.data=nullptr;o.bytes=0;o.large=false;}return *this;}
+PageRegion::~PageRegion(){reset();}
+void PageRegion::reset(std::size_t n){if(data){if(large)VirtualFree(data,0,MEM_RELEASE);else ::operator delete(data,std::align_val_t(64));}data=nullptr;bytes=0;large=false;if(!n)return;SIZE_T minimum=GetLargePageMinimum();if(minimum&&large_privilege_enabled){std::size_t rounded=(n+minimum-1)/minimum*minimum;void*p=VirtualAlloc(nullptr,rounded,MEM_RESERVE|MEM_COMMIT|MEM_LARGE_PAGES,PAGE_READWRITE);if(p){data=p;bytes=rounded;large=true;return;}}std::size_t rounded=(n+63)&~std::size_t(63);data=::operator new(rounded,std::align_val_t(64));bytes=rounded;}
+bool enable_large_page_privilege(std::string* status){HANDLE token=nullptr;auto set=[&](const char*s){if(status)*status=s;};if(!OpenProcessToken(GetCurrentProcess(),TOKEN_QUERY|TOKEN_ADJUST_PRIVILEGES,&token)){set("HOLD");return false;}LUID id{};if(!LookupPrivilegeValueW(nullptr,L"SeLockMemoryPrivilege",&id)){CloseHandle(token);set("HOLD");return false;}DWORD n=0;GetTokenInformation(token,TokenPrivileges,nullptr,0,&n);std::vector<unsigned char>b(n);if(!n||!GetTokenInformation(token,TokenPrivileges,b.data(),n,&n)){CloseHandle(token);set("HOLD");return false;}auto*tp=reinterpret_cast<TOKEN_PRIVILEGES*>(b.data());bool present=false;for(DWORD i=0;i<tp->PrivilegeCount;++i)if(tp->Privileges[i].Luid.LowPart==id.LowPart&&tp->Privileges[i].Luid.HighPart==id.HighPart)present=true;if(!present){CloseHandle(token);set("HOLD");return false;}TOKEN_PRIVILEGES req{};req.PrivilegeCount=1;req.Privileges[0].Luid=id;req.Privileges[0].Attributes=SE_PRIVILEGE_ENABLED;SetLastError(ERROR_SUCCESS);BOOL ok=AdjustTokenPrivileges(token,FALSE,&req,sizeof(req),nullptr,nullptr);DWORD e=GetLastError();CloseHandle(token);bool enabled=ok&&e!=ERROR_NOT_ALL_ASSIGNED;large_privilege_enabled=enabled;set(enabled?"AVAILABLE":"HOLD");return enabled;}
+}namespace t0common { namespace {
 struct Rng { std::uint64_t x=0x6a09e667f3bcc909ULL; std::uint64_t next(){std::uint64_t z=(x+=0x9e3779b97f4a7c15ULL);z=(z^(z>>30))*0xbf58476d1ce4e5b9ULL;z=(z^(z>>27))*0x94d049bb133111ebULL;return z^(z>>31);} };
 std::uint16_t f32half(float f){std::uint32_t x;std::memcpy(&x,&f,4);std::uint32_t sign=(x>>16)&0x8000, e=(x>>23)&255, m=x&0x7fffff;if(e==255)return static_cast<std::uint16_t>(sign|0x7c00|(m?0x200:0));int he=int(e)-112;if(he>=31)return static_cast<std::uint16_t>(sign|0x7c00);if(he<=0){if(he < -10)return sign;m|=0x800000;unsigned shift=14-he;return static_cast<std::uint16_t>(sign+((m+(1u<<(shift-1))-1+((m>>shift)&1))>>shift));}m+=0xfff+((m>>13)&1);if(m&0x800000){m=0;++he;if(he>=31)return static_cast<std::uint16_t>(sign|0x7c00);}return static_cast<std::uint16_t>(sign|(unsigned(he)<<10)|(m>>13));}
 float half32(std::uint16_t h){unsigned s=h>>15,e=(h>>10)&31,m=h&1023;if(!e)return std::ldexp(float(m),-24)*(s?-1.f:1.f);if(e==31)return m?NAN:(s?-INFINITY:INFINITY);return (s?-1.f:1.f)*std::ldexp(1.f+float(m)/1024.f,int(e)-15);}
@@ -93,3 +104,8 @@ bool s12_compare(double r64,double S,double B,double y){if(!std::isfinite(r64)||
 bool exact_representation(const Cell&c,const std::function<bool(std::vector<std::int8_t>&,std::vector<std::uint16_t>&,std::vector<std::int8_t>&,std::vector<std::uint16_t>&)>& inverse){validate(c);std::vector<std::int8_t>w,x;std::vector<std::uint16_t>ws,xs;if(!inverse(w,ws,x,xs))return false;return w==c.wq&&x==c.xq&&ws==c.ws_half&&xs==c.xs_half;}
 bool exact_group_dots(const Cell&c,const std::function<bool(std::vector<std::int32_t>&)>& route){validate(c);std::vector<std::int32_t> got;if(!route(got))return false;if(got.size()!=size_t(c.M)*O*G)return false;for(int m=0;m<c.M;++m)for(int o=0;o<O;++o)for(int g=0;g<G;++g){std::int32_t dot=0;for(int k=0;k<32;++k)dot+=int(c.wq[o*I+g*32+k])*int(c.xq[m*I+g*32+k]);if(got[(size_t(m)*O+o)*G+g]!=dot)return false;}return true;}
 }
+
+
+
+
+

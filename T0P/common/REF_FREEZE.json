@@ -1,232 +1,242 @@
-﻿{
-    "campaign":  "T0P-Q4-RESIDENCY",
-    "revision":  "S-12 common verifier",
-    "reference":  "FP64 group-dot oracle; reference() FP32 is diagnostic only",
-    "criterion":  "up(abs(double(y)-r64)) \u003c= B; exact zero when S=0",
-    "bounds":  "S+=up(S_hat64/(1-gamma514(64))); B=up((gamma514(32)+gamma18(64))*S+)",
-    "rounding":  "directed per operation using FE_UPWARD and FE_DOWNWARD",
-    "legacy_tolerance":  "diagnostic only",
-    "legacy_cells":  [
-                         {
-                             "sha256":  "624fd2634edf96a40662ca22239a08ea80bcfdf7109d12c97f070394b4c1201a",
-                             "fixture":  "uniform",
-                             "M":  1
-                         },
-                         {
-                             "sha256":  "b6f413422c006cf3481fdc687903029e44029cbf181ed5c42bd117d81693a9e2",
-                             "fixture":  "mixed_cancellation",
-                             "M":  1
-                         },
-                         {
-                             "sha256":  "4a17a481d1feeeca1cded4a55543b357293f3bcb0f5f892aeedc242c36e735fd",
-                             "fixture":  "varied_scales",
-                             "M":  1
-                         },
-                         {
-                             "sha256":  "d1fba0eacd18f186c49f514000b02e05244ac1f59dc9665233faaea346324504",
-                             "fixture":  "sub127",
-                             "M":  1
-                         },
-                         {
-                             "sha256":  "9cb27f021e98803456bdad30d62ae4926ed42bd87332764ad58a4b887877d172",
-                             "fixture":  "extremes",
-                             "M":  1
-                         },
-                         {
-                             "sha256":  "2291ff305c38988bc0fb69512add517d9761d4aa490e3adedf7c5731e1dc2a15",
-                             "fixture":  "uniform",
-                             "M":  4
-                         },
-                         {
-                             "sha256":  "686d8af40d842ce18e5bc0569f164fa96a945c941e75d7eb313d5b50eb05b4c1",
-                             "fixture":  "mixed_cancellation",
-                             "M":  4
-                         },
-                         {
-                             "sha256":  "03d67b453db41a2315358ff59d8a84a01348359ad769eafe3aec5aa1f7c85659",
-                             "fixture":  "varied_scales",
-                             "M":  4
-                         },
-                         {
-                             "sha256":  "c01584fed6c2889147dec1c5db33da5f0e7c7ff9d4b183771b384b67f53c2448",
-                             "fixture":  "sub127",
-                             "M":  4
-                         },
-                         {
-                             "sha256":  "19f78dc83b91af14d2c45edd5afd5cf1b6c4e16eb6508cc48908e230b7ed5bd2",
-                             "fixture":  "extremes",
-                             "M":  4
-                         },
-                         {
-                             "sha256":  "e7e45ef2562c27f09595a156b108089c799e317aa38690fb891b950b9a46c4e1",
-                             "fixture":  "uniform",
-                             "M":  8
-                         },
-                         {
-                             "sha256":  "dedbfa30f68059c8a0462c8357e2337d2e0f67d4de1a2e9797a3bb5b8eea1a54",
-                             "fixture":  "mixed_cancellation",
-                             "M":  8
-                         },
-                         {
-                             "sha256":  "b5255ab84f3aac361aecae3139ecc8e237d97d75762b406fe9880496d07971e8",
-                             "fixture":  "varied_scales",
-                             "M":  8
-                         },
-                         {
-                             "sha256":  "ea45f55660feb8153a9e65aa043c1fd1f86749957f6c044f855a6d9edeee8ab1",
-                             "fixture":  "sub127",
-                             "M":  8
-                         },
-                         {
-                             "sha256":  "de56dcfe96751628f10ef859f628dab1cea14f2ca45ed566682720293bdd6356",
-                             "fixture":  "extremes",
-                             "M":  8
-                         },
-                         {
-                             "sha256":  "fd30ed34cf6bd1381680cde611871747567e69f9455ecfd9e15e9f62359fdb77",
-                             "fixture":  "uniform",
-                             "M":  16
-                         },
-                         {
-                             "sha256":  "e9cdf28570e0d64d0ac4e2e7f0dbab62a3bfc14ab82b504cc011918596fa8161",
-                             "fixture":  "mixed_cancellation",
-                             "M":  16
-                         },
-                         {
-                             "sha256":  "25c011bb6f0eb5fae7adbc03d7ee8ab8dfaf9e60fe897e0636af524c269ee22d",
-                             "fixture":  "varied_scales",
-                             "M":  16
-                         },
-                         {
-                             "sha256":  "f18ac9823ddceaf2ac8a8bb84826e2bf4fe1f69802912c1aafb017569a95ce46",
-                             "fixture":  "sub127",
-                             "M":  16
-                         },
-                         {
-                             "sha256":  "09f10e0afc3e9f90a4f63dec60599b7a8d26f9bfdd903ee8889a67748c950477",
-                             "fixture":  "extremes",
-                             "M":  16
-                         }
-                     ],
-    "new_fixture_manifest_sha256":  "c5357fb756dad2afd7f755fff5ea14889b0ca06b6a8f694a61d3987d0f6591ed",
-    "new_fixture_cells":  [
-                              {
-                                  "sha256":  "89fe84ccebc7c00cce873842e1d502cc7ef71445c38e2d78791df3d8a59f700e",
-                                  "fixture":  "zero_input",
-                                  "M":  1,
-                                  "bytes":  557627,
-                                  "file":  "T0P/common/data/m1_zero_input.bin"
-                              },
-                              {
-                                  "sha256":  "1c05f6144f789657900c52a5fe5fbda26d05ddef9cfa688a95120eabe2a68cd3",
-                                  "fixture":  "single_coordinate",
-                                  "M":  1,
-                                  "bytes":  557627,
-                                  "file":  "T0P/common/data/m1_single_coordinate.bin"
-                              },
-                              {
-                                  "sha256":  "00230b403ab7ab9ccf2835f10816cab92172292ebcbad211d112190dfe550da9",
-                                  "fixture":  "cancellation_high",
-                                  "M":  1,
-                                  "bytes":  557627,
-                                  "file":  "T0P/common/data/m1_cancellation_high.bin"
-                              },
-                              {
-                                  "sha256":  "47735f943dcdde5202e18993e12533d10b5590f2c4f2238c55ec0831f46777c3",
-                                  "fixture":  "cancellation_extreme",
-                                  "M":  1,
-                                  "bytes":  557627,
-                                  "file":  "T0P/common/data/m1_cancellation_extreme.bin"
-                              },
-                              {
-                                  "sha256":  "00801d7b89f624b08ff3999770b64d3a8c26708f548443adc54d7d727a1ffbba",
-                                  "fixture":  "zero_input",
-                                  "M":  4,
-                                  "bytes":  559259,
-                                  "file":  "T0P/common/data/m4_zero_input.bin"
-                              },
-                              {
-                                  "sha256":  "6c6245501d0040aeb85026a707b9dae59b4f0db2aaddb789b635238e0b02d4ba",
-                                  "fixture":  "single_coordinate",
-                                  "M":  4,
-                                  "bytes":  559259,
-                                  "file":  "T0P/common/data/m4_single_coordinate.bin"
-                              },
-                              {
-                                  "sha256":  "d741d845d59bcf0c0a48501045521eee950ed433915d9e1579aa2b999c73a2ef",
-                                  "fixture":  "cancellation_high",
-                                  "M":  4,
-                                  "bytes":  559259,
-                                  "file":  "T0P/common/data/m4_cancellation_high.bin"
-                              },
-                              {
-                                  "sha256":  "6f38ecc1697952924bbc0c5568b15753a1c07acc8c6de21ba6721c59a8d39a4d",
-                                  "fixture":  "cancellation_extreme",
-                                  "M":  4,
-                                  "bytes":  559259,
-                                  "file":  "T0P/common/data/m4_cancellation_extreme.bin"
-                              },
-                              {
-                                  "sha256":  "aea48f8ef028b1decc076e47a7a659d99177217c2c07ec302ebee1f06877ccba",
-                                  "fixture":  "zero_input",
-                                  "M":  8,
-                                  "bytes":  561435,
-                                  "file":  "T0P/common/data/m8_zero_input.bin"
-                              },
-                              {
-                                  "sha256":  "83b39f5d6a532ef6a7a4f18eaeec074fa63cdcd627e20463f78c3b7d755ab0c0",
-                                  "fixture":  "single_coordinate",
-                                  "M":  8,
-                                  "bytes":  561435,
-                                  "file":  "T0P/common/data/m8_single_coordinate.bin"
-                              },
-                              {
-                                  "sha256":  "17b63f84641aaa26cebc5976f9a66ee34d549224cc0e04515f15d6fb59f02b0b",
-                                  "fixture":  "cancellation_high",
-                                  "M":  8,
-                                  "bytes":  561435,
-                                  "file":  "T0P/common/data/m8_cancellation_high.bin"
-                              },
-                              {
-                                  "sha256":  "5e2034f1caeb3e094284f3ed567506945366afcf12852c981de3f83c16dcb6b6",
-                                  "fixture":  "cancellation_extreme",
-                                  "M":  8,
-                                  "bytes":  561435,
-                                  "file":  "T0P/common/data/m8_cancellation_extreme.bin"
-                              },
-                              {
-                                  "sha256":  "fb70679f25a76ec812958deb50c737549a766c5ab05db194d920147424e01eb7",
-                                  "fixture":  "zero_input",
-                                  "M":  16,
-                                  "bytes":  565787,
-                                  "file":  "T0P/common/data/m16_zero_input.bin"
-                              },
-                              {
-                                  "sha256":  "69221c70d5bb3ca5d6c6a07bee196aa3cd78fc5e91010fab1c501022dd9dbe5b",
-                                  "fixture":  "single_coordinate",
-                                  "M":  16,
-                                  "bytes":  565787,
-                                  "file":  "T0P/common/data/m16_single_coordinate.bin"
-                              },
-                              {
-                                  "sha256":  "2e5fb7061744a7af4c54a712e2d1567e8fb4283b9f794085460e1a1917b86e31",
-                                  "fixture":  "cancellation_high",
-                                  "M":  16,
-                                  "bytes":  565787,
-                                  "file":  "T0P/common/data/m16_cancellation_high.bin"
-                              },
-                              {
-                                  "sha256":  "9b5f3220ed7c34765d178586f1c75123e41312ed7988ff3e8cb3209887be0951",
-                                  "fixture":  "cancellation_extreme",
-                                  "M":  16,
-                                  "bytes":  565787,
-                                  "file":  "T0P/common/data/m16_cancellation_extreme.bin"
-                              }
-                          ],
-    "unit_tests":  "PASS: boundaries +/- both sides, NaN, Inf, size mismatch, zero S, code/scale mutations, group-dot API",
-    "open_ambiguities":  [
-                             "Sol interpretation of near-exact cancellation is open because MD/38 text is truncated",
-                             "ggml internal group dots not captured"
-                         ],
-    "coordinate_sweep":  "PASS: 2,048 canonical hashes (512 positions x four M); 512 batches per M"
+{
+  "campaign": "T0P-Q4-RESIDENCY",
+  "revision": "S-12 common verifier",
+  "reference": "FP64 group-dot oracle; reference() FP32 is diagnostic only",
+  "criterion": "up(abs(double(y)-r64)) <= B; exact zero when S=0",
+  "bounds": "S+=up(S_hat64/(1-gamma514(64))); B=up((gamma514(32)+gamma18(64))*S+)",
+  "rounding": "directed per operation using FE_UPWARD and FE_DOWNWARD",
+  "legacy_tolerance": "diagnostic only",
+  "legacy_cells": [
+    {
+      "sha256": "624fd2634edf96a40662ca22239a08ea80bcfdf7109d12c97f070394b4c1201a",
+      "fixture": "uniform",
+      "M": 1
+    },
+    {
+      "sha256": "b6f413422c006cf3481fdc687903029e44029cbf181ed5c42bd117d81693a9e2",
+      "fixture": "mixed_cancellation",
+      "M": 1
+    },
+    {
+      "sha256": "4a17a481d1feeeca1cded4a55543b357293f3bcb0f5f892aeedc242c36e735fd",
+      "fixture": "varied_scales",
+      "M": 1
+    },
+    {
+      "sha256": "d1fba0eacd18f186c49f514000b02e05244ac1f59dc9665233faaea346324504",
+      "fixture": "sub127",
+      "M": 1
+    },
+    {
+      "sha256": "9cb27f021e98803456bdad30d62ae4926ed42bd87332764ad58a4b887877d172",
+      "fixture": "extremes",
+      "M": 1
+    },
+    {
+      "sha256": "2291ff305c38988bc0fb69512add517d9761d4aa490e3adedf7c5731e1dc2a15",
+      "fixture": "uniform",
+      "M": 4
+    },
+    {
+      "sha256": "686d8af40d842ce18e5bc0569f164fa96a945c941e75d7eb313d5b50eb05b4c1",
+      "fixture": "mixed_cancellation",
+      "M": 4
+    },
+    {
+      "sha256": "03d67b453db41a2315358ff59d8a84a01348359ad769eafe3aec5aa1f7c85659",
+      "fixture": "varied_scales",
+      "M": 4
+    },
+    {
+      "sha256": "c01584fed6c2889147dec1c5db33da5f0e7c7ff9d4b183771b384b67f53c2448",
+      "fixture": "sub127",
+      "M": 4
+    },
+    {
+      "sha256": "19f78dc83b91af14d2c45edd5afd5cf1b6c4e16eb6508cc48908e230b7ed5bd2",
+      "fixture": "extremes",
+      "M": 4
+    },
+    {
+      "sha256": "e7e45ef2562c27f09595a156b108089c799e317aa38690fb891b950b9a46c4e1",
+      "fixture": "uniform",
+      "M": 8
+    },
+    {
+      "sha256": "dedbfa30f68059c8a0462c8357e2337d2e0f67d4de1a2e9797a3bb5b8eea1a54",
+      "fixture": "mixed_cancellation",
+      "M": 8
+    },
+    {
+      "sha256": "b5255ab84f3aac361aecae3139ecc8e237d97d75762b406fe9880496d07971e8",
+      "fixture": "varied_scales",
+      "M": 8
+    },
+    {
+      "sha256": "ea45f55660feb8153a9e65aa043c1fd1f86749957f6c044f855a6d9edeee8ab1",
+      "fixture": "sub127",
+      "M": 8
+    },
+    {
+      "sha256": "de56dcfe96751628f10ef859f628dab1cea14f2ca45ed566682720293bdd6356",
+      "fixture": "extremes",
+      "M": 8
+    },
+    {
+      "sha256": "fd30ed34cf6bd1381680cde611871747567e69f9455ecfd9e15e9f62359fdb77",
+      "fixture": "uniform",
+      "M": 16
+    },
+    {
+      "sha256": "e9cdf28570e0d64d0ac4e2e7f0dbab62a3bfc14ab82b504cc011918596fa8161",
+      "fixture": "mixed_cancellation",
+      "M": 16
+    },
+    {
+      "sha256": "25c011bb6f0eb5fae7adbc03d7ee8ab8dfaf9e60fe897e0636af524c269ee22d",
+      "fixture": "varied_scales",
+      "M": 16
+    },
+    {
+      "sha256": "f18ac9823ddceaf2ac8a8bb84826e2bf4fe1f69802912c1aafb017569a95ce46",
+      "fixture": "sub127",
+      "M": 16
+    },
+    {
+      "sha256": "09f10e0afc3e9f90a4f63dec60599b7a8d26f9bfdd903ee8889a67748c950477",
+      "fixture": "extremes",
+      "M": 16
+    }
+  ],
+  "new_fixture_manifest_sha256": "c5357fb756dad2afd7f755fff5ea14889b0ca06b6a8f694a61d3987d0f6591ed",
+  "new_fixture_cells": [
+    {
+      "sha256": "89fe84ccebc7c00cce873842e1d502cc7ef71445c38e2d78791df3d8a59f700e",
+      "fixture": "zero_input",
+      "M": 1,
+      "bytes": 557627,
+      "file": "T0P/common/data/m1_zero_input.bin"
+    },
+    {
+      "sha256": "1c05f6144f789657900c52a5fe5fbda26d05ddef9cfa688a95120eabe2a68cd3",
+      "fixture": "single_coordinate",
+      "M": 1,
+      "bytes": 557627,
+      "file": "T0P/common/data/m1_single_coordinate.bin"
+    },
+    {
+      "sha256": "00230b403ab7ab9ccf2835f10816cab92172292ebcbad211d112190dfe550da9",
+      "fixture": "cancellation_high",
+      "M": 1,
+      "bytes": 557627,
+      "file": "T0P/common/data/m1_cancellation_high.bin"
+    },
+    {
+      "sha256": "47735f943dcdde5202e18993e12533d10b5590f2c4f2238c55ec0831f46777c3",
+      "fixture": "cancellation_extreme",
+      "M": 1,
+      "bytes": 557627,
+      "file": "T0P/common/data/m1_cancellation_extreme.bin"
+    },
+    {
+      "sha256": "00801d7b89f624b08ff3999770b64d3a8c26708f548443adc54d7d727a1ffbba",
+      "fixture": "zero_input",
+      "M": 4,
+      "bytes": 559259,
+      "file": "T0P/common/data/m4_zero_input.bin"
+    },
+    {
+      "sha256": "6c6245501d0040aeb85026a707b9dae59b4f0db2aaddb789b635238e0b02d4ba",
+      "fixture": "single_coordinate",
+      "M": 4,
+      "bytes": 559259,
+      "file": "T0P/common/data/m4_single_coordinate.bin"
+    },
+    {
+      "sha256": "d741d845d59bcf0c0a48501045521eee950ed433915d9e1579aa2b999c73a2ef",
+      "fixture": "cancellation_high",
+      "M": 4,
+      "bytes": 559259,
+      "file": "T0P/common/data/m4_cancellation_high.bin"
+    },
+    {
+      "sha256": "6f38ecc1697952924bbc0c5568b15753a1c07acc8c6de21ba6721c59a8d39a4d",
+      "fixture": "cancellation_extreme",
+      "M": 4,
+      "bytes": 559259,
+      "file": "T0P/common/data/m4_cancellation_extreme.bin"
+    },
+    {
+      "sha256": "aea48f8ef028b1decc076e47a7a659d99177217c2c07ec302ebee1f06877ccba",
+      "fixture": "zero_input",
+      "M": 8,
+      "bytes": 561435,
+      "file": "T0P/common/data/m8_zero_input.bin"
+    },
+    {
+      "sha256": "83b39f5d6a532ef6a7a4f18eaeec074fa63cdcd627e20463f78c3b7d755ab0c0",
+      "fixture": "single_coordinate",
+      "M": 8,
+      "bytes": 561435,
+      "file": "T0P/common/data/m8_single_coordinate.bin"
+    },
+    {
+      "sha256": "17b63f84641aaa26cebc5976f9a66ee34d549224cc0e04515f15d6fb59f02b0b",
+      "fixture": "cancellation_high",
+      "M": 8,
+      "bytes": 561435,
+      "file": "T0P/common/data/m8_cancellation_high.bin"
+    },
+    {
+      "sha256": "5e2034f1caeb3e094284f3ed567506945366afcf12852c981de3f83c16dcb6b6",
+      "fixture": "cancellation_extreme",
+      "M": 8,
+      "bytes": 561435,
+      "file": "T0P/common/data/m8_cancellation_extreme.bin"
+    },
+    {
+      "sha256": "fb70679f25a76ec812958deb50c737549a766c5ab05db194d920147424e01eb7",
+      "fixture": "zero_input",
+      "M": 16,
+      "bytes": 565787,
+      "file": "T0P/common/data/m16_zero_input.bin"
+    },
+    {
+      "sha256": "69221c70d5bb3ca5d6c6a07bee196aa3cd78fc5e91010fab1c501022dd9dbe5b",
+      "fixture": "single_coordinate",
+      "M": 16,
+      "bytes": 565787,
+      "file": "T0P/common/data/m16_single_coordinate.bin"
+    },
+    {
+      "sha256": "2e5fb7061744a7af4c54a712e2d1567e8fb4283b9f794085460e1a1917b86e31",
+      "fixture": "cancellation_high",
+      "M": 16,
+      "bytes": 565787,
+      "file": "T0P/common/data/m16_cancellation_high.bin"
+    },
+    {
+      "sha256": "9b5f3220ed7c34765d178586f1c75123e41312ed7988ff3e8cb3209887be0951",
+      "fixture": "cancellation_extreme",
+      "M": 16,
+      "bytes": 565787,
+      "file": "T0P/common/data/m16_cancellation_extreme.bin"
+    }
+  ],
+  "unit_tests": "PASS: boundaries +/- both sides, NaN, Inf, size mismatch, zero S, code/scale mutations, group-dot API",
+  "open_ambiguities": [
+    "Sol interpretation of near-exact cancellation is open because MD/38 text is truncated",
+    "ggml internal group dots not captured"
+  ],
+  "coordinate_sweep": "PASS: 2,048 canonical hashes (512 positions x four M); 512 batches per M",
+  "GOVERNING_S14": {
+    "allocator": "VirtualAlloc MEM_RESERVE|MEM_COMMIT|MEM_LARGE_PAGES; GetLargePageMinimum rounding; AdjustTokenPrivileges on own token only; marked aligned normal fallback is HOLD",
+    "gate": "QA_NUMERICAL, DISPATCH_QUALIFIED, PAGE_POLICY, REFERENCE_READY; complete sweep/control coverage mandatory",
+    "readme_correction": "S/|r| >= 1024"
+  },
+  "S14_sources": {
+    "common.hpp": "eb051bae5012dfb1ad273cd56c6e0b22c7d32e6c345d26416a47ed8975a51965",
+    "common.cpp": "7be077b6816bc72d1711693b804ada6b052dc3696d92c70a1acb759db1d4edbd",
+    "qa_gate.py": "1f97e0ea5dad947da26b249645c40d9630f49421449aa5e7cc6940632d650dc0"
+  }
 }

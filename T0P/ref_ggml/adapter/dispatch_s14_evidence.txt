@@ -1,0 +1,19 @@
+﻿S-14 dispatch evidence, outside timing
+Loaded module: C:\Projects\OMEGA\Ejercise\T0P\ref_ggml\build_llama\bin\ggml-cpu.dll
+Module SHA-256: cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23
+Runtime base: 0x7ffabad00000
+Trait callback: RVA 0xc8ad0; m=1 hit; caller return 0x7ffabad0455a.
+llamafile_sgemm source object: llama.cpp/ggml/src/ggml-cpu/llamafile/sgemm.cpp.obj
+COFF symbol: llamafile_sgemm, offset 0; matched uniquely to the loaded image at RVA 0xc4dc0.
+Software INT3 entry breakpoint was armed at base+RVA. Callsite VA 0x180002A8D; return address 0x180002A92 tests AL and branches on false to 0x180002B67.
+Object SHA-256: 3B241DE5F0680742DD66038B3C5E5FA1002C213D8C6BD01A9711BC27583489C1
+Observed S14_DISPATCH records in qa_output.txt:
+m=1: ggml_vec_dot_q4_0_q8_0, callback reached, module/hash/base/RVA and return recorded.
+m=4,8,16: llamafile_sgemm entry reached; callback absent; same caller return 0x7ffabad02a92.
+Inference from upstream ggml-cpu.c lines 1308-1325 and disassembly: for m=4,8,16 sgemm returned true and resolved the matmul; false falls through to ggml gemm/dot. For m=1 it fell through and Q4_0 trait callback resolved the operation.
+
+
+Arithmetic association:
+Upstream ggml-cpu/llamafile/sgemm.cpp:4169 selects GGML_TYPE_Q4_0 and requires Btype GGML_TYPE_Q8_0; under __AVX2__ it instantiates tinyBLAS_Q0_AVX<block_q4_0, block_q8_0, float>, calls tb.matmul(m,n), and returns true.
+Build CMakeCache: GGML_AVX2=ON, GGML_AVX_VNNI=ON, GGML_LLAMAFILE=ON.
+Thus m=4/8/16 resolve through Q4_0 x Q8_0 AVX2 tinyBLAS matrix multiplication; m=1 falls back to the captured Q4_0 trait callback. Full relevant runtime disassembly is dispatch_s14_disassembly.txt.

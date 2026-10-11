@@ -598,9 +598,9 @@
     "mkldnn_linear is diagnostic and excluded because its opaque effective storage cannot be inspected."
   ],
   "artifacts": {
-    "T0P/ref_torch/adapter/ref_torch.cpp": "347f45fe4f5260c5b100bbf65231d797f219fd5a4d65d2bc8b6fe2b6172886be",
+    "T0P/ref_torch/adapter/ref_torch.cpp": "99ab0afc97a6509081c9c9f84f8c2f5046a2da222fb80e5b85e84916a94ced37",
     "T0P/ref_torch/adapter/build.cmd": "f695e7628f0e321c1ca2b27a5d05fa644bb95a07f2f90e5065b327a3fdcc388d",
-    "T0P/ref_torch/adapter/ref_torch.exe": "df0ce72a96108aad37b731d4a90b92e8ecaeebe213f3ec8c94c5f7a773059a08",
+    "T0P/ref_torch/adapter/ref_torch.exe": "04160980b11a8f2696fbf4657e655dc04fd05d043c58a902e407958d32580221",
     "T0P/ref_torch/adapter/ref_torch.exp": "46e1a9224defb96ec208763607eadf62db1546611dd13cf025df059863870aa0",
     "T0P/ref_torch/adapter/ref_torch.lib": "dd47137393a89d4ccb86a2330907fd00513fb0c64faf5beff0b350b37e161bfd",
     "T0P/ref_torch/adapter/obj/ref_torch.obj": "ec47e981840622c39aafa850549af8c29cd9d87e44bdd943e898db99780b8b76",
@@ -609,8 +609,8 @@
     "T0P/ref_torch/adapter/update_freeze.py": "86a237aae04f08302fdc2fa3cc47c8ac0ca1fdeb1f9f15233c9256373c44d922",
     "T0P/ref_torch/REF_FREEZE.md": "52ceffea5e2b00c2dd5050531300882a72726a6118c6361efafd6076d3ea43f4",
     "T0P/common/README.md": "d890ed0b4739f4d0efb4052491f5ec6e9baa7b9174cafc03bb5879b5f9d7d0f2",
-    "T0P/common/common.hpp": "7b9525f6ad579a0443360772963168e69fcb542876c3a951ff2981891208b527",
-    "T0P/common/common.cpp": "ff8fb4241fe33a6504c0b11ecf4ab3736b818ad6fd92f4e3aec4a405c292a6ad",
+    "T0P/common/common.hpp": "eb051bae5012dfb1ad273cd56c6e0b22c7d32e6c345d26416a47ed8975a51965",
+    "T0P/common/common.cpp": "7be077b6816bc72d1711693b804ada6b052dc3696d92c70a1acb759db1d4edbd",
     "T0P/common/build.cmd": "f568f4035cca63fcd4b3ecb19241f0d5f57b036f1c5b0909e675b013d7fab252",
     "T0P/common/generate_main.cpp": "22ddf5cb7f5928beed25895ad2978a15b58d94a023f7caf07ac95a464dd56b4d",
     "T0P/common/generate_cells.exe": "1d9555444d810ed15cdca51b2917c6dfce906c908f997e452eac6743954ddd53",
@@ -637,7 +637,8 @@
     "T0P/common/data/m8_varied_scales.bin": "b5255ab84f3aac361aecae3139ecc8e237d97d75762b406fe9880496d07971e8",
     "T0P/ref_torch/adapter/qa_gate_results.txt": "87d8a94548b2490503c5c5e6af52866ec0d3fd11a63fc53baa3c7b359885b7ed",
     "T0P/ref_torch/adapter/qa_exit_code.txt": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
-    "T0P/common/bound_exact_verify.py": "c4cd8eceeeb6ebf23c0dd454736e1dfd849614d13dbbad7ba24fc60fd5b96ec7"
+    "T0P/common/bound_exact_verify.py": "c4cd8eceeeb6ebf23c0dd454736e1dfd849614d13dbbad7ba24fc60fd5b96ec7",
+    "T0P/common/qa_gate.py": "74e09114d866d980fb2325f1c283960147ed0733f527984aea370b2572b327f6"
   },
   "S12_reevaluation": {
     "state": "HISTORIAL_PRE_S13",
@@ -727,5 +728,60 @@
     "exact_rational_B_checks": 2030,
     "page_queries": 120,
     "page_query_failures": 0
+  },
+  "GOVERNING_S14": {
+    "candidates": {
+      "mm": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "HOLD",
+        "REFERENCE_READY": "HOLD"
+      },
+      "matmul": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "HOLD",
+        "REFERENCE_READY": "HOLD"
+      },
+      "linear": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "HOLD",
+        "REFERENCE_READY": "HOLD"
+      },
+      "mv": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "HOLD",
+        "REFERENCE_READY": "HOLD"
+      }
+    },
+    "candidate_scope": "mm/matmul/linear; mv solo m=1; mkldnn_linear diagn?stico no comparable",
+    "qa": {
+      "candidate_rows": 130,
+      "coordinate_sweep": "512/512 exact per m; failures=0; mandatory",
+      "exact_group_dots": {
+        "mm": 2375680,
+        "matmul": 2375680,
+        "linear": 2375680,
+        "mv_m1": 81920
+      },
+      "exact_cancellation": "PASS",
+      "overall_numerical_equivalence": "PASS"
+    },
+    "memory": {
+      "effective_storage": "from_blob sobre common Buffer con deleter; sin clone",
+      "page_policy": "HOLD: SeLockMemoryPrivilege ausente; QueryWorkingSetEx LargePage=0"
+    },
+    "gate": {
+      "source_sha256": "1f97e0ea5dad947da26b249645c40d9630f49421449aa5e7cc6940632d650dc0",
+      "negative_tests": "PASS"
+    },
+    "sources": {
+      "ref_torch.cpp": "99ab0afc97a6509081c9c9f84f8c2f5046a2da222fb80e5b85e84916a94ced37",
+      "ref_torch.exe": "04160980b11a8f2696fbf4657e655dc04fd05d043c58a902e407958d32580221",
+      "common.cpp": "7be077b6816bc72d1711693b804ada6b052dc3696d92c70a1acb759db1d4edbd",
+      "qa_gate.py": "1f97e0ea5dad947da26b249645c40d9630f49421449aa5e7cc6940632d650dc0"
+    }
   }
 }
