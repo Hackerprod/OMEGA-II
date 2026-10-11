@@ -1,0 +1,19 @@
+{
+  "record": "P_instr_frequency_load_marker",
+  "worker_key": "CORE_API_00_G0_MASK_0_1",
+  "worker_type": "P-core",
+  "processor_group": 0,
+  "logical_processor": 0,
+  "route": "AVX2",
+  "fixed_units": 32986702,
+  "qpc_frequency_hz": 10000000,
+  "qpc_elapsed_ns": 150072700,
+  "qpc_ticks": 1500727,
+  "rdtscp_ticks_diagnostic_only": 316950010,
+  "aux_start": 0,
+  "aux_end": 0,
+  "correctness": true,
+  "aux_stable": true,
+  "throughput_used_for_frequency": false,
+  "frequency_derived_in_harness": false
+}

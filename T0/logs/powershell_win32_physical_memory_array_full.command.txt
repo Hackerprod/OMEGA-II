@@ -1,0 +1,1 @@
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -Command "Get-CimInstance Win32_PhysicalMemoryArray | Sort-Object MemoryArrayLocation | Format-List *"

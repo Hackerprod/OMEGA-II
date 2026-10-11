@@ -1,0 +1,11 @@
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -Command "
+$ErrorActionPreference = 'Stop'
+$processes = @(Get-CimInstance Win32_Process | Select-Object ProcessId,ParentProcessId,Name,CommandLine)
+$cpu = @()
+for ($i=0; $i -lt 11; $i++) {
+    $row = Get-CimInstance -ClassName Win32_PerfFormattedData_PerfOS_Processor -Filter \"Name='_Total'\"
+    $cpu += [pscustomobject]@{ Timestamp=(Get-Date).ToUniversalTime().ToString('o'); InstanceName=$row.Name; PercentProcessorTime=$row.PercentProcessorTime; PercentIdleTime=$row.PercentIdleTime; PercentUserTime=$row.PercentUserTime; PercentPrivilegedTime=$row.PercentPrivilegedTime }
+    if ($i -lt 10) { Start-Sleep -Seconds 1 }
+}
+[ordered]@{ captured_utc=(Get-Date).ToUniversalTime().ToString('o'); cpu_counter='CIM Win32_PerfFormattedData_PerfOS_Processor(_Total).PercentProcessorTime'; sample_interval_seconds=1; expected_samples=11; cpu_samples=$cpu; processes=$processes } | ConvertTo-Json -Depth 6
+"

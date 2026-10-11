@@ -1,0 +1,54 @@
+{
+  "status": "INVALID_CONDITIONS_CHROME_REOPENED",
+  "authorized_token": "AUTORIZADO",
+  "series": [
+    {
+      "name": "phase0_run_p_instr",
+      "exit_code": 0,
+      "elapsed_seconds": 2.12
+    },
+    {
+      "name": "phase0_run_p_q4_m",
+      "exit_code": 0,
+      "elapsed_seconds": 172.011
+    }
+  ],
+  "pre_background_exit_code": 0,
+  "pre_background_elapsed_seconds": 19.166,
+  "post_background_exit_code": 0,
+  "post_background_elapsed_seconds": 13.694,
+  "no_series_repeated": true,
+  "parameters_file": "results/T0.0/phase0_parameters.json",
+  "prior_launcher_status": "COMPLETE",
+  "invalidated_at_utc": "2026-10-10T14:09:16.190387+00:00",
+  "invalidating_event": "Judge reported Chrome reopened during Phase 0 timing; 12 Chrome processes reported.",
+  "reported_chrome_process_count": 12,
+  "invalidated_series": [
+    "phase0_run_p_instr",
+    "phase0_run_p_q4_m"
+  ],
+  "completed_modes_before_invalidation_notice": [
+    "P_instr",
+    "P_Q4(m)"
+  ],
+  "series_outputs_preserved": true,
+  "run2_output_directory": "results/T0.0/phase0_raw_run2",
+  "incident_background_command": "phase0_incident_background_cim",
+  "incident_background_capture_exit_code": 0,
+  "phase0_raw_files_preserved": [
+    "p_instr_raw.csv",
+    "p_instr_summary.csv",
+    "p_q4_m_raw.csv",
+    "p_q4_m_summary.csv"
+  ],
+  "incident_background": {
+    "sample_count": 11,
+    "mean_cpu_percent": 13.636363636363637,
+    "min_cpu_percent": 10.0,
+    "max_cpu_percent": 20.0,
+    "active_process_count": 234,
+    "chrome_process_count_in_cim_snapshot": 12,
+    "phase0_process_count_after_stop": 0,
+    "stopped_phase0_processes": []
+  }
+}

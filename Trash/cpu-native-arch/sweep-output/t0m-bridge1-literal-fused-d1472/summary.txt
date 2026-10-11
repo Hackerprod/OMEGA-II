@@ -1,8 +1,0 @@
-status=PASS
-executive_summary=Literal accepted fused t0m_int8_probe kernel A versus byte-identical 16-allocation Bclone completed at D=1472,S=1,R=16 with frozen activations/state and no transition path.
-A_median_mac_per_second=31020000000; Bclone_median_mac_per_second=20903200000
-A_over_Bclone=1.4839833135596463; Bclone_over_A=0.6738620245003224
-checksum_proof=A_checksum=37367653; Bclone_checksum=37367653; exact equality for all 10 paired runs; deterministic and nonzero
-counts=20 raw rows; 2 aggregates; 10 independent runs per variant; pair-adjacent serial execution
-configuration=D=1472;S=1;R=16;mode=fused;S_tile=8;iterations=1;timed_repetitions=8;warmup=2;workers=4;cpus=0,2,4,6;rows_per_worker=457,297,347,371
-artifacts=machine.csv,aggregate.csv,comparison.csv,summary.txt,validation.txt,commands.log,stderr.log,preflight.build.stdout.log,preflight.build.stderr.log,preflight.self-test.stdout.log,preflight.self-test.stderr.log,dumpbin-evidence.txt

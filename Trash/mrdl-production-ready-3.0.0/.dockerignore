@@ -1,9 +1,0 @@
-build
-model
-data
-artifacts
-.git
-*.db
-*.db-wal
-*.db-shm
-*.log

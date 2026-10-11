@@ -1,24 +1,0 @@
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|##########| 76/76 [00:00<00:00, 36031.10it/s]
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Token indices sequence length is longer than the specified maximum sequence length for this model (4486 > 1024). Running this sequence through the model will result in indexing errors
-Traceback (most recent call last):
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 1117, in <module>
-    raise SystemExit(main())
-                     ~~~~^^
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 1110, in main
-    print(json.dumps(run_full(args.output_dir), indent=2, sort_keys=True))
-                     ~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 1031, in run_full
-    results.append(run_single(run_dir=output_dir / "runs" / run_id, run_id=run_id, seed=seed, variant=variant, train_documents=train_documents, validation_documents=validation_documents, train_manifest=train_manifest, validation_manifest=validation_manifest, teacher=teacher, total_updates=FULL_UPDATES, checkpoint_interval=500, smoke=False, dimensions=(128, 8)))
-                   ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 715, in run_single
-    loss, next_states, valid_tokens = _batch_loss(model, teacher, documents, item["window"], pair_states, memory_samples)
-                                      ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 591, in _batch_loss
-    memory_guard("teacher_forward", memory_samples)
-    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 156, in memory_guard
-    raise MemorySafetyError(
-        f"hard stop before {stage}: available memory {available} bytes below {MIN_AVAILABLE_BYTES} bytes"
-    )
-MemorySafetyError: hard stop before teacher_forward: available memory 1040490496 bytes below 1073741824 bytes

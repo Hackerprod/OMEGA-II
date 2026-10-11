@@ -1,0 +1,4 @@
+q4_kernel.cpp
+phase1_measure_harness.cpp
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_measure_harness.cpp(514): error C2084: la funci¢n 'void `anonymous-namespace'::writeECoreConfirmation(const std::string &,const std::string &)' ya tiene un cuerpo
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_measure_harness.cpp(473): note: vea la definici¢n anterior de "`anonymous-namespace'::writeECoreConfirmation"

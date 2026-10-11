@@ -1,9 +1,0 @@
-int8_probe.exe : int8 Bclone self-test passed; 
-distinct_allocations=16,byte_identical=true,outputs_equal=true,checksums_equal=true
-En l?nea: 1 Car?cter: 203
-+ ... Out-Null }; & '.\build\int8_probe.exe' --self-test *> 'sweep-output\t ...
-+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (int8 Bclone sel...sums_equal=true:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-int8 AVX2 correction test passed; scalar_checksum=320040, avx2_checksum=320040, difference=0

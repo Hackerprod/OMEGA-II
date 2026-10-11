@@ -1,0 +1,39 @@
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -Command "
+$ErrorActionPreference = 'Stop'
+$expectedPower = '8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c'
+$powerText = (& powercfg.exe /getactivescheme 2>&1 | Out-String)
+$powerMatch = [regex]::Match($powerText, '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')
+$powerGuid = if ($powerMatch.Success) { $powerMatch.Value.ToLowerInvariant() } else { '' }
+$cpuInfo = @(Get-CimInstance Win32_Processor | Select-Object -ExpandProperty Name)
+$logicalCount = (Get-CimInstance Win32_ComputerSystem).NumberOfLogicalProcessors
+$chromeBefore = @(Get-Process chrome -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Id)
+$procWatch = [System.Diagnostics.Stopwatch]::StartNew()
+$proc0 = @{}
+Get-Process -ErrorAction SilentlyContinue | ForEach-Object { $id=[int]$_.Id; $cpuValue=$null; if ($null -ne $_.CPU) { $cpuValue=[double]$_.CPU }; $proc0[$id] = [pscustomobject]@{ Name=$_.ProcessName; Cpu=$cpuValue } }
+$cpu = @()
+for ($i=0; $i -lt 11; $i++) {
+    $row = Get-CimInstance -ClassName Win32_PerfFormattedData_PerfOS_Processor -Filter \"Name='_Total'\"
+    $cpu += [pscustomobject]@{ Timestamp=(Get-Date).ToUniversalTime().ToString('o'); InstanceName=$row.Name; PercentProcessorTime=$row.PercentProcessorTime; PercentIdleTime=$row.PercentIdleTime; PercentUserTime=$row.PercentUserTime; PercentPrivilegedTime=$row.PercentPrivilegedTime }
+    if ($i -lt 10) { Start-Sleep -Seconds 1 }
+}
+$proc1 = @{}
+Get-Process -ErrorAction SilentlyContinue | ForEach-Object { $id=[int]$_.Id; $cpuValue=$null; if ($null -ne $_.CPU) { $cpuValue=[double]$_.CPU }; $proc1[$id] = [pscustomobject]@{ Name=$_.ProcessName; Cpu=$cpuValue } }
+$procWatch.Stop()
+$processSeconds = [math]::Max(1.0, $procWatch.Elapsed.TotalSeconds)
+$activeProcessCpu = @()
+foreach ($id in $proc1.Keys) {
+    $pct = $null
+    $baselineAvailable = $false
+    if ($proc0.ContainsKey($id) -and $null -ne $proc0[$id].Cpu -and $null -ne $proc1[$id].Cpu) {
+        $baselineAvailable = $true
+        $delta = [math]::Max(0, $proc1[$id].Cpu - $proc0[$id].Cpu)
+        $pct = $delta / $processSeconds / [double]$logicalCount * 100.0
+    }
+    $activeProcessCpu += [pscustomobject]@{ ProcessId=$id; Name=$proc1[$id].Name; CpuPercentTotal=$pct; BaselineAvailable=$baselineAvailable }
+}
+$activeProcessCpu = @($activeProcessCpu | Sort-Object -Property CpuPercentTotal -Descending)
+$chromeAfter = @(Get-Process chrome -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Id)
+$meanCpu = ($cpu | Measure-Object -Property PercentProcessorTime -Average).Average
+$maxCpu = ($cpu | Measure-Object -Property PercentProcessorTime -Maximum).Maximum
+[ordered]@{ captured_utc=(Get-Date).ToUniversalTime().ToString('o'); power_plan_guid=$powerGuid; expected_power_plan_guid=$expectedPower; cpu_names=$cpuInfo; logical_processor_count=$logicalCount; expected_cpu_name='13th Gen Intel(R) Core(TM) i7-13700F'; chrome_pids_before=$chromeBefore; chrome_pids_after=$chromeAfter; cpu_samples=$cpu; mean_cpu_percent=$meanCpu; max_cpu_percent=$maxCpu; active_process_count=$activeProcessCpu.Count; active_processes_cpu=$activeProcessCpu; process_sample_seconds=$processSeconds; cpu_sample_interval_seconds=1; cpu_sample_count=$cpu.Count; cpu_load_is_observation_only=$true } | ConvertTo-Json -Depth 6 -Compress
+"

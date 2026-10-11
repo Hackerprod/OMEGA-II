@@ -1,0 +1,9 @@
+{
+  "record": "H0_SHA256_VERIFICATION",
+  "measurement": false,
+  "manifest": "SHA256SUMS.txt",
+  "expected_verified_count": 1229,
+  "expected_mismatches": 0,
+  "plan_artifact_hash_count": 27,
+  "plan_verification_hash_count": 25
+}

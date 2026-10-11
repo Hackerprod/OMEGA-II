@@ -1,24 +1,0 @@
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|##########| 76/76 [00:00<00:00, 38294.94it/s]
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Token indices sequence length is longer than the specified maximum sequence length for this model (4486 > 1024). Running this sequence through the model will result in indexing errors
-Traceback (most recent call last):
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_er32_quality_scoping_a\run_er32_quality_scoping_a.py", line 445, in <module>
-    raise SystemExit(main())
-                     ~~~~^^
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_er32_quality_scoping_a\run_er32_quality_scoping_a.py", line 440, in main
-    print(json.dumps(run_full(args.output_dir), indent=2, sort_keys=True))
-                     ~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_er32_quality_scoping_a\run_er32_quality_scoping_a.py", line 409, in run_full
-    result = run_single(
-        run_dir=output_dir / "runs" / f"{variant}_seed_{seed}",
-    ...<8 lines>...
-        baselines=baselines,
-    )
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_er32_quality_scoping_a\run_er32_quality_scoping_a.py", line 330, in run_single
-    memory_guard(f"update_{item['update']}")
-    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 162, in memory_guard
-    raise MemorySafetyError(
-        f"hard stop before {stage}: available memory {available} bytes below {MIN_AVAILABLE_BYTES} bytes"
-    )
-run_scientific_scoping_a.MemorySafetyError: hard stop before update_1921: available memory 466264064 bytes below 1073741824 bytes

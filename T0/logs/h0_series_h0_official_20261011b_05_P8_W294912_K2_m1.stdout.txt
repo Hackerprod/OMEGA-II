@@ -1,0 +1,1 @@
+{"record":"h0_block_complete","block_id":"h0_official_20261011b_05_P8_W294912_K2_m1","variant_count":2,"W_target_bytes":294912,"O":1024,"W_real_bytes":294912,"same_A_C_base_address_for_block":true,"official_timing_performed":true}

@@ -1,0 +1,2 @@
+C:/Projects/OMEGA/.venv_cuda/Scripts/python.exe -B test_h0_r_noise.py
+exit_code=0

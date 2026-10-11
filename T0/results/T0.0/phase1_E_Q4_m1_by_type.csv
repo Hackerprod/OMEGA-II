@@ -1,0 +1,3 @@
+worker_type,route,physical_core_count,P_Q4_m1_median_of_core_medians_conventional_MAC_per_s,iqr_of_core_medians,mad_of_core_medians,min_core_median,max_core_median,N_per_core,warmup_count
+E-core,AVX2,8,6556415000.0,24670000.0,10795000.0,6516980000.0,6569780000.0,31,5
+E-core,AVX-VNNI-256,8,6930315000.0,36190000.0,12045000.0,6902740000.0,6956590000.0,31,5

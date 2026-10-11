@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Intel\oneAPI\vtune\2026.4\bin64\vtune.exe" -report hw-events -result-dir C:\Projects\OMEGA\Ejercise\T0\results\T0.0\phase1_raw\effective_frequency_attempt1\vtune_import_E_representative -format csv -report-output C:\Projects\OMEGA\Ejercise\T0\results\T0.0\phase1_raw\effective_frequency_attempt1\hw_events_E_representative.csv

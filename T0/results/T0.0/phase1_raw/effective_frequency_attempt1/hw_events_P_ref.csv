@@ -1,0 +1,8 @@
+Function	Hardware Event Count:INST_RETIRED.ANY	Hardware Event Count:CPU_CLK_UNHALTED.THREAD	Hardware Event Count:CPU_CLK_UNHALTED.REF_TSC	Hardware Event Count:TOPDOWN.SLOTS	Module	Function (Full)	Source File	Start Address
+func@0x1400061b0	0	0	2000003	0	nvlddmkm.sys	func@0x1400061b0	[Unknown]	0x1400061b0
+func@0x14002a500	0	0	306000459	0	phase1_measure_harness.exe	func@0x14002a500	[Unknown]	0x14002a500
+func@0x1401c26e2	0	0	2000003	0	nvlddmkm.sys	func@0x1401c26e2	[Unknown]	0x1401c26e2
+func@0x1402b0af0	0	0	2000003	0	ntoskrnl.exe	func@0x1402b0af0	[Unknown]	0x1402b0af0
+func@0x1402b9810	0	0	2000003	0	ntoskrnl.exe	func@0x1402b9810	[Unknown]	0x1402b9810
+func@0x1406aa22f	0	0	2000003	0	ntoskrnl.exe	func@0x1406aa22f	[Unknown]	0x1406aa22f
+func@0x180094dcb	0	0	2000003	0	ntdll.dll	func@0x180094dcb	[Unknown]	0x180094dcb

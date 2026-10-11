@@ -1,0 +1,84 @@
+h0_scaffold.cpp
+h0_measure.cpp
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(164): error C3861: 'prepareCellTeam': no se encontr¢ el identificador
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): error C2679: '=' binario: no se encontr¢ un operador que adopte un operando en la parte derecha de tipo '_Ty' (o bien no existe una conversi¢n aceptable)
+        with
+        [
+            _Ty=double
+        ]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vector(1544): note: puede ser 'std::vector<double,std::allocator<double>> &std::vector<double,std::allocator<double>>::operator =(std::initializer_list<double>)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: 'std::vector<double,std::allocator<double>> &std::vector<double,std::allocator<double>>::operator =(std::initializer_list<double>)': el argumento 2 no puede convertirse de '_Ty' a 'std::initializer_list<double>'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: 'std::initializer_list<double>::initializer_list':ninguna funci¢n sobrecargada pudo convertir todos los tipos de argumento
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\initializer_list(51): note: puede ser 'std::initializer_list<double>::initializer_list(std::initializer_list<double> &&)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: 'std::initializer_list<double>::initializer_list(std::initializer_list<double> &&)': el argumento 1 no puede convertirse de '_Ty' a 'std::initializer_list<double> &&'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: Raz¢n: no se puede realizar la conversi¢n de '_Ty' a 'std::initializer_list<double>'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: La conversi¢n requiere un segundo operador de conversi¢n definido por el usuario o constructor
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\initializer_list(51): note: o       'std::initializer_list<double>::initializer_list(const std::initializer_list<double> &)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: 'std::initializer_list<double>::initializer_list(const std::initializer_list<double> &)': el argumento 1 no puede convertirse de '_Ty' a 'const std::initializer_list<double> &'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: Raz¢n: no se puede realizar la conversi¢n de '_Ty' a 'const std::initializer_list<double>'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: La conversi¢n requiere un segundo operador de conversi¢n definido por el usuario o constructor
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: al hacer coincidir la lista de argumentos '(_Ty)'
+        with
+        [
+            _Ty=double
+        ]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vector(1523): note: o       'std::vector<double,std::allocator<double>> &std::vector<double,std::allocator<double>>::operator =(const std::vector<double,std::allocator<double>> &)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: 'std::vector<double,std::allocator<double>> &std::vector<double,std::allocator<double>>::operator =(const std::vector<double,std::allocator<double>> &)': el argumento 2 no puede convertirse de '_Ty' a 'const std::vector<double,std::allocator<double>> &'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: Raz¢n: no se puede realizar la conversi¢n de '_Ty' a 'const std::vector<double,std::allocator<double>>'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: El constructor de class 'std::vector<double,std::allocator<double>>' est  declarado como 'explicit'
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vector(798): note: o       'std::vector<double,std::allocator<double>> &std::vector<double,std::allocator<double>>::operator =(std::vector<double,std::allocator<double>> &&) noexcept(<expr>)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: 'std::vector<double,std::allocator<double>> &std::vector<double,std::allocator<double>>::operator =(std::vector<double,std::allocator<double>> &&) noexcept(<expr>)': el argumento 2 no puede convertirse de '_Ty' a 'std::vector<double,std::allocator<double>> &&'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: Raz¢n: no se puede realizar la conversi¢n de '_Ty' a 'std::vector<double,std::allocator<double>>'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: El constructor de class 'std::vector<double,std::allocator<double>>' est  declarado como 'explicit'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(237): note: al hacer coincidir la lista de argumentos '(std::vector<double,std::allocator<double>>, _Ty)'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(245): error C2039: "accumulate": no es un miembro de "std"
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\set(22): note: vea la declaraci¢n de 'std'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(245): error C3861: 'accumulate': no se encontr¢ el identificador
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(245): error C2737: 'totalWeights': se debe inicializar el objeto const
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(248): error C3536: 'totalWeights': no se puede usar antes de inicializarse
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(248): error C2088: el operador integrado '<<' no se puede aplicar a un operando de tipo 'std::basic_ostream<char,std::char_traits<char>>'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(251): error C2039: "cout": no es un miembro de "std"
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\set(22): note: vea la declaraci¢n de 'std'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(251): error C2065: 'cout': identificador no declarado
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(279): error C2084: la funci¢n 'void t0h0::runIndependentEvictionTestToFile(const std::string &,const std::string &,uint64_t,uint64_t)' ya tiene un cuerpo
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(257): note: vea la definici¢n anterior de "t0h0::runIndependentEvictionTestToFile"

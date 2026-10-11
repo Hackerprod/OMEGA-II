@@ -1,0 +1,1 @@
+C:\Projects\OMEGA\Ejercise\T0\src\build\h0_scaffold.exe --run-block AUTORIZADO C:\Projects\OMEGA\Ejercise\T0\results\T0.0\b_topologia.csv C:\Projects\OMEGA\Ejercise\T0\results\T0.1\h0_raw\h0_official_20261011b h0_official_20261011b_13_PplusE_K16_m1_W147456 PplusE CAB 147456 16 1 A6428F3315D239B6 8

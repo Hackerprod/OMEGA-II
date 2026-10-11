@@ -1,0 +1,1 @@
+C:\Projects\OMEGA\Ejercise\T0\src\build\h0_scaffold.exe --run-block AUTORIZADO C:\Projects\OMEGA\Ejercise\T0\results\T0.0\b_topologia.csv C:\Projects\OMEGA\Ejercise\T0\results\T0.1\h0_raw\h0_official_20261011b h0_official_20261011b_04_P8_Knee_K16_m1_W1048572_A P8 A 1048572 16 1 892BDD12EA6600F5 8

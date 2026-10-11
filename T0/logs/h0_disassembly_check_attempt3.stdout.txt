@@ -1,0 +1,11 @@
+{
+  "record": "h0_k_loop_disassembly_check",
+  "listing": "C:\\Projects\\OMEGA\\Ejercise\\T0\\src\\build\\h0_scaffold.asm",
+  "function_symbol_found": true,
+  "call_instruction_count": 0,
+  "loop_branch_count": 0,
+  "call_instructions": [],
+  "loop_branches": [],
+  "measurement": false,
+  "status": "FAIL"
+}

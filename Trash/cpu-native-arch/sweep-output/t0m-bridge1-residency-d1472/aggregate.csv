@@ -1,3 +1,0 @@
-"variant","D","S","R","component","mode","rows_per_worker","n","median_mac_per_second","min_mac_per_second","max_mac_per_second","population_sd_mac_per_second","checksum","checksum_deterministic","all_rounds_valid","affinity","timed_repetitions","warmup"
-"A","1472","1","16","gemv-only","fused","457,297,347,371","10","3190228858.62754","2332565635.59953","6009532798.57166","1131299287.99523","5378321552073814842","True","True","True","8","2"
-"Bclone","1472","1","16","gemv-only","fused","457,297,347,371","10","3701484674.34233","1514874379.6543","5435740909.50961","1187294682.91621","5378321552073814842","True","True","True","8","2"

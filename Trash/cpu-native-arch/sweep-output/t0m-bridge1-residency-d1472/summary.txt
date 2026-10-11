@@ -1,5 +1,0 @@
-status=FAIL
-executive_summary=Bridge 1 stopped because A/Bclone ratio failed expected T0-R range
-A_over_Bclone=0.86187817573346426
-artifacts=machine.csv,aggregate.csv,calibration.csv,comparison.csv,summary.txt,validation.txt,commands.log,stderr.log,dumpbin-evidence.txt,preflight logs
-next_recommended=Do not start Bridge 2/3/4; investigate ratio

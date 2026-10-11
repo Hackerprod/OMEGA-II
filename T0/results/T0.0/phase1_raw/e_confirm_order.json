@@ -1,0 +1,8 @@
+{
+  "random_seed_hex": "4D44323545434F52",
+  "generator": "std::mt19937_64 + std::shuffle",
+  "route_schedule": "alternating by worker_order index; AVX2 first for even indices",
+  "worker_order": ["CORE_API_10_G0_MASK_18", "CORE_API_15_G0_MASK_23", "CORE_API_12_G0_MASK_20", "CORE_API_09_G0_MASK_17", "CORE_API_08_G0_MASK_16", "CORE_API_13_G0_MASK_21", "CORE_API_11_G0_MASK_19", "CORE_API_14_G0_MASK_22"],
+  "N": 31,
+  "warmup_count": 5
+}

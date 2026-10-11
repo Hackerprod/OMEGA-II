@@ -1,0 +1,9 @@
+{
+  "random_seed_hex": "4D44323850314D31",
+  "generator": "std::mt19937_64 + std::shuffle",
+  "route_schedule": "alternating by worker_order index; AVX2 first for even indices",
+  "worker_order": ["CORE_API_02_G0_MASK_4_5", "CORE_API_00_G0_MASK_0_1", "CORE_API_06_G0_MASK_12_13", "CORE_API_04_G0_MASK_8_9", "CORE_API_05_G0_MASK_10_11", "CORE_API_01_G0_MASK_2_3", "CORE_API_03_G0_MASK_6_7", "CORE_API_07_G0_MASK_14_15"],
+  "series": "P_Q4_i(m=1), AVX2 and AVX-VNNI-256 per physical P-core",
+  "N": 31,
+  "warmup_count": 5
+}

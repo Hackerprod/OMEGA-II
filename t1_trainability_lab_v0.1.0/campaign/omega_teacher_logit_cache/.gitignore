@@ -1,5 +1,0 @@
-teacher_logits.fp32
-teacher_logits.fp32.tmp
-*.mmap
-*.stdout.log
-*.stderr.log

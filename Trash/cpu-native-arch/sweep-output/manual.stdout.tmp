@@ -1,2 +1,0 @@
-probe,target_kib,actual_weight_bytes_per_block,allocated_weight_bytes,m,K,depth,variant,iterations,repetitions,warmup,logical_cpu_index,processor_group,group_processor_index,affinity_succeeded,affinity_error,eviction_bytes,elapsed_seconds,mac_count,mac_per_second,checksum
-scalar_q4,256,262080,262080,819,512,1,A,1,2,1,0,0,0,true,0,0,0.0051987999999999999,838656,161317227.05239671,507.36077880859375

@@ -1,5 +1,0 @@
-{"K": 4, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 0.000125885009765625, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 0}
-{"K": 4, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 0.00011444091796875, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 1}
-{"K": 4, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 3.0517578125e-05, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 2}
-{"K": 4, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 5.626678466796875e-05, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 3}
-{"K": 4, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 4.38690185546875e-05, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 4}

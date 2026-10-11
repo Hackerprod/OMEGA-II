@@ -1,0 +1,78 @@
+{
+  "record": "h0_corrections_post_MD34",
+  "segment": "h0_official_20261011b",
+  "author": "JUEZ (Claude), after data, per MD/34 D-B/D-C/D-D; not frozen-before-measurement code",
+  "raw_data_modified": false,
+  "derived_historical_unchanged": "results/T0.1/h0_derived_h0_official_20261011b.json",
+  "H0_VERDICT": "H0_FAIL (firme; MD/34 D-A)",
+  "H0_K_LITERAL_MD29": "PASS (resultado mec\u00e1nico hist\u00f3rico; no es evidencia de rodilla)",
+  "H0_K_SCIENTIFIC": "NOT_ESTABLISHED",
+  "C_L2_knee": null,
+  "B_L2_operational": null,
+  "H0_K_diagnostic_only_not_a_gate": {
+    "cost_per_byte_ps_by_W_target": {
+      "262152": 101.99023199023199,
+      "294912": 101.51807996961806,
+      "524286": 101.70081654456655,
+      "786438": 101.41304568940966,
+      "1048572": 101.4363804205194,
+      "1310724": 101.55124636831954,
+      "1572858": 101.50066634112596,
+      "1835010": 101.63279451768152,
+      "2097144": 101.44400958222711,
+      "2621448": 101.27505554334823,
+      "3145734": 101.51839390887729
+    },
+    "plateau_ps_per_B": 101.75415597992503,
+    "max_ratio_to_plateau": 1.002320062586471,
+    "min_ps_per_B": 101.27505554334823,
+    "max_ps_per_B": 101.99023199023199,
+    "dedicated_cell_for_294912": "04_P8_Knee_K16_m1_W294912_A_A_1",
+    "c_A_dedicated_294912": 29938.9,
+    "work_ratio_524160_over_294912": 1.77734375,
+    "cost_ratio": 1.7805430393234218
+  },
+  "marginal_rho_reconstruction": {
+    "8": {
+      "c_A_marg": 29866.87142857143,
+      "c_B_marg": 32676.35714285714,
+      "c_C_marg": 32940.7,
+      "rho_original_conversacion_cA_over_cB": 0.914020840756423,
+      "rho_max_AB_AC_MD29_operator": 0.914020840756423,
+      "note": "rho_original = c_A/c_B (Conv.L2813-2825; Sol MD/34: 0.91402 K=8, 0.90630 K=16). The max(A/B,A/C) operator is MD/29's and uses a C K=1 reference equal to A K=1 (C undefined for K<2; improvised, no norm defines it)"
+    },
+    "16": {
+      "c_A_marg": 29771.04666666667,
+      "c_B_marg": 32848.86,
+      "c_C_marg": 32827.793333333335,
+      "rho_original_conversacion_cA_over_cB": 0.9063038007001359,
+      "rho_max_AB_AC_MD29_operator": 0.9068854054359223,
+      "note": "rho_original = c_A/c_B (Conv.L2813-2825; Sol MD/34: 0.91402 K=8, 0.90630 K=16). The max(A/B,A/C) operator is MD/29's and uses a C K=1 reference equal to A K=1 (C undefined for K<2; improvised, no norm defines it)"
+    }
+  },
+  "matrixization_original_S8_S16": {
+    "S8": 1.7592148566055477,
+    "S16": 1.765609171673978
+  },
+  "eta_instr_VNNI_per_core": {
+    "P_instr_P_GMACs": 128.68,
+    "eta_by_m": {
+      "1": 0.13610764024213617,
+      "4": 0.23981606222197818,
+      "8": 0.23944258281148906,
+      "16": 0.24031289794641786,
+      "32": 0.24041304419920848,
+      "2": 0.19694576918266885
+    },
+    "note": "P_A(m)=MAC/ns of the worker at W=294,912 (8P, VNNI, K=16, A); P_instr from T0.0"
+  },
+  "SMT_note": "SMT wall comparison per Opus/Sol recompute: ~31,592.9 vs ~31,222.3 ns/app (SMT ~1.2% slower); summed sibling times are not latency",
+  "limitations": [
+    "eviction cost IS instrumented in the raw CSVs (initial_eviction_ns, eviction_between_ns; always outside kernel_only_ns); pure barrier/sync overhead is NOT separately instrumented (residual mixes synchronization, instrumentation and coordination); no new measurement authorized",
+    "raw column weight_storage_address=0 in ALL official timed rows: per-application addresses NOT RECORDED (only shared_weight_storage_address was); B-copy distinctness was verified by QA before timing; no addresses reconstructed",
+    "W sweep max A weight footprint 24 MiB < nominal LLC 30 MiB: no LLC->DRAM transition demonstrated",
+    "scope reduction: K swept only at m=1 and m only at K=16 (no full K\u00d7m grid)",
+    "PRIMARY_WORKER_POLICY / P-E effects / TOPOLOGY_ALTERNATIVE_FOR_T0.2: not selected, NOT_APPLICABLE after H0_FAIL (MD/34); descriptive 4P/E/P+E/SMT rows reported in h0_derived",
+    "eviction validation certifies local L2 perturbation, not full LLC eviction; B copies are INDEPENDENT_NON_ALIASING_ALLOCATIONS (no PFN)"
+  ]
+}

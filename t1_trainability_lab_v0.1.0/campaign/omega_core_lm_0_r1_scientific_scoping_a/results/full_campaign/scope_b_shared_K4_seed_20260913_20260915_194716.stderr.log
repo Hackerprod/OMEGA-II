@@ -1,24 +1,0 @@
-Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights: 100%|##########| 76/76 [00:00<00:00, 7393.07it/s]
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Token indices sequence length is longer than the specified maximum sequence length for this model (4486 > 1024). Running this sequence through the model will result in indexing errors
-Traceback (most recent call last):
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 1503, in <module>
-    raise SystemExit(main())
-                     ~~~~^^
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 1483, in main
-    print(json.dumps(run_scope_b(args.output_dir, args.resume_checkpoint, args.run_id, args.seed, args.variant), indent=2, sort_keys=True))
-                     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 1232, in run_scope_b
-    result = run_single(
-        run_dir=checkpoint.parent,
-    ...<13 lines>...
-        old_train_manifest=old_train_manifest,
-    )
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 864, in run_single
-    memory_guard(f"update_{update}:before_clip", memory_samples)
-    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0\campaign\omega_core_lm_0_r1_scientific_scoping_a\run_scientific_scoping_a.py", line 161, in memory_guard
-    raise MemorySafetyError(
-        f"hard stop before {stage}: available memory {available} bytes below {MIN_AVAILABLE_BYTES} bytes"
-    )
-MemorySafetyError: hard stop before update_2763:before_clip: available memory 972894208 bytes below 1073741824 bytes

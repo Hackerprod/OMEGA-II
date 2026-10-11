@@ -1,0 +1,46 @@
+h0_scaffold.cpp
+h0_measure.cpp
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(174): error C2228: el operando izquierdo de '.push_back' debe tener class/struct/union
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(174): note: el tipo es '_Ty'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(202): error C2672: 'std::sort': no se encontr¢ una funci¢n sobrecargada que coincida
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\algorithm(8417): note: puede ser 'void std::sort(_ExPo &&,const _RanIt,const _RanIt) noexcept'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(202): note: "void std::sort(_ExPo &&,const _RanIt,const _RanIt) noexcept": espera 3 argumentos - 1 proporcionado
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\algorithm(8414): note: o       'void std::sort(_ExPo &&,_RanIt,_RanIt,_Pr) noexcept'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(202): note: "void std::sort(_ExPo &&,_RanIt,_RanIt,_Pr) noexcept": espera 4 argumentos - 1 proporcionado
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\algorithm(8408): note: o       'void std::sort(const _RanIt,const _RanIt)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(202): note: "void std::sort(const _RanIt,const _RanIt)": espera 2 argumentos - 1 proporcionado
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\algorithm(8400): note: o       'void std::sort(const _RanIt,const _RanIt,_Pr)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(202): note: "void std::sort(const _RanIt,const _RanIt,_Pr)": espera 3 argumentos - 1 proporcionado
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(202): error C2664: 'double t0h0::`anonymous-namespace'::median(std::vector<double,std::allocator<double>>)': el argumento 1 no puede convertirse de '_Ty' a 'std::vector<double,std::allocator<double>>'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(202): note: El constructor de class 'std::vector<double,std::allocator<double>>' est  declarado como 'explicit'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(134): note: vea la declaraci¢n de 't0h0::`anonymous-namespace'::median'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(202): note: al hacer coincidir la lista de argumentos '(_Ty)'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(203): error C3312: no se encontr¢ ninguna funci¢n 'begin' invocable para el tipo '_Ty'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(203): error C3312: no se encontr¢ ninguna funci¢n 'end' invocable para el tipo '_Ty'
+        with
+        [
+            _Ty=double
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(203): error C2143: error de sintaxis: falta ';' delante de ':'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(203): error C2143: error de sintaxis: falta ';' delante de ')'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(204): error C7732: se esperaba una expresi¢n antes de ']'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(204): error C2109: el sub¡ndice requiere una matriz o tipo de puntero
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(204): error C7732: se esperaba una expresi¢n antes de ']'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(204): error C2109: el sub¡ndice requiere una matriz o tipo de puntero
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(204): error C2737: 'iqr': se debe inicializar el objeto const

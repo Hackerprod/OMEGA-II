@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Projects\OMEGA\Ejercise\T0\src\h0_runner.py", line 330, in <module>
+    if __name__=="__main__":main()
+                            ~~~~^^
+  File "C:\Projects\OMEGA\Ejercise\T0\src\h0_runner.py", line 325, in main
+    status=run_official(segment);print(json.dumps({"SESSION":status["SESSION"],"completed_cells":len(status["completed_cells"]),
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Projects\OMEGA\Ejercise\T0\src\h0_runner.py", line 167, in run_official
+    pre=preflight(segment);status["preflight"]=pre
+  File "C:\Projects\OMEGA\Ejercise\T0\src\h0_runner.py", line 288, in preflight
+    if code!=0:raise RuntimeError(f"H0 preflight command failed: {stderr.decode('utf-8',errors='replace')}")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: H0 preflight command failed: Get-CimInstance : Consulta no v\ufffdlida 
+En l\ufffdnea: 9 Car\ufffdcter: 29
++ ... 11;$i++){$r=Get-CimInstance -ClassName Win32_PerfFormattedData_PerfOS ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Get-CimInstance], CimException
+    + FullyQualifiedErrorId : HRESULT 0x80041017,Microsoft.Management.Infrastructure.CimCmdlets.GetCimInstanceCommand
+ 
+

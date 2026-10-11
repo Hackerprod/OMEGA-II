@@ -1,6 +1,0 @@
-verification_started_utc=2026-09-14T08:06:27Z
-image=omega-core-lm-0-r1:validated
-offline-image-host-key-check: PASS
-normal-entrypoint-ssh-host-key-isolation: PASS (SHA256:Nc4DHO/DH41UaSkeIVg3y19pz765gBoMqndiTf0wjQs != SHA256:bJC5LGF9g+8nmdsap9bn50sO1n6LcSUTtit9IvdwKfs)
-workspace-overlay-and-code-access: PASS
-verification_finished_utc=2026-09-14T08:10:23Z exitCode=0

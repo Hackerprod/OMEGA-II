@@ -1,8 +1,0 @@
-status=PASS
-self_test=PASS once; 40 compare processes completed; 120 rows validated
-legacy/repeat/fused order and same-process checksum equality passed for every process
-all affinity=true; exact timed repetitions=true; AVX2/kernel_used=avx2; MAC totals correct; checksums nonzero
-mode separation=YES: all four condition medians order legacy > repeat > fused in MAC/s
-2.5-2.9x reproduction=NO universal reproduction: legacy/fused median 2.894x (512,A), 2.926x (768,A), 1.853x (512,B), 1.895x (768,B); legacy/repeat medians 2.250x, 2.213x, 1.231x, 1.141x
-elapsed ratios are inverse because legacy has higher measured throughput; sequential compare ordering may contribute to variance
-no G/F; no Phase 3 PASS; no Phase 4; no source/README/script/kernel edits

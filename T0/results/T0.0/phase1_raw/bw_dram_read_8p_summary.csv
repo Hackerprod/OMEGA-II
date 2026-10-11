@@ -1,0 +1,2 @@
+worker_set,metric,median,iqr,mad,min,max,N,warmup_count,outlier_discard_count,working_set_bytes_per_worker,fixed_units,series_attempt
+8P,BW_DRAM_read_8P_B_per_s,7.44558e+10,6.30514e+08,3.27281e+08,7.25018e+10,7.52893e+10,31,5,0,125829120,11,1

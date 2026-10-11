@@ -1,0 +1,2 @@
+series,metric,median,iqr,mad,min,max,N,warmup_count,outlier_discard_count
+e_pico_vnni256_CORE_API_07_G0_MASK_14_15,MAC_per_second,2.26605e+09,3.29987e+07,1.61969e+07,2.19899e+09,2.29677e+09,31,5,0

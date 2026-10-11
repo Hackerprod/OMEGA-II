@@ -1,0 +1,2 @@
+q4_kernel.cpp
+C:\Projects\OMEGA\Ejercise\T0\src\q4_kernel.cpp : fatal error C1083: No se puede abrir el archivo generado por el compilador: ':C:\Projects\OMEGA\Ejercise\T0\src\build\\phase1_q4_kernel.asm': Invalid argument

@@ -1,0 +1,37 @@
+
+
+Status                : 
+Name                  : Matriz de memoria f¡sica
+Replaceable           : 
+Location              : 3
+Caption               : Matriz de memoria f¡sica
+Description           : Matriz de memoria f¡sica
+InstallDate           : 
+CreationClassName     : Win32_PhysicalMemoryArray
+Manufacturer          : 
+Model                 : 
+OtherIdentifyingInfo  : 
+PartNumber            : 
+PoweredOn             : 
+SerialNumber          : 
+SKU                   : 
+Tag                   : Physical Memory Array 0
+Version               : 
+Depth                 : 
+Height                : 
+HotSwappable          : 
+Removable             : 
+Weight                : 
+Width                 : 
+MaxCapacity           : 268435456
+MaxCapacityEx         : 268435456
+MemoryDevices         : 4
+MemoryErrorCorrection : 3
+Use                   : 3
+PSComputerName        : 
+CimClass              : root/cimv2:Win32_PhysicalMemoryArray
+CimInstanceProperties : {Caption, Description, InstallDate, Name...}
+CimSystemProperties   : Microsoft.Management.Infrastructure.CimSystemProperties
+
+
+

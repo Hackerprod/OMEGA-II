@@ -1,3 +1,0 @@
-PYTHONPATH=campaign
-cwd=D:\Install\Dev\Projects\IA\Ejercise\t1_trainability_lab_v0.1.0
-"D:\Install\Dev\Projects\IA\Ejercise\.venv_cuda\Scripts\python.exe" -m omega_v2_2b_d512_local_pilot --run-official --go-v2-2b-official

@@ -1,0 +1,10 @@
+Build script: src/build/build_phase1_measure_harness.cmd
+Toolchain: Visual Studio 2022 BuildTools, MSVC 14.44.35207, Windows SDK 10.0.26100.0, x64
+Environment: call "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat" 10.0.26100.0 -vcvars_ver=14.44.35207
+
+ml64 /nologo /c /Fo "C:\Projects\OMEGA\Ejercise\T0\src\build\phase1_instr_x64.obj" "C:\Projects\OMEGA\Ejercise\T0\src\phase1_instr_x64.asm"
+cl /nologo /Bv /c /O2 /std:c++17 /arch:AVX2 /fp:precise /EHsc /Brepro /D_WIN32_WINNT=0x0A00 /FAs /Fa"C:\Projects\OMEGA\Ejercise\T0\src\build\phase1_q4_kernel.asm" "C:\Projects\OMEGA\Ejercise\T0\src\q4_kernel.cpp" /Fo:"C:\Projects\OMEGA\Ejercise\T0\src\build\phase1_q4_kernel.obj"
+cl /nologo /Bv /c /O2 /std:c++17 /arch:AVX2 /fp:precise /EHsc /Brepro /D_WIN32_WINNT=0x0A00 /FAs /Fa"C:\Projects\OMEGA\Ejercise\T0\src\build\phase1_measure_harness.asm" "C:\Projects\OMEGA\Ejercise\T0\src\phase1_measure_harness.cpp" /Fo:"C:\Projects\OMEGA\Ejercise\T0\src\build\phase1_measure_harness.obj"
+link /Brepro /INCREMENTAL:NO /OPT:REF "C:\Projects\OMEGA\Ejercise\T0\src\build\phase1_q4_kernel.obj" "C:\Projects\OMEGA\Ejercise\T0\src\build\phase1_measure_harness.obj" "C:\Projects\OMEGA\Ejercise\T0\src\build\phase1_instr_x64.obj" /OUT:"C:\Projects\OMEGA\Ejercise\T0\src\build\phase1_measure_harness.exe"
+
+The C++ compilation explicitly uses /O2 /arch:AVX2 /fp:precise; /fp:fast is not used. The commands above are the build-script commands after vcvars64 initialization, with paths resolved relative to Ejercise/T0.

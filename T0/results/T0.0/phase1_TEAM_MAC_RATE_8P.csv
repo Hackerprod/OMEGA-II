@@ -1,0 +1,5 @@
+workload,route,metric,median,N,warmup_count,definition
+B_8P,AVX2,P_Q4_8P_conventional_MAC_per_second,133398000000.0,31,5,simultaneous 8P workers divided by common team wall interval
+B_8P,AVX2,BW_Q4_logical_8P_B_per_s,75036400000.0,31,5,logical Q4 payload traversal rate; not physical cache traffic
+B_8P,AVX-VNNI-256,P_Q4_8P_conventional_MAC_per_second,137703000000.0,31,5,simultaneous 8P workers divided by common team wall interval
+B_8P,AVX-VNNI-256,BW_Q4_logical_8P_B_per_s,77458200000.0,31,5,logical Q4 payload traversal rate; not physical cache traffic

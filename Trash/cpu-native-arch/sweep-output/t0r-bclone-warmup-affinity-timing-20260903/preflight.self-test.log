@@ -1,5 +1,0 @@
-command=.\build\int8_probe.exe --self-test
-exit_code=0
-stdout=
-stderr=int8 Bclone self-test passed; distinct_allocations=16,byte_identical=true,outputs_equal=true,checksums_equal=true
-int8 AVX2 correction test passed; scalar_checksum=320040, avx2_checksum=320040, difference=0

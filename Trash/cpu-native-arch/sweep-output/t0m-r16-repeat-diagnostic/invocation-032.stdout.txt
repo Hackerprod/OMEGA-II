@@ -1,2 +1,0 @@
-D,S,R,O_i,B_i,rows_per_worker,bytes_per_worker,mode,variant,S_tile,iterations,timed_repetitions,warmup,worker_count,worker_list,affinity,affinity_error,affinity_succeeded,timed_repetitions_exact,avx2_supported,kernel_used,eviction_bytes,eviction_checksum,elapsed_seconds,mac_total,mac_per_second,checksum
-512,1,16,"1816,1705,1023,1600","929792,872960,523776,819200","1816,1705,1023,1600","929792,872960,523776,819200",fused,A,8,1,8,2,4,"0,2,4,6","true,true,true,true","0,0,0,0",true,true,true,avx2,0,0,0.0523721,402653184,7.68831e+09,18446744073656903484

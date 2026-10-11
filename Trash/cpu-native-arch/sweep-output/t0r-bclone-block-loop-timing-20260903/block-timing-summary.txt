@@ -1,6 +1,0 @@
-T0-R block timing summary
-raw_worker_lines=120
-boundaries=QPC immediately before and after block-construction loop; Bclone copy/push operation only
-A block_loop_min_seconds=0.0007312 block_loop_max_seconds=0.0014886 block_loop_mean_seconds=0.00099954 first_clone_min_seconds=0 first_clone_max_seconds=0 first_clone_mean_seconds=0 remaining_clone_min_seconds=0 remaining_clone_max_seconds=0 remaining_clone_mean_seconds=0
-B block_loop_min_seconds=0.0106768 block_loop_max_seconds=0.023411 block_loop_mean_seconds=0.015850875 first_clone_min_seconds=0 first_clone_max_seconds=0 first_clone_mean_seconds=0 remaining_clone_min_seconds=0 remaining_clone_max_seconds=0 remaining_clone_mean_seconds=0
-Bclone block_loop_min_seconds=0.0024925 block_loop_max_seconds=0.00513 block_loop_mean_seconds=0.003706315 first_clone_min_seconds=5.3E-05 first_clone_max_seconds=0.0002537 first_clone_mean_seconds=0.0001500225 remaining_clone_min_seconds=0.0016326 remaining_clone_max_seconds=0.0034884 remaining_clone_mean_seconds=0.0025763725

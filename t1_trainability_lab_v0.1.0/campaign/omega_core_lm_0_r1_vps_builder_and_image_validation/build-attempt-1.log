@@ -1,363 +1,0 @@
-build_started_utc=2026-09-14T07:46:39Z
-#0 building with "omega-core-lm-0-r1" instance using docker-container driver
-
-#1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 2.86kB 0.0s done
-#1 DONE 0.0s
-
-#2 [internal] load metadata for docker.io/pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime@sha256:eee11b3b3872a8c838e35ef48f08b2d5def2080902c7f666831310ca1a0ef2be
-#2 DONE 0.0s
-
-#3 [internal] load .dockerignore
-#3 transferring context: 2B 0.0s done
-#3 DONE 0.0s
-
-#4 [internal] load build context
-#4 DONE 0.0s
-
-#5 [ 1/17] FROM docker.io/pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime@sha256:eee11b3b3872a8c838e35ef48f08b2d5def2080902c7f666831310ca1a0ef2be
-#5 resolve docker.io/pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime@sha256:eee11b3b3872a8c838e35ef48f08b2d5def2080902c7f666831310ca1a0ef2be 0.0s done
-#5 ...
-
-#4 [internal] load build context
-#4 transferring context: 90.82kB 0.0s done
-#4 DONE 0.1s
-
-#5 [ 1/17] FROM docker.io/pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime@sha256:eee11b3b3872a8c838e35ef48f08b2d5def2080902c7f666831310ca1a0ef2be
-#5 sha256:bf35bf168c8de60d405b0704d3009587a04009e66ad6a3d67699abe245eed271 0B / 99B 0.2s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 0B / 65.77MB 0.2s
-#5 sha256:bf35bf168c8de60d405b0704d3009587a04009e66ad6a3d67699abe245eed271 99B / 99B 0.2s done
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 0B / 4.10GB 0.2s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 0B / 25.69MB 0.2s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 0B / 38.59MB 0.2s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 4.19MB / 65.77MB 0.8s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 3.15MB / 25.69MB 0.6s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 5.24MB / 25.69MB 0.9s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 8.39MB / 65.77MB 1.2s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 7.34MB / 25.69MB 1.2s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 2.10MB / 38.59MB 1.1s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 13.63MB / 65.77MB 1.7s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 9.44MB / 25.69MB 1.5s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 4.19MB / 38.59MB 1.5s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 11.53MB / 25.69MB 1.8s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 17.83MB / 65.77MB 2.1s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 13.63MB / 25.69MB 2.1s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 6.29MB / 38.59MB 2.1s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 23.07MB / 65.77MB 2.6s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 15.73MB / 25.69MB 2.4s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 28.31MB / 65.77MB 3.0s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 17.83MB / 25.69MB 2.9s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 8.39MB / 38.59MB 2.7s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 19.92MB / 25.69MB 3.3s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 10.49MB / 38.59MB 3.2s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 33.55MB / 65.77MB 3.5s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 37.75MB / 65.77MB 3.8s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 22.02MB / 25.69MB 3.8s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 12.58MB / 38.59MB 3.6s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 41.17MB / 65.77MB 4.1s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 46.14MB / 65.77MB 4.5s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 24.05MB / 25.69MB 4.4s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 14.68MB / 38.59MB 4.4s
-#5 sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 25.69MB / 25.69MB 4.7s done
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 50.33MB / 65.77MB 4.8s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 0B / 30.60MB 0.2s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 16.78MB / 38.59MB 4.8s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 54.53MB / 65.77MB 5.1s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 16.25MB / 4.10GB 5.3s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 58.72MB / 65.77MB 5.4s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 18.87MB / 38.59MB 5.3s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 2.10MB / 30.60MB 0.8s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 62.58MB / 65.77MB 5.7s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 20.97MB / 38.59MB 5.7s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 4.19MB / 30.60MB 1.2s
-#5 sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 65.77MB / 65.77MB 6.0s done
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 22.97MB / 38.59MB 6.0s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 7.15MB / 30.60MB 1.5s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 8.72MB / 30.60MB 1.7s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 25.17MB / 38.59MB 6.3s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 10.49MB / 30.60MB 1.8s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 13.63MB / 30.60MB 2.1s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 27.68MB / 38.59MB 6.8s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 29.89MB / 38.59MB 7.2s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 15.73MB / 30.60MB 2.6s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 17.83MB / 30.60MB 2.9s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 32.51MB / 38.59MB 7.7s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 20.97MB / 30.60MB 3.2s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 22.67MB / 30.60MB 3.3s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 35.65MB / 38.59MB 8.0s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 25.17MB / 30.60MB 3.6s
-#5 sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 38.59MB / 38.59MB 8.3s done
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 27.26MB / 30.60MB 3.8s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 29.94MB / 30.60MB 3.9s
-#5 sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 30.60MB / 30.60MB 4.0s done
-#5 extracting sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 69.59MB / 4.10GB 10.4s
-#5 extracting sha256:18dbadc1f2f937d7ebdfa4481fb1f6f43b26e93f5bdc4cef3cef98d7f0ae77aa 4.6s done
-#5 extracting sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 189.79MB / 4.10GB 15.5s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 304.09MB / 4.10GB 20.6s
-#5 extracting sha256:627649ff745632d292724b400f4d4d1880c8360b60a654ae286d5c264bd0838b 8.2s done
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 423.49MB / 4.10GB 25.7s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 546.31MB / 4.10GB 30.8s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 669.84MB / 4.10GB 35.9s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 783.31MB / 4.10GB 41.0s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 911.75MB / 4.10GB 46.1s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 1.03GB / 4.10GB 51.2s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 1.16GB / 4.10GB 56.3s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 1.27GB / 4.10GB 61.4s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 1.39GB / 4.10GB 66.5s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 1.52GB / 4.10GB 71.6s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 1.64GB / 4.10GB 76.7s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 1.75GB / 4.10GB 81.8s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 1.87GB / 4.10GB 86.9s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 2.00GB / 4.10GB 92.0s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 2.11GB / 4.10GB 97.1s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 2.23GB / 4.10GB 102.2s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 2.35GB / 4.10GB 107.3s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 2.47GB / 4.10GB 112.4s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 2.59GB / 4.10GB 117.5s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 2.72GB / 4.10GB 122.6s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 2.84GB / 4.10GB 127.7s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 2.96GB / 4.10GB 132.8s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 3.07GB / 4.10GB 137.9s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 3.18GB / 4.10GB 143.0s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 3.31GB / 4.10GB 148.1s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 3.42GB / 4.10GB 153.2s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 3.55GB / 4.10GB 158.3s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 3.66GB / 4.10GB 163.4s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 3.79GB / 4.10GB 168.5s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 3.92GB / 4.10GB 173.6s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 4.04GB / 4.10GB 178.7s
-#5 sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 4.10GB / 4.10GB 181.5s done
-#5 extracting sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276
-#5 extracting sha256:a4fc1a7e11cd1b8d5132cdc99c1b1c28d5b9c0e0214b5317e33c5ff6b5ca8276 170.5s done
-#5 DONE 352.1s
-
-#5 [ 1/17] FROM docker.io/pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime@sha256:eee11b3b3872a8c838e35ef48f08b2d5def2080902c7f666831310ca1a0ef2be
-#5 extracting sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf
-#5 extracting sha256:dfc23d5a2773f4a0387bd6209050b823250f01d21cd2c80dd1766d0b28558cdf 1.1s done
-#5 DONE 353.2s
-
-#5 [ 1/17] FROM docker.io/pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime@sha256:eee11b3b3872a8c838e35ef48f08b2d5def2080902c7f666831310ca1a0ef2be
-#5 extracting sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e
-#5 extracting sha256:70516a22c83c8ffdac1a5dbb0df807b81fa1f03eccd8315a6a2324b0376d434e 3.0s done
-#5 DONE 356.3s
-
-#5 [ 1/17] FROM docker.io/pytorch/pytorch:2.11.0-cuda12.8-cudnn9-runtime@sha256:eee11b3b3872a8c838e35ef48f08b2d5def2080902c7f666831310ca1a0ef2be
-#5 extracting sha256:bf35bf168c8de60d405b0704d3009587a04009e66ad6a3d67699abe245eed271 0.0s done
-#5 DONE 356.3s
-
-#6 [ 2/17] RUN apt-get update     && apt-get install --no-install-recommends -y openssh-server openssh-client rsync tini ca-certificates     && rm -rf /var/lib/apt/lists/*     && rm -f /etc/ssh/ssh_host_*_key /etc/ssh/ssh_host_*_key.pub     && test -z "$(find /etc/ssh -maxdepth 1 -type f -name 'ssh_host_*_key' -print -quit)"     && mkdir -p /run/sshd /workspace/omega
-#6 0.573 Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
-#6 0.629 Get:2 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
-#6 0.630 Get:3 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
-#6 0.689 Get:4 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
-#6 0.861 Get:5 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
-#6 0.896 Get:6 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
-#6 1.487 Get:7 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1531 kB]
-#6 1.695 Get:8 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
-#6 1.705 Get:9 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
-#6 1.789 Get:10 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [55.8 kB]
-#6 1.806 Get:11 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2152 kB]
-#6 1.903 Get:12 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1913 kB]
-#6 1.986 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1565 kB]
-#6 2.058 Get:14 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1796 kB]
-#6 2.062 Get:15 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [48.9 kB]
-#6 2.064 Get:16 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [671 B]
-#6 2.065 Get:17 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [35.9 kB]
-#6 2.226 Get:18 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1242 kB]
-#6 2.350 Get:19 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [50.0 kB]
-#6 3.601 Fetched 32.6 MB in 3s (10.6 MB/s)
-#6 3.601 Reading package lists...
-#6 5.672 Reading package lists...
-#6 7.642 Building dependency tree...
-#6 8.258 Reading state information...
-#6 9.441 The following additional packages will be installed:
-#6 9.443   adduser libbsd0 libcbor0.10 libedit2 libfido2-1 libgssapi-krb5-2
-#6 9.444   libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libpopt0 libwrap0
-#6 9.445   openssh-sftp-server ucf
-#6 9.452 Suggested packages:
-#6 9.452   liblocale-gettext-perl perl cron quota ecryptfs-utils krb5-doc krb5-user
-#6 9.452   keychain libpam-ssh monkeysphere ssh-askpass molly-guard ufw
-#6 9.452   python3-braceexpand
-#6 9.452 Recommended packages:
-#6 9.452   krb5-locales xauth default-logind | logind | libpam-systemd ncurses-term
-#6 9.452   ssh-import-id
-#6 9.641 The following NEW packages will be installed:
-#6 9.641   adduser libbsd0 libcbor0.10 libedit2 libfido2-1 libgssapi-krb5-2
-#6 9.644   libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libpopt0 libwrap0
-#6 9.645   openssh-client openssh-server openssh-sftp-server rsync tini ucf
-#6 9.647 The following packages will be upgraded:
-#6 9.652   ca-certificates
-#6 9.840 1 upgraded, 18 newly installed, 0 to remove and 55 not upgraded.
-#6 9.840 Need to get 3413 kB of archives.
-#6 9.840 After this operation, 11.0 MB of additional disk space will be used.
-#6 9.840 Get:1 http://archive.ubuntu.com/ubuntu noble/main amd64 libpopt0 amd64 1.19+dfsg-1build1 [28.6 kB]
-#6 9.860 Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 rsync amd64 3.2.7-1ubuntu1.5 [443 kB]
-#6 9.909 Get:3 http://archive.ubuntu.com/ubuntu noble/main amd64 adduser all 3.137ubuntu1 [101 kB]
-#6 9.915 Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libbsd0 amd64 0.12.1-1build1.1 [41.2 kB]
-#6 9.926 Get:5 http://archive.ubuntu.com/ubuntu noble/main amd64 libedit2 amd64 3.1-20230828-1build1 [97.6 kB]
-#6 9.926 Get:6 http://archive.ubuntu.com/ubuntu noble/main amd64 libcbor0.10 amd64 0.10.2-1.2ubuntu2 [25.8 kB]
-#6 9.926 Get:7 http://archive.ubuntu.com/ubuntu noble/main amd64 libfido2-1 amd64 1.14.0-1build3 [83.5 kB]
-#6 9.942 Get:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5support0 amd64 1.20.1-6ubuntu2.8 [34.7 kB]
-#6 9.954 Get:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libk5crypto3 amd64 1.20.1-6ubuntu2.8 [81.9 kB]
-#6 9.958 Get:10 http://archive.ubuntu.com/ubuntu noble/main amd64 libkeyutils1 amd64 1.6.3-3build1 [9490 B]
-#6 9.959 Get:11 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5-3 amd64 1.20.1-6ubuntu2.8 [348 kB]
-#6 9.966 Get:12 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgssapi-krb5-2 amd64 1.20.1-6ubuntu2.8 [143 kB]
-#6 9.970 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssh-client amd64 1:9.6p1-3ubuntu13.19 [908 kB]
-#6 10.04 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssh-sftp-server amd64 1:9.6p1-3ubuntu13.19 [37.1 kB]
-#6 10.04 Get:15 http://archive.ubuntu.com/ubuntu noble/main amd64 ucf all 3.0043+nmu1 [56.5 kB]
-#6 10.04 Get:16 http://archive.ubuntu.com/ubuntu noble/main amd64 libwrap0 amd64 7.6.q-33 [47.9 kB]
-#6 10.04 Get:17 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssh-server amd64 1:9.6p1-3ubuntu13.19 [511 kB]
-#6 10.04 Get:18 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 ca-certificates all 20260601~24.04.1 [139 kB]
-#6 10.05 Get:19 http://archive.ubuntu.com/ubuntu noble/universe amd64 tini amd64 0.19.0-1 [276 kB]
-#6 10.61 debconf: delaying package configuration, since apt-utils is not installed
-#6 10.76 Fetched 3413 kB in 0s (10.4 MB/s)
-#6 10.84 Selecting previously unselected package libpopt0:amd64.
-#6 10.84 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 9938 files and directories currently installed.)
-#6 10.97 Preparing to unpack .../libpopt0_1.19+dfsg-1build1_amd64.deb ...
-#6 10.99 Unpacking libpopt0:amd64 (1.19+dfsg-1build1) ...
-#6 11.11 Selecting previously unselected package rsync.
-#6 11.11 Preparing to unpack .../rsync_3.2.7-1ubuntu1.5_amd64.deb ...
-#6 11.12 Unpacking rsync (3.2.7-1ubuntu1.5) ...
-#6 11.25 Selecting previously unselected package adduser.
-#6 11.26 Preparing to unpack .../adduser_3.137ubuntu1_all.deb ...
-#6 11.27 Unpacking adduser (3.137ubuntu1) ...
-#6 11.36 Setting up adduser (3.137ubuntu1) ...
-#6 11.46 Selecting previously unselected package libbsd0:amd64.
-#6 11.46 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 10026 files and directories currently installed.)
-#6 11.47 Preparing to unpack .../00-libbsd0_0.12.1-1build1.1_amd64.deb ...
-#6 11.48 Unpacking libbsd0:amd64 (0.12.1-1build1.1) ...
-#6 11.55 Selecting previously unselected package libedit2:amd64.
-#6 11.56 Preparing to unpack .../01-libedit2_3.1-20230828-1build1_amd64.deb ...
-#6 11.56 Unpacking libedit2:amd64 (3.1-20230828-1build1) ...
-#6 11.64 Selecting previously unselected package libcbor0.10:amd64.
-#6 11.65 Preparing to unpack .../02-libcbor0.10_0.10.2-1.2ubuntu2_amd64.deb ...
-#6 11.66 Unpacking libcbor0.10:amd64 (0.10.2-1.2ubuntu2) ...
-#6 11.77 Selecting previously unselected package libfido2-1:amd64.
-#6 11.77 Preparing to unpack .../03-libfido2-1_1.14.0-1build3_amd64.deb ...
-#6 11.78 Unpacking libfido2-1:amd64 (1.14.0-1build3) ...
-#6 11.88 Selecting previously unselected package libkrb5support0:amd64.
-#6 11.88 Preparing to unpack .../04-libkrb5support0_1.20.1-6ubuntu2.8_amd64.deb ...
-#6 11.90 Unpacking libkrb5support0:amd64 (1.20.1-6ubuntu2.8) ...
-#6 11.99 Selecting previously unselected package libk5crypto3:amd64.
-#6 11.99 Preparing to unpack .../05-libk5crypto3_1.20.1-6ubuntu2.8_amd64.deb ...
-#6 12.00 Unpacking libk5crypto3:amd64 (1.20.1-6ubuntu2.8) ...
-#6 12.08 Selecting previously unselected package libkeyutils1:amd64.
-#6 12.09 Preparing to unpack .../06-libkeyutils1_1.6.3-3build1_amd64.deb ...
-#6 12.10 Unpacking libkeyutils1:amd64 (1.6.3-3build1) ...
-#6 12.15 Selecting previously unselected package libkrb5-3:amd64.
-#6 12.15 Preparing to unpack .../07-libkrb5-3_1.20.1-6ubuntu2.8_amd64.deb ...
-#6 12.16 Unpacking libkrb5-3:amd64 (1.20.1-6ubuntu2.8) ...
-#6 12.27 Selecting previously unselected package libgssapi-krb5-2:amd64.
-#6 12.27 Preparing to unpack .../08-libgssapi-krb5-2_1.20.1-6ubuntu2.8_amd64.deb ...
-#6 12.28 Unpacking libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.8) ...
-#6 12.36 Selecting previously unselected package openssh-client.
-#6 12.36 Preparing to unpack .../09-openssh-client_1%3a9.6p1-3ubuntu13.19_amd64.deb ...
-#6 12.39 Unpacking openssh-client (1:9.6p1-3ubuntu13.19) ...
-#6 12.52 Selecting previously unselected package openssh-sftp-server.
-#6 12.52 Preparing to unpack .../10-openssh-sftp-server_1%3a9.6p1-3ubuntu13.19_amd64.deb ...
-#6 12.53 Unpacking openssh-sftp-server (1:9.6p1-3ubuntu13.19) ...
-#6 12.60 Selecting previously unselected package ucf.
-#6 12.61 Preparing to unpack .../11-ucf_3.0043+nmu1_all.deb ...
-#6 12.62 Moving old data out of the way
-#6 12.63 Unpacking ucf (3.0043+nmu1) ...
-#6 12.72 Selecting previously unselected package libwrap0:amd64.
-#6 12.72 Preparing to unpack .../12-libwrap0_7.6.q-33_amd64.deb ...
-#6 12.74 Unpacking libwrap0:amd64 (7.6.q-33) ...
-#6 12.84 Selecting previously unselected package openssh-server.
-#6 12.84 Preparing to unpack .../13-openssh-server_1%3a9.6p1-3ubuntu13.19_amd64.deb ...
-#6 12.86 Unpacking openssh-server (1:9.6p1-3ubuntu13.19) ...
-#6 13.00 Preparing to unpack .../14-ca-certificates_20260601~24.04.1_all.deb ...
-#6 13.02 Unpacking ca-certificates (20260601~24.04.1) over (20240203) ...
-#6 13.76 Selecting previously unselected package tini.
-#6 13.77 Preparing to unpack .../15-tini_0.19.0-1_amd64.deb ...
-#6 13.78 Unpacking tini (0.19.0-1) ...
-#6 13.88 Setting up libkeyutils1:amd64 (1.6.3-3build1) ...
-#6 13.92 Setting up libcbor0.10:amd64 (0.10.2-1.2ubuntu2) ...
-#6 13.96 Setting up libkrb5support0:amd64 (1.20.1-6ubuntu2.8) ...
-#6 14.00 Setting up ca-certificates (20260601~24.04.1) ...
-#6 19.13 Updating certificates in /etc/ssl/certs...
-#6 22.03 rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
-#6 22.05 14 added, 39 removed; done.
-#6 22.15 Setting up libwrap0:amd64 (7.6.q-33) ...
-#6 22.20 Setting up tini (0.19.0-1) ...
-#6 22.23 Setting up ucf (3.0043+nmu1) ...
-#6 22.40 Setting up libk5crypto3:amd64 (1.20.1-6ubuntu2.8) ...
-#6 22.43 Setting up libkrb5-3:amd64 (1.20.1-6ubuntu2.8) ...
-#6 22.45 Setting up libfido2-1:amd64 (1.14.0-1build3) ...
-#6 22.47 Setting up libbsd0:amd64 (0.12.1-1build1.1) ...
-#6 22.49 Setting up libpopt0:amd64 (1.19+dfsg-1build1) ...
-#6 22.52 Setting up libedit2:amd64 (3.1-20230828-1build1) ...
-#6 22.55 Setting up libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.8) ...
-#6 22.59 Setting up rsync (3.2.7-1ubuntu1.5) ...
-#6 22.66 invoke-rc.d: could not determine current runlevel
-#6 22.67 invoke-rc.d: policy-rc.d denied execution of start.
-#6 22.82 Setting up openssh-client (1:9.6p1-3ubuntu13.19) ...
-#6 23.02 Setting up openssh-sftp-server (1:9.6p1-3ubuntu13.19) ...
-#6 23.04 Setting up openssh-server (1:9.6p1-3ubuntu13.19) ...
-#6 23.35 
-#6 23.35 Creating config file /etc/ssh/sshd_config with new version
-#6 23.45 Creating SSH2 RSA key; this may take some time ...
-#6 25.73 3072 SHA256:E9cabM8hY73gAGAkawuborqKSOft5BwyPKt6G5TFuZM root@buildkitsandbox (RSA)
-#6 25.88 Creating SSH2 ECDSA key; this may take some time ...
-#6 25.92 256 SHA256:Giqf1mocBzAlLrmH5tl+0/JNK8zrrwKINOoi0jW8Qek root@buildkitsandbox (ECDSA)
-#6 25.93 Creating SSH2 ED25519 key; this may take some time ...
-#6 25.94 256 SHA256:3zlcEABrA787Hc2puP0g2MICHCGET41lyD+xcZQ3IeU root@buildkitsandbox (ED25519)
-#6 26.18 invoke-rc.d: could not determine current runlevel
-#6 26.19 invoke-rc.d: policy-rc.d denied execution of start.
-#6 26.55 Processing triggers for libc-bin (2.39-0ubuntu8.7) ...
-#6 26.70 Processing triggers for ca-certificates (20260601~24.04.1) ...
-#6 26.72 Updating certificates in /etc/ssl/certs...
-#6 28.46 0 added, 0 removed; done.
-#6 28.46 Running hooks in /etc/ca-certificates/update.d...
-#6 28.47 done.
-#6 DONE 28.7s
-
-#7 [ 3/17] COPY campaign/omega_core_lm_0_gpu_environment_preparation/requirements.lock /opt/omega/requirements.lock
-#7 DONE 0.1s
-
-#8 [ 4/17] RUN python -m pip install --no-cache-dir -r /opt/omega/requirements.lock     && python -m pip check     && python -c "import datasets, huggingface_hub, psutil, safetensors, tokenizers, torch, transformers; assert torch.__version__.split('+')[0] == '2.11.0'; print('OMEGA dependency versions: PASS')"
-#8 1.449 error: externally-managed-environment
-#8 1.449 
-#8 1.449 × This environment is externally managed
-#8 1.449 ╰─> To install Python packages system-wide, try apt install
-#8 1.449     python3-xyz, where xyz is the package you are trying to
-#8 1.449     install.
-#8 1.449     
-#8 1.449     If you wish to install a non-Debian-packaged Python package,
-#8 1.449     create a virtual environment using python3 -m venv path/to/venv.
-#8 1.449     Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make
-#8 1.449     sure you have python3-full installed.
-#8 1.449     
-#8 1.449     If you wish to install a non-Debian packaged Python application,
-#8 1.449     it may be easiest to use pipx install xyz, which will manage a
-#8 1.449     virtual environment for you. Make sure you have pipx installed.
-#8 1.449     
-#8 1.449     See /usr/share/doc/python3.12/README.venv for more information.
-#8 1.449 
-#8 1.449 note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
-#8 1.449 hint: See PEP 668 for the detailed specification.
-#8 ERROR: process "/bin/sh -c python -m pip install --no-cache-dir -r /opt/omega/requirements.lock     && python -m pip check     && python -c \"import datasets, huggingface_hub, psutil, safetensors, tokenizers, torch, transformers; assert torch.__version__.split('+')[0] == '2.11.0'; print('OMEGA dependency versions: PASS')\"" did not complete successfully: exit code: 1
-------
- > [ 4/17] RUN python -m pip install --no-cache-dir -r /opt/omega/requirements.lock     && python -m pip check     && python -c "import datasets, huggingface_hub, psutil, safetensors, tokenizers, torch, transformers; assert torch.__version__.split('+')[0] == '2.11.0'; print('OMEGA dependency versions: PASS')":
-1.449     sure you have python3-full installed.
-1.449     
-1.449     If you wish to install a non-Debian packaged Python application,
-1.449     it may be easiest to use pipx install xyz, which will manage a
-1.449     virtual environment for you. Make sure you have pipx installed.
-1.449     
-1.449     See /usr/share/doc/python3.12/README.venv for more information.
-1.449 
-1.449 note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
-1.449 hint: See PEP 668 for the detailed specification.
-------
-Dockerfile:15
---------------------
-  14 |     COPY campaign/omega_core_lm_0_gpu_environment_preparation/requirements.lock /opt/omega/requirements.lock
-  15 | >>> RUN python -m pip install --no-cache-dir -r /opt/omega/requirements.lock \
-  16 | >>>     && python -m pip check \
-  17 | >>>     && python -c "import datasets, huggingface_hub, psutil, safetensors, tokenizers, torch, transformers; assert torch.__version__.split('+')[0] == '2.11.0'; print('OMEGA dependency versions: PASS')"
-  18 |     
---------------------
-ERROR: failed to build: failed to solve: process "/bin/sh -c python -m pip install --no-cache-dir -r /opt/omega/requirements.lock     && python -m pip check     && python -c \"import datasets, huggingface_hub, psutil, safetensors, tokenizers, torch, transformers; assert torch.__version__.split('+')[0] == '2.11.0'; print('OMEGA dependency versions: PASS')\"" did not complete successfully: exit code: 1

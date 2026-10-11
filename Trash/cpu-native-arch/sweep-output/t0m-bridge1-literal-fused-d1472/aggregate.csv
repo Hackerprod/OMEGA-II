@@ -1,3 +1,0 @@
-"variant","D","S","R","mode","S_tile","rows_per_worker","worker_count","worker_list","n","median_mac_per_second","min_mac_per_second","max_mac_per_second","population_sd_mac_per_second","checksum","checksum_deterministic","all_affinity_succeeded","timed_repetitions_exact","timed_repetitions","warmup"
-"A","1472","1","16","fused","8","457,297,347,371","4","0,2,4,6","10","31020000000","12893900000","64564200000","13510568617.5268","37367653","True","True","True","8","2"
-"Bclone","1472","1","16","fused","8","457,297,347,371","4","0,2,4,6","10","20903200000","12230400000","29817000000","6439253593.27461","37367653","True","True","True","8","2"

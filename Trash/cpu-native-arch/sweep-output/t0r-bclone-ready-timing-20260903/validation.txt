@@ -1,9 +1,0 @@
-status=PASS
-raw_rows=30;expected_raw_rows=30;diagnostic_worker_lines=120;diagnostic_kernel_lines=30
-configuration=target_kib=512;K=512;m=1024;depth=16;iterations=1;repetitions=8;warmup=2;variants=A,B,Bclone
-affinity=PASS;workers=4;cpus=0,2,4,6;rows_per_worker=1332,807,965,992
-checksums=PASS;nonzero and deterministic per variant;A==Bclone and B distinct in each paired repeat
-order=PASS;10 serial repeats;odd=A,B,Bclone;even=Bclone,B,A
-diagnostic=PASS;4 workers per each of 30 invocations;ready_worker_lines=120;coordinator_kernel_lines=30
-timing_arithmetic=PASS;existing kernel timer boundaries and mac_per_second calculation unchanged;diagnostic QPC is separate
-preflight_self_test=PASS;one explicit int8_probe.exe --self-test;exit=0

@@ -1,0 +1,383 @@
+{
+  "record": "H0_PREREGISTRATION_SCAFFOLD",
+  "status": "FROZEN_FOR_OFFICIAL_TIMING",
+  "CODE_REVIEW": "REQUIRED (MD/31 §2)",
+  "H0_FREEZE": "HOLD until Sol/JUEZ code review",
+  "official_timing_performed": false,
+  "official_timing_mode": "implemented; exact AUTORIZADO required; not invoked during scaffolding",
+  "official_timing_gate": "official runner refuses to proceed until status=FROZEN_FOR_OFFICIAL_TIMING after JUEZ review",
+  "scientific_verdicts_or_results": null,
+  "normative_contract": "MD/29 + MD/30 + MD/31 + MD/32; T0.md §4.1",
+  "freeze_checklist": {
+    "1_code_harness": [
+      "src/h0_scaffold.hpp",
+      "src/h0_scaffold.cpp",
+      "src/h0_scaffold_main.cpp",
+      "src/h0_qa.cpp",
+      "src/h0_runner.py"
+    ],
+    "2_source_and_binary_sha256": "capture_h0_scaffold.py fills artifacts_sha256 after successful separate H0 build; SHA256SUMS.txt covers every source and binary",
+    "3_primary_isa": "AVX-VNNI-256; AVX2 is diagnostic-only and cannot rescue a valid VNNI FAIL",
+    "4_primary_affinity": "8 physical P cores, stable API-key ascending order, one worker/core, no SMT, no migration",
+    "5_W_K_m": {
+      "I": 512,
+      "groups_per_row": 16,
+      "payload_bytes_per_row": 288,
+      "P_W_target_O_W_real_bytes": [
+        [
+          262152,
+          910,
+          262080
+        ],
+        [
+          294912,
+          1024,
+          294912
+        ],
+        [
+          524286,
+          1820,
+          524160
+        ],
+        [
+          786438,
+          2731,
+          786528
+        ],
+        [
+          1048572,
+          3641,
+          1048608
+        ],
+        [
+          1310724,
+          4551,
+          1310688
+        ],
+        [
+          1572858,
+          5461,
+          1572768
+        ],
+        [
+          1835010,
+          6372,
+          1835136
+        ],
+        [
+          2097144,
+          7282,
+          2097216
+        ],
+        [
+          2621448,
+          9102,
+          2621376
+        ],
+        [
+          3145734,
+          10923,
+          3145824
+        ]
+      ],
+      "E_cluster_W_target_O_W_real_bytes": [
+        [
+          262152,
+          910,
+          262080
+        ],
+        [
+          524286,
+          1820,
+          524160
+        ],
+        [
+          786438,
+          2731,
+          786528
+        ],
+        [
+          1048572,
+          3641,
+          1048608
+        ],
+        [
+          1310724,
+          4551,
+          1310688
+        ]
+      ],
+      "W_arch_4": {
+        "O": 2048,
+        "W_real_bytes_per_worker": 589824
+      },
+      "W_arch_8": {
+        "O": 1024,
+        "W_real_bytes_per_worker": 294912
+      },
+      "W_arch_16": {
+        "O": 512,
+        "W_real_bytes_per_worker": 147456
+      },
+      "partial_rows": "PROHIBITED; thresholds and knees use W_real",
+      "K": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "m": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "FLOPs_constant_pairs_K_times_m_32": [
+        [
+          1,
+          32
+        ],
+        [
+          2,
+          16
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          16,
+          2
+        ]
+      ],
+      "FLOPs_constant_pairs_K_times_m_64": [
+        [
+          2,
+          32
+        ],
+        [
+          4,
+          16
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          16,
+          4
+        ]
+      ]
+    },
+    "6_randomization_seed": {
+      "seed_hex": "4D44333048305331",
+      "generator": "std::mt19937_64 + std::shuffle per A/B/C block",
+      "order_file_pattern": "results/T0.1/h0_variant_order_<unique_segment_id>.json",
+      "must_be_written_before_first_series": true
+    },
+    "7_statistics": {
+      "N": 31,
+      "warmup_count": 5,
+      "center": "median",
+      "dispersion": [
+        "IQR",
+        "MAD"
+      ],
+      "outlier_discard_count": 0,
+      "primary_statistical_unit": "sample_cost(rep,physical_worker)=sum(kernel_only_ns)/(episodes*K); concurrent team_sample_cost(rep)=max_worker(sample_cost); c_X=median of exactly 31 team_sample_cost values",
+      "primary_IQR_MAD": "computed over the same 31 repetition-level team_sample_cost values",
+      "worker_descriptives": "separate per physical worker over its 31 repetition-level sample_cost values; never pool K applications as independent replicates",
+      "discrete_IQR_indices_for_N31": "sorted[22]-sorted[7]"
+    },
+    "8_episode_policy": {
+      "minimum_kernel_only_ns": 100000000,
+      "calibration_target_ns": 150000000,
+      "calibration": "engineering-only minimum episode count reaching target; fixed before N=31 samples",
+      "technical_retry": "one whole-series retry at exactly 2x fixed episodes when any sample is <100 ms; second short attempt => SERIES_HOLD; no throughput consulted"
+    },
+    "9_variants": {
+      "execution_block": "A/B/C variants for one comparison cell run in one process over one persistent worker/shard set in the preregistered randomized order",
+      "A": "K calls using the same weight shard pointer",
+      "B": "K INDEPENDENT_NON_ALIASING_ALLOCATIONS; base shard is copy 0 and K-1 additional allocations; virtual ranges do not overlap, every page is write-touched before timing, byte-identical values and shape; no claim of physical-frame distinction",
+      "C": "same base shard pointer as A; one pre-episode eviction and load-only eviction between applications; eviction time recorded separately; never included in per-app kernel time"
+    },
+    "10_eviction_buffers": {
+      "per_worker_initial_mib": 8,
+      "fallback_mib": 16,
+      "disjoint_per_worker": true,
+      "pretouch_before_any_timer": true,
+      "test": "independent load-only victim-buffer reload, per P core, N=31; median(evicted/warm)>=1.50 overall and no core<1.25"
+    }
+  },
+  "execution_order": [
+    "preflight",
+    "independent_eviction_validation_8_then_16_if_needed_and_freeze_size",
+    "preflight_AA_R_noise_with_frozen_eviction_size_and_episode_local_interleaving",
+    "P8_A_K16_m1_W_sweep",
+    "P8_A_B_K_sweep_m1",
+    "P8_A_K16_m_sweep",
+    "P8_A_B_C_K16_m4",
+    "P8_A_B_FLOPs_constant",
+    "4P_A_B_C",
+    "SMT_A",
+    "E_cluster_A_W_sweeps_and_A_B_C_arch_rows",
+    "P_plus_E_A_B_C",
+    "derive_after_all_series"
+  ],
+  "series_alias_and_pairing_policy": {
+    "P8_W_sweep_architectural_A": "separate A-only knee-cell record from the randomized K16,m1 A/B/C block, to preserve within-block randomization",
+    "P8_K16_m1_A": "randomized K-sweep block source reused for H0-R1 and matrixization m=1",
+    "P8_K16_m4_A": "A observation from the randomized H0-R4 A/B/C block also supplies the matrixization m=4 point; do not add a second m4 A series"
+  },
+  "descriptive_only": [
+    "4P",
+    "E clusters",
+    "P+E",
+    "SMT",
+    "FLOPs-constant pairs"
+  ],
+  "data_generation_seed": {
+    "base_seed_hex": "4D44333044415441",
+    "cell_group_seed": "base xor low64(SHA256(seed_group_name))",
+    "worker_seed": "cell_group_seed xor FNV1a(stable physical_core_api_key)",
+    "same_group_seed_across_A_B_C": true,
+    "same_P8_arch_seed_across_K_and_matrixization": true
+  },
+  "R_noise_scaffold_pairing": {
+    "status": "SOL_CONFIRMED",
+    "authority": "MD/31 §1",
+    "pair_identity_exact": [
+      "rep",
+      "episode",
+      "core",
+      "K-app"
+    ],
+    "unit": "individual A/A application kernel-only observation, before aggregation",
+    "temporal_schedule": "for each rep and episode, prepare A1 and run its K applications, then prepare A2 and run its K applications before advancing to the next episode",
+    "formula": "d=abs(t1-t2)/((t1+t2)/2)",
+    "p95_per_exact_cell": "sort(d); d[ceil(0.95*n)-1], nearest-rank with no interpolation",
+    "R_noise": "max(p95_cell) over all A/A cells participating in H0 adjudication",
+    "QA_indices": {
+      "n31_zero_based_index": 29,
+      "n20_zero_based_index": 18
+    }
+  },
+  "SMT_sharing_contract": {
+    "shared_between_siblings": [
+      "weight shard only"
+    ],
+    "private_per_logical_worker": [
+      "activation quantized data",
+      "activation scales",
+      "output buffer",
+      "eviction buffer",
+      "per-application QPC/timing state",
+      "worker-local state"
+    ],
+    "application_partition": "sibling 0 uses indices 0,2,4,...,14; sibling 1 uses 1,3,5,...,15",
+    "scratch": "Q4 kernel has no mutable shared scratch buffer; writes only to the worker-private output tensor",
+    "adjudication": "CHARACTERIZATION_ONLY"
+  },
+  "W_real_and_physical_allocation_reporting": {
+    "required_per_cell": [
+      "W_target_bytes",
+      "O",
+      "I",
+      "W_real_bytes",
+      "weight_physical_allocated_bytes",
+      "activation_q_bytes",
+      "activation_scale_bytes",
+      "output_bytes",
+      "eviction_buffer_bytes",
+      "total_physical_bytes"
+    ],
+    "W_real_formula": "O*288",
+    "worker_shards": "independent [O,512] weights and [m,512] activations per worker; no matrix row partition during timed region"
+  },
+  "future_preflight": {
+    "Chrome": "0 before and after observation",
+    "power_plan_guid": "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",
+    "CPU": "13th Gen Intel(R) Core(TM) i7-13700F",
+    "logical_processors": 24,
+    "topology_sha256": "8E5CDA8410873852C3DD266E2CC1535376DEEA3705328173BC879117F4574CAF",
+    "cpu_load": "observation only",
+    "segment_logs_and_state": "unique timestamped names; refuse overwrite"
+  },
+  "measurement_gate_values_from_MD29": {
+    "R_noise_max": 0.05,
+    "eviction_overall_ratio_min": 1.5,
+    "eviction_per_core_ratio_min": 1.25,
+    "rho_1_max": 0.6666666666666666,
+    "delta_BC_max": 0.15,
+    "rho_4_max": 0.9,
+    "S4_min": 1.5,
+    "knee_cost_multiple_min": 1.15,
+    "strong_residency_rho_1_max": 0.5
+  },
+  "artifacts_sha256": {
+    "state": "SCAFFOLD_BUILD_AND_QA_COMPLETED_NO_TIMING",
+    "sources_and_binaries": {
+      "src/h0_scaffold.hpp": "FD72169592166A3BFAA917DB7B9D4E3DE300459BA6E62BBB838AB254E48C609C",
+      "src/h0_scaffold.cpp": "C705CD760C32CED4B036B28CA03E486A83737908DFB6FAD37E91DEB5B3C8EF88",
+      "src/h0_measure.cpp": "2CE9CF36BF06C0025580924C4CCF19B9AB7BC265844BA97725B0DD52CBC38807",
+      "src/h0_scaffold_main.cpp": "EBA2FEE47655333085B5ED5A2B03481A2E1AC5CE611E7B71298994B0172F6F68",
+      "src/h0_qa.cpp": "EB7351D5D4806E07817C5A85C619DCFD26F5822E71B280E497F8B1D99636D860",
+      "src/h0_runner.py": "3D2F441351E3592291BAEA1A726FFACDBDF83C3BBAD8F07EBE682E101F4DC7F1",
+      "src/test_h0_r_noise.py": "D9B37200A18FD7931FD0D2FCAE06F8E5C84B6B1482F9B3E85791A6FC2B1E2850",
+      "src/capture_h0_scaffold.py": "517E60C3DE525F2909F93B438A4FCED83E96E6EBC923901231ABCC4AAB21CCD8",
+      "src/verify_h0_disassembly.py": "746A55A84F561D550FAFC3CD1E02B488E06E6FBE828AA60908C9CE2E27ADEB16",
+      "src/build/build_h0_scaffold.cmd": "5962D078AEDD0B5E92C94B7AE2945423CABC3CD968E72732A1279700A47B54C2",
+      "src/q4_kernel.cpp": "3955E7BC266A0848D3E0C2C99F3E22006B2C47280D63F576AB89EFDE2E86B045",
+      "src/q4_kernel.hpp": "22E7A71C88C66C82E9658F964213F184F181D836CF688B579678756E8A590A7B",
+      "../T0.md": "C2AC178F82ED1C1EA5A1765F62BAEE31E055AFF020A0BBA2D4E4E819B72CB91C",
+      "../Roadmap.md": "A771C3D6D3331E80BB37DCF54BF1475ED1240B41066D535BA602F8AB7C2634FB",
+      "../MD/29.md": "524F3E8ACF79F9FA08C51239FB4E1769810ABDF05F1798FE7C1ACFADC016703C",
+      "../MD/30.md": "2455688BAFF4329FCD5FB11B75F105BE09149A8A5EBDF684E58F45027A744F24",
+      "../MD/31.md": "FDD7529C37FB4ED40CA3968964610D87B91B41388BB5E1CA267569D1B92D36A5",
+      "../MD/32.md": "34248079B95A41CFA8E9F7851ECD650B9A5A371ADD90EB18A11D1ED400A12031",
+      "src/build/h0_scaffold.exe": "F5A357D24A24F9401636110502AC23267963C97F782422FF351D39EB1DA72DD0",
+      "src/build/h0_qa.exe": "5544823D46B770B8DCC590BFA43A0EDCCA09EBE1458040253BD4FED2906576B4",
+      "src/build/h0_measure.obj": "C962B21CB910B5D4D7FC0A929282B24CE31496A02CFBA8230A8CCC4269EC27B1",
+      "src/build/h0_q4_kernel.obj": "68B1F368327D7F0D7A2E72E80F940A7ECF98A2159A4A401AC13FA15164105D46",
+      "src/build/h0_q4_kernel_qa.obj": "D97C13E6B10B701BFA5F83C3C3D0209124EA317C11BC2093A14273A2FC4AB41C",
+      "src/build/h0_qa.obj": "9BFB41DACC95F03349F3A60195C5A2EE339E877517B59EB7FDA521EAFAF6AB4C",
+      "src/build/h0_scaffold.asm": "1F08DF67D74325F69C8318CE8082B710D4D04D66EFD28FACB1295E3DD99682F6",
+      "src/build/h0_scaffold.obj": "854F9EDA10A5B68FE1EA5EB038B05ECCB22A53E41BAEA7BB4368879970A01CDA",
+      "src/build/h0_scaffold_main.obj": "64AF84D0A047DE087FEC47595FB131C9FEAF8AB57C23ED5AE506B8097EFA3C41"
+    },
+    "verification_logs_sha256": {
+      "logs/h0_D1_D5_audit_build_20261011.command.txt": "3B33D68FCFDF5FBD6DC6DBA63DC084386A4FAB8D0B8E059E8FC26B91F6A74A5D",
+      "logs/h0_D1_D5_audit_build_20261011.stderr.txt": "F30059DC5DD57A3D4392FEE428CD1ACB0126619A806BBCDE02635B2E213FB629",
+      "logs/h0_D1_D5_audit_build_20261011.stdout.txt": "9B155E40F5D07E368982C100DC8769523D9BFD042D6B4955FFB4235B07D7E67C",
+      "logs/h0_D1_D5_audit_build_final_20261011.command.txt": "3B33D68FCFDF5FBD6DC6DBA63DC084386A4FAB8D0B8E059E8FC26B91F6A74A5D",
+      "logs/h0_D1_D5_audit_build_final_20261011.stderr.txt": "F30059DC5DD57A3D4392FEE428CD1ACB0126619A806BBCDE02635B2E213FB629",
+      "logs/h0_D1_D5_audit_build_final_20261011.stdout.txt": "9B155E40F5D07E368982C100DC8769523D9BFD042D6B4955FFB4235B07D7E67C",
+      "logs/h0_D1_D5_audit_disassembly_20261011.command.txt": "257909AF9D14D2848BE978983F2141F18C6AD42F9E3E35175AB014A6EBE31DF5",
+      "logs/h0_D1_D5_audit_disassembly_20261011.stderr.txt": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "logs/h0_D1_D5_audit_disassembly_20261011.stdout.txt": "FD11F0A557E5E3338B3070D688B2589F7777A617F86A7B4E39F7A7FEB3F70464",
+      "logs/h0_D1_D5_audit_disassembly_final_20261011.command.txt": "257909AF9D14D2848BE978983F2141F18C6AD42F9E3E35175AB014A6EBE31DF5",
+      "logs/h0_D1_D5_audit_disassembly_final_20261011.stderr.txt": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "logs/h0_D1_D5_audit_disassembly_final_20261011.stdout.txt": "FD11F0A557E5E3338B3070D688B2589F7777A617F86A7B4E39F7A7FEB3F70464",
+      "logs/h0_D1_D5_audit_qa_20261011.command.txt": "0C081F93D060CEF11D8C37924C7CDBD3938DE2BD2A53859712D9E6406ABDA330",
+      "logs/h0_D1_D5_audit_qa_20261011.stderr.txt": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "logs/h0_D1_D5_audit_qa_20261011.stdout.txt": "194245C261E63A9E82B5E520677443077AC68A49D96D0A8034BD6A2F6D522F7E",
+      "logs/h0_D1_D5_audit_qa_final_20261011.command.txt": "0C081F93D060CEF11D8C37924C7CDBD3938DE2BD2A53859712D9E6406ABDA330",
+      "logs/h0_D1_D5_audit_qa_final_20261011.stderr.txt": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "logs/h0_D1_D5_audit_qa_final_20261011.stdout.txt": "194245C261E63A9E82B5E520677443077AC68A49D96D0A8034BD6A2F6D522F7E",
+      "logs/h0_D1_D5_audit_synthetic_20261011.command.txt": "F0F75C29601E2FC5A911A60F9A911F5E99B2FBB63C2AB5B4AA39CCB48ADCEABD",
+      "logs/h0_D1_D5_audit_synthetic_20261011.stderr.txt": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "logs/h0_D1_D5_audit_synthetic_20261011.stdout.txt": "7D13A5501E7AFF401833D30962B77766157E4DBBAA6860E1CB719A55A060C690",
+      "logs/h0_D1_D5_audit_synthetic_final_20261011.command.txt": "F0F75C29601E2FC5A911A60F9A911F5E99B2FBB63C2AB5B4AA39CCB48ADCEABD",
+      "logs/h0_D1_D5_audit_synthetic_final_20261011.stderr.txt": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "logs/h0_D1_D5_audit_synthetic_final_20261011.stdout.txt": "7D13A5501E7AFF401833D30962B77766157E4DBBAA6860E1CB719A55A060C690",
+      "results/T0.1/h0_D1_D5_audit_20261011.json": "68E637AC9DBD3F47693699078B90EE2CA69A40A7E5D4CD6714B8064F1EC8A57D"
+    }
+  }
+}

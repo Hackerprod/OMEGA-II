@@ -1,0 +1,7 @@
+PMU Types available on this machine:
+p-core
+e-core
+cbo
+ncu
+imc
+power

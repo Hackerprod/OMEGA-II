@@ -1,8 +1,0 @@
-status=PASS
-inputs=pre=D:\Install\Dev\Projects\IA\Ejercise\cpu-native-arch\sweep-output\t0m-recurrence-performance-d512\comparison.csv; post=D:\Install\Dev\Projects\IA\Ejercise\cpu-native-arch\sweep-output\t0m-recurrence-performance-d512-avx2\comparison.csv
-input_rows=pre=5; post=5; expected_each=5
-output_rows=comparison-pre-post.csv=10; expected=10; maxima.csv=8; expected=8
-scope=D=512; R=1,2,4,8,16; metrics=G8,G16,F4,F8,F16
-static_reference=carried independently from each validated comparison.csv; target_kib=512; variants=A,B
-finite_validation=PASS all pre/post recurrence and static maxima inputs finite
-phase_labels=PASS explicit pre-vectorization and post-vectorization rows

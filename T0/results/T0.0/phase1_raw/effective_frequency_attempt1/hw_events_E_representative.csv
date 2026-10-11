@@ -1,0 +1,3 @@
+Function	Hardware Event Count:INST_RETIRED.ANY	Hardware Event Count:CPU_CLK_UNHALTED.THREAD	Hardware Event Count:CPU_CLK_UNHALTED.REF_TSC	Hardware Event Count:TOPDOWN.SLOTS	Module	Function (Full)	Source File	Start Address
+func@0x14002a500	0	0	314000471	0	phase1_measure_harness.exe	func@0x14002a500	[Unknown]	0x14002a500
+func@0x180094dcb	0	0	2000003	0	ntdll.dll	func@0x180094dcb	[Unknown]	0x180094dcb

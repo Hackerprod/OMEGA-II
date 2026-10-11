@@ -1,0 +1,7 @@
+Get-CimInstance : Consulta no v lida 
+En l¡nea: 9 Car cter: 29
++ ... 11;$i++){$r=Get-CimInstance -ClassName Win32_PerfFormattedData_PerfOS ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Get-CimInstance], CimException
+    + FullyQualifiedErrorId : HRESULT 0x80041017,Microsoft.Management.Infrastructure.CimCmdlets.GetCimInstanceCommand
+ 

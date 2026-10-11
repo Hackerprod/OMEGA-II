@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Intel\oneAPI\vtune\2026.4\bin64\vtune.exe" -help collect memory-access

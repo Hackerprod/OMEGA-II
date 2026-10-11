@@ -1,1 +1,0 @@
-int8 AVX2 correction test passed; scalar_checksum=320040, avx2_checksum=320040, difference=0

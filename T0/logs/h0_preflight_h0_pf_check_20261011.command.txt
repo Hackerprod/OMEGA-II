@@ -1,0 +1,13 @@
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -Command "
+$ErrorActionPreference='Stop'
+$pw=(powercfg.exe /getactivescheme | Out-String)
+$pm=[regex]::Match($pw,'[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')
+$cpu=@(Get-CimInstance Win32_Processor | Select-Object -ExpandProperty Name)
+$lp=(Get-CimInstance Win32_ComputerSystem).NumberOfLogicalProcessors
+$chrome0=@(Get-Process chrome -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Id)
+$samples=@()
+for($i=0;$i -lt 11;$i++){$r=Get-CimInstance -ClassName Win32_PerfFormattedData_PerfOS_Processor -Filter 'Name=''_Total''';$samples += [pscustomobject]@{utc=(Get-Date).ToUniversalTime().ToString('o');cpu=$r.PercentProcessorTime};if($i -lt 10){Start-Sleep -Seconds 1}}
+$chrome1=@(Get-Process chrome -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Id)
+$mean=($samples|Measure-Object cpu -Average).Average;$max=($samples|Measure-Object cpu -Maximum).Maximum
+[ordered]@{power_guid=if($pm.Success){$pm.Value.ToLowerInvariant()}else{''};cpu_names=$cpu;logical_processors=$lp;chrome_before=$chrome0;chrome_after=$chrome1;cpu_samples=$samples;mean_cpu_percent=$mean;max_cpu_percent=$max}|ConvertTo-Json -Depth 5 -Compress
+"

@@ -1,0 +1,42 @@
+{
+  "phase": "Phase 0 baseline; ENGINEERING_BASELINE / NOT_H0_READY",
+  "source_decision": "MD/24 and T0.md §3.1",
+  "state": "PREDECLARED_BEFORE_ANY_TIMED_RUN",
+  "mac_unit": "1 conventional multiply-accumulate = 1 MAC",
+  "protocol": {
+    "N": 31,
+    "warmup_count": 5,
+    "center": "median",
+    "dispersion": ["IQR", "MAD"],
+    "outlier_discard_count": 0
+  },
+  "p_instr": {
+    "routes": ["AVX2 signed-word madd+accumulate", "AVX-VNNI-256 VPDPWSSD"],
+    "cores": "each physical core, P and E separately; one pinned worker at a time",
+    "independent_accumulators": 8,
+    "outer_loop_iterations_per_sample": 250000,
+    "static_unroll_factor": 4,
+    "accumulator_updates_per_accumulator": 1000000,
+    "conventional_MACs_per_accumulator_update": 16,
+    "conventional_MACs_per_sample": 128000000,
+    "operands": "loaded into YMM registers before timing; AVX2 activation signed-word values reflect sign-extended INT8, weights signed-word values in [-7,+7]; no Q4 decode, scale conversion, weight loads, or external reduction in timed loop"
+  },
+  "p_q4": {
+    "shape": {"O": 512, "I": 512},
+    "m_sweep": [1, 2, 4, 8, 16, 32],
+    "routes": ["AVX2", "AVX-VNNI-256"],
+    "calls_per_sample": 32,
+    "conventional_MACs_per_call": "512*512*m",
+    "logical_weight_bytes_per_call": 147456,
+    "weights": "one deterministic matrix per physical core; reused across m and both ISA routes; 147456 B payload, expected resident in observed 2 MiB P-core L2 / 4 MiB E-cluster L2; prewarmed by 5 warmup samples",
+    "activations": "deterministic INT8 + FP32 group scales generated separately for each m",
+    "timed_region": "32 calls to the current full Q4 execute_into_prechecked operator; includes its decode, scale handling, accumulation, and result-buffer work"
+  },
+  "series_order": {
+    "p_instr": "P-core physical_core_api_key ascending, then E-core ascending; per core AVX2 then AVX-VNNI-256",
+    "p_q4": "P-core physical_core_api_key ascending, then E-core ascending; per core AVX2 then AVX-VNNI-256; m ascending within each route",
+    "execution": "serial; no parallel worker teams"
+  },
+  "outputs": "results/T0.0/phase0_raw/p_instr_raw.csv, p_instr_summary.csv, p_q4_m_raw.csv, p_q4_m_summary.csv; derived peak/eta tables generated only after both families complete",
+  "measurement_authorization": "WAIT_FOR_EXPLICIT_AUTORIZADO_AFTER_LISTO_PARA_MEDIR"
+}

@@ -1,0 +1,2 @@
+ Assembling: C:\Projects\OMEGA\Ejercise\T0\src\build\..\frequency_chain_x64.asm
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\frequency_chain_x64.asm(1) : fatal error A1000:cannot open file : :C:\Projects\OMEGA\Ejercise\T0\src\build\\frequency_chain_x64.obj

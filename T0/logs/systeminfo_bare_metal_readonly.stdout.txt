@@ -1,0 +1,65 @@
+
+Nombre de host:                            DESKTOP-0NAG2DI
+Nombre del sistema operativo:              Microsoft Windows 11 Enterprise LTSC
+Versi¢n del sistema operativo:             10.0.26100 N/D Compilaci¢n 26100
+Fabricante del sistema operativo:          Microsoft Corporation
+Configuraci¢n del sistema operativo:       Estaci¢n de trabajo independiente
+Tipo de compilaci¢n del sistema operativo: Multiprocessor Free
+Propietario registrado:                    N/D
+Organizaci¢n registrada:                   N/D
+Id. del producto:                          00425-00000-00002-AA766
+Fecha de instalaci¢n original:             9/26/2026, 7:33:09 AM
+Tiempo de arranque del sistema:            10/8/2026, 3:01:54 PM
+Fabricante del sistema:                    ASUS
+Modelo del sistema:                        System Product Name
+Tipo de sistema:                           x64-based PC
+Procesadores:                              1 Procesadores instalados.
+                                           [01]: Intel64 Family 6 Model 183 Stepping 1 GenuineIntel ~2100 Mhz
+Versi¢n del BIOS:                          American Megatrends Inc. 1658, 5/22/2024
+Directorio de Windows:                     C:\WINDOWS
+Directorio de sistema:                     C:\WINDOWS\system32
+Dispositivo de arranque:                   \Device\HarddiskVolume1
+Configuraci¢n regional del sistema:        es;Espa¤ol (internacional)
+Idioma de entrada:                         es-mx;Espa¤ol (M‚xico)
+Zona horaria:                              (UTC-08:00) Hora del Pac¡fico (EE.UU. y Canad )
+Memoria f¡sica total:                      32,581 MB
+Memoria f¡sica disponible:                 22,670 MB
+Memoria virtual: tama¤o m ximo:            65,349 MB
+Memoria virtual: disponible:               52,606 MB
+Memoria virtual: en uso:                   12,743 MB
+Ubicaciones de archivos de p gina:         C:\pagefile.sys
+Dominio:                                   WORKGROUP
+Servidor de inicio de sesi¢n:              \\DESKTOP-0NAG2DI
+Revisiones:                                3 revisi¢n(es) instaladas.
+                                           [01]: KB5066131
+                                           [02]: KB5072033
+                                           [03]: KB5071142
+Tarjetas de red:                           4 Tarjetas de interfaz de red instaladas.
+                                           [01]: Intel(R) Ethernet Controller I226-V
+                                                 Nombre de conexi¢n: Ethernet
+                                                 Estado:             Medios desconectados
+                                           [02]: Bluetooth Device (Personal Area Network)
+                                                 Nombre de conexi¢n: Conexi¢n de red Bluetooth
+                                                 Estado:             Medios desconectados
+                                           [03]: Intel(R) Wi-Fi 6E AX211 160MHz
+                                                 Nombre de conexi¢n: Wi-Fi
+                                                 DHCP habilitado:    S¡
+                                                 Servidor DHCP:      10.11.48.1
+                                                 Direcciones IP
+                                                 [01]: 10.11.48.83
+                                                 [02]: fe80::19f3:5a35:19fa:dee3
+                                                 [03]: 2602:61:78f8:c800:ed66:e243:8fa5:9c19
+                                                 [04]: 2602:61:78f8:c800:2563:5fa1:4aea:2997
+                                                 [05]: 2602:61:78f8:c800:993b:1731:90b1:8c59
+                                                 [06]: 2602:61:78f8:c800::d50
+                                           [04]: ZeroTier Virtual Port
+                                                 Nombre de conexi¢n: ZeroTier One [88c5b1f33975965e]
+                                                 DHCP habilitado:    No
+                                                 Direcciones IP
+                                                 [01]: 10.0.0.100
+                                                 [02]: fe80::950a:6585:a3dc:1ebd
+Seguridad basada en virtualizaci¢n:        Estado:ÿNo habilitado
+Requisitos Hyper-V:                        Extensiones de modo de monitor de VM: S¡
+                                           Se habilit¢ la virtualizaci¢n en el firmware: S¡
+                                           Traducci¢n de direcciones de segundo nivel: S¡
+                                           La prevenci¢n de ejecuci¢n de datos est  disponible: S¡

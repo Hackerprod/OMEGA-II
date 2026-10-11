@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Intel\oneAPI\vtune\2026.4\bin64\vtune.exe" -import C:\Projects\OMEGA\Ejercise\T0\results\T0.0\phase1_raw\effective_frequency_attempt1\sep_pstate_P_ref.tb7 -r C:\Projects\OMEGA\Ejercise\T0\results\T0.0\phase1_raw\effective_frequency_attempt1\vtune_import_P_ref

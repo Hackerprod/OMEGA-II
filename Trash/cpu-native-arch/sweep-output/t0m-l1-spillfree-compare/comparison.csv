@@ -1,4 +1,0 @@
-mode,elapsed_seconds,gmac_per_second,gmac_s,fused_over_legacy_elapsed,fused_over_legacy_gmac_s
-legacy,0.0000653,5.01807e+09,5.01807,,
-repeat,0.0000765,4.2834e+09,4.2834,,
-fused,0.0001088,3.01176e+09,3.01176,1.6661562021439509,0.60018293885896379

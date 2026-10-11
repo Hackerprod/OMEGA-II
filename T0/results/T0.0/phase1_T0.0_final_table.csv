@@ -1,0 +1,48 @@
+field,status,value,unit
+P_Q4_i_m1,MEASURED,phase1_P_Q4_i_m1_by_core.csv,conventional_MAC/s
+BW_Q4_logical_i,MEASURED,phase1_P_Q4_i_m1_by_core.csv,B/s (logical payload demand; 0.5625 B/MAC)
+P_instr_i,MEASURED,phase1_P_instr_by_core.csv,conventional_MAC/s
+"P_Q4(m), P_Q4_peak, eta_instr, eta_Q4",MEASURED,phase1_P_Q4_by_core_m.csv; phase1_P_Q4_peak_by_core.csv,conventional_MAC/s; dimensionless efficiencies
+TEAM_MAC_RATE_8P,MEASURED,phase1_TEAM_MAC_RATE_8P.csv,conventional_MAC/s
+BW_DRAM_read_8P,MEASURED,phase1_BW_DRAM_read_8P.csv,B/s
+D_read,MEASURED_GATE_PASS,phase1_D_read.csv,dimensionless
+E_core_confirmation,MEASURED,phase1_E_Q4_m1_by_core.csv; phase1_E_core_P_instr_vs_Q4.csv,conventional_MAC/s
+A_4P / C_8P_plus_8E,DEFERRED_TO_T0_1,phase1_ABC_status.csv,not applicable
+r_A / r_B / r_C,LEGACY_PREOPT_DESCRIPTIVE,phase1_ABC_status.csv,not applicable
+EFFECTIVE_FREQUENCY,UNAVAILABLE_WITH_QUALIFIED_TOOLS,results/T0.0/phase1_raw/effective_frequency_attempt.json,GHz if measured; no inferred estimate
+CPU_IDENTITY,VERIFIED,"13th Gen Intel(R) Core(TM) i7-13700F; GenuineIntel family 6 model 183 (0xB7) stepping 1; Raptor Lake",hardware
+PHYSICAL_CORES,VERIFIED,"8 P-cores + 8 E-cores = 16 physical cores",cores
+LOGICAL_PROCESSORS,VERIFIED,"24 LP; P-core SMT siblings mapped in b_topologia.csv; E-cores have one LP each",LP
+L2_P,VERIFIED,"2,097,152 B private per P-core",bytes
+L2_E,VERIFIED,"4,194,304 B shared per cluster of 4 E-cores",bytes
+LLC,VERIFIED,"31,457,280 B unified across 24 LP (30 MiB)",bytes
+RAM,FIRMWARE_REPORTED,"2 x 16 GiB DDR5-5200 DIMMs; two populated channels; SEP conflicting observation preserved",inventory
+ISA,VERIFIED,"AVX2=true; AVX-VNNI-256=true; AVX-512F=false; XGETBV=0x7",features
+BARE_METAL,VERIFIED,"Win32_ComputerSystem HypervisorPresent=false; CPUID hypervisor bit=false",environment
+COUNTER_TOOL_INVENTORY,ENUMERATED,"SEP user mode 5.61 / driver 5.61.22 / PAX 1.0.2; VTune 2026.4; PCM unavailable",tools
+COUNTER_EVENTS,ENUMERATED_NOT_VALIDATED,"IMC/L2/LLC candidates in g_contadores.md; SEP/VTune frequency attempt produced no usable APERF/MPERF or THREAD/REF_TSC conversion",events
+QPC_FREQUENCY,MEASURED,10000000,Hz
+QPC_NOMINAL_RESOLUTION,DERIVED_FROM_QPC_FREQUENCY,100,ns
+QPC_AMORTIZED_CALL_COST_P,MEASURED,"9.4695 median; 9.468-9.471 range; includes harness loop",ns/call
+QPC_AMORTIZED_CALL_COST_E,MEASURED,"14.8855 median; 14.785-16.062 range; includes harness loop",ns/call
+RDTSCP_DIAGNOSTIC,MEASURED,"P-core 21 cycles median; E-core 36 cycles median; TSC_AUX stable; no frequency conversion",cycles/pair
+POWER_PLAN,OBSERVED,"High Performance GUID 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",GUID
+PL1_PL2,UNAVAILABLE_WITH_ALLOWED_INTERFACES,"No permitted interface yielded a qualified PL1/PL2 value",status
+TEMPERATURE_POWER_TELEMETRY,UNAVAILABLE,"TEMPERATURE_TELEMETRY=UNAVAILABLE; POWER_TELEMETRY=UNAVAILABLE",status
+PDH_PROCESSOR_FREQUENCY,LEGACY_NOMINAL_CONSTANT,"2100 MHz on every instance/sample; nominal constant PDH reading, NOT effective frequency",MHz
+"BW_memcpy_logical(n=1)",LEGACY_HISTORICAL,"36,053,700,000; f_ancho_banda.csv f_bw_d_n1","B/s logical read+write"
+"BW_memcpy_logical(n=2)",LEGACY_HISTORICAL,"53,969,700,000; f_ancho_banda.csv f_bw_d_n2","B/s logical read+write"
+"BW_memcpy_logical(n=4)",LEGACY_HISTORICAL,"58,689,300,000; f_ancho_banda.csv f_bw_d_n4","B/s logical read+write"
+"BW_memcpy_logical(n=8)",LEGACY_HISTORICAL,"67,273,200,000; f_ancho_banda.csv f_bw_d_n8","B/s logical read+write"
+"BW_memcpy_logical(n=16)",LEGACY_HISTORICAL,"66,003,400,000; f_ancho_banda.csv f_bw_d_n16","B/s logical read+write"
+BW_Q4_LOGICAL_PREOPT,LEGACY_PREOPT_DESCRIPTIVE,"2,527,670,000; f_ancho_banda.csv f_bw_l2_sigma_A_4P","B/s logical demand"
+BW_Q4_LOGICAL_PREOPT,LEGACY_PREOPT_DESCRIPTIVE,"4,898,760,000; f_ancho_banda.csv f_bw_l2_sigma_B_allP","B/s logical demand"
+BW_Q4_LOGICAL_PREOPT,LEGACY_PREOPT_DESCRIPTIVE,"6,068,280,000; f_ancho_banda.csv f_bw_l2_sigma_C_P_plus_E","B/s logical demand"
+LEGACY_R_A,LEGACY_PREOPT_DESCRIPTIVE,"0.0430687; stage2_raw/f_r_summary.csv A_4P",dimensionless
+LEGACY_R_B,LEGACY_PREOPT_DESCRIPTIVE,"0.0728188; stage2_raw/f_r_summary.csv B_allP",dimensionless
+LEGACY_R_C,LEGACY_PREOPT_DESCRIPTIVE,"0.0919389; stage2_raw/f_r_summary.csv C_P_plus_E",dimensionless
+LEGACY_LABELS,SEE_MANIFEST,"results/T0.0/legacy_labels_manifest.md; original d_vi*, e*, f_ancho_banda.csv and f_r_summary.csv are unchanged",labels
+SESSION_SEGMENT_1,COMPLETE,"Original tranche: 47 series",series
+SESSION_SEGMENT_2,COMPLETE,"E-core Q4 m=1: 16 series; preflight raw overwritten and documented as NO RECUPERABLE",series
+SESSION_SEGMENT_3,COMPLETE,"P-core Q4 m=1: 16 series; 8 cores x 2 ISA routes",series
+PREFLIGHT_SEGMENT_2_RAW,NO_RECUPERABLE,"stdout hash E2FB5B40107DC86FA3B4FC1E215B17B40DA21B9A81B42DD0812B1509FE844A6A; incident documented",status

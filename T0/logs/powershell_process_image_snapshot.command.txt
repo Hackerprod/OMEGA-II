@@ -1,0 +1,1 @@
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -Command "Get-CimInstance Win32_Process | Sort-Object ProcessId | Select-Object ProcessId,Name,ExecutablePath | ConvertTo-Json -Depth 4"

@@ -1,0 +1,2 @@
+C:\Windows\System32\cmd.exe /d /c C:/Projects/OMEGA/Ejercise/T0/src/build/build_h0_scaffold.cmd
+exit_code=0

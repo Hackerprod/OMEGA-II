@@ -1,0 +1,3 @@
+worker_key,worker_type,route,m_at_peak,P_Q4_peak_conventional_MAC_per_s,iqr_at_peak,mad_at_peak,N
+CORE_API_00_G0_MASK_0_1,P-core,AVX2,32,29272800000.0,705769000.0,259907000.0,31
+CORE_API_00_G0_MASK_0_1,P-core,AVX-VNNI-256,8,30978200000.0,388872000.0,202286000.0,31

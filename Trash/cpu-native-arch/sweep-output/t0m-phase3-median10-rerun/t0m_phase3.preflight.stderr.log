@@ -1,1 +1,0 @@
-T0-M correction passed: every Y[S x O_i] cell, fused/repeat/legacy/reference, A/B/C, S_tile=2/4/8, four shards, and one/four-worker accounting gate

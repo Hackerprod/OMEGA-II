@@ -1,0 +1,5 @@
+quantity,status,value,basis
+A_4P,DEFERRED_TO_T0_1,,not measured or derived from single-core rates
+B_8P,MEASURED_T0_0,phase1_TEAM_MAC_RATE_8P.csv,P_Q4_8P_m1 simultaneous team measurement
+C_8P_plus_8E,DEFERRED_TO_T0_1,,not measured or derived from single-core rates
+r_A_r_B_r_C,LEGACY_PREOPT_DESCRIPTIVE,,not regenerated in T0.0

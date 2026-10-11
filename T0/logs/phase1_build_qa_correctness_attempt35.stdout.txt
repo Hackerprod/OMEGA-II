@@ -1,0 +1,6 @@
+ Assembling: C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_instr_x64.asm
+q4_kernel.cpp
+phase1_correctness.cpp
+Microsoft (R) Incremental Linker Version 14.44.35229.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+

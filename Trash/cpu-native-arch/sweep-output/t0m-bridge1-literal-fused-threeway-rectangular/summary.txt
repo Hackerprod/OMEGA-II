@@ -1,9 +1,0 @@
-status=PASS
-executive_summary=Literal accepted fused t0m_int8_probe three-way rectangular control completed at original T0-R shape D=512,S=1,R=16 with frozen activations/state and no transition path.
-source_shape=original T0-R target512 depth16; m=1024; K/D=512; O_i/rows_per_worker=1332,807,965,992; sum_O_i=4096 != D
-A_median_mac_per_second=27159250000; Bclone_median_mac_per_second=19603250000; B_real_median_mac_per_second=25872850000
-ratios=A_over_Bclone=1.3854462907936185; A_over_B_real=1.0497200733587526; B_real_over_Bclone=1.3198245188935509; reference_band_2_5_to_2_9=False
-checksum_proof=A_checksum=342599379; Bclone_checksum=342599379; B_real_checksum=18446744073654555548; A==Bclone all 10 pairs; B_real distinct and deterministic
-counts=30 raw rows; 3 aggregates; 10 independent runs per variant; pair-adjacent serial execution
-configuration=D=512;S=1;R=16;mode=fused;S_tile=8;iterations=1;timed_repetitions=8;warmup=2;workers=4;cpus=0,2,4,6;rows_per_worker=1332,807,965,992
-artifacts=machine.csv,aggregate.csv,comparison.csv,summary.txt,validation.txt,commands.log,stderr.log,preflight.build.stdout.log,preflight.build.stderr.log,preflight.self-test.stdout.log,preflight.self-test.stderr.log,dumpbin-evidence.txt

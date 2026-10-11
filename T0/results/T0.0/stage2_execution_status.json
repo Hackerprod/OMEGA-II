@@ -1,0 +1,44 @@
+{
+  "status": "COMPLETE",
+  "order": [
+    "e",
+    "d",
+    "f",
+    "i_dynamic_P",
+    "i_dynamic_E",
+    "i_dynamic_MIXED"
+  ],
+  "series_counts": {
+    "e": 32,
+    "d": 16,
+    "f": 24
+  },
+  "dynamic_conditions": {
+    "P": 8,
+    "E": 8,
+    "MIXED": 16
+  },
+  "duration_seconds_each": 120,
+  "post_background_capture_ok": true,
+  "background_cpu": {
+    "before": {
+      "sample_count": 11,
+      "mean_cpu_percent": 5.2727272727272725,
+      "min_cpu_percent": 0.0,
+      "max_cpu_percent": 11.0,
+      "active_process_count": 173
+    },
+    "after": {
+      "sample_count": 11,
+      "mean_cpu_percent": 3.1818181818181817,
+      "min_cpu_percent": 0.0,
+      "max_cpu_percent": 6.0,
+      "active_process_count": 173
+    }
+  },
+  "logical_bytes_caveat": "BW_L2 and r are logical Q4 bytes; not validated as physical traffic",
+  "anomalies": [
+    "PDH Processor Frequency was exactly 2100 MHz for every instance/sample and condition; interpretation remains qualified.",
+    "Start-Process JSON process_exit_code was null for all i conditions; wrappers exited 0 and native completion footers were captured; no condition was repeated."
+  ]
+}

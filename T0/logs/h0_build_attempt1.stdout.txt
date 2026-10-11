@@ -1,0 +1,3 @@
+h0_scaffold.cpp
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_scaffold.cpp(371): error C2084: la funci¢n 'void t0h0::prepareEpisode(t0h0::Worker &,const t0h0::EpisodeSpec &,bool)' ya tiene un cuerpo
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_scaffold.cpp(229): note: vea la definici¢n anterior de "t0h0::prepareEpisode"

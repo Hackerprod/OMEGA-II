@@ -1,0 +1,38 @@
+
+Collection and Platform Info
+----------------------------
+Parameter              vtune_import_E_representative
+---------------------  -----------------------------
+Operating System       Windows                      
+Computer Name          DESKTOP-0NAG2DI              
+Result Size            6822857                      
+Collection start time  03:08:33 11/10/2026 UTC      
+Collection stop time   03:08:33 11/10/2026 UTC      
+Collector Type         Event-based sampling driver  
+
+CPU
+---
+Parameter          vtune_import_E_representative
+-----------------  -----------------------------
+Frequency          2100000000                   
+Logical CPU Count  24                           
+
+Summary
+-------
+Elapsed Time:             0.150
+Paused Time:              0.0  
+CPU Time:                 0.150
+Average CPU Utilization:  0.987
+CPI Rate:                 0.0  
+
+Event summary
+-------------
+Hardware Event Type       Core Type  Hardware Event Count:Self  Hardware Event Sample Count:Self  Events Per Sample  Precise:Self
+------------------------  ---------  -------------------------  --------------------------------  -----------------  ------------
+INST_RETIRED.ANY          P-Core                             0                                 0  0                          True
+CPU_CLK_UNHALTED.THREAD   P-Core                             0                                 0  0                          True
+CPU_CLK_UNHALTED.REF_TSC  P-Core                             0                                 0  2000003                    True
+TOPDOWN.SLOTS             P-Core                             0                                 0  0                          True
+INST_RETIRED.ANY          E-Core                             0                                 0  0                          True
+CPU_CLK_UNHALTED.THREAD   E-Core                             0                                 0  0                          True
+CPU_CLK_UNHALTED.REF_TSC  E-Core                     316000474                               158  2000003                    True

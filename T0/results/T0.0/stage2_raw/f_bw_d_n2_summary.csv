@@ -1,0 +1,2 @@
+series,metric,median,iqr,mad,min,max,N,warmup_count,outlier_discard_count
+f_bw_d_n2,bytes_per_second,5.39697e+10,6.17039e+09,2.00645e+09,4.39516e+10,5.63164e+10,31,5,0

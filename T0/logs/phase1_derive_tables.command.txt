@@ -1,0 +1,1 @@
+C:\Projects\OMEGA\.venv_cuda\Scripts\python.exe C:\Projects\OMEGA\Ejercise\T0\src\summarize_phase1.py

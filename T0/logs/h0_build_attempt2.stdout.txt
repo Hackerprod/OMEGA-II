@@ -1,0 +1,11 @@
+h0_scaffold.cpp
+h0_scaffold_main.cpp
+q4_kernel.cpp
+Microsoft (R) Incremental Linker Version 14.44.35229.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+q4_kernel.cpp
+h0_qa.cpp
+Microsoft (R) Incremental Linker Version 14.44.35229.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+

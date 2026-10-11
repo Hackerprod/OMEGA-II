@@ -1,2 +1,0 @@
-PASS fused4 contains signed int8 expansion and pairwise integer dot-product opcodes
-PASS fused4 contains no XMM/YMM stack accesses

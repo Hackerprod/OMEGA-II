@@ -1,0 +1,2 @@
+series,metric,median,iqr,mad,min,max,N,warmup_count,outlier_discard_count
+f_bw_l2_i_CORE_API_08_G0_MASK_16,bytes_per_second,4.1574e+08,2.82367e+06,1.38645e+06,4.08927e+08,4.18438e+08,31,5,0

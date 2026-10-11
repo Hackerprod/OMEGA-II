@@ -1,0 +1,8 @@
+{
+    "CounterSetName":  "Processor Performance",
+    "Counter":  [
+                    "\\Processor Performance(*)\\Processor Frequency",
+                    "\\Processor Performance(*)\\% of Maximum Frequency",
+                    "\\Processor Performance(*)\\Processor State Flags"
+                ]
+}

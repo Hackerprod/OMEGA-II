@@ -1,0 +1,16 @@
+h0_scaffold.cpp
+h0_measure.cpp
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(222): error C2679: '=' binario: no se encontr¢ un operador que adopte un operando en la parte derecha de tipo 'std::pair<t0h0::H0Sample,t0h0::H0Sample>' (o bien no existe una conversi¢n aceptable)
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\array(576): note: puede ser 'std::array<t0h0::H0Sample,2> &std::array<t0h0::H0Sample,2>::operator =(std::array<t0h0::H0Sample,2> &&)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(222): note: 'std::array<t0h0::H0Sample,2> &std::array<t0h0::H0Sample,2>::operator =(std::array<t0h0::H0Sample,2> &&)': el argumento 2 no puede convertirse de 'std::pair<t0h0::H0Sample,t0h0::H0Sample>' a 'std::array<t0h0::H0Sample,2> &&'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(222): note: Raz¢n: no se puede realizar la conversi¢n de 'std::pair<t0h0::H0Sample,t0h0::H0Sample>' a 'std::array<t0h0::H0Sample,2>'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(222): note: No hay disponible ning£n operador de conversi¢n definido por el usuario que pueda realizar esta conversi¢n, o bien no se puede llamar al operador
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\array(576): note: o       'std::array<t0h0::H0Sample,2> &std::array<t0h0::H0Sample,2>::operator =(const std::array<t0h0::H0Sample,2> &)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(222): note: 'std::array<t0h0::H0Sample,2> &std::array<t0h0::H0Sample,2>::operator =(const std::array<t0h0::H0Sample,2> &)': el argumento 2 no puede convertirse de 'std::pair<t0h0::H0Sample,t0h0::H0Sample>' a 'const std::array<t0h0::H0Sample,2> &'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(222): note: Raz¢n: no se puede realizar la conversi¢n de 'std::pair<t0h0::H0Sample,t0h0::H0Sample>' a 'const std::array<t0h0::H0Sample,2>'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(222): note: No hay disponible ning£n operador de conversi¢n definido por el usuario que pueda realizar esta conversi¢n, o bien no se puede llamar al operador
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_measure.cpp(222): note: al hacer coincidir la lista de argumentos '(_Ty, std::pair<t0h0::H0Sample,t0h0::H0Sample>)'
+        with
+        [
+            _Ty=t0h0::`anonymous-namespace'::PairedAASample
+        ]

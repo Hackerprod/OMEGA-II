@@ -1,0 +1,2 @@
+C:/Projects/OMEGA/.venv_cuda/Scripts/python.exe -B verify_h0_disassembly.py build/h0_scaffold.asm
+exit_code=0

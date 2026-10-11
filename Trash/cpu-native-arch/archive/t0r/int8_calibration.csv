@@ -1,5 +1,0 @@
-logical_cpu_index,mac_per_second,elapsed_seconds,affinity_succeeded
-0,24345900000,0.0008614,true
-2,14743800000,0.0014224,true
-4,17636500000,0.0011891,true
-6,18119500000,0.0011574,true

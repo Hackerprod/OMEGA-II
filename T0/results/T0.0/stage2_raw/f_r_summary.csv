@@ -1,0 +1,4 @@
+candidate,l2_sigma_median_bytes_per_second,bw_d_n_median_bytes_per_second,r
+A_4P,2.52767e+09,5.86893e+10,0.0430687
+B_allP,4.89876e+09,6.72732e+10,0.0728188
+C_P_plus_E,6.06828e+09,6.60034e+10,0.0919389

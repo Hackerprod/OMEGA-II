@@ -1,6 +1,0 @@
-the cat is a pet the dog is a pet the cat sleeps the dog runs
-the cat chases the mouse the dog chases the cat the animal runs
-a pet is a friend the cat is a friend the dog is a friend
-the cat sleeps the dog sleeps the mouse runs the animal runs
-the cat is a pet the dog is a pet the cat chases the mouse
-the dog chases the cat a pet is a friend the animal sleeps

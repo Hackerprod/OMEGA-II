@@ -1,0 +1,3 @@
+worker_type,physical_core_count,median_of_core_medians_MAC_per_second,iqr_of_core_medians,mad_of_core_medians,min_core_median,max_core_median,N_per_core,warmup_count,outlier_discard_count
+E-core,8,1476625000.0,128620000.0,2825000.0,1345650000.0,1480600000.0,31,5,0
+P-core,8,2238100000.0,31490000.0,15745000.0,2190840000.0,2259100000.0,31,5,0

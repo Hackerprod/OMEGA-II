@@ -1,7 +1,0 @@
-path,mac_per_second_gmac_s,elapsed_seconds,elapsed_kind,mac_total
-old-single,13.587,0.0015435,kernel_elapsed_seconds,20971520
-old-parallel-one-worker,4.03213,0.0056426,wall_elapsed_seconds (kernel=0.0052011),20971520
-new-t0m-fused,2.24148,0.0093561,elapsed_seconds,20971520
-new_over_old_single,0.16497240008831973,,,
-new_over_old_parallel,0.55590469553313016,,,
-new_over_old_parallel_wall_normalized,0.6030929111480714,,,

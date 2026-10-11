@@ -1,0 +1,1 @@
+C:\Projects\OMEGA\Ejercise\T0\src\build\h0_scaffold.exe --run-block AUTORIZADO C:\Projects\OMEGA\Ejercise\T0\results\T0.0\b_topologia.csv C:\Projects\OMEGA\Ejercise\T0\results\T0.1\h0_raw\h0_official_20261011b h0_official_20261011b_12_Ecluster1_A_K16_m1_W1310724 E1 A 1310724 16 1 D3AAF70FECE679BC 8

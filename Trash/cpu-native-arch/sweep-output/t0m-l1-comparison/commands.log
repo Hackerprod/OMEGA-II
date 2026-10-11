@@ -1,7 +1,0 @@
-T0-M L1 pure-throughput comparison exact commands
-output_directory=
-D:\Install\Dev\Projects\IA\Ejercise\cpu-native-arch\sweep-output\t0m-l1-comparison
-preamble-self-test "D:\Install\Dev\Projects\IA\Ejercise\cpu-native-arch\build\t0m_int8_probe.exe" --self-test
-old-single "D:\Install\Dev\Projects\IA\Ejercise\cpu-native-arch\archive\t0r\int8_probe.exe" --cpu 0 --m 64 --K 64 --depth 64 --variant A --kernel avx2 --iterations 4 --repetitions 20 --warmup 5
-old-parallel-one-worker "D:\Install\Dev\Projects\IA\Ejercise\cpu-native-arch\archive\t0r\int8_probe.exe" --K 64 --m 64 --depth 64 --variant A --kernel avx2 --parallel-cpus 0 --parallel-rows 64 --iterations 4 --repetitions 20 --warmup 5
-new-t0m-fused "D:\Install\Dev\Projects\IA\Ejercise\cpu-native-arch\build\t0m_int8_probe.exe" --D 64 --S 1 --R 64 --mode fused --variant A --S-tile 8 --workers 1 --cpus 0 --rows-per-worker 64 --iterations 4 --timed-repetitions 20 --warmup 5

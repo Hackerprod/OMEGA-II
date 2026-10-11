@@ -1,0 +1,125 @@
+{
+  "SESSION": "HOLD",
+  "status": "SESSION=HOLD",
+  "reason": "one or more frozen session preconditions failed",
+  "authorization_token": "AUTORIZADO",
+  "performance_series_started": false,
+  "preflight": {
+    "captured_utc": "2026-10-11T01:32:24.1890579Z",
+    "power_plan_guid": "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",
+    "expected_power_plan_guid": "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",
+    "cpu_names": [
+      "13th Gen Intel(R) Core(TM) i7-13700F"
+    ],
+    "logical_processor_count": 24,
+    "expected_cpu_name": "13th Gen Intel(R) Core(TM) i7-13700F",
+    "chrome_pids_before": [],
+    "chrome_pids_after": [],
+    "cpu_samples": [
+      {
+        "Timestamp": "2026-10-11T01:32:11.3683872Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 6,
+        "PercentIdleTime": 94,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T01:32:12.6418589Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 4,
+        "PercentIdleTime": 98,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T01:32:13.9265338Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 0,
+        "PercentIdleTime": 99,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T01:32:15.2149329Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 11,
+        "PercentIdleTime": 98,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T01:32:16.4924542Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 4,
+        "PercentIdleTime": 99,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T01:32:17.7681177Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 9,
+        "PercentIdleTime": 93,
+        "PercentUserTime": 1,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T01:32:19.0510937Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 7,
+        "PercentIdleTime": 98,
+        "PercentUserTime": 1,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T01:32:20.3256837Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 5,
+        "PercentIdleTime": 98,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T01:32:21.6081226Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 4,
+        "PercentIdleTime": 98,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T01:32:22.8770410Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 2,
+        "PercentIdleTime": 96,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T01:32:24.1575545Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 12,
+        "PercentIdleTime": 97,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      }
+    ],
+    "mean_cpu_percent": 5.818181818181818,
+    "max_cpu_percent": 12,
+    "heavy_processes_over_2pct_total": [],
+    "process_sample_seconds": 13.2070285,
+    "cpu_sample_interval_seconds": 1,
+    "cpu_sample_count": 11,
+    "topology_sha256": "8E5CDA8410873852C3DD266E2CC1535376DEEA3705328173BC879117F4574CAF",
+    "checks": {
+      "chrome_absent": true,
+      "power_plan_matches": true,
+      "hardware_matches": true,
+      "topology_matches": true,
+      "background_load_ok": false
+    },
+    "session_preflight_pass": false
+  },
+  "parameters_file": "results/T0.0/phase1_measurement_plan.json"
+}

@@ -1,0 +1,13 @@
+correctness route=ISA_BASE_AVX2 m=1 integer_group_exact=true final_tolerance_pass=true
+correctness route=ISA_OPT_AVX_VNNI_256 m=1 integer_group_exact=true final_tolerance_pass=true
+correctness route=ISA_BASE_AVX2 m=2 integer_group_exact=true final_tolerance_pass=true
+correctness route=ISA_OPT_AVX_VNNI_256 m=2 integer_group_exact=true final_tolerance_pass=true
+correctness route=ISA_BASE_AVX2 m=4 integer_group_exact=true final_tolerance_pass=true
+correctness route=ISA_OPT_AVX_VNNI_256 m=4 integer_group_exact=true final_tolerance_pass=true
+correctness route=ISA_BASE_AVX2 m=8 integer_group_exact=true final_tolerance_pass=true
+correctness route=ISA_OPT_AVX_VNNI_256 m=8 integer_group_exact=true final_tolerance_pass=true
+correctness route=ISA_BASE_AVX2 m=16 integer_group_exact=true final_tolerance_pass=true
+correctness route=ISA_OPT_AVX_VNNI_256 m=16 integer_group_exact=true final_tolerance_pass=true
+correctness route=ISA_BASE_AVX2 m=32 integer_group_exact=true final_tolerance_pass=true
+correctness route=ISA_OPT_AVX_VNNI_256 m=32 integer_group_exact=true final_tolerance_pass=true
+summary status=PASS measurement=false atol=1e-5 rtol=1e-5

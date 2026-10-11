@@ -1,8 +1,0 @@
-{"K": 1, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 1.52587890625e-05, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 0}
-{"K": 1, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 0.000244140625, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 1}
-{"K": 1, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 1.0251998901367188e-05, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 2}
-{"K": 1, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 6.884336471557617e-06, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 3}
-{"K": 1, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 8.463859558105469e-06, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 4}
-{"K": 1, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 6.198883056640625e-06, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 5}
-{"K": 1, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 7.033348083496094e-06, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 6}
-{"K": 1, "max_E_N": 0.0, "max_E_T": 0.0, "max_abs_error": 7.62939453125e-06, "max_gamma_h_A": 0.0, "oracle_fail_count": 0, "oracle_fallback_count": 0, "pass": true, "update": 7}

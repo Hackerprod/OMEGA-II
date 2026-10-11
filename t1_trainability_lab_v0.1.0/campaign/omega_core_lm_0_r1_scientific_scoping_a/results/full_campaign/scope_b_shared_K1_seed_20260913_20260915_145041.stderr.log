@@ -1,8 +1,0 @@
-usage: run_scientific_scoping_a.py [-h] [--smoke] [--integration-smoke]
-                                   [--scope-b] [--scope-b-smoke] [--full]
-                                   [--confirm-smoke]
-                                   [--resume-checkpoint RESUME_CHECKPOINT]
-                                   [--run-id RUN_ID] [--seed SEED]
-                                   [--variant {shared_K1,shared_K4}]
-                                   [--output-dir OUTPUT_DIR]
-run_scientific_scoping_a.py: error: scope B requires --full --confirm-smoke --resume-checkpoint --run-id --seed and --variant

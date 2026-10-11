@@ -1,0 +1,10 @@
+q4_kernel.cpp
+phase0_bench.cpp
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase0_bench.cpp(329): error C2664: 'std::string `anonymous-namespace'::routeName(int)': el argumento 1 no puede convertirse de 'const t0q4::Route' a 'int'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase0_bench.cpp(329): note: Esta conversi¢n requiere una conversi¢n expl¡cita (static_cast, conversi¢n de estilo de C o conversi¢n de estilo de funci¢n entre par‚ntesis)
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase0_bench.cpp(212): note: vea la declaraci¢n de '`anonymous-namespace'::routeName'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase0_bench.cpp(329): note: al hacer coincidir la lista de argumentos '(const t0q4::Route)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase0_bench.cpp(329): error C2088: el operador integrado '+' no se puede aplicar a un operando de tipo 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase0_bench.cpp(329): error C2512: 'std::runtime_error': no hay disponible un constructor predeterminado adecuado
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase0_bench.cpp(329): note: 'std::runtime_error::runtime_error': no hay disponible un constructor predeterminado adecuado
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase0_bench.cpp(329): note: al hacer coincidir la lista de argumentos '()'

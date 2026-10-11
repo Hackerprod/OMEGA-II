@@ -1,0 +1,5 @@
+worker_set,route,metric,median,iqr,mad,min,max,N,warmup_count,outlier_discard_count,fixed_units,series_attempt
+8P,ISA_BASE_AVX2,P_Q4_8P_conventional_MAC_per_second,1.33398e+11,9.42695e+08,4.02099e+08,1.29883e+11,1.34534e+11,31,5,0,9601,1
+8P,ISA_BASE_AVX2,BW_Q4_logical_8P_B_per_s,7.50364e+10,5.30266e+08,2.26181e+08,7.30592e+10,7.56753e+10,31,5,0,9601,1
+8P,ISA_OPT_AVX_VNNI_256,P_Q4_8P_conventional_MAC_per_second,1.37703e+11,1.47951e+09,6.70477e+08,1.35682e+11,1.39236e+11,31,5,0,9818,1
+8P,ISA_OPT_AVX_VNNI_256,BW_Q4_logical_8P_B_per_s,7.74582e+10,8.32227e+08,3.77144e+08,7.63214e+10,7.83204e+10,31,5,0,9818,1

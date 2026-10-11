@@ -1,0 +1,1 @@
+C:\Projects\OMEGA\Ejercise\T0\src\build\h0_qa.exe C:\Projects\OMEGA\Ejercise\T0\results\T0.0\b_topologia.csv

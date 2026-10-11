@@ -1,0 +1,1 @@
+{"record":"h0_block_complete","block_id":"h0_official_20261011b_12_Ecluster0_A_K16_m1_W524286","variant_count":1,"W_target_bytes":524286,"O":1820,"W_real_bytes":524160,"same_A_C_base_address_for_block":true,"official_timing_performed":true}

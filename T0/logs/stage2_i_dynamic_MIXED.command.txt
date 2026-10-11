@@ -1,0 +1,1 @@
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File C:\Projects\OMEGA\Ejercise\T0\src\i_dynamic_probe.ps1 -WorkerSet MIXED -WorkerCount 16 -DurationSeconds 120 -OutputDirectory C:\Projects\OMEGA\Ejercise\T0\results\T0.0\stage2_raw\i_MIXED

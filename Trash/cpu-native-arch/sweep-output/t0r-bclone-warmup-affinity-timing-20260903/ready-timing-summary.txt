@@ -1,6 +1,0 @@
-T0-R ready timing summary
-raw_worker_lines=120
-boundaries=existing ready timing boundary; retained unchanged
-A ready_min_seconds=0.0015592 ready_max_seconds=0.0075678 ready_mean_seconds=0.0030481825 kernel_elapsed_min_seconds=0.0033802 kernel_elapsed_max_seconds=0.0275766 kernel_elapsed_mean_seconds=0.01311327 mac_per_second_min=9734180000 mac_per_second_max=79414100000 mac_per_second_mean=30897238000
-B ready_min_seconds=0.019781 ready_max_seconds=0.0267169 ready_mean_seconds=0.021880195 kernel_elapsed_min_seconds=0.0070297 kernel_elapsed_max_seconds=0.0303126 kernel_elapsed_mean_seconds=0.0133956 mac_per_second_min=8855570000 mac_per_second_max=38185900000 mac_per_second_mean=23660417000
-Bclone ready_min_seconds=0.247551 ready_max_seconds=0.309262 ready_mean_seconds=0.262764075 kernel_elapsed_min_seconds=0.0228322 kernel_elapsed_max_seconds=0.0750971 kernel_elapsed_mean_seconds=0.04779024 mac_per_second_min=3574510000 mac_per_second_max=11756900000 mac_per_second_mean=6433861000

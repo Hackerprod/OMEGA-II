@@ -1,0 +1,92 @@
+{
+  "attempt_count": 1,
+  "status": "UNAVAILABLE_WITH_QUALIFIED_TOOLS",
+  "tool": "Intel SEP 5.61.22 -p-state; VTune 2026.4 hw-events import/report",
+  "p_state_capability": "SEP help documents APERF/MPERF and fixed unhalted/reference counters",
+  "TSC_frequency_hz_from_SEP_static_platform_info": null,
+  "measured_sources": [],
+  "targets": [
+    {
+      "label": "P_ref",
+      "worker_key": "CORE_API_00_G0_MASK_0_1",
+      "route": "AVX2",
+      "collector": "SEP -p-state",
+      "status": "UNAVAILABLE_WITH_QUALIFIED_TOOLS",
+      "fixed_units_from_completed_P_instr_series": 32986702,
+      "logical_processor": 0,
+      "sep_exit_code": 0,
+      "sep_elapsed_seconds": 0.496,
+      "tb7_files": [
+        "C:\\Projects\\OMEGA\\Ejercise\\T0\\results\\T0.0\\phase1_raw\\effective_frequency_attempt1\\sep_pstate_P_ref.tb7"
+      ],
+      "vtune_import_exit_code": 0,
+      "hw_events_report_exit_code": 0,
+      "event_counts": {
+        "thread_cycles": 0.0,
+        "reference_cycles": 318000477.0
+      },
+      "marker": {
+        "record": "P_instr_frequency_load_marker",
+        "worker_key": "CORE_API_00_G0_MASK_0_1",
+        "worker_type": "P-core",
+        "processor_group": 0,
+        "logical_processor": 0,
+        "route": "AVX2",
+        "fixed_units": 32986702,
+        "qpc_frequency_hz": 10000000,
+        "qpc_elapsed_ns": 150072700,
+        "qpc_ticks": 1500727,
+        "rdtscp_ticks_diagnostic_only": 316950010,
+        "aux_start": 0,
+        "aux_end": 0,
+        "correctness": true,
+        "aux_stable": true,
+        "throughput_used_for_frequency": false,
+        "frequency_derived_in_harness": false
+      },
+      "reason": "VTune-imported SEP data did not expose usable APERF/MPERF or THREAD/REF_TSC counts"
+    },
+    {
+      "label": "E_representative",
+      "worker_key": "CORE_API_08_G0_MASK_16",
+      "route": "AVX2",
+      "collector": "SEP -p-state",
+      "status": "UNAVAILABLE_WITH_QUALIFIED_TOOLS",
+      "fixed_units_from_completed_P_instr_series": 9495994,
+      "logical_processor": 16,
+      "sep_exit_code": 0,
+      "sep_elapsed_seconds": 0.449,
+      "tb7_files": [
+        "C:\\Projects\\OMEGA\\Ejercise\\T0\\results\\T0.0\\phase1_raw\\effective_frequency_attempt1\\sep_pstate_E_representative.tb7"
+      ],
+      "vtune_import_exit_code": 0,
+      "hw_events_report_exit_code": 0,
+      "event_counts": {
+        "thread_cycles": 0.0,
+        "reference_cycles": 316000474.0
+      },
+      "marker": {
+        "record": "P_instr_frequency_load_marker",
+        "worker_key": "CORE_API_08_G0_MASK_16",
+        "worker_type": "E-core",
+        "processor_group": 0,
+        "logical_processor": 16,
+        "route": "AVX2",
+        "fixed_units": 9495994,
+        "qpc_frequency_hz": 10000000,
+        "qpc_elapsed_ns": 150158400,
+        "qpc_ticks": 1501584,
+        "rdtscp_ticks_diagnostic_only": 317130406,
+        "aux_start": 16,
+        "aux_end": 16,
+        "correctness": true,
+        "aux_stable": true,
+        "throughput_used_for_frequency": false,
+        "frequency_derived_in_harness": false
+      },
+      "reason": "VTune-imported SEP data did not expose usable APERF/MPERF or THREAD/REF_TSC counts"
+    }
+  ],
+  "no_retries_or_tuning": true,
+  "postprocessing_only": true
+}

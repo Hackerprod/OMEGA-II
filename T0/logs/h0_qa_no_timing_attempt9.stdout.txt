@@ -1,0 +1,1 @@
+{"record":"h0_qa","geometry_md30":true,"A_C_same_B_distinct_bytes_equal":true,"K1_vs_Kmax16_and_Q4_reference":true,"persistent_8P_barriers_no_qpc":true,"smt_shared_shard_partition_no_qpc":true,"eviction_buffers_policy":true,"calibration_policy_pure":true,"variant_order_seeded":true,"measurement":false,"official_timing":false,"status":"PASS"}

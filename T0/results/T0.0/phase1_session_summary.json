@@ -1,0 +1,1299 @@
+{
+  "SESSION": "COMPLETE",
+  "status": "COMPLETE",
+  "authorization_token": "AUTORIZADO",
+  "preflight": {
+    "captured_utc": "2026-10-11T03:06:22.0149423Z",
+    "power_plan_guid": "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",
+    "expected_power_plan_guid": "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",
+    "cpu_names": [
+      "13th Gen Intel(R) Core(TM) i7-13700F"
+    ],
+    "logical_processor_count": 24,
+    "expected_cpu_name": "13th Gen Intel(R) Core(TM) i7-13700F",
+    "chrome_pids_before": [],
+    "chrome_pids_after": [],
+    "cpu_samples": [
+      {
+        "Timestamp": "2026-10-11T03:06:09.1439758Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 12,
+        "PercentIdleTime": 93,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T03:06:10.4307169Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 9,
+        "PercentIdleTime": 96,
+        "PercentUserTime": 1,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T03:06:11.7163358Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 0,
+        "PercentIdleTime": 98,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T03:06:12.9983762Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 4,
+        "PercentIdleTime": 98,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T03:06:14.2721639Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 14,
+        "PercentIdleTime": 92,
+        "PercentUserTime": 5,
+        "PercentPrivilegedTime": 2
+      },
+      {
+        "Timestamp": "2026-10-11T03:06:15.5462360Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 0,
+        "PercentIdleTime": 99,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T03:06:16.8314669Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 4,
+        "PercentIdleTime": 99,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T03:06:18.1176229Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 12,
+        "PercentIdleTime": 99,
+        "PercentUserTime": 2,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T03:06:19.4046950Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 11,
+        "PercentIdleTime": 98,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T03:06:20.6907503Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 5,
+        "PercentIdleTime": 98,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      },
+      {
+        "Timestamp": "2026-10-11T03:06:21.9728657Z",
+        "InstanceName": "_Total",
+        "PercentProcessorTime": 2,
+        "PercentIdleTime": 97,
+        "PercentUserTime": 0,
+        "PercentPrivilegedTime": 0
+      }
+    ],
+    "mean_cpu_percent": 6.636363636363637,
+    "max_cpu_percent": 14,
+    "active_process_count": 177,
+    "active_processes_cpu": [
+      {
+        "ProcessId": 15268,
+        "Name": "opencode",
+        "CpuPercentTotal": 0.4456829033423011,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3492,
+        "Name": "svchost",
+        "CpuPercentTotal": 0.22284145167115055,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 9200,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 12456,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 14792,
+        "Name": "python",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 13496,
+        "Name": "OpenConsole",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 10068,
+        "Name": "cmd",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4040,
+        "Name": "sshd",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 11360,
+        "Name": "powershell",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3168,
+        "Name": "claude",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1876,
+        "Name": "dwm",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3500,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 11324,
+        "Name": "conhost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1412,
+        "Name": "services",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 11752,
+        "Name": "cmd",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 10884,
+        "Name": "NVIDIA Overlay",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 10024,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2276,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 7456,
+        "Name": "conhost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 6596,
+        "Name": "StartMenuExperienceHost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1420,
+        "Name": "lsass",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 11760,
+        "Name": "conhost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2400,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 15712,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 12696,
+        "Name": "RtkAudUService64",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 14848,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4068,
+        "Name": "RtkAudUService64",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3208,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1068,
+        "Name": "RuntimeBroker",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 14000,
+        "Name": "cmd",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 13132,
+        "Name": "ShellExperienceHost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 5372,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4080,
+        "Name": "codex-windows-sandbox-service",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 8808,
+        "Name": "msedgewebview2",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4052,
+        "Name": "RstMwService",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1920,
+        "Name": "WmiPrvSE",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 11808,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 5336,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 11376,
+        "Name": "NVIDIA Overlay",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2772,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1480,
+        "Name": "winlogon",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1764,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 8408,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4060,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4340,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3052,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 9080,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3904,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1320,
+        "Name": "SearchHost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3060,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 11252,
+        "Name": "NVIDIA Overlay",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 10816,
+        "Name": "pythonw",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3916,
+        "Name": "Everything",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 5212,
+        "Name": "msedgewebview2",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 13812,
+        "Name": "conhost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3884,
+        "Name": "DtsApo4Service",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4276,
+        "Name": "zerotier-one_x64",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 13796,
+        "Name": "OpenConsole",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4312,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1328,
+        "Name": "wininit",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2600,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3464,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 5616,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 9064,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 8,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 7572,
+        "Name": "msedgewebview2",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3972,
+        "Name": "nvcontainer",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 6860,
+        "Name": "wlanext",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 12800,
+        "Name": "osk",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 10856,
+        "Name": "nvsphelper64",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2244,
+        "Name": "NVDisplay.Container",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2688,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3120,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3980,
+        "Name": "jhi_service",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2252,
+        "Name": "msedgewebview2",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 6132,
+        "Name": "nvcontainer",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1804,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 6520,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 7268,
+        "Name": "nvcontainer",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1336,
+        "Name": "csrss",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 13980,
+        "Name": "conhost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 6948,
+        "Name": "Intel_PIE_Service",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 9120,
+        "Name": "conhost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 5680,
+        "Name": "msedgewebview2",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1792,
+        "Name": "RuntimeBroker",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 5664,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 928,
+        "Name": "smss",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1232,
+        "Name": "csrss",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2096,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 368,
+        "Name": "Registry",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2948,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3384,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 17732,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4264,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3828,
+        "Name": "AsusUpdateCheck",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 12872,
+        "Name": "Everything",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 10248,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1652,
+        "Name": "fontdrvhost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3356,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 6884,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2060,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 15848,
+        "Name": "python",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1628,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 7244,
+        "Name": "NVDisplay.Container",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2508,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 8104,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2068,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2500,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 7276,
+        "Name": "NVIDIA Overlay",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 12976,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 9900,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 7308,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4,
+        "Name": "System",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2996,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 10768,
+        "Name": "claude",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 8128,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4300,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3436,
+        "Name": "spoolsv",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3868,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3856,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3836,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2552,
+        "Name": "taskhostw",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 14616,
+        "Name": "ShellHost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2196,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 6424,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 17020,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3852,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 6004,
+        "Name": "sihost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3132,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 14192,
+        "Name": "backgroundTaskHost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 13176,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1548,
+        "Name": "WindowsTerminal",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4124,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 15752,
+        "Name": "notepad++",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 9724,
+        "Name": "ctfmon",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1988,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2420,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 15348,
+        "Name": "node",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1980,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 14052,
+        "Name": "powershell",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1956,
+        "Name": "msedgewebview2",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2804,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3236,
+        "Name": "cmd",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 5820,
+        "Name": "nvcontainer",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 11848,
+        "Name": "node",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 8836,
+        "Name": "explorer",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 7556,
+        "Name": "claude",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2816,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 10040,
+        "Name": "powershell",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4532,
+        "Name": "NVIDIA Overlay",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4104,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3284,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 8072,
+        "Name": "conhost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 2040,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4616,
+        "Name": "node",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 15888,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 9352,
+        "Name": "CrossDeviceResume",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 4196,
+        "Name": "WMIRegistrationService",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 13148,
+        "Name": "OpenConsole",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 12396,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 14116,
+        "Name": "node",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1180,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 5060,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 3736,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 13636,
+        "Name": "OpenConsole",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 6436,
+        "Name": "WUDFHost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 15424,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1992,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 8892,
+        "Name": "taskhostw",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 7180,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 5888,
+        "Name": "svchost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 1660,
+        "Name": "fontdrvhost",
+        "CpuPercentTotal": 0,
+        "BaselineAvailable": true
+      },
+      {
+        "ProcessId": 0,
+        "Name": "Idle",
+        "CpuPercentTotal": null,
+        "BaselineAvailable": false
+      },
+      {
+        "ProcessId": 13784,
+        "Name": "svchost",
+        "CpuPercentTotal": null,
+        "BaselineAvailable": false
+      },
+      {
+        "ProcessId": 14072,
+        "Name": "WmiPrvSE",
+        "CpuPercentTotal": null,
+        "BaselineAvailable": false
+      },
+      {
+        "ProcessId": 15552,
+        "Name": "WmiPrvSE",
+        "CpuPercentTotal": null,
+        "BaselineAvailable": false
+      },
+      {
+        "ProcessId": 17624,
+        "Name": "WmiApSrv",
+        "CpuPercentTotal": null,
+        "BaselineAvailable": false
+      }
+    ],
+    "process_sample_seconds": 18.6978977,
+    "cpu_sample_interval_seconds": 1,
+    "cpu_sample_count": 11,
+    "cpu_load_is_observation_only": true,
+    "topology_sha256": "8E5CDA8410873852C3DD266E2CC1535376DEEA3705328173BC879117F4574CAF",
+    "checks": {
+      "chrome_absent": true,
+      "power_plan_matches": true,
+      "hardware_matches": true,
+      "topology_matches": true,
+      "background_load_recorded": true,
+      "background_load_is_observation_only": true
+    },
+    "session_preflight_pass": true
+  },
+  "preflight_elapsed_seconds": 19.99,
+  "e_order_preregistration_exit_code": 0,
+  "e_order_preregistration_elapsed_seconds": 0.005,
+  "resume_e_core_only": false,
+  "resume_pcore_m1_only": true,
+  "prior_completed_series_preserved": 63,
+  "e_order_resume_check_exit_code": null,
+  "pcore_m1_order_resume_check_exit_code": 0,
+  "effective_frequency_attempt": {
+    "attempt_count": 1,
+    "status": "UNAVAILABLE_WITH_QUALIFIED_TOOLS",
+    "tool": "Intel SEP 5.61.22 -p-state; VTune 2026.4 hw-events import/report",
+    "p_state_capability": "SEP help documents APERF/MPERF and fixed unhalted/reference counters",
+    "TSC_frequency_hz_from_SEP_static_platform_info": null,
+    "measured_sources": [],
+    "targets": [
+      {
+        "label": "P_ref",
+        "worker_key": "CORE_API_00_G0_MASK_0_1",
+        "route": "AVX2",
+        "collector": "SEP -p-state",
+        "status": "UNAVAILABLE_WITH_QUALIFIED_TOOLS",
+        "fixed_units_from_completed_P_instr_series": 32986702,
+        "logical_processor": 0,
+        "sep_exit_code": 0,
+        "sep_elapsed_seconds": 0.496,
+        "tb7_files": [
+          "C:\\Projects\\OMEGA\\Ejercise\\T0\\results\\T0.0\\phase1_raw\\effective_frequency_attempt1\\sep_pstate_P_ref.tb7"
+        ],
+        "vtune_import_exit_code": 0,
+        "hw_events_report_exit_code": 0,
+        "event_counts": {
+          "thread_cycles": 0.0,
+          "reference_cycles": 318000477.0
+        },
+        "marker": {
+          "record": "P_instr_frequency_load_marker",
+          "worker_key": "CORE_API_00_G0_MASK_0_1",
+          "worker_type": "P-core",
+          "processor_group": 0,
+          "logical_processor": 0,
+          "route": "AVX2",
+          "fixed_units": 32986702,
+          "qpc_frequency_hz": 10000000,
+          "qpc_elapsed_ns": 150072700,
+          "qpc_ticks": 1500727,
+          "rdtscp_ticks_diagnostic_only": 316950010,
+          "aux_start": 0,
+          "aux_end": 0,
+          "correctness": true,
+          "aux_stable": true,
+          "throughput_used_for_frequency": false,
+          "frequency_derived_in_harness": false
+        },
+        "reason": "VTune-imported SEP data did not expose usable APERF/MPERF or THREAD/REF_TSC counts"
+      },
+      {
+        "label": "E_representative",
+        "worker_key": "CORE_API_08_G0_MASK_16",
+        "route": "AVX2",
+        "collector": "SEP -p-state",
+        "status": "UNAVAILABLE_WITH_QUALIFIED_TOOLS",
+        "fixed_units_from_completed_P_instr_series": 9495994,
+        "logical_processor": 16,
+        "sep_exit_code": 0,
+        "sep_elapsed_seconds": 0.449,
+        "tb7_files": [
+          "C:\\Projects\\OMEGA\\Ejercise\\T0\\results\\T0.0\\phase1_raw\\effective_frequency_attempt1\\sep_pstate_E_representative.tb7"
+        ],
+        "vtune_import_exit_code": 0,
+        "hw_events_report_exit_code": 0,
+        "event_counts": {
+          "thread_cycles": 0.0,
+          "reference_cycles": 316000474.0
+        },
+        "marker": {
+          "record": "P_instr_frequency_load_marker",
+          "worker_key": "CORE_API_08_G0_MASK_16",
+          "worker_type": "E-core",
+          "processor_group": 0,
+          "logical_processor": 16,
+          "route": "AVX2",
+          "fixed_units": 9495994,
+          "qpc_frequency_hz": 10000000,
+          "qpc_elapsed_ns": 150158400,
+          "qpc_ticks": 1501584,
+          "rdtscp_ticks_diagnostic_only": 317130406,
+          "aux_start": 16,
+          "aux_end": 16,
+          "correctness": true,
+          "aux_stable": true,
+          "throughput_used_for_frequency": false,
+          "frequency_derived_in_harness": false
+        },
+        "reason": "VTune-imported SEP data did not expose usable APERF/MPERF or THREAD/REF_TSC counts"
+      }
+    ],
+    "no_retries_or_tuning": true,
+    "postprocessing_only": true
+  },
+  "series": [
+    {
+      "name": "phase1_resume_pcore_m1",
+      "exit_code": 0,
+      "elapsed_seconds": 126.222
+    }
+  ],
+  "derive_tables_exit_code": 0,
+  "derive_tables_elapsed_seconds": 0.038,
+  "no_performance_samples_replaced": true,
+  "parameters_file": "results/T0.0/phase1_measurement_plan.json"
+}

@@ -1,0 +1,1 @@
+C:\Projects\OMEGA\Ejercise\T0\src\build\phase1_measure_harness.exe --run-instr C:\Projects\OMEGA\Ejercise\T0\results\T0.0\b_topologia.csv C:\Projects\OMEGA\Ejercise\T0\results\T0.0\phase1_raw

@@ -1,2 +1,0 @@
-"record_type","D","S","R","mode","S_tile","rows_per_worker","A_median_mac_per_second","Bclone_median_mac_per_second","A_over_Bclone","Bclone_over_A","A_checksum","Bclone_checksum","checksum_equality_all_pairs","checksum_equality_deterministic","speed_rows","aggregate_rows"
-"literal_fused_bclone","1472","1","16","fused","8","457,297,347,371","31020000000","20903200000","1.48398331355965","0.673862024500322","37367653","37367653","True","True","20","2"

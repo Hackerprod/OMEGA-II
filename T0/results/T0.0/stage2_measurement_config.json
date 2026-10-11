@@ -1,0 +1,48 @@
+{
+  "authorized_stage": "T0.0 stage 2",
+  "recorded_utc": "2026-10-10T12:37:47.158188+00:00",
+  "measurement_order": [
+    "e",
+    "d",
+    "f",
+    "i_dynamic_P",
+    "i_dynamic_E",
+    "i_dynamic_MIXED"
+  ],
+  "N": 31,
+  "warmup_count": 5,
+  "statistic": "median",
+  "dispersion": [
+    "IQR",
+    "MAD"
+  ],
+  "outlier_discard_count": 0,
+  "KERNEL_CALLS_PER_SAMPLE": 128,
+  "BW_D_n": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "BW_D_buffer_bytes_per_worker": 125829120,
+  "worker_sets": {
+    "A": "4 P-cores",
+    "B": "8 P-cores",
+    "C": "8 P + 8 E cores"
+  },
+  "dynamic_load": {
+    "duration_seconds_each": 120,
+    "worker_counts": {
+      "P": 8,
+      "E": 8,
+      "MIXED": 16
+    }
+  },
+  "dynamic_order": [
+    "P",
+    "E",
+    "MIXED"
+  ],
+  "logical_bytes_caveat": "BW_L2 and r are logical Q4 bytes; not validated as physical traffic"
+}

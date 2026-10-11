@@ -1,0 +1,6 @@
+ Assembling: C:\Projects\OMEGA\Ejercise\T0\src\build\..\frequency_chain_x64.asm
+q4_kernel.cpp
+frequency_probe.cpp
+Microsoft (R) Incremental Linker Version 14.44.35229.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+

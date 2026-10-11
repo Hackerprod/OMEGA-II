@@ -1,0 +1,41 @@
+Intel(R) VTune(TM) Profiler Command Line Tool
+Copyright (C) 2009 Intel Corporation. All rights reserved.
+
+ Measure a set of metrics to identify memory access related issues (for
+ example, specific for NUMA architectures). This analysis type is based on
+ the hardware event-based sampling collection.
+
+ To modify the analysis type, use the configuration options (knobs) as
+ follows:
+ -collect memory-access -knob <knobName>=<knobValue>
+ Multiple -knob options are allowed and can be followed by additional collect
+ action options, as well as global options, if needed. 
+
+
+sampling-interval
+
+  Specify an interval (in milliseconds) between CPU samples.
+
+  Default value: 1
+  Possible values: numbers between 0.01 and 1000 
+
+
+dram-bandwidth-limits
+
+  Evaluate maximum achievable local DRAM bandwidth before the collection
+  starts. This data is used to scale bandwidth metrics on the timeline and
+  calculate thresholds.
+
+  Default value: true
+  Possible values: true false
+
+
+analyze-openmp
+
+  Instrument and analyze OpenMP regions to detect inefficiencies such as
+  imbalance, lock contention, or overhead on performing scheduling, reduction
+  and atomic operations.
+
+  Default value: false
+  Possible values: true false
+

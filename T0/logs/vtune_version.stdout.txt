@@ -1,0 +1,2 @@
+Intel(R) VTune(TM) Profiler 2026.4.0 (build 632893) Command Line Tool
+Copyright (C) 2009 Intel Corporation. All rights reserved.

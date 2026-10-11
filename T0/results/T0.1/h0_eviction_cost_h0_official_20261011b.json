@@ -1,0 +1,29 @@
+{
+  "record": "h0_eviction_cost_from_raw",
+  "cells": {
+    "R1_A": {
+      "median_initial_eviction_ns_per_episode_per_worker": 522900.0,
+      "median_eviction_between_ns_per_application": null,
+      "n_between": 0,
+      "scope": "outside kernel_only_ns; per worker; 8 MiB load-only sweep"
+    },
+    "R1_B": {
+      "median_initial_eviction_ns_per_episode_per_worker": 761600.0,
+      "median_eviction_between_ns_per_application": null,
+      "n_between": 0,
+      "scope": "outside kernel_only_ns; per worker; 8 MiB load-only sweep"
+    },
+    "R1_C": {
+      "median_initial_eviction_ns_per_episode_per_worker": 528650.0,
+      "median_eviction_between_ns_per_application": 377300.0,
+      "n_between": 1104840,
+      "scope": "outside kernel_only_ns; per worker; 8 MiB load-only sweep"
+    },
+    "R4_C": {
+      "median_initial_eviction_ns_per_episode_per_worker": 529200.0,
+      "median_eviction_between_ns_per_application": 397500.0,
+      "n_between": 509640,
+      "scope": "outside kernel_only_ns; per worker; 8 MiB load-only sweep"
+    }
+  }
+}

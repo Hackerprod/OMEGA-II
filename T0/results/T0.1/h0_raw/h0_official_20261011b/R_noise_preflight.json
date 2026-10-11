@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "R_noise": 0.012779552715654952,
+  "p95_cell_by_exact_AA_cell": {
+    "00_R_NOISE_AA_8P_W294912_K16_m1": 0.012779552715654952
+  },
+  "aggregation": "max(p95_cell) over every A/A cell participating in H0 adjudication",
+  "threshold": 0.05
+}

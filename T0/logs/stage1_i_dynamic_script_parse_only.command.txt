@@ -1,0 +1,1 @@
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -Command "$tokens=$null; $errors=$null; [System.Management.Automation.Language.Parser]::ParseFile('C:\Projects\OMEGA\Ejercise\T0\src\i_dynamic_probe.ps1',[ref]$tokens,[ref]$errors) | Out-Null; if($errors.Count){$errors | Format-List; exit 1}else{'PARSE_OK'}"

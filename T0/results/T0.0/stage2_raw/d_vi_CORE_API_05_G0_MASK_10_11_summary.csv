@@ -1,0 +1,2 @@
+series,metric,median,iqr,mad,min,max,N,warmup_count,outlier_discard_count
+d_vi_CORE_API_05_G0_MASK_10_11,MAC_per_second,2.25559e+09,2.77079e+07,1.47657e+07,2.16365e+09,2.30457e+09,31,5,0

@@ -1,0 +1,100 @@
+{
+  "record": "H0_D1_D5_DISK_AUDIT",
+  "measurement": false,
+  "official_timing_performed": false,
+  "plan_status_preserved": "IMPLEMENTATION_SCAFFOLD_ONLY_WAITING_FOR_JUEZ_REVIEW",
+  "D1": {
+    "status": "IMPLEMENTADO",
+    "evidence": [
+      "src/h0_runner.py:174",
+      "src/h0_runner.py:186",
+      "results/T0.1/h0_measurement_plan.json:execution_order"
+    ]
+  },
+  "D2": {
+    "status": "CORREGIDO",
+    "correction": "A2 replays the original calibrated episode count and common cached retry; guard rejects mismatched episode counts",
+    "evidence": [
+      "src/h0_measure.cpp:137",
+      "src/h0_measure.cpp:230",
+      "src/h0_measure.cpp:479",
+      "src/h0_qa.cpp:189"
+    ]
+  },
+  "D3": {
+    "status": "IMPLEMENTADO",
+    "evidence": [
+      "src/h0_scaffold.cpp:84",
+      "src/h0_scaffold.cpp:92",
+      "src/h0_measure.cpp:240",
+      "src/h0_measure.cpp:273",
+      "src/h0_measure.cpp:422"
+    ],
+    "synthetic_31_rep": {
+      "c_X": 17,
+      "IQR": 15,
+      "MAD": 8,
+      "min": 2,
+      "max": 32
+    }
+  },
+  "D4": {
+    "status": "CORREGIDO",
+    "correction": "Added stable B-address QA assertion and separate non_overlapping_ranges/byte_equality/all_pages_touched QA output",
+    "evidence": [
+      "src/h0_scaffold.cpp:194",
+      "src/h0_scaffold.cpp:209",
+      "src/h0_qa.cpp:59",
+      "src/h0_qa.cpp:242"
+    ],
+    "allocation_contract": "INDEPENDENT_NON_ALIASING_ALLOCATIONS"
+  },
+  "D5": {
+    "status": "IMPLEMENTADO",
+    "evidence": [
+      "src/h0_measure.cpp:53",
+      "src/h0_scaffold.cpp:246",
+      "src/h0_qa.cpp:108",
+      "src/h0_qa.cpp:138"
+    ]
+  },
+  "validation": {
+    "build_exit_code": 0,
+    "qa_exit_code": 0,
+    "qa_status": "PASS",
+    "disassembly_exit_code": 0,
+    "disassembly_status": "PASS",
+    "disassembly_call_instruction_count": 35,
+    "disassembly_loop_branch_count": 25,
+    "synthetic_exit_code": 0,
+    "synthetic_status": "PASS",
+    "nearest_rank_indices": {
+      "n31": 29,
+      "n20": 18
+    },
+    "non_H0_manifest_entries_unchanged": 957
+  },
+  "ambiguities": [
+    "T0.md 4.1 retains an older deliverable-order paragraph with R_noise preceding eviction, contradicted by its MD/32 closure; no specification edit made.",
+    "SMT descriptive sample costs are aggregated per physical core (both siblings, K=16); MD/32 defines worker without an explicit statistical SMT normalization. Kept existing physical-core normalization; SMT remains CHARACTERIZATION_ONLY."
+  ],
+  "commands_log_prefix": "logs/h0_D1_D5_audit_",
+  "root_inventory": [
+    ".atl",
+    ".claude",
+    ".git",
+    ".gitattributes",
+    ".gitignore",
+    "Claude Agent.cmd",
+    "Conversacion LN.md",
+    "Conversacion.md",
+    "ESTADO_PROYECTO.md",
+    "IDEAS_FUTURAS.md",
+    "Legacy",
+    "MD",
+    "Roadmap.md",
+    "ROADMAP_FREEZE_RECORD.md",
+    "T0",
+    "T0.md"
+  ]
+}

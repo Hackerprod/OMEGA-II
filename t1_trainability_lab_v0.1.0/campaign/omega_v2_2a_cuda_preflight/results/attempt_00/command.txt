@@ -1,1 +1,0 @@
-& "..\..\.venv_cuda\Scripts\python.exe" -m omega_v2_2a_cuda_preflight --official-preflight --go-v2-2a

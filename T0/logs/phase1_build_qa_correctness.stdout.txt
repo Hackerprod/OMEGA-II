@@ -1,0 +1,15 @@
+q4_kernel.cpp
+phase1_correctness.cpp
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_correctness.cpp(18): error C2672: 'std::max': no se encontr¢ una funci¢n sobrecargada que coincida
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(85): note: puede ser '_Ty std::max(std::initializer_list<_Elem>)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_correctness.cpp(18): note: "_Ty std::max(std::initializer_list<_Elem>)": espera 1 argumentos - 2 proporcionado
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(82): note: o       '_Ty std::max(std::initializer_list<_Elem>,_Pr)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_correctness.cpp(18): note: "_Ty std::max(std::initializer_list<_Elem>,_Pr)": no se pudo deducir el argumento plantilla para "std::initializer_list<_Elem>" de "float"
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(74): note: o       'const _Ty &std::max(const _Ty &,const _Ty &) noexcept(<expr>)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_correctness.cpp(18): note: "const _Ty &std::max(const _Ty &,const _Ty &) noexcept(<expr>)": el par metro de plantilla "_Ty" es ambiguo
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_correctness.cpp(18): note: puede ser 'double'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_correctness.cpp(18): note: o       'float'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_correctness.cpp(18): note: "const _Ty &std::max(const _Ty &,const _Ty &) noexcept(<expr>)": no se pudo deducir el argumento plantilla para "const _Ty &" de "double"
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(64): note: o       'const _Ty &std::max(const _Ty &,const _Ty &,_Pr) noexcept(<expr>)'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_correctness.cpp(18): note: "const _Ty &std::max(const _Ty &,const _Ty &,_Pr) noexcept(<expr>)": espera 3 argumentos - 2 proporcionado
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_correctness.cpp(18): error C2737: 'rel': se debe inicializar el objeto const

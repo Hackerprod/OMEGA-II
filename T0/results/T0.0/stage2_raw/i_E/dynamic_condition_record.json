@@ -1,0 +1,16 @@
+﻿{
+    "command":  "\"C:\\Projects\\OMEGA\\Ejercise\\T0\\build\\out\\t0_measure_harness.exe\" --dynamic-load \"C:\\Projects\\OMEGA\\Ejercise\\T0\\results\\T0.0\\b_topologia.csv\" E 8 120",
+    "duration_seconds_requested":  120,
+    "worker_set":  "E",
+    "worker_count":  8,
+    "process_id":  13728,
+    "process_exit_code":  null,
+    "frequency_counter":  "\\Processor Performance(*)\\Processor Frequency",
+    "frequency_counter_status":  "AVAILABLE",
+    "frequency_counter_error":  null,
+    "frequency_summary_statistic":  "median of sampled CookedValue per PDH instance; raw samples are preserved separately",
+    "temperature_telemetry":  "UNAVAILABLE",
+    "power_telemetry":  "UNAVAILABLE",
+    "PL1":  "UNAVAILABLE_WITH_ALLOWED_INTERFACES",
+    "PL2":  "UNAVAILABLE_WITH_ALLOWED_INTERFACES"
+}

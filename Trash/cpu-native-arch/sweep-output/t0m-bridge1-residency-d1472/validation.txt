@@ -1,4 +1,0 @@
-status=FAIL
-bridge1_ratio=FAIL; A_over_Bclone=0.86187817573346426; expected=2.5..2.9
-checksum_proof=PASS
-STOP=Bridge 2/3/4 not started

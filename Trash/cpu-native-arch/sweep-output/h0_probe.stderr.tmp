@@ -1,2 +1,0 @@
-T0 scalar Q4 throughput probe; not an exact model-kernel equivalence claim
-shape m=2048 K=512, target_kib=640, actual_weight_bytes_per_block=655360, allocated_weight_bytes=2621440, variant=B, eviction_bytes=0, active_logical_cpus=8

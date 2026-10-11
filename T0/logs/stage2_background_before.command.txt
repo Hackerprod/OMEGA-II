@@ -1,0 +1,7 @@
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -Command "
+$ErrorActionPreference = 'Stop'
+$processes = @(Get-CimInstance Win32_Process | Select-Object ProcessId,ParentProcessId,Name,CommandLine)
+$samples = Get-Counter -Counter '\Processor(_Total)\% Processor Time' -SampleInterval 1 -MaxSamples 11
+$cpu = @($samples | ForEach-Object { $_.CounterSamples | Select-Object Timestamp,InstanceName,CookedValue,Status })
+[ordered]@{ captured_utc=(Get-Date).ToUniversalTime().ToString('o'); cpu_counter='\Processor(_Total)\% Processor Time'; sample_interval_seconds=1; expected_samples=11; cpu_samples=$cpu; processes=$processes } | ConvertTo-Json -Depth 6
+"

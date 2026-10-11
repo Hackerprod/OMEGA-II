@@ -1,0 +1,10 @@
+atype: hotspots 
+atype: uarch-exploration 
+atype: memory-access 
+atype: io 
+atype: system-overview 
+atype: hpc-performance 
+atype: performance-snapshot 
+atype: hwpgo 
+
+

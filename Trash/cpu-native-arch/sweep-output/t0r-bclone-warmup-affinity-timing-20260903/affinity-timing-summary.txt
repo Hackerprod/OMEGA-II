@@ -1,6 +1,0 @@
-T0-R AffinityGuard construction timing summary
-raw_worker_lines=120
-boundaries=QPC immediately before AffinityGuard declaration through immediately after constructor returns
-A affinity_guard_min_seconds=4.6E-06 affinity_guard_max_seconds=0.0043667 affinity_guard_mean_seconds=0.0003747675
-B affinity_guard_min_seconds=7.7E-06 affinity_guard_max_seconds=0.0033024 affinity_guard_mean_seconds=0.0003643075
-Bclone affinity_guard_min_seconds=5.3E-06 affinity_guard_max_seconds=0.0054209 affinity_guard_mean_seconds=0.00040485

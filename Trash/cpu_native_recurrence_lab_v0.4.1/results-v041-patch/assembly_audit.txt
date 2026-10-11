@@ -1,4 +1,0 @@
-﻿INFO fused4 has vector stack accesses only outside the arithmetic window (expected Windows x64 ABI save/restore is permitted).
-PASS fused4: AVX2 signed expansion + pairwise dot product, no XMM/YMM stack access in the arithmetic window.
-Object audited: D:\Install\Dev\Projects\IA\Ejercise\cpu_native_recurrence_lab_v0.4.1\build-windows\CMakeFiles\cnrl_core.dir\src\kernels.cpp.obj
-Disassembly archived at D:\Install\Dev\Projects\IA\Ejercise\cpu_native_recurrence_lab_v0.4.1\results-v041-patch\kernels.dumpbin.txt

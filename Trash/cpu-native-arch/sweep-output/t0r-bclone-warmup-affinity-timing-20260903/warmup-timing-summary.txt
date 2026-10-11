@@ -1,6 +1,0 @@
-T0-R warmup timing summary
-raw_worker_lines=120
-boundaries=QPC immediately before and after existing warmup loop; no timing inside pass_function or barriers
-A warmup_min_seconds=0.0003839 warmup_max_seconds=0.0019543 warmup_mean_seconds=0.00069057
-B warmup_min_seconds=0.0005654 warmup_max_seconds=0.0042136 warmup_mean_seconds=0.0008680475
-Bclone warmup_min_seconds=0.169268 warmup_max_seconds=0.291146 warmup_mean_seconds=0.21920605

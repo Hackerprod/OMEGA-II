@@ -1,0 +1,2 @@
+series,metric,median,iqr,mad,min,max,N,warmup_count,outlier_discard_count
+e_pico_avx2_CORE_API_10_G0_MASK_18,MAC_per_second,1.3481e+09,1.44347e+07,7.33398e+06,1.30714e+09,1.35724e+09,31,5,0

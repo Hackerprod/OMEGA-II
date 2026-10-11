@@ -1,0 +1,973 @@
+### COMPUTER
+{
+    "Manufacturer":  "ASUS",
+    "Model":  "System Product Name",
+    "HypervisorPresent":  false,
+    "NumberOfLogicalProcessors":  24,
+    "NumberOfProcessors":  1,
+    "TotalPhysicalMemory":  34163593216
+}
+### PROCESSOR
+{
+    "Name":  "13th Gen Intel(R) Core(TM) i7-13700F",
+    "Manufacturer":  "GenuineIntel",
+    "Description":  "Intel64 Family 6 Model 183 Stepping 1",
+    "NumberOfCores":  16,
+    "NumberOfLogicalProcessors":  24,
+    "ProcessorId":  "BFEBFBFF000B0671",
+    "Family":  198,
+    "VirtualizationFirmwareEnabled":  true,
+    "L2CacheSize":  24576,
+    "L3CacheSize":  30720
+}
+### PHYSICAL MEMORY
+[
+    {
+        "DeviceLocator":  "Controller0-DIMM1",
+        "Capacity":  17179869184,
+        "Speed":  5200,
+        "ConfiguredClockSpeed":  5200,
+        "Manufacturer":  "Kingston",
+        "PartNumber":  "HP52U40S8MA-16FRAE  ",
+        "SMBIOSMemoryType":  34
+    },
+    {
+        "DeviceLocator":  "Controller1-DIMM1",
+        "Capacity":  17179869184,
+        "Speed":  5200,
+        "ConfiguredClockSpeed":  5200,
+        "Manufacturer":  "Kingston",
+        "PartNumber":  "HP52U40S8MA-16FRAE  ",
+        "SMBIOSMemoryType":  34
+    }
+]
+### MEMORY ARRAY
+{
+    "MemoryDevices":  4,
+    "MaxCapacity":  268435456,
+    "Location":  3,
+    "Use":  3
+}
+### OS
+{
+    "Caption":  "Microsoft Windows 11 Enterprise LTSC",
+    "Version":  "10.0.26100",
+    "BuildNumber":  "26100"
+}
+### POWER PLAN
+GUID de plan de energ¡a: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c  (Alto rendimiento)### PROCESSOR POWER SETTINGS
+GUID de plan de energ¡a: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c  (Alto rendimiento)
+  Alias de GUID: SCHEME_MIN
+  GUID de subgrupo: 54533251-82be-4824-96c1-47b60b740d00  (Administraci¢n de energ¡a del procesador)
+    Alias de GUID: SUB_PROCESSOR
+    GUID de configuraci¢n de energ¡a: 06cadf0e-64ed-448a-8927-ce7bf90eb35d  (Umbral de aumento de rendimiento de procesador)
+      Alias de GUID: PERFINCTHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x0000001e
+    Öndice de configuraci¢n de corriente continua actual: 0x0000001e
+
+    GUID de configuraci¢n de energ¡a: 06cadf0e-64ed-448a-8927-ce7bf90eb35e  (L¡mite de aumento del rendimiento del procesador para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: PERFINCTHRESHOLD1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x0000003c
+    Öndice de configuraci¢n de corriente continua actual: 0x0000005a
+
+    GUID de configuraci¢n de energ¡a: 0cc5b647-c1df-4637-891a-dec35c318583  (M¡nima detenci¢n de n£cleos de rendimiento de procesador)
+      Alias de GUID: CPMINCORES
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000004
+    Öndice de configuraci¢n de corriente continua actual: 0x00000004
+
+    GUID de configuraci¢n de energ¡a: 0cc5b647-c1df-4637-891a-dec35c318584  (M¡nimo de n£cleos de detenci¢n de n£cleos para el rendimiento del procesador de la eficiencia energ‚tica de clase 1)
+      Alias de GUID: CPMINCORES1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 12a0ab44-fe28-4fa9-b3bd-4b64f44960a6  (Umbral de reducci¢n de rendimiento de procesador)
+      Alias de GUID: PERFDECTHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x0000000a
+    Öndice de configuraci¢n de corriente continua actual: 0x0000000a
+
+    GUID de configuraci¢n de energ¡a: 12a0ab44-fe28-4fa9-b3bd-4b64f44960a7  (L¡mite de reducci¢n del rendimiento del procesador para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: PERFDECTHRESHOLD1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000014
+    Öndice de configuraci¢n de corriente continua actual: 0x0000001e
+
+    GUID de configuraci¢n de energ¡a: 12fd031f-53d2-4bf4-ac6d-c699fc9538c7  (Porcentaje de utilidad importante de la zona de contenci¢n h¡brida)
+      Alias de GUID: HETEROCONTAINMENTHYBRIDIMPUTILTHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0xffffffff
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 1a98ad09-af22-42ca-8e61-f0a5802c270a  (Recuento de restricciones de procesador)
+      Alias de GUID: RESTRICTIONCOUNT
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000040
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Recuento de restricciones de procesador
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 1facfc65-a930-4bc5-9f38-504ec097bbc0  (Rendimiento inicial para la eficiencia energ‚tica de clase 1 cuando est  reactivado)
+      Alias de GUID: HETEROCLASS1INITIALPERF
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: 2430ab6f-a520-44a2-9601-f7f23b5134b1  (Umbral de simultaneidad de detenci¢n de n£cleos del rendimiento del procesador)
+      Alias de GUID: CPCONCURRENCY
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x0000005f
+    Öndice de configuraci¢n de corriente continua actual: 0x0000005f
+
+    GUID de configuraci¢n de energ¡a: 2ddd5a84-5a71-437e-912a-db0b8c788732  (Tiempo de aumento de detenci¢n de n£cleos de rendimiento de procesador)
+      Alias de GUID: CPINCREASETIME
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 36687f9e-e3a5-4dbf-b1dc-15eb381c6863  (Directiva de preferencia de rendimiento de energ¡a del procesador)
+      Alias de GUID: PERFEPP
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000005
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 36687f9e-e3a5-4dbf-b1dc-15eb381c6864  (Directiva de preferencias de rendimiento de energ¡a del procesador de eficiencia energ‚tica clase 1)
+      Alias de GUID: PERFEPP1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000005
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 36687f9e-e3a5-4dbf-b1dc-15eb381c6865  (Directiva de preferencias de rendimiento de energ¡a del procesador de eficiencia energ‚tica clase 2)
+      Alias de GUID: PERFEPP2
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 3b04d4fd-1cc7-4f23-ab1c-d1337819c4bb  (Permitir estados de aceleraci¢n)
+      Alias de GUID: THROTTLING
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Desactivar
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Activar
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Autom tico
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000002
+    Öndice de configuraci¢n de corriente continua actual: 0x00000002
+
+    GUID de configuraci¢n de energ¡a: 4009efa7-e72d-4cba-9edf-91084ea8cbc3  (Tiempo de aumento del rendimiento del procesador para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: HETEROINCREASETIME
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 40fbefc7-2e9d-4d25-a185-0cfd8574bac6  (Directiva de reducci¢n de rendimiento de procesador)
+      Alias de GUID: PERFDECPOL
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Ideal
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Sencillo
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Variaci¢n m xima
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 40fbefc7-2e9d-4d25-a185-0cfd8574bac7  (Directiva de reducci¢n del rendimiento del procesador para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: PERFDECPOL1
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Ideal
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Sencillo
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Variaci¢n m xima
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 43f278bc-0f8a-46d0-8b31-9a23e615d713  (L¡mite inferior de arquitectura del procesador de subprocesos de larga duraci¢n)
+      Alias de GUID: LONGTHREADARCHCLASSLOWERTHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x000000ff
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Clase de arquitectura del procesador
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 447235c7-6a8d-4cc0-8e24-9eaf70b96e2b  (Estado de rendimiento detenido de la detenci¢n de n£cleo de rendimiento de procesador)
+      Alias de GUID: CPPERF
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Sin preferencia
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Estado de rendimiento m s profundo
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Estado de rendimiento m s ligero
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 447235c7-6a8d-4cc0-8e24-9eaf70b96e2c  (Estado de rendimiento reactivado de detenci¢n de n£cleos de rendimiento de procesador para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: CPPERF1
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Sin preferencia
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Estado de rendimiento m s profundo
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Estado de rendimiento m s ligero
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 45bcc044-d885-43e2-8605-ee0ec6e96b59  (Directiva de mejora del rendimiento del procesador)
+      Alias de GUID: PERFBOOSTPOL
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: 465e1f50-b610-473a-ab58-00d1077dc418  (Directiva de aumento de rendimiento de procesador)
+      Alias de GUID: PERFINCPOL
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Ideal
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Sencillo
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Variaci¢n m xima
+      Öndice de configuraci¢n posible: 003
+      Nombre descriptivo de configuraci¢n posible: IdealAggressive
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000002
+    Öndice de configuraci¢n de corriente continua actual: 0x00000002
+
+    GUID de configuraci¢n de energ¡a: 465e1f50-b610-473a-ab58-00d1077dc419  (Directiva de aumento del rendimiento del procesador para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: PERFINCPOL1
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Ideal
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Sencillo
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Variaci¢n m xima
+      Öndice de configuraci¢n posible: 003
+      Nombre descriptivo de configuraci¢n posible: IdealAggressive
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000003
+    Öndice de configuraci¢n de corriente continua actual: 0x00000003
+
+    GUID de configuraci¢n de energ¡a: 4b70f900-cdd9-4e66-aa26-ae8417f98173  (Preferencia de rendimiento energ‚tico del procesador de sugerencias de sensibilidad de latencia)
+      Alias de GUID: LATENCYHINTEPP
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: 4b70f900-cdd9-4e66-aa26-ae8417f98174  (Preferencia de rendimiento energ‚tico del procesador de sugerencias de sensibilidad de latencia para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: LATENCYHINTEPP1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: 4b70f900-cdd9-4e66-aa26-ae8417f98175  (Preferencia de rendimiento energ‚tico del procesador de sugerencias de sensibilidad de latencia para la eficiencia energ‚tica de clase 2)
+      Alias de GUID: LATENCYHINTEPP2
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: 4b92d758-5a24-4851-a470-815d78aee119  (Umbral de disminuci¢n de nivel de inactividad de procesador)
+      Alias de GUID: IDLEDEMOTE
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000028
+    Öndice de configuraci¢n de corriente continua actual: 0x00000028
+
+    GUID de configuraci¢n de energ¡a: 4bdaf4e9-d103-46d7-a5f0-6280121616ef  (Umbral de distribuci¢n de detenci¢n de n£cleos de rendimiento de procesador)
+      Alias de GUID: CPDISTRIBUTION
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x0000005a
+    Öndice de configuraci¢n de corriente continua actual: 0x0000005a
+
+    GUID de configuraci¢n de energ¡a: 4d2b0152-7d5c-498b-88e2-34345392a2c5  (Intervalo de comprobaci¢n de tiempo de rendimiento de procesador)
+      Alias de GUID: PERFCHECK
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00001388
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Milisegundos
+    Öndice de configuraci¢n de corriente alterna actual: 0x0000000f
+    Öndice de configuraci¢n de corriente continua actual: 0x0000000f
+
+    GUID de configuraci¢n de energ¡a: 4e4450b3-6179-4e91-b8f1-5bb9938f81a1  (Ciclos de trabajo del procesador)
+      Alias de GUID: PERFDUTYCYCLING
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Deshabilitado
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Habilitado
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 53824d46-87bd-4739-aa1b-aa793fac36d6  (L¡mite inferior de arquitectura del procesador de subprocesos de corta duraci¢n)
+      Alias de GUID: SHORTTHREADARCHCLASSLOWERTHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x000000ff
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Clase de arquitectura del procesador
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 5ba7419a-295c-4b02-841b-66799388d6da  (Puntuaci¢n de eficiencia m¡nima de WPS para n£cleos peque¤os)
+      Alias de GUID: WPSMINEFFICIENCYTHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x000000ff
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Puntuaci¢n de WPS
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 5d76a2ca-e8c0-402f-a133-2158492d58ad  (Inactividad de procesador deshabilitada)
+      Alias de GUID: IDLEDISABLE
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Habilitar inactividad
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Deshabilitar inactividad
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 603fe9ce-8d01-4b48-a968-1d706c28fd5c  (Prioridad de recursos de procesador)
+      Alias de GUID: RESOURCEPRIORITY
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: 603fe9ce-8d01-4b48-a968-1d706c28fd5d  (Prioridad de recursos de procesador para eficiencia energ‚tica de clase 1)
+      Alias de GUID: RESOURCEPRIORITY1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: 603fe9ce-8d01-4b48-a968-1d706c28fd5e  (Prioridad de recursos de procesador para eficiencia energ‚tica de clase 2)
+      Alias de GUID: RESOURCEPRIORITY2
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: 60fbe21b-efd9-49f2-b066-8674d8e9f423  (Pol¡tica de contenci¢n hetero.)
+      Alias de GUID: HETEROCONTAINMENTPOLICY
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Deshabilitado
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Habilitado
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 616cdaa5-695e-4545-97ad-97dc2d1bdd88  (M¡nimo de n£cleos o de paquetes reactivados de sugerencias de sensibilidad de latencia)
+      Alias de GUID: LATENCYHINTUNPARK
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000032
+    Öndice de configuraci¢n de corriente continua actual: 0x00000032
+
+    GUID de configuraci¢n de energ¡a: 616cdaa5-695e-4545-97ad-97dc2d1bdd89  (M¡nimo n£cleos o de paquetes reactivados de sugerencias de sensibilidad de latencia para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: LATENCYHINTUNPARK1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000032
+    Öndice de configuraci¢n de corriente continua actual: 0x00000032
+
+    GUID de configuraci¢n de energ¡a: 619b7505-003b-4e82-b7a6-4dd29c300971  (Rendimiento del procesador seg£n las sugerencias de sensibilidad de latencia)
+      Alias de GUID: LATENCYHINTPERF
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000063
+    Öndice de configuraci¢n de corriente continua actual: 0x00000063
+
+    GUID de configuraci¢n de energ¡a: 619b7505-003b-4e82-b7a6-4dd29c300972  (Rendimiento del procesador de sugerencia de sensibilidad de latencia para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: LATENCYHINTPERF1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000063
+    Öndice de configuraci¢n de corriente continua actual: 0x00000063
+
+    GUID de configuraci¢n de energ¡a: 619b7505-003b-4e82-b7a6-4dd29c300973  (Rendimiento del procesador de sugerencia de sensibilidad de latencia para la eficiencia energ‚tica de clase 2)
+      Alias de GUID: LATENCYHINTPERF2
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000032
+    Öndice de configuraci¢n de corriente continua actual: 0x00000032
+
+    GUID de configuraci¢n de energ¡a: 64fcee6b-5b1f-45a4-a76a-19b2c36ee290  (Tiempo de aumento del rendimiento del procesador para una zona de contenci¢n)
+      Alias de GUID: HETEROCONTAINMENTINCREASETIME
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 6788488b-1b90-4d11-8fa7-973e470dff47  (Umbral de simultaneidad de contenci¢n h¡brido del procesador)
+      Alias de GUID: HETEROHYBRIDCONTAINMENTTHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 69439b22-221b-4830-bd34-f7bcece24583  (Umbral de simultaneidad de contenci¢n de eficiencia del procesador)
+      Alias de GUID: HETEROEFFICIENCYCONTAINMENTTHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 6c2993b0-8f48-481f-bcc6-00dd2742aa06  (Escalado de umbral de inactividad de procesador)
+      Alias de GUID: IDLESCALING
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Deshabilitar escalado
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Habilitar escalado
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 6ece9e1f-b6dd-42bf-b1b7-5a512b10c092  (Porcentaje de utilidad importante de la zona de contenci¢n de eficiencia)
+      Alias de GUID: HETEROCONTAINMENTEFFICIENCYIMPUTILTHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0xffffffff
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 6ff13aeb-7897-4356-9999-dd9930af065f  (Tiempo de reducci¢n del rendimiento del procesador para una zona de contenci¢n.)
+      Alias de GUID: HETEROCONTAINMENTDECREASETIME
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 71021b41-c749-4d21-be74-a00f335d582b  (Directiva de reducci¢n de detenci¢n de n£cleos de rendimiento de procesador)
+      Alias de GUID: CPDECREASEPOL
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: N£mero ideal de n£cleos
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: N£cleo £nico
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Todos los n£cleos posibles
+      Öndice de configuraci¢n posible: 003
+      Nombre descriptivo de configuraci¢n posible: Un octavo de los n£cleos
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 75b0ae3f-bce0-45a7-8c89-c9611c25e100  (Frecuencia m xima del procesador)
+      Alias de GUID: PROCFREQMAX
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0xffffffff
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: MHz
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 75b0ae3f-bce0-45a7-8c89-c9611c25e101  (Frecuencia m xima del procesador para el procesador de eficiencia energ‚tica de clase 1)
+      Alias de GUID: PROCFREQMAX1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0xffffffff
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: MHz
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 75b0ae3f-bce0-45a7-8c89-c9611c25e102  (Frecuencia m xima del procesador para el procesador de eficiencia energ‚tica de clase 2)
+      Alias de GUID: PROCFREQMAX2
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0xffffffff
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: MHz
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 7b224883-b3cc-4d79-819f-8374152cbe7c  (Umbral de aumento de nivel de inactividad de procesador)
+      Alias de GUID: IDLEPROMOTE
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x0000003c
+    Öndice de configuraci¢n de corriente continua actual: 0x0000003c
+
+    GUID de configuraci¢n de energ¡a: 7d24baa7-0b84-480f-840c-1b0743c00f5f  (Recuento del historial de rendimiento del procesador)
+      Alias de GUID: PERFHISTORY
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000080
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 7d24baa7-0b84-480f-840c-1b0743c00f60  (Recuento del historial de rendimiento del procesador para la eficiencia energ‚tica de clase 1.)
+      Alias de GUID: PERFHISTORY1
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000080
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 7f2492b6-60b1-45e5-ae55-773f8cd5caec  (Tiempo de reducci¢n del rendimiento del procesador para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: HETERODECREASETIME
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000003
+    Öndice de configuraci¢n de corriente continua actual: 0x00000003
+
+    GUID de configuraci¢n de energ¡a: 7f2f5cfa-f10c-4823-b5e1-e93ae85f46b5  (Directiva heterog‚nea en efecto)
+      Alias de GUID: HETEROPOLICY
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Usar directiva heterog‚nea 0
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Usar directiva heterog‚nea 1
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Usar directiva heterog‚nea 2
+      Öndice de configuraci¢n posible: 003
+      Nombre descriptivo de configuraci¢n posible: Usar directiva heterog‚nea 3
+      Öndice de configuraci¢n posible: 004
+      Nombre descriptivo de configuraci¢n posible: Usar directiva heterog‚nea 4
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: 828423eb-8662-4344-90f7-52bf15870f5a  (L¡mite superior de arquitectura del procesador de subprocesos de corta duraci¢n)
+      Alias de GUID: SHORTTHREADARCHCLASSUPPERTHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x000000ff
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Clase de arquitectura del procesador
+    Öndice de configuraci¢n de corriente alterna actual: 0x000000ff
+    Öndice de configuraci¢n de corriente continua actual: 0x000000ff
+
+    GUID de configuraci¢n de energ¡a: 893dee8e-2bef-41e0-89c6-b55d0929964c  (Estado m¡nimo del procesador)
+      Alias de GUID: PROCTHROTTLEMIN
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000005
+
+    GUID de configuraci¢n de energ¡a: 893dee8e-2bef-41e0-89c6-b55d0929964d  (Estado m¡nimo del procesador para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: PROCTHROTTLEMIN1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000005
+
+    GUID de configuraci¢n de energ¡a: 893dee8e-2bef-41e0-89c6-b55d0929964e  (Estado m¡nimo del procesador para la eficiencia energ‚tica de clase 2)
+      Alias de GUID: PROCTHROTTLEMIN2
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000005
+
+    GUID de configuraci¢n de energ¡a: 8baa4a8a-14c6-4451-8e8b-14bdbd197537  (Modo aut¢nomo de rendimiento del procesador)
+      Alias de GUID: PERFAUTONOMOUS
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Deshabilitado
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Habilitado
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 93b8b6dc-0698-4d1c-9ee4-0644e900c85d  (Programaci¢n de directiva de subprocesos heterog‚nea)
+      Alias de GUID: SCHEDPOLICY
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Todos los procesadores
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Procesadores de alto rendimiento
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Preferir procesadores de alto rendimiento
+      Öndice de configuraci¢n posible: 003
+      Nombre descriptivo de configuraci¢n posible: Procesadores eficientes de energ¡a
+      Öndice de configuraci¢n posible: 004
+      Nombre descriptivo de configuraci¢n posible: Preferir procesadores eficientes de energ¡a
+      Öndice de configuraci¢n posible: 005
+      Nombre descriptivo de configuraci¢n posible: Autom tico
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000005
+    Öndice de configuraci¢n de corriente continua actual: 0x00000005
+
+    GUID de configuraci¢n de energ¡a: 943c8cb6-6f93-4227-ad87-e9a3feec08d1  (Umbral de sobreutilizaci¢n de detenci¢n de n£cleos de rendimiento de procesador)
+      Alias de GUID: CPOVERUTIL
+      M¡nima configuraci¢n posible: 0x00000005
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x0000003c
+    Öndice de configuraci¢n de corriente continua actual: 0x0000003c
+
+    GUID de configuraci¢n de energ¡a: 94d3a615-a899-4ac5-ae2b-e4d8f634367f  (Directiva de refrigeraci¢n del sistema)
+      Alias de GUID: SYSCOOLPOL
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Pasivo
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Activo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 97cfac41-2217-47eb-992d-618b1977c907  (Latencia de detenci¢n flexible del n£cleo de rendimiento del procesador)
+      Alias de GUID: SOFTPARKLATENCY
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0xffffffff
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Microsegundos
+    Öndice de configuraci¢n de corriente alterna actual: 0x000003e8
+    Öndice de configuraci¢n de corriente continua actual: 0x000003e8
+
+    GUID de configuraci¢n de energ¡a: 984cf492-3bed-4488-a8f9-4286c97bf5aa  (Tiempo de aumento de rendimiento de procesador)
+      Alias de GUID: PERFINCTIME
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 984cf492-3bed-4488-a8f9-4286c97bf5ab  (Tiempo de aumento del rendimiento del procesador para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: PERFINCTIME1
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: 9943e905-9a30-4ec1-9b99-44dd3b76f7a2  (Estado m ximo de inactividad de procesador)
+      Alias de GUID: IDLESTATEMAX
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000014
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Tipo de estado
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: b000397d-9b0b-483d-98c9-692a6060cfbf  (Umbral de aumento de nivel de rendimiento del procesador para el aumento del n£mero de procesadores de eficiencia energ‚tica de clase 1)
+      Alias de GUID: HETEROINCREASETHRESHOLD
+    Öndice de configuraci¢n de corriente alterna actual: 0x000000fe
+    Öndice de configuraci¢n de corriente continua actual: 0x000000fe
+
+    GUID de configuraci¢n de energ¡a: b000397d-9b0b-483d-98c9-692a6060cfc0  (Umbral de aumento de nivel de rendimiento del procesador para el aumento del n£mero de procesadores de eficiencia energ‚tica de clase 2)
+      Alias de GUID: HETEROINCREASETHRESHOLD1
+    Öndice de configuraci¢n de corriente alterna actual: 0x000000ff
+    Öndice de configuraci¢n de corriente continua actual: 0x000000ff
+
+    GUID de configuraci¢n de energ¡a: b0deaf6b-59c0-4523-8a45-ca7f40244114  (Directiva de reactivaci¢n del m¢dulo)
+      Alias de GUID: MODULEUNPARKPOLICY
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Deshabilitado
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: RoundÿRobin
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Secuencial
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: b28a6829-c5f7-444e-8f61-10e24e85c532  (Directiva de reactivaci¢n de subprocesos de SMT)
+      Alias de GUID: SMTUNPARKPOLICY
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: N£cleo
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: N£cleo por subproceso
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: RoundÿRobin
+      Öndice de configuraci¢n posible: 003
+      Nombre descriptivo de configuraci¢n posible: Secuencial
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: b669a5e9-7b1d-4132-baaa-49190abcfeb6  (Directiva de reactivaci¢n del complejo)
+      Alias de GUID: COMPLEXUNPARKPOLICY
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Deshabilitado
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: RoundÿRobin
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Secuencial
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: bae08b81-2d5e-4688-ad6a-13243356654b  (Directiva heterog‚nea de programaci¢n de subprocesos de ejecuci¢n breve)
+      Alias de GUID: SHORTSCHEDPOLICY
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Todos los procesadores
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Procesadores de alto rendimiento
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Preferir procesadores de alto rendimiento
+      Öndice de configuraci¢n posible: 003
+      Nombre descriptivo de configuraci¢n posible: Procesadores eficientes de energ¡a
+      Öndice de configuraci¢n posible: 004
+      Nombre descriptivo de configuraci¢n posible: Preferir procesadores eficientes de energ¡a
+      Öndice de configuraci¢n posible: 005
+      Nombre descriptivo de configuraci¢n posible: Autom tico
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000005
+    Öndice de configuraci¢n de corriente continua actual: 0x00000005
+
+    GUID de configuraci¢n de energ¡a: bc5038f7-23e0-4960-96da-33abaf5935ec  (Estado m ximo del procesador)
+      Alias de GUID: PROCTHROTTLEMAX
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: bc5038f7-23e0-4960-96da-33abaf5935ed  (Estado m ximo del procesador para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: PROCTHROTTLEMAX1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: bc5038f7-23e0-4960-96da-33abaf5935ee  (Estado m ximo del procesador para la eficiencia energ‚tica de clase 2)
+      Alias de GUID: PROCTHROTTLEMAX2
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: be337238-0d82-4146-a960-4f3749d470c7  (Modo de mejora del rendimiento del procesador)
+      Alias de GUID: PERFBOOSTMODE
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Deshabilitado
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Habilitado
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Agresiva
+      Öndice de configuraci¢n posible: 003
+      Nombre descriptivo de configuraci¢n posible: Eficiencia habilitada
+      Öndice de configuraci¢n posible: 004
+      Nombre descriptivo de configuraci¢n posible: Eficiencia agresiva
+      Öndice de configuraci¢n posible: 005
+      Nombre descriptivo de configuraci¢n posible: Agresivo en garantizado
+      Öndice de configuraci¢n posible: 006
+      Nombre descriptivo de configuraci¢n posible: Agresivo eficiente en garantizado
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000002
+    Öndice de configuraci¢n de corriente continua actual: 0x00000002
+
+    GUID de configuraci¢n de energ¡a: bf903d33-9d24-49d3-a468-e65e0325046a  (L¡mite superior de arquitectura del procesador de subprocesos de larga duraci¢n)
+      Alias de GUID: LONGTHREADARCHCLASSUPPERTHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x000000ff
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Clase de arquitectura del procesador
+    Öndice de configuraci¢n de corriente alterna actual: 0x000000ff
+    Öndice de configuraci¢n de corriente continua actual: 0x000000ff
+
+    GUID de configuraci¢n de energ¡a: c4581c31-89ab-4597-8e2b-9c9cab440e6b  (Comprobaci¢n de tiempo de inactividad de procesador)
+      Alias de GUID: IDLECHECK
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00030d40
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Microsegundos
+    Öndice de configuraci¢n de corriente alterna actual: 0x0000c350
+    Öndice de configuraci¢n de corriente continua actual: 0x0000c350
+
+    GUID de configuraci¢n de energ¡a: c7be0679-2817-4d69-9d02-519a537ed0c6  (Directiva de aumento de detenci¢n de n£cleos de rendimiento de procesador)
+      Alias de GUID: CPINCREASEPOL
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: N£mero ideal de n£cleos
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: N£cleo £nico
+      Öndice de configuraci¢n posible: 002
+      Nombre descriptivo de configuraci¢n posible: Todos los n£cleos posibles
+      Öndice de configuraci¢n posible: 003
+      Nombre descriptivo de configuraci¢n posible: Un octavo de los n£cleos
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: cfeda3d0-7697-4566-a922-a9086cd49dfa  (Per¡odo de actividad aut¢noma del procesador)
+      Alias de GUID: PERFAUTONOMOUSWINDOW
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x4bb2a980
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Microsegundos
+    Öndice de configuraci¢n de corriente alterna actual: 0x00007530
+    Öndice de configuraci¢n de corriente continua actual: 0x00007530
+
+    GUID de configuraci¢n de energ¡a: d8edeb9b-95cf-4f95-a73c-b061973693c8  (Tiempo de reducci¢n de rendimiento de procesador)
+      Alias de GUID: PERFDECTIME
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000001
+    Öndice de configuraci¢n de corriente continua actual: 0x00000001
+
+    GUID de configuraci¢n de energ¡a: d8edeb9b-95cf-4f95-a73c-b061973693c9  (Tiempo de reducci¢n del rendimiento del procesador para la eficiencia energ‚tica de clase 1)
+      Alias de GUID: PERFDECTIME1
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000002
+    Öndice de configuraci¢n de corriente continua actual: 0x00000002
+
+    GUID de configuraci¢n de energ¡a: d92998c2-6a48-49ca-85d4-8cceec294570  (Umbral de conversaci¢n corto frente a largo plazo)
+      Alias de GUID: SHORTTHREADRUNTIMETHRESHOLD
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x000186a0
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Microsegundos
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: dfd10d17-d5eb-45dd-877a-9a34ddd15c82  (Tiempo de reducci¢n de detenci¢n de n£cleos de rendimiento de procesador)
+      Alias de GUID: CPDECREASETIME
+      M¡nima configuraci¢n posible: 0x00000001
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: Intervalos de comprobaci¢n de tiempo
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000003
+    Öndice de configuraci¢n de corriente continua actual: 0x00000003
+
+    GUID de configuraci¢n de energ¡a: e0007330-f589-42ed-a401-5ddb10e785d3  (Distribuci¢n de utilidad de detenci¢n de n£cleos de rendimiento de procesador)
+      Alias de GUID: DISTRIBUTEUTIL
+      Öndice de configuraci¢n posible: 000
+      Nombre descriptivo de configuraci¢n posible: Deshabilitado
+      Öndice de configuraci¢n posible: 001
+      Nombre descriptivo de configuraci¢n posible: Habilitado
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000000
+    Öndice de configuraci¢n de corriente continua actual: 0x00000000
+
+    GUID de configuraci¢n de energ¡a: ea062031-0e34-4ff1-9b6d-eb1059334028  (M xima detenci¢n de n£cleos de rendimiento de procesador)
+      Alias de GUID: CPMAXCORES
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: ea062031-0e34-4ff1-9b6d-eb1059334029  (M ximo de n£cleos de detenci¢n de n£cleos para el rendimiento del procesador de la eficiencia energ‚tica de clase 1)
+      Alias de GUID: CPMAXCORES1
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+    GUID de configuraci¢n de energ¡a: f735a673-2066-4f80-a0c5-ddee0cf1bf5d  (Umbral de capacidad de aumento de la simultaneidad de detenci¢n de n£cleos del rendimiento del procesador)
+      Alias de GUID: CPHEADROOM
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000032
+    Öndice de configuraci¢n de corriente continua actual: 0x00000032
+
+    GUID de configuraci¢n de energ¡a: f8861c27-95e7-475c-865b-13c0cb3f9d6b  (Umbral de disminuci¢n de nivel de rendimiento del procesador para la reducci¢n del n£mero de procesadores de eficiencia energ‚tica de clase 1)
+      Alias de GUID: HETERODECREASETHRESHOLD
+    Öndice de configuraci¢n de corriente alterna actual: 0x000000fe
+    Öndice de configuraci¢n de corriente continua actual: 0x000000fe
+
+    GUID de configuraci¢n de energ¡a: f8861c27-95e7-475c-865b-13c0cb3f9d6c  (Umbral de disminuci¢n de nivel de rendimiento del procesador para la reducci¢n del n£mero de procesadores de eficiencia energ‚tica de clase 2)
+      Alias de GUID: HETERODECREASETHRESHOLD1
+    Öndice de configuraci¢n de corriente alterna actual: 0x000000ff
+    Öndice de configuraci¢n de corriente continua actual: 0x000000ff
+
+    GUID de configuraci¢n de energ¡a: fddc842b-8364-4edc-94cf-c17f60de1c80  (Rendimiento m¡nimo para la eficiencia energ‚tica de clase 0 cuando hay procesadores de la eficiencia energ‚tica de clase 1 reactivados)
+      Alias de GUID: HETEROCLASS0FLOORPERF
+      M¡nima configuraci¢n posible: 0x00000000
+      M xima configuraci¢n posible: 0x00000064
+      Incremento de configuraci¢n posible: 0x00000001
+      Unidades de configuraci¢n posibles: %
+    Öndice de configuraci¢n de corriente alterna actual: 0x00000064
+    Öndice de configuraci¢n de corriente continua actual: 0x00000064
+
+### GPU INVENTORY ONLY
+{
+    "Name":  "NVIDIA GeForce GTX 1650 SUPER",
+    "AdapterRAM":  4293918720,
+    "DriverVersion":  "32.0.16.1714"
+}

@@ -1,4 +1,0 @@
-﻿1. Cero FMA en todo el kernel — cada operación multiply-add usa 2 instrucciones en vez de 1, techo de ~2x perdido en todo forward y backward.
-2. El backward de atención es 100% escalar — nunca se vectorizó, a diferencia de todo lo demás.
-3. El experimento FC2 que acabamos de cerrar como "sin mejora" pudo estar contaminado — verifiqué que tanto la ruta candidata como la baseline pagan el mismo costo de diagnósticos por slot, lo que puede estar diluyendo la señal real. La corrección de "quitar checks de diagnóstico" que ya funcionó una vez (BACKWARD-DIAGNOSTICS-FASTPATH) solo se aplicó a 1 de ~10 sitios — incluyendo QKV dWeight, que es uno de los 2 puntos calientes confirmados.
-4. state_prelude_write se recalcula 3 veces seguidas con el mismo resultado — mismo tipo de bug que el GELU que ya arreglamos, nadie lo había mirado.

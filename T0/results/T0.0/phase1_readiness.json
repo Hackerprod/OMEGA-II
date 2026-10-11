@@ -1,0 +1,25 @@
+{
+  "D_read_by_route": [
+    {
+      "route": "AVX2",
+      "BW_Q4_logical_8P_B_per_s": 75036400000.0,
+      "BW_DRAM_read_8P_B_per_s": 74455800000.0,
+      "D_read": 1.0077979150046068,
+      "D_read_gate_pass": true,
+      "N": 31,
+      "warmup_count": 5
+    },
+    {
+      "route": "AVX-VNNI-256",
+      "BW_Q4_logical_8P_B_per_s": 77458200000.0,
+      "BW_DRAM_read_8P_B_per_s": 74455800000.0,
+      "D_read": 1.04032459526323,
+      "D_read_gate_pass": true,
+      "N": 31,
+      "warmup_count": 5
+    }
+  ],
+  "D_read_gate_max": 1.04032459526323,
+  "gate_pass": true,
+  "derived_after_all_series": true
+}

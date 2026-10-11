@@ -1,2 +1,0 @@
-probe,kernel_requested,kernel_used,avx2_supported,target_kib,m,K,depth,variant,iterations,repetitions,warmup,worker_count,logical_cpu_indices,rows_per_worker,all_affinity_succeeded,affinity_error,kernel_elapsed_seconds,wall_elapsed_seconds,mac_count,mac_per_second,checksum
-int8_batch,avx2,avx2,true,0,64,64,64,A,4,20,5,1,"0","64",true,0,0.0067077,0.0078056,20971520,3.12648e+09,2969835520

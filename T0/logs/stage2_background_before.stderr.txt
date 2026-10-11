@@ -1,0 +1,7 @@
+Get-Counter : El objeto especificado no se encontr¢ en el equipo.
+En l¡nea: 4 Car cter: 12
++ $samples = Get-Counter -Counter '\Processor(_Total)\% Processor Time' ...
++            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+ 

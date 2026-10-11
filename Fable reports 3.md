@@ -1,7 +1,0 @@
-1. NUEVO (no es el mecanismo de diagnósticos): erf() duplicado en gelu()/gelu_derivative() (~líneas 544/574). Backward evalúa gelu(saved_fc1_pre) para FC2 (~1481) sobre buffer `fc1`, que se pisa con memset (~1555) antes de que FC1 (~1602/1710/1744) recalcule gelu_derivative(saved_fc1_pre) sobre el mismo valor -- erf recalculado de cero. Buffer `gelu_activated` (~1344, activation_count=4*dimension) confirmado por grep: nunca referenciado en el cuerpo del backward, scratch libre ya del tamaño correcto. Propuesta: cachear t=erf(x/kSqrtTwo) una vez, reusar en ambas expresiones. Debería ser bit-exacto si se preserva el árbol de expresión, pero toca cómputo real de gradiente -- consultado a Sol antes de implementar.
-2. Mismo mecanismo ya aceptado 2 veces -- FC1-bias diagnostics sin gating. 3 sitios sin if constexpr: 1611, 1712, 1746. Predicate (2267-2281) no incluye sum_abs/count_d_block_fc1_bias. Ya era KNOWN/DEFERRED desde la ronda anterior.
-3. Menor, bit-exacto: memsets redundantes de q/key/value al inicio de cada round (1405-1407), ya se vuelven a cero antes de su primer uso real.
-4. Menor, bit-exacto: div/mod por elemento en seed loop por posición (1386-1387), reemplazable por loops anidados.
-5. Descartado por el propio Fable (baja confianza, misma familia que STATE-PRELUDE-WRITE-REUSE que ya regresionó -2.9%): hoist de un recompute en FC1 dWeight.
-
-Verificado contra source real (git show omega/diagnostics-out-state, commit 18e7225b8..., no el árbol principal): findings 1, 2, 3, 4 confirmados línea por línea por mí antes de reportar a Sol.

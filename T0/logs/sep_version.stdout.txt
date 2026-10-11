@@ -1,0 +1,8 @@
+Sampling Enabling Product Version: 5.61  built on Jul 22 2026 13:24:00
+SEP Driver Version: 5.61  (public)
+PAX Driver Version: 1.0
+Platform type: 151
+CPU name: Intel(R) microarchitecture code named Raptorlake-DT
+PMU: alderlake
+Driver configs: Maskable Interrupt, REGISTER CHECK ON
+Copyright(C) 2007 Intel Corporation. All rights reserved.

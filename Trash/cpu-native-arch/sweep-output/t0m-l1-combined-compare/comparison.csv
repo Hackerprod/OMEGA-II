@@ -1,4 +1,0 @@
-mode,elapsed_seconds,gmac_per_second,fused_over_legacy_elapsed_ratio,fused_over_legacy_gmac_ratio,throughput_gap_percent
-legacy,8.16e-05,4.01569,,,
-repeat,0.000104,3.15077,,,
-fused,0.0001035,3.16599,1.26838235294118,0.788404981460222,21.1595018539778

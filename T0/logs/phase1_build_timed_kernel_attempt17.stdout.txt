@@ -1,0 +1,5 @@
+q4_kernel.cpp
+phase1_measure_harness.cpp
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_measure_harness.cpp(401): error C2440: '=': no se puede realizar la conversi¢n de 'void (__cdecl *const )(const t0q4::WeightMatrix &,const t0q4::Activations &,float *,int)' a 't0q4::KernelEntry'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_measure_harness.cpp(401): note: Esta conversi¢n requiere reinterpret_cast, conversi¢n de estilo de C o conversi¢n de estilo de funci¢n entre par‚ntesis
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\phase1_measure_harness.cpp(402): error C2197: 't0q4::KernelEntry': hay demasiados argumentos para la llamada

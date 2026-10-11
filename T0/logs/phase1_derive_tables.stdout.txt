@@ -1,0 +1,1 @@
+{"P_instr_core_rows": 32, "P_Q4_core_m_rows": 12, "P_Q4_peak_core_rows": 2, "D_read_routes": 2, "E_Q4_core_rows": 16, "P_Q4_i_m1_rows": 16, "frequency_status": "UNAVAILABLE_WITH_QUALIFIED_TOOLS", "timing": false}

@@ -1,0 +1,2240 @@
+INST_RETIRED.ANY
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Number of instructions retired. Fixed Counter - architectural event
+INST_RETIRED.PREC_DIST
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Precise instruction retired with PEBS precise-distribution
+CPU_CLK_UNHALTED.THREAD
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Core cycles when the thread is not in halt state
+CPU_CLK_UNHALTED.REF_TSC
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Reference cycles when the core is not in halt state.
+TOPDOWN.SLOTS
+	SAV MINIMUM=2:DEFAULT=10000003
+	PEBS DEFAULT=YES
+	TMA slots available for an unhalted logical processor. Fixed counter - architectural event
+LD_BLOCKS.ADDRESS_ALIAS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	False dependencies in MOB due to partial compare on address.
+LD_BLOCKS.STORE_FORWARD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Loads blocked due to overlapping with a preceding store that cannot be forwarded.
+LD_BLOCKS.NO_SR
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	The number of times that split load operations are temporarily blocked because all resources for handling the split accesses are in use.
+ITLB_MISSES.WALK_COMPLETED_4K
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Code miss in all TLB levels causes a page walk that completes. (4K)
+ITLB_MISSES.WALK_COMPLETED_2M_4M
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Code miss in all TLB levels causes a page walk that completes. (2M/4M)
+ITLB_MISSES.WALK_COMPLETED
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Code miss in all TLB levels causes a page walk that completes. (All page sizes)
+ITLB_MISSES.WALK_ACTIVE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Cycles when at least one PMH is busy with a page walk for code (instruction fetch) request.
+ITLB_MISSES.WALK_PENDING
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of page walks outstanding for an outstanding code request in the PMH each cycle.
+ITLB_MISSES.STLB_HIT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Instruction fetch requests that miss the ITLB and hit the STLB.
+DTLB_LOAD_MISSES.WALK_COMPLETED_4K
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Page walks completed due to a demand data load to a 4K page.
+DTLB_LOAD_MISSES.WALK_COMPLETED_2M_4M
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Page walks completed due to a demand data load to a 2M/4M page.
+DTLB_LOAD_MISSES.WALK_COMPLETED_1G
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Page walks completed due to a demand data load to a 1G page.
+DTLB_LOAD_MISSES.WALK_COMPLETED
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Load miss in all TLB levels causes a page walk that completes. (All page sizes)
+DTLB_LOAD_MISSES.WALK_ACTIVE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Cycles when at least one PMH is busy with a page walk for a demand load.
+DTLB_LOAD_MISSES.WALK_PENDING
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of page walks outstanding for a demand load in the PMH each cycle.
+DTLB_LOAD_MISSES.STLB_HIT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Loads that miss the DTLB and hit the STLB.
+DTLB_STORE_MISSES.WALK_COMPLETED_4K
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Page walks completed due to a demand data store to a 4K page.
+DTLB_STORE_MISSES.WALK_COMPLETED_2M_4M
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Page walks completed due to a demand data store to a 2M/4M page.
+DTLB_STORE_MISSES.WALK_COMPLETED_1G
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Page walks completed due to a demand data store to a 1G page.
+DTLB_STORE_MISSES.WALK_COMPLETED
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Store misses in all TLB levels causes a page walk that completes. (All page sizes)
+DTLB_STORE_MISSES.WALK_ACTIVE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Cycles when at least one PMH is busy with a page walk for a store.
+DTLB_STORE_MISSES.WALK_PENDING
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of page walks outstanding for a store in the PMH each cycle.
+DTLB_STORE_MISSES.STLB_HIT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Stores that miss the DTLB and hit the STLB.
+OFFCORE_REQUESTS_OUTSTANDING.CYCLES_WITH_DEMAND_DATA_RD
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles where at least 1 outstanding demand data read request is pending.
+OFFCORE_REQUESTS_OUTSTANDING.DEMAND_DATA_RD
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	For every cycle, increments by the number of outstanding demand data read requests pending.
+OFFCORE_REQUESTS_OUTSTANDING.CYCLES_WITH_DEMAND_CODE_RD
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles with offcore outstanding Code Reads transactions in the SuperQueue (SQ), queue to uncore.
+OFFCORE_REQUESTS_OUTSTANDING.DEMAND_CODE_RD
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Offcore outstanding Code Reads transactions in the SuperQueue (SQ), queue to uncore, every cycle.
+OFFCORE_REQUESTS_OUTSTANDING.CYCLES_WITH_DEMAND_RFO
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles with offcore outstanding demand rfo reads transactions in SuperQueue (SQ), queue to uncore.
+OFFCORE_REQUESTS_OUTSTANDING.ALL_DATA_RD
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event OFFCORE_REQUESTS_OUTSTANDING.DATA_RD
+OFFCORE_REQUESTS_OUTSTANDING.CYCLES_WITH_DATA_RD
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	OFFCORE_REQUESTS_OUTSTANDING.CYCLES_WITH_DATA_RD
+OFFCORE_REQUESTS_OUTSTANDING.DATA_RD
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	OFFCORE_REQUESTS_OUTSTANDING.DATA_RD
+OFFCORE_REQUESTS_OUTSTANDING.L3_MISS_DEMAND_DATA_RD
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	For every cycle, increments by the number of demand data read requests pending that are known to have missed the L3 cache.
+OFFCORE_REQUESTS.DEMAND_DATA_RD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Demand Data Read requests sent to uncore
+OFFCORE_REQUESTS.DEMAND_CODE_RD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Cacheable and noncacheable code read requests
+OFFCORE_REQUESTS.DEMAND_RFO
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Demand RFO requests including regular RFOs, locks, ItoM
+OFFCORE_REQUESTS.DATA_RD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Demand and prefetch data reads
+OFFCORE_REQUESTS.L3_MISS_DEMAND_DATA_RD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts demand data read requests that miss the L3 cache.
+OFFCORE_REQUESTS.ALL_REQUESTS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	OFFCORE_REQUESTS.ALL_REQUESTS
+L2_TRANS.L2_WB
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	L2 writebacks that access L2 cache
+L2_RQSTS.DEMAND_DATA_RD_MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Demand Data Read miss L2 cache
+L2_RQSTS.RFO_MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	RFO requests that miss L2 cache
+L2_RQSTS.CODE_RD_MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	L2 cache misses when fetching instructions
+L2_RQSTS.ALL_DEMAND_MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Demand requests that miss L2 cache
+L2_RQSTS.SWPF_MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	SW prefetch requests that miss L2 cache.
+L2_RQSTS.HWPF_MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	L2_RQSTS.HWPF_MISS
+L2_RQSTS.MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Read requests with true-miss in L2 cache. [This event is alias to L2_REQUEST.MISS]
+L2_REQUEST.MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Read requests with true-miss in L2 cache. [This event is alias to L2_RQSTS.MISS]
+L2_RQSTS.DEMAND_DATA_RD_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Demand Data Read requests that hit L2 cache
+L2_RQSTS.RFO_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	RFO requests that hit L2 cache.
+L2_RQSTS.CODE_RD_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	L2 cache hits when fetching instructions, code reads.
+L2_RQSTS.SWPF_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	SW prefetch requests that hit L2 cache.
+L2_RQSTS.HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	All requests that hit L2 cache. [This event is alias to L2_REQUEST.HIT]
+L2_REQUEST.HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	All requests that hit L2 cache. [This event is alias to L2_RQSTS.HIT]
+L2_RQSTS.ALL_DEMAND_DATA_RD
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Demand Data Read access L2 cache
+L2_RQSTS.ALL_RFO
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	RFO requests to L2 cache.
+L2_RQSTS.ALL_CODE_RD
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	L2 code requests
+L2_RQSTS.ALL_HWPF
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	L2_RQSTS.ALL_HWPF
+L2_RQSTS.REFERENCES
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	All accesses to L2 cache [This event is alias to L2_REQUEST.ALL]
+L2_REQUEST.ALL
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	All accesses to L2 cache [This event is alias to L2_RQSTS.REFERENCES]
+L2_LINES_IN.ALL
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	L2 cache lines filling L2
+L2_LINES_OUT.SILENT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Non-modified cache lines that are silently dropped by L2 cache.
+L2_LINES_OUT.NON_SILENT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Modified cache lines that are evicted by L2 cache when triggered by an L2 cache fill.
+L2_LINES_OUT.USELESS_HWPF
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Cache lines that have been L2 hardware prefetched but not used by demand accesses
+CORE_POWER.LICENSE_1
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	CORE_POWER.LICENSE_1
+CORE_POWER.LICENSE_2
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	CORE_POWER.LICENSE_2
+CORE_POWER.LICENSE_3
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	CORE_POWER.LICENSE_3
+OCR.READS_TO_CORE.L3_HIT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts all data read, code read, RFO and ITOM requests including demands and prefetches to the core caches (L1 or L2) that hit in the L3 or were snooped from another core's caches.
+OCR.DEMAND_DATA_RD.L3_MISS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that were not supplied by the L3 cache.
+OCR.DEMAND_RFO.L3_MISS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand read for ownership (RFO) requests and software prefetches for exclusive ownership (PREFETCHW) that were not supplied by the L3 cache.
+OCR.COREWB_M.L3_HIT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts writebacks of modified cachelines that hit in the L3 or were snooped from another core's caches.
+OCR.COREWB_NONM.L3_HIT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts writebacks of non-modified cachelines that hit in the L3 or were snooped from another core's caches.
+OCR.DEMAND_DATA_RD.ANY_RESPONSE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that have any type of response.
+OCR.STREAMING_WR.ANY_RESPONSE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts streaming stores that have any type of response.
+OCR.DEMAND_RFO.ANY_RESPONSE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand read for ownership (RFO) requests and software prefetches for exclusive ownership (PREFETCHW) that have any type of response.
+OCR.DEMAND_DATA_RD.L3_HIT.SNOOP_HITM
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that resulted in a snoop hit in another cores caches, data forwarding is required as the data is modified.
+OCR.DEMAND_DATA_RD.L3_HIT.SNOOP_HIT_WITH_FWD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that resulted in a snoop hit in another cores caches which forwarded the unmodified data to the requesting core.
+OCR.DEMAND_RFO.L3_HIT.SNOOP_HITM
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand read for ownership (RFO) requests and software prefetches for exclusive ownership (PREFETCHW) that resulted in a snoop hit in another cores caches, data forwarding is required as the data is modified.
+OCR.DEMAND_DATA_RD.DRAM
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that were supplied by DRAM.
+SQ_MISC.BUS_LOCK
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts bus locks, accounts for cache line split locks and UC locks.
+XQ.FULL_CYCLES
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles the uncore cannot take further requests
+LONGEST_LAT_CACHE.MISS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Core-originated cacheable requests that missed L3  (Except hardware prefetches to the L3)
+LONGEST_LAT_CACHE.REFERENCE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Core-originated cacheable requests that refer to L3 (Except hardware prefetches to the L3)
+CPU_CLK_UNHALTED.THREAD_P
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Thread cycles when thread is not in halt state
+CPU_CLK_UNHALTED.REF_TSC_P
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Reference cycles when the core is not in halt state.
+CPU_CLK_UNHALTED.ONE_THREAD_ACTIVE
+	SAV MINIMUM=1250:DEFAULT=25003
+	PEBS DEFAULT=YES
+	Core crystal clock cycles when this thread is unhalted and the other thread is halted.
+CPU_CLK_UNHALTED.REF_DISTRIBUTED
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Core crystal clock cycles. Cycle counts are evenly distributed between active threads in the Core.
+SW_PREFETCH_ACCESS.NTA
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of PREFETCHNTA instructions executed.
+SW_PREFETCH_ACCESS.T0
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of PREFETCHT0 instructions executed.
+SW_PREFETCH_ACCESS.T1_T2
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of PREFETCHT1 or PREFETCHT2 instructions executed.
+SW_PREFETCH_ACCESS.PREFETCHW
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of PREFETCHW instructions executed.
+SW_PREFETCH_ACCESS.ANY
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts the number of PREFETCHNTA, PREFETCHW, PREFETCHT0, PREFETCHT1 or PREFETCHT2 instructions executed.
+LOCK_CYCLES.CACHE_LOCK_DURATION
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles when L1D is locked
+MEM_LOAD_COMPLETED.L1_MISS_ANY
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Completed demand load uops that miss the L1 d-cache.
+MEM_STORE_RETIRED.L2_HIT
+	SAV MINIMUM=10000:DEFAULT=200003
+	PEBS DEFAULT=YES
+	MEM_STORE_RETIRED.L2_HIT
+MEMORY_ACTIVITY.CYCLES_L1D_MISS
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles while L1 cache miss demand load is outstanding.
+MEMORY_ACTIVITY.STALLS_L1D_MISS
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Execution stalls while L1 cache miss demand load is outstanding.
+MEMORY_ACTIVITY.STALLS_L2_MISS
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Execution stalls while L2 cache miss demand cacheable load request is outstanding.
+MEMORY_ACTIVITY.STALLS_L3_MISS
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Execution stalls while L3 cache miss demand cacheable load request is outstanding.
+L1D_PEND_MISS.PENDING
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Number of L1D misses that are outstanding
+L1D_PEND_MISS.PENDING_CYCLES
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles with L1D load Misses outstanding.
+L1D_PEND_MISS.FB_FULL
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Number of cycles a demand request has waited due to L1D Fill Buffer (FB) unavailability.
+L1D_PEND_MISS.FB_FULL_PERIODS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Number of phases a demand request has waited due to L1D Fill Buffer (FB) unavailability.
+L1D_PEND_MISS.L2_STALL
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event L1D_PEND_MISS.L2_STALLS
+L1D_PEND_MISS.L2_STALLS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Number of cycles a demand request has waited due to L1D due to lack of L2 resources.
+LOAD_HIT_PREFETCH.SWPF
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts the number of demand load dispatches that hit L1D fill buffer (FB) allocated for software prefetch.
+L1D.REPLACEMENT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts the number of cache lines replaced in L1 data cache.
+L1D.HWPF_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	L1D.HWPF_MISS
+BACLEARS.ANY
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Clears due to Unknown Branches.
+DSB2MITE_SWITCHES.PENALTY_CYCLES
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	DSB-to-MITE switch true penalty cycles.
+INST_DECODED.DECODERS
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Instruction decoders utilized in a cycle
+UOPS_DECODED.DEC0_UOPS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	UOPS_DECODED.DEC0_UOPS
+IDQ.MITE_CYCLES_ANY
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles MITE is delivering any Uop
+IDQ.MITE_CYCLES_OK
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles MITE is delivering optimal number of Uops
+IDQ.MITE_UOPS
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Uops delivered to Instruction Decode Queue (IDQ) from MITE path
+IDQ.DSB_CYCLES_ANY
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles Decode Stream Buffer (DSB) is delivering any Uop
+IDQ.DSB_CYCLES_OK
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles DSB is delivering optimal number of Uops
+IDQ.DSB_UOPS
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Uops delivered to Instruction Decode Queue (IDQ) from the Decode Stream Buffer (DSB) path
+IDQ.MS_CYCLES_ANY
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles when uops are being delivered to IDQ while MS is busy
+IDQ.MS_SWITCHES
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of switches from DSB or MITE to the MS
+IDQ.MS_UOPS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Uops delivered to IDQ while MS is busy
+ICACHE_DATA.STALLS
+	SAV MINIMUM=2:DEFAULT=500009
+	PEBS DEFAULT=YES
+	Cycles where a code fetch is stalled due to L1 instruction cache miss.
+ICACHE_DATA.STALL_PERIODS
+	SAV MINIMUM=2:DEFAULT=500009
+	PEBS DEFAULT=YES
+	ICACHE_DATA.STALL_PERIODS
+ICACHE_TAG.STALLS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Cycles where a code fetch is stalled due to L1 instruction cache tag miss.
+ICACHE_TAG.STALLS_ISB
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	ICACHE_TAG.STALLS_ISB
+ICACHE_TAG.STALLS_INUSE
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	ICACHE_TAG.STALLS_INUSE
+DECODE.LCP
+	SAV MINIMUM=2:DEFAULT=500009
+	PEBS DEFAULT=YES
+	Stalls caused by changing prefix length of the instruction.
+DECODE.MS_BUSY
+	SAV MINIMUM=2:DEFAULT=500009
+	PEBS DEFAULT=YES
+	Cycles the Microcode Sequencer is busy.
+IDQ_UOPS_NOT_DELIVERED.CORE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Uops not delivered by IDQ when backend of the machine is not stalled [This event is alias to IDQ_BUBBLES.CORE]
+IDQ_UOPS_NOT_DELIVERED.CYCLES_0_UOPS_DELIV.CORE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles when no uops are not delivered by the IDQ when backend of the machine is not stalled [This event is alias to IDQ_BUBBLES.CYCLES_0_UOPS_DELIV.CORE]
+IDQ_UOPS_NOT_DELIVERED.CYCLES_FE_WAS_OK
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles when optimal number of uops was delivered to the back-end when the back-end is not stalled [This event is alias to IDQ_BUBBLES.CYCLES_FE_WAS_OK]
+IDQ_BUBBLES.CORE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Uops not delivered by IDQ when backend of the machine is not stalled [This event is alias to IDQ_UOPS_NOT_DELIVERED.CORE]
+IDQ_BUBBLES.CYCLES_0_UOPS_DELIV.CORE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles when no uops are not delivered by the IDQ when backend of the machine is not stalled [This event is alias to IDQ_UOPS_NOT_DELIVERED.CYCLES_0_UOPS_DELIV.CORE]
+IDQ_BUBBLES.CYCLES_FE_WAS_OK
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles when optimal number of uops was delivered to the back-end when the back-end is not stalled [This event is alias to IDQ_UOPS_NOT_DELIVERED.CYCLES_FE_WAS_OK]
+RESOURCE_STALLS.SCOREBOARD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts cycles where the pipeline is stalled due to serializing operations.
+RESOURCE_STALLS.SB
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Cycles stalled due to no store buffers available. (not including draining form sync).
+CYCLE_ACTIVITY.CYCLES_L2_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles while L2 cache miss demand load is outstanding.
+CYCLE_ACTIVITY.STALLS_TOTAL
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Total execution stalls.
+CYCLE_ACTIVITY.STALLS_L2_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Execution stalls while L2 cache miss demand load is outstanding.
+CYCLE_ACTIVITY.STALLS_L3_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Execution stalls while L3 cache miss demand load is outstanding.
+CYCLE_ACTIVITY.CYCLES_L1D_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles while L1 cache miss demand load is outstanding.
+CYCLE_ACTIVITY.STALLS_L1D_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Execution stalls while L1 cache miss demand load is outstanding.
+CYCLE_ACTIVITY.CYCLES_MEM_ANY
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles while memory subsystem has an outstanding load.
+TOPDOWN.SLOTS_P
+	SAV MINIMUM=2:DEFAULT=10000003
+	PEBS DEFAULT=YES
+	TMA slots available for an unhalted logical processor. General counter - architectural event
+TOPDOWN.BACKEND_BOUND_SLOTS
+	SAV MINIMUM=2:DEFAULT=10000003
+	PEBS DEFAULT=YES
+	TMA slots where no uops were being issued due to lack of back-end resources.
+TOPDOWN.BAD_SPEC_SLOTS
+	SAV MINIMUM=2:DEFAULT=10000003
+	PEBS DEFAULT=YES
+	TMA slots wasted due to incorrect speculations.
+TOPDOWN.BR_MISPREDICT_SLOTS
+	SAV MINIMUM=2:DEFAULT=10000003
+	PEBS DEFAULT=YES
+	TMA slots wasted due to incorrect speculation by branch mispredictions
+TOPDOWN.MEMORY_BOUND_SLOTS
+	SAV MINIMUM=500000:DEFAULT=10000003
+	PEBS DEFAULT=YES
+	TOPDOWN.MEMORY_BOUND_SLOTS
+RS.EMPTY_RESOURCE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles when Reservation Station (RS) is empty due to a resource in the back-end
+RS_EMPTY.COUNT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event RS.EMPTY_COUNT
+RS_EMPTY.CYCLES
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event RS.EMPTY
+RS.EMPTY
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles when Reservation Station (RS) is empty for the thread.
+RS.EMPTY_COUNT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts end of periods where the Reservation Station (RS) was empty.
+EXE_ACTIVITY.1_PORTS_UTIL
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles total of 1 uop is executed on all ports and Reservation Station was not empty.
+EXE_ACTIVITY.2_PORTS_UTIL
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles total of 2 uops are executed on all ports and Reservation Station was not empty.
+EXE_ACTIVITY.3_PORTS_UTIL
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles total of 3 uops are executed on all ports and Reservation Station was not empty.
+EXE_ACTIVITY.4_PORTS_UTIL
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles total of 4 uops are executed on all ports and Reservation Station was not empty.
+EXE_ACTIVITY.BOUND_ON_LOADS
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Execution stalls while memory subsystem has an outstanding load.
+EXE_ACTIVITY.BOUND_ON_STORES
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles where the Store Buffer was full and no loads caused an execution stall.
+EXE_ACTIVITY.EXE_BOUND_0_PORTS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles no uop executed while RS was not empty, the SB was not full and there was no outstanding load.
+EXE_ACTIVITY.2_3_PORTS_UTIL
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles total of 2 or 3 uops are executed on all ports and Reservation Station (RS) was not empty.
+LSD.CYCLES_ACTIVE
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles Uops delivered by the LSD, but didn't come from the decoder.
+LSD.CYCLES_OK
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles optimal number of Uops delivered by the LSD, but did not come from the decoder.
+LSD.UOPS
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Number of Uops delivered by the LSD.
+INT_MISC.RECOVERY_CYCLES
+	SAV MINIMUM=2:DEFAULT=500009
+	PEBS DEFAULT=YES
+	Core cycles the allocator was stalled due to recovery from earlier clear event for this thread
+INT_MISC.CLEARS_COUNT
+	SAV MINIMUM=2:DEFAULT=500009
+	PEBS DEFAULT=YES
+	Clears speculative count
+INT_MISC.UOP_DROPPING
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	TMA slots where uops got dropped
+INT_MISC.UNKNOWN_BRANCH_CYCLES
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Bubble cycles of BAClear (Unknown Branch).
+INT_MISC.CLEAR_RESTEER_CYCLES
+	SAV MINIMUM=2:DEFAULT=500009
+	PEBS DEFAULT=YES
+	Counts cycles after recovery from a branch misprediction or machine clear till the first uop is issued from the resteered path.
+UOPS_ISSUED.ANY
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Uops that RAT issues to RS
+UOPS_ISSUED.CYCLES
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	UOPS_ISSUED.CYCLES
+ARITH.FP_DIVIDER_ACTIVE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event ARITH.FPDIV_ACTIVE
+ARITH.FPDIV_ACTIVE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	ARITH.FPDIV_ACTIVE
+ARITH.IDIV_ACTIVE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event counts the cycles the integer divider is busy.
+ARITH.INT_DIVIDER_ACTIVE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event ARITH.IDIV_ACTIVE
+ARITH.DIVIDER_ACTIVE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event ARITH.DIV_ACTIVE
+ARITH.DIV_ACTIVE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles when divide unit is busy executing divide or square root operations.
+UOPS_EXECUTED.CYCLES_GE_1
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles where at least 1 uop was executed per-thread
+UOPS_EXECUTED.CYCLES_GE_2
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles where at least 2 uops were executed per-thread
+UOPS_EXECUTED.CYCLES_GE_3
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles where at least 3 uops were executed per-thread
+UOPS_EXECUTED.CYCLES_GE_4
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles where at least 4 uops were executed per-thread
+UOPS_EXECUTED.STALL_CYCLES
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event UOPS_EXECUTED.STALLS
+UOPS_EXECUTED.THREAD
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the number of uops to be executed per-thread each cycle.
+UOPS_EXECUTED.STALLS
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts number of cycles no uops were dispatched to be executed on this thread.
+UOPS_EXECUTED.CORE_CYCLES_GE_1
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles at least 1 micro-op is executed from any thread on physical core.
+UOPS_EXECUTED.CORE_CYCLES_GE_2
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles at least 2 micro-op is executed from any thread on physical core.
+UOPS_EXECUTED.CORE_CYCLES_GE_3
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles at least 3 micro-op is executed from any thread on physical core.
+UOPS_EXECUTED.CORE_CYCLES_GE_4
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycles at least 4 micro-op is executed from any thread on physical core.
+UOPS_EXECUTED.X87
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the number of x87 uops dispatched.
+UOPS_DISPATCHED.PORT_0
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Uops executed on port 0
+UOPS_DISPATCHED.PORT_1
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Uops executed on port 1
+UOPS_DISPATCHED.PORT_2_3_10
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Uops executed on ports 2, 3 and 10
+UOPS_DISPATCHED.PORT_4_9
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Uops executed on ports 4 and 9
+UOPS_DISPATCHED.PORT_5_11
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Uops executed on ports 5 and 11
+UOPS_DISPATCHED.PORT_6
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Uops executed on port 6
+UOPS_DISPATCHED.PORT_7_8
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Uops executed on ports 7 and 8
+FP_ARITH_DISPATCHED.PORT_0
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	FP_ARITH_DISPATCHED.PORT_0 [This event is alias to FP_ARITH_DISPATCHED.V0]
+FP_ARITH_DISPATCHED.V0
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	FP_ARITH_DISPATCHED.V0 [This event is alias to FP_ARITH_DISPATCHED.PORT_0]
+FP_ARITH_DISPATCHED.PORT_1
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	FP_ARITH_DISPATCHED.PORT_1 [This event is alias to FP_ARITH_DISPATCHED.V1]
+FP_ARITH_DISPATCHED.V1
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	FP_ARITH_DISPATCHED.V1 [This event is alias to FP_ARITH_DISPATCHED.PORT_1]
+FP_ARITH_DISPATCHED.PORT_5
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	FP_ARITH_DISPATCHED.PORT_5 [This event is alias to FP_ARITH_DISPATCHED.V2]
+FP_ARITH_DISPATCHED.V2
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	FP_ARITH_DISPATCHED.V2 [This event is alias to FP_ARITH_DISPATCHED.PORT_5]
+INST_RETIRED.ANY_P
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Number of instructions retired. General Counter - architectural event
+INST_RETIRED.NOP
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Retired NOP instructions.
+INST_RETIRED.REP_ITERATION
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Iterations of Repeat string retired instructions.
+INST_RETIRED.MACRO_FUSED
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	INST_RETIRED.MACRO_FUSED
+ASSISTS.FP
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts all microcode FP assists.
+ASSISTS.HARDWARE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Count all other hardware assists or traps that are not necessarily architecturally exposed (through a software handler) beyond FP; SSE-AVX mix and A/D assists who are counted by dedicated sub-events. the event also counts for Machine Ordering count.
+ASSISTS.PAGE_FAULT
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	ASSISTS.PAGE_FAULT
+ASSISTS.SSE_AVX_MIX
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	ASSISTS.SSE_AVX_MIX
+ASSISTS.ANY
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of occurrences where a microcode assist is invoked by hardware.
+UOPS_RETIRED.HEAVY
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Retired uops except the last uop of each instruction.
+UOPS_RETIRED.SLOTS
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Retirement slots used.
+UOPS_RETIRED.STALL_CYCLES
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event UOPS_RETIRED.STALLS
+UOPS_RETIRED.STALLS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles without actually retired uops.
+UOPS_RETIRED.CYCLES
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Cycles with retired uop(s).
+UOPS_RETIRED.MS
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	UOPS_RETIRED.MS
+MACHINE_CLEARS.COUNT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of machine clears (nukes) of any type.
+MACHINE_CLEARS.MEMORY_ORDERING
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of machine clears due to memory ordering conflicts.
+MACHINE_CLEARS.SMC
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Self-modifying code (SMC) detected.
+BR_INST_RETIRED.ALL_BRANCHES
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	All branch instructions retired.
+BR_INST_RETIRED.COND_TAKEN
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	Taken conditional branch instructions retired.
+BR_INST_RETIRED.NEAR_CALL
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Direct and indirect near call instructions retired.
+BR_INST_RETIRED.NEAR_RETURN
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Return instructions retired.
+BR_INST_RETIRED.COND_NTAKEN
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	Not taken branch instructions retired.
+BR_INST_RETIRED.COND
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	Conditional branch instructions retired.
+BR_INST_RETIRED.NEAR_TAKEN
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	Taken branch instructions retired.
+BR_INST_RETIRED.FAR_BRANCH
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Far branch instructions retired.
+BR_INST_RETIRED.INDIRECT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Indirect near branch instructions retired (excluding returns)
+BR_MISP_RETIRED.ALL_BRANCHES
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	All mispredicted branch instructions retired.
+BR_MISP_RETIRED.COND_TAKEN
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	number of branch instructions retired that were mispredicted and taken.
+BR_MISP_RETIRED.INDIRECT_CALL
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	Mispredicted indirect CALL retired.
+BR_MISP_RETIRED.RET
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	This event counts the number of mispredicted ret instructions retired.
+BR_MISP_RETIRED.COND_NTAKEN
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	Mispredicted non-taken conditional branch instructions retired.
+BR_MISP_RETIRED.COND
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	Mispredicted conditional branch instructions retired.
+BR_MISP_RETIRED.NEAR_TAKEN
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	Number of near branch instructions retired that were mispredicted and taken.
+BR_MISP_RETIRED.INDIRECT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Miss-predicted near indirect branch instructions retired (excluding returns)
+FRONTEND_RETIRED.DSB_MISS
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired Instructions who experienced a critical DSB miss.
+FRONTEND_RETIRED.ITLB_MISS
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired Instructions who experienced iTLB true miss.
+FRONTEND_RETIRED.L1I_MISS
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired Instructions who experienced Instruction L1 Cache true miss.
+FRONTEND_RETIRED.L2_MISS
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired Instructions who experienced Instruction L2 Cache true miss.
+FRONTEND_RETIRED.LATENCY_GE_1
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions after front-end starvation of at least 1 cycle
+FRONTEND_RETIRED.LATENCY_GE_128
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions that are fetched after an interval where the front-end delivered no uops for a period of 128 cycles which was not interrupted by a back-end stall.
+FRONTEND_RETIRED.LATENCY_GE_16
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions that are fetched after an interval where the front-end delivered no uops for a period of 16 cycles which was not interrupted by a back-end stall.
+FRONTEND_RETIRED.LATENCY_GE_2
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions after front-end starvation of at least 2 cycles
+FRONTEND_RETIRED.LATENCY_GE_2_BUBBLES_GE_1
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions that are fetched after an interval where the front-end had at least 1 bubble-slot for a period of 2 cycles which was not interrupted by a back-end stall.
+FRONTEND_RETIRED.LATENCY_GE_256
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions that are fetched after an interval where the front-end delivered no uops for a period of 256 cycles which was not interrupted by a back-end stall.
+FRONTEND_RETIRED.LATENCY_GE_32
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions that are fetched after an interval where the front-end delivered no uops for a period of 32 cycles which was not interrupted by a back-end stall.
+FRONTEND_RETIRED.LATENCY_GE_4
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions that are fetched after an interval where the front-end delivered no uops for a period of 4 cycles which was not interrupted by a back-end stall.
+FRONTEND_RETIRED.LATENCY_GE_512
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions that are fetched after an interval where the front-end delivered no uops for a period of 512 cycles which was not interrupted by a back-end stall.
+FRONTEND_RETIRED.LATENCY_GE_64
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions that are fetched after an interval where the front-end delivered no uops for a period of 64 cycles which was not interrupted by a back-end stall.
+FRONTEND_RETIRED.LATENCY_GE_8
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions that are fetched after an interval where the front-end delivered no uops for a period of 8 cycles which was not interrupted by a back-end stall.
+FRONTEND_RETIRED.STLB_MISS
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired Instructions who experienced STLB (2nd level TLB) true miss.
+FRONTEND_RETIRED.UNKNOWN_BRANCH
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	FRONTEND_RETIRED.UNKNOWN_BRANCH
+FRONTEND_RETIRED.MS_FLOWS
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	FRONTEND_RETIRED.MS_FLOWS
+FRONTEND_RETIRED.ANY_DSB_MISS
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired Instructions who experienced DSB miss.
+FP_ARITH_INST_RETIRED.SCALAR_DOUBLE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts number of SSE/AVX computational scalar double precision floating-point instructions retired; some instructions will count twice as noted below.  Each count represents 1 computational operation. Applies to SSE* and AVX* scalar double precision floating-point instructions: ADD SUB MUL DIV MIN MAX SQRT FM(N)ADD/SUB.  FM(N)ADD/SUB instructions count twice as they perform 2 calculations per element.
+FP_ARITH_INST_RETIRED.SCALAR_SINGLE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts number of SSE/AVX computational scalar single precision floating-point instructions retired; some instructions will count twice as noted below.  Each count represents 1 computational operation. Applies to SSE* and AVX* scalar single precision floating-point instructions: ADD SUB MUL DIV MIN MAX SQRT RSQRT RCP FM(N)ADD/SUB.  FM(N)ADD/SUB instructions count twice as they perform 2 calculations per element.
+FP_ARITH_INST_RETIRED.SCALAR
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Number of SSE/AVX computational scalar floating-point instructions retired; some instructions will count twice as noted below.  Applies to SSE* and AVX* scalar, double and single precision floating-point: ADD SUB MUL DIV MIN MAX RCP14 RSQRT14 RANGE SQRT DPP FM(N)ADD/SUB.  DPP and FM(N)ADD/SUB instructions count twice as they perform multiple calculations per element.
+FP_ARITH_INST_RETIRED.128B_PACKED_DOUBLE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts number of SSE/AVX computational 128-bit packed double precision floating-point instructions retired; some instructions will count twice as noted below.  Each count represents 2 computation operations, one for each element.  Applies to SSE* and AVX* packed double precision floating-point instructions: ADD SUB HADD HSUB SUBADD MUL DIV MIN MAX SQRT DPP FM(N)ADD/SUB.  DPP and FM(N)ADD/SUB instructions count twice as they perform 2 calculations per element.
+FP_ARITH_INST_RETIRED.128B_PACKED_SINGLE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of SSE/AVX computational 128-bit packed single precision floating-point instructions retired; some instructions will count twice as noted below.  Each count represents 4 computation operations, one for each element.  Applies to SSE* and AVX* packed single precision floating-point instructions: ADD SUB MUL DIV MIN MAX RCP14 RSQRT14 SQRT DPP FM(N)ADD/SUB.  DPP and FM(N)ADD/SUB instructions count twice as they perform 2 calculations per element.
+FP_ARITH_INST_RETIRED.256B_PACKED_DOUBLE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts number of SSE/AVX computational 256-bit packed double precision floating-point instructions retired; some instructions will count twice as noted below.  Each count represents 4 computation operations, one for each element.  Applies to SSE* and AVX* packed double precision floating-point instructions: ADD SUB HADD HSUB SUBADD MUL DIV MIN MAX SQRT FM(N)ADD/SUB.  FM(N)ADD/SUB instructions count twice as they perform 2 calculations per element.
+FP_ARITH_INST_RETIRED.4_FLOPS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Number of SSE/AVX computational 128-bit packed single and 256-bit packed double precision FP instructions retired; some instructions will count twice as noted below.  Each count represents 2 or/and 4 computation operations, 1 for each element.  Applies to SSE* and AVX* packed single precision and packed double precision FP instructions: ADD SUB HADD HSUB SUBADD MUL DIV MIN MAX RCP14 RSQRT14 SQRT DPP FM(N)ADD/SUB.  DPP and FM(N)ADD/SUB count twice as they perform 2 calculations per element.
+FP_ARITH_INST_RETIRED.256B_PACKED_SINGLE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts number of SSE/AVX computational 256-bit packed single precision floating-point instructions retired; some instructions will count twice as noted below.  Each count represents 8 computation operations, one for each element.  Applies to SSE* and AVX* packed single precision floating-point instructions: ADD SUB HADD HSUB SUBADD MUL DIV MIN MAX SQRT RSQRT RCP DPP FM(N)ADD/SUB.  DPP and FM(N)ADD/SUB instructions count twice as they perform 2 calculations per element.
+FP_ARITH_INST_RETIRED.VECTOR
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Number of any Vector retired FP arithmetic instructions
+MISC_RETIRED.LBR_INSERTS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Increments whenever there is an update to the LBR array.
+MEM_TRANS_RETIRED.LOAD_LATENCY_GT_128
+	SAV MINIMUM=2:DEFAULT=1009
+	PEBS DEFAULT=YES
+	Counts randomly selected loads when the latency from first dispatch to completion is greater than 128 cycles.
+MEM_TRANS_RETIRED.LOAD_LATENCY_GT_16
+	SAV MINIMUM=2:DEFAULT=20011
+	PEBS DEFAULT=YES
+	Counts randomly selected loads when the latency from first dispatch to completion is greater than 16 cycles.
+MEM_TRANS_RETIRED.LOAD_LATENCY_GT_256
+	SAV MINIMUM=2:DEFAULT=503
+	PEBS DEFAULT=YES
+	Counts randomly selected loads when the latency from first dispatch to completion is greater than 256 cycles.
+MEM_TRANS_RETIRED.LOAD_LATENCY_GT_32
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Counts randomly selected loads when the latency from first dispatch to completion is greater than 32 cycles.
+MEM_TRANS_RETIRED.LOAD_LATENCY_GT_4
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts randomly selected loads when the latency from first dispatch to completion is greater than 4 cycles.
+MEM_TRANS_RETIRED.LOAD_LATENCY_GT_512
+	SAV MINIMUM=2:DEFAULT=101
+	PEBS DEFAULT=YES
+	Counts randomly selected loads when the latency from first dispatch to completion is greater than 512 cycles.
+MEM_TRANS_RETIRED.LOAD_LATENCY_GT_64
+	SAV MINIMUM=2:DEFAULT=2003
+	PEBS DEFAULT=YES
+	Counts randomly selected loads when the latency from first dispatch to completion is greater than 64 cycles.
+MEM_TRANS_RETIRED.LOAD_LATENCY_GT_8
+	SAV MINIMUM=2:DEFAULT=50021
+	PEBS DEFAULT=YES
+	Counts randomly selected loads when the latency from first dispatch to completion is greater than 8 cycles.
+MEM_TRANS_RETIRED.LOAD_LATENCY_GT_1024
+	SAV MINIMUM=2:DEFAULT=53
+	PEBS DEFAULT=YES
+	Counts randomly selected loads when the latency from first dispatch to completion is greater than 1024 cycles.
+MEM_TRANS_RETIRED.STORE_SAMPLE
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Retired memory store access operations. A PDist event for PEBS Store Latency Facility.
+MEM_INST_RETIRED.STLB_MISS_LOADS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Retired load instructions that miss the STLB.
+MEM_INST_RETIRED.STLB_MISS_STORES
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Retired store instructions that miss the STLB.
+MEM_INST_RETIRED.LOCK_LOADS
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired load instructions with locked access.
+MEM_INST_RETIRED.SPLIT_LOADS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Retired load instructions that split across a cacheline boundary.
+MEM_INST_RETIRED.SPLIT_STORES
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Retired store instructions that split across a cacheline boundary.
+MEM_INST_RETIRED.ALL_LOADS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Retired load instructions.
+MEM_INST_RETIRED.ALL_STORES
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Retired store instructions.
+MEM_INST_RETIRED.ANY
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	All retired memory instructions.
+MEM_LOAD_RETIRED.L1_HIT
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Retired load instructions with L1 cache hits as data sources
+MEM_LOAD_RETIRED.L2_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Retired load instructions with L2 cache hits as data sources
+MEM_LOAD_RETIRED.L3_HIT
+	SAV MINIMUM=2:DEFAULT=100021
+	PEBS DEFAULT=YES
+	Retired load instructions with L3 cache hits as data sources
+MEM_LOAD_RETIRED.L1_MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Retired load instructions missed L1 cache as data sources
+MEM_LOAD_RETIRED.L2_MISS
+	SAV MINIMUM=2:DEFAULT=100021
+	PEBS DEFAULT=YES
+	Retired load instructions missed L2 cache as data sources
+MEM_LOAD_RETIRED.L3_MISS
+	SAV MINIMUM=2:DEFAULT=50021
+	PEBS DEFAULT=YES
+	Retired load instructions missed L3 cache as data sources
+MEM_LOAD_RETIRED.FB_HIT
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Number of completed demand load requests that missed the L1, but hit the FB(fill buffer), because a preceding miss to the same cacheline initiated the line to be brought into L1, but data is not yet ready in L1.
+MEM_LOAD_L3_HIT_RETIRED.XSNP_MISS
+	SAV MINIMUM=2:DEFAULT=20011
+	PEBS DEFAULT=YES
+	Retired load instructions whose data sources were L3 hit and cross-core snoop missed in on-pkg core cache.
+MEM_LOAD_L3_HIT_RETIRED.XSNP_HIT
+	SAV MINIMUM=2:DEFAULT=20011
+	PEBS DEFAULT=YES
+	Retired load instructions whose data sources were L3 and cross-core snoop hits in on-pkg core cache
+MEM_LOAD_L3_HIT_RETIRED.XSNP_NO_FWD
+	SAV MINIMUM=2:DEFAULT=20011
+	PEBS DEFAULT=YES
+	Retired load instructions whose data sources were L3 and cross-core snoop hits in on-pkg core cache
+MEM_LOAD_L3_HIT_RETIRED.XSNP_HITM
+	SAV MINIMUM=2:DEFAULT=20011
+	PEBS DEFAULT=YES
+	Retired load instructions whose data sources were HitM responses from shared L3
+MEM_LOAD_L3_HIT_RETIRED.XSNP_FWD
+	SAV MINIMUM=2:DEFAULT=20011
+	PEBS DEFAULT=YES
+	Retired load instructions whose data sources were HitM responses from shared L3
+MEM_LOAD_L3_HIT_RETIRED.XSNP_NONE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Retired load instructions whose data sources were hits in L3 without snoops required
+MEM_LOAD_L3_MISS_RETIRED.LOCAL_DRAM
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired load instructions which data sources missed L3 but serviced from local dram
+MEM_LOAD_MISC_RETIRED.UC
+	SAV MINIMUM=2:DEFAULT=100007
+	PEBS DEFAULT=YES
+	Retired instructions with at least 1 uncacheable load or lock.
+MISC2_RETIRED.LFENCE
+	SAV MINIMUM=2:DEFAULT=400009
+	PEBS DEFAULT=YES
+	LFENCE instructions retired
+MEM_UOP_RETIRED.ANY
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Retired memory uops for any access
+INT_VEC_RETIRED.ADD_128
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	integer ADD, SUB, SAD 128-bit vector instructions.
+INT_VEC_RETIRED.ADD_256
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	integer ADD, SUB, SAD 256-bit vector instructions.
+INT_VEC_RETIRED.VNNI_128
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	INT_VEC_RETIRED.VNNI_128
+INT_VEC_RETIRED.128BIT
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	INT_VEC_RETIRED.128BIT
+INT_VEC_RETIRED.VNNI_256
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	INT_VEC_RETIRED.VNNI_256
+INT_VEC_RETIRED.SHUFFLES
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	INT_VEC_RETIRED.SHUFFLES
+INT_VEC_RETIRED.MUL_256
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	INT_VEC_RETIRED.MUL_256
+INT_VEC_RETIRED.256BIT
+	SAV MINIMUM=50000:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	INT_VEC_RETIRED.256BIT
+CPU_CLK_UNHALTED.DISTRIBUTED
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Cycle counts are evenly distributed between active threads in the Core.
+CPU_CLK_UNHALTED.C01
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Core clocks when the thread is in the C0.1 light-weight slower wakeup time but more power saving optimized state.
+CPU_CLK_UNHALTED.C02
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Core clocks when the thread is in the C0.2 light-weight faster wakeup time but less power saving optimized state.
+CPU_CLK_UNHALTED.PAUSE
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	CPU_CLK_UNHALTED.PAUSE
+CPU_CLK_UNHALTED.PAUSE_INST
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	CPU_CLK_UNHALTED.PAUSE_INST
+CPU_CLK_UNHALTED.C0_WAIT
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Core clocks when the thread is in the C0.1 or C0.2 or running a PAUSE in C0 ACPI state.
+INST_RETIRED.ANY
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Fixed Counter: Counts the total number of instructions retired.
+CPU_CLK_UNHALTED.CORE
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Fixed Counter: Counts the number of unhalted core clock cycles. [This event is alias to CPU_CLK_UNHALTED.THREAD]
+CPU_CLK_UNHALTED.THREAD
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Fixed Counter: Counts the number of unhalted core clock cycles. [This event is alias to CPU_CLK_UNHALTED.CORE]
+CPU_CLK_UNHALTED.REF_TSC
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Fixed Counter: Counts the number of unhalted reference clock cycles at TSC frequency.
+LD_BLOCKS.DATA_UNKNOWN
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of retired loads that are blocked because its address exactly matches an older store whose data is not ready.
+LD_BLOCKS.4K_ALIAS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event LD_BLOCKS.ADDRESS_ALIAS
+LD_BLOCKS.ADDRESS_ALIAS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of retired loads that are blocked because it initially appears to be store forward blocked, but subsequently is shown not to be blocked based on 4K alias check.
+MEM_SCHEDULER_BLOCK.ST_BUF
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that uops are blocked due to a store buffer full condition.
+MEM_SCHEDULER_BLOCK.LD_BUF
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that uops are blocked due to a load buffer full condition.
+MEM_SCHEDULER_BLOCK.RSV
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that uops are blocked due to an RSV full condition.
+MEM_SCHEDULER_BLOCK.ALL
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that uops are blocked for any of the following reasons:  load buffer, store buffer or RSV full.
+LD_HEAD.L1_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer is stalled due to a DL1 miss.
+LD_HEAD.WCB_FULL
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer is stalled due to request buffers full or lock in progress.
+LD_HEAD.ST_ADDR
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer is stalled due to a store data forward block.
+LD_HEAD.DTLB_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer is stalled due to a DTLB miss.
+LD_HEAD.PGWALK
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer is stalled due to a pagewalk.
+LD_HEAD.OTHER
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer is stalled due to other block cases.
+LD_HEAD.ANY
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer is stalled due to any number of reasons, including an L1 miss, WCB full, pagewalk, store address block or store data block.
+LD_HEAD.L1_MISS_AT_RET
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer and retirement are both stalled due to a DL1 miss.
+LD_HEAD.WCB_FULL_AT_RET
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer and retirement are both stalled due to request buffers full or lock in progress.
+LD_HEAD.ST_ADDR_AT_RET
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer and retirement are both stalled due to a store address match.
+LD_HEAD.DTLB_MISS_AT_RET
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer and retirement are both stalled due to a DTLB miss.
+LD_HEAD.PGWALK_AT_RET
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer and retirement are both stalled due to a pagewalk.
+LD_HEAD.OTHER_AT_RET
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer and retirement are both stalled due to other block cases.
+LD_HEAD.L1_BOUND_AT_RET
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer is stalled due to a core bound stall including a store address match, a DTLB miss or a page walk that detains the load from retiring.
+LD_HEAD.ANY_AT_RET
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles that the head (oldest load) of the load buffer is stalled due to any number of reasons, including an L1 miss, WCB full, pagewalk, store address block or store data block, on a load that retires.
+DTLB_LOAD_MISSES.WALK_COMPLETED
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of page walks completed due to load DTLB misses to any page size.
+UOPS_ISSUED.ANY
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of uops issued by the front end every cycle.
+L2_REQUEST.ALL
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the total number of L2 Cache accesses. Counts on a per core basis.
+L2_REQUEST.MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of L2 Cache accesses that resulted in a miss. Counts on a per core basis.
+L2_REQUEST.HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of L2 Cache accesses that resulted in a hit. Counts on a per core basis.
+LONGEST_LAT_CACHE.MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of cacheable memory requests that miss in the LLC. Counts on a per core basis.
+LONGEST_LAT_CACHE.REFERENCE
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of cacheable memory requests that access the LLC. Counts on a per core basis.
+L2_REJECT_XQ.ANY
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of demand and prefetch transactions that the External Queue (XQ) rejects due to a full or near full condition.
+CORE_REJECT_L2Q.ANY
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of core requests (demand and L1 prefetchers) rejected by the L2 queue (L2Q) due to a full condition.
+MEM_BOUND_STALLS.LOAD_L2_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of cycles the core is stalled due to a demand load which hit in the L2 cache.
+MEM_BOUND_STALLS.LOAD_LLC_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of cycles the core is stalled due to a demand load which hit in the LLC or other core with HITE/F/M.
+MEM_BOUND_STALLS.LOAD_DRAM_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of cycles the core is stalled due to a demand load miss which hit in DRAM or MMIO (Non-DRAM).
+MEM_BOUND_STALLS.LOAD_L2_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles the core is stalled due to a demand load which missed in the L2 cache.
+MEM_BOUND_STALLS.LOAD
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of cycles the core is stalled due to a demand load miss which hit in the L2, LLC, DRAM or MMIO (Non-DRAM).
+MEM_BOUND_STALLS.IFETCH_L2_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of cycles the core is stalled due to an instruction cache or TLB miss which hit in the L2 cache.
+MEM_BOUND_STALLS.IFETCH_LLC_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of cycles the core is stalled due to an instruction cache or TLB miss which hit in the LLC or other core with HITE/F/M.
+MEM_BOUND_STALLS.IFETCH_DRAM_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of cycles the core is stalled due to an instruction cache or TLB miss which hit in DRAM or MMIO (Non-DRAM).
+MEM_BOUND_STALLS.IFETCH_L2_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles the core is stalled due to an instruction cache or TLB miss which missed in the L2 cache.
+MEM_BOUND_STALLS.IFETCH
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of cycles the core is stalled due to an instruction cache or TLB miss which hit in the L2, LLC, DRAM or MMIO (Non-DRAM).
+CPU_CLK_UNHALTED.CORE_P
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the number of unhalted core clock cycles. [This event is alias to CPU_CLK_UNHALTED.THREAD_P]
+CPU_CLK_UNHALTED.THREAD_P
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the number of unhalted core clock cycles. [This event is alias to CPU_CLK_UNHALTED.CORE_P]
+CPU_CLK_UNHALTED.REF_TSC_P
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the number of unhalted reference clock cycles at TSC frequency.
+CPU_CLK_UNHALTED.REF
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event CPU_CLK_UNHALTED.REF_TSC_P
+DTLB_STORE_MISSES.WALK_COMPLETED
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the number of page walks completed due to store DTLB misses to any page size.
+TOPDOWN_FE_BOUND.ALL
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the total number of issue slots every cycle that were not consumed by the backend due to frontend stalls.
+TOPDOWN_FE_BOUND.CISC
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not delivered by the frontend due to the microcode sequencer (MS).
+TOPDOWN_FE_BOUND.BRANCH_DETECT
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not delivered by the frontend due to BACLEARS.
+TOPDOWN_FE_BOUND.PREDECODE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not delivered by the frontend due to wrong predecodes.
+TOPDOWN_FE_BOUND.DECODE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not delivered by the frontend due to decode stalls.
+TOPDOWN_FE_BOUND.ITLB
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not delivered by the frontend due to ITLB misses.
+TOPDOWN_FE_BOUND.ICACHE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not delivered by the frontend due to instruction cache misses.
+TOPDOWN_FE_BOUND.BRANCH_RESTEER
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not delivered by the frontend due to BTCLEARS.
+TOPDOWN_FE_BOUND.FRONTEND_LATENCY
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not delivered by the frontend due to a latency related stalls including BACLEARs, BTCLEARs, ITLB misses, and ICache misses.
+TOPDOWN_FE_BOUND.OTHER
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not delivered by the frontend due to other common frontend stalls not categorized.
+TOPDOWN_FE_BOUND.FRONTEND_BANDWIDTH
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not delivered by the frontend due to frontend bandwidth restrictions due to decode, predecode, cisc, and other limitations.
+TOPDOWN_BAD_SPECULATION.ALL
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the total number of issue slots that were not consumed by the backend because allocation is stalled due to a mispredicted jump or a machine clear.
+TOPDOWN_BAD_SPECULATION.NUKE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not consumed by the backend due to a machine clear (nuke).
+TOPDOWN_BAD_SPECULATION.FASTNUKE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not consumed by the backend due to fast nukes such as memory ordering and memory disambiguation machine clears.
+TOPDOWN_BAD_SPECULATION.MACHINE_CLEARS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the total number of issue slots that were not consumed by the backend because allocation is stalled due to a machine clear (nuke) of any kind including memory ordering and memory disambiguation.
+TOPDOWN_BAD_SPECULATION.MISPREDICT
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not consumed by the backend due to branch mispredicts.
+TOPDOWN_BE_BOUND.ALL
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the total number of issue slots every cycle that were not consumed by the backend due to backend stalls.
+TOPDOWN_BE_BOUND.ALLOC_RESTRICTIONS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not consumed by the backend due to certain allocation restrictions.
+TOPDOWN_BE_BOUND.MEM_SCHEDULER
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not consumed by the backend due to memory reservation stalls in which a scheduler is not able to accept uops.
+TOPDOWN_BE_BOUND.NON_MEM_SCHEDULER
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not consumed by the backend due to IEC or FPC RAT stalls, which can be due to FIQ or IEC reservation stalls in which the integer, floating point or SIMD scheduler is not able to accept uops.
+TOPDOWN_BE_BOUND.SERIALIZATION
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not consumed by the backend due to scoreboards from the instruction queue (IQ), jump execution unit (JEU), or microcode sequencer (MS).
+TOPDOWN_BE_BOUND.REGISTER
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not consumed by the backend due to the physical register file unable to accept an entry (marble stalls).
+TOPDOWN_BE_BOUND.REORDER_BUFFER
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots every cycle that were not consumed by the backend due to the reorder buffer being full (ROB stalls).
+SERIALIZATION.NON_C01_MS_SCB
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots not consumed by the backend due to a micro-sequencer (MS) scoreboard, which stalls the front-end from issuing from the UROM until a specified older uop retires.
+SERIALIZATION.C01_MS_SCB
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of issue slots in a UMWAIT or TPAUSE instruction where no uop issues due to the instruction putting the CPU into the C0.1 activity state. For Tremont, UMWAIT and TPAUSE will only put the CPU into C0.1 activity state (not C0.2 activity state)
+SERIALIZATION.COLOR_STALLS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number issue slots not consumed  due to a  color request for an FCW or MXCSR control register when all 4 colors (copies) are already in use.
+ICACHE.MISSES
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of instruction cache misses.
+ICACHE.ACCESSES
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of requests to the instruction cache for one or more bytes of a cache line.
+ITLB_MISSES.MISS_CAUSED_WALK
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of page walks initiated by a instruction fetch that missed the first and second level TLBs.
+ITLB_MISSES.WALK_COMPLETED
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of page walks completed due to instruction fetch misses to any page size.
+ITLB_MISSES.PDE_CACHE_MISS
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the number of page walks due to an instruction fetch that miss the PDE (Page Directory Entry) cache.
+OCR.DEMAND_DATA_RD.ANY_RESPONSE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that have any type of response.
+OCR.DEMAND_DATA_RD.DRAM
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that were supplied by DRAM.
+OCR.DEMAND_DATA_RD.L3_MISS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that were not supplied by the L3 cache.
+OCR.DEMAND_RFO.ANY_RESPONSE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand reads for ownership (RFO) and software prefetches for exclusive ownership (PREFETCHW) that have any type of response.
+OCR.DEMAND_RFO.DRAM
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand reads for ownership (RFO) and software prefetches for exclusive ownership (PREFETCHW) that were supplied by DRAM.
+OCR.DEMAND_RFO.L3_MISS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand reads for ownership (RFO) and software prefetches for exclusive ownership (PREFETCHW) that were not supplied by the L3 cache.
+OCR.DEMAND_CODE_RD.ANY_RESPONSE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand instruction fetches and L1 instruction cache prefetches that have any type of response.
+OCR.DEMAND_CODE_RD.DRAM
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand instruction fetches and L1 instruction cache prefetches that were supplied by DRAM.
+OCR.DEMAND_CODE_RD.L3_MISS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand instruction fetches and L1 instruction cache prefetches that were not supplied by the L3 cache.
+OCR.COREWB_M.ANY_RESPONSE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts modified writebacks from L1 cache and L2 cache that have any type of response.
+OCR.STREAMING_WR.ANY_RESPONSE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts streaming stores that have any type of response.
+OCR.SWPF_RD.ANY_RESPONSE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts L1 data cache software prefetches which include T0/T1/T2 and NTA (except PREFETCHW) that have any type of response.
+OCR.SWPF_RD.DRAM
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts L1 data cache software prefetches which include T0/T1/T2 and NTA (except PREFETCHW) that were supplied by DRAM.
+OCR.SWPF_RD.L3_MISS
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts L1 data cache software prefetches which include T0/T1/T2 and NTA (except PREFETCHW) that were not supplied by the L3 cache.
+OCR.PARTIAL_STREAMING_WR.ANY_RESPONSE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts streaming stores which modify only part of a 64 byte cacheline that have any type of response.
+OCR.FULL_STREAMING_WR.ANY_RESPONSE
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts streaming stores which modify a full 64 byte cacheline that have any type of response.
+OCR.DEMAND_DATA_RD.L3_HIT.SNOOP_HIT_NO_FWD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that were supplied by the L3 cache where a snoop was sent, the snoop hit, but no data was forwarded.
+OCR.DEMAND_DATA_RD.L3_HIT.SNOOP_HIT_WITH_FWD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that were supplied by the L3 cache where a snoop was sent, the snoop hit, and non-modified data was forwarded.
+OCR.DEMAND_DATA_RD.L3_HIT.SNOOP_HITM
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that were supplied by the L3 cache where a snoop was sent, the snoop hit, and modified data was forwarded.
+OCR.DEMAND_RFO.L3_HIT.SNOOP_HIT_NO_FWD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand reads for ownership (RFO) and software prefetches for exclusive ownership (PREFETCHW) that were supplied by the L3 cache where a snoop was sent, the snoop hit, but no data was forwarded.
+OCR.DEMAND_RFO.L3_HIT.SNOOP_HIT_WITH_FWD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand reads for ownership (RFO) and software prefetches for exclusive ownership (PREFETCHW) that were supplied by the L3 cache where a snoop was sent, the snoop hit, and non-modified data was forwarded.
+OCR.DEMAND_RFO.L3_HIT.SNOOP_HITM
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand reads for ownership (RFO) and software prefetches for exclusive ownership (PREFETCHW) that were supplied by the L3 cache where a snoop was sent, the snoop hit, and modified data was forwarded.
+OCR.DEMAND_CODE_RD.L3_HIT.SNOOP_HIT_NO_FWD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand instruction fetches and L1 instruction cache prefetches that were supplied by the L3 cache where a snoop was sent, the snoop hit, but no data was forwarded.
+OCR.DEMAND_CODE_RD.L3_HIT.SNOOP_HIT_WITH_FWD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand instruction fetches and L1 instruction cache prefetches that were supplied by the L3 cache where a snoop was sent, the snoop hit, and non-modified data was forwarded.
+OCR.DEMAND_CODE_RD.L3_HIT.SNOOP_HITM
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand instruction fetches and L1 instruction cache prefetches that were supplied by the L3 cache where a snoop was sent, the snoop hit, and modified data was forwarded.
+OCR.SWPF_RD.L3_HIT.SNOOP_HIT_NO_FWD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts L1 data cache software prefetches which include T0/T1/T2 and NTA (except PREFETCHW) that were supplied by the L3 cache where a snoop was sent, the snoop hit, but no data was forwarded.
+OCR.SWPF_RD.L3_HIT.SNOOP_HIT_WITH_FWD
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts L1 data cache software prefetches which include T0/T1/T2 and NTA (except PREFETCHW) that were supplied by the L3 cache where a snoop was sent, the snoop hit, and non-modified data was forwarded.
+OCR.SWPF_RD.L3_HIT.SNOOP_HITM
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts L1 data cache software prefetches which include T0/T1/T2 and NTA (except PREFETCHW) that were supplied by the L3 cache where a snoop was sent, the snoop hit, and modified data was forwarded.
+OCR.DEMAND_DATA_RD.L3_HIT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that were supplied by the L3 cache.
+OCR.DEMAND_RFO.L3_HIT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand reads for ownership (RFO) and software prefetches for exclusive ownership (PREFETCHW) that were supplied by the L3 cache.
+OCR.DEMAND_CODE_RD.L3_HIT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand instruction fetches and L1 instruction cache prefetches that were supplied by the L3 cache.
+OCR.SWPF_RD.L3_HIT
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts L1 data cache software prefetches which include T0/T1/T2 and NTA (except PREFETCHW) that were supplied by the L3 cache.
+OCR.DEMAND_DATA_RD.L3_MISS_LOCAL
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand data reads that were not supplied by the L3 cache. [L3_MISS_LOCAL is alias to L3_MISS]
+OCR.DEMAND_RFO.L3_MISS_LOCAL
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=NA
+	Counts demand reads for ownership (RFO) and software prefetches for exclusive ownership (PREFETCHW) that were not supplied by the L3 cache. [L3_MISS_LOCAL is alias to L3_MISS]
+INST_RETIRED.ANY_P
+	SAV MINIMUM=100000:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the total number of instructions retired.
+UOPS_RETIRED.ALL
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the total number of uops retired.
+TOPDOWN_RETIRING.ALL
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the total number of consumed retirement slots.
+UOPS_RETIRED.MS
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the number of uops that are from complex flows issued by the micro-sequencer (MS).
+UOPS_RETIRED.X87
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the number of x87 uops retired, includes those in MS flows.
+UOPS_RETIRED.FPDIV
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the number of floating point divide uops retired (x87 and SSE, including x87 sqrt).
+UOPS_RETIRED.IDIV
+	SAV MINIMUM=2:DEFAULT=2000003
+	PEBS DEFAULT=YES
+	Counts the number of integer divide uops retired.
+MACHINE_CLEARS.SMC
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	Counts the number of machine clears due to program modifying data (self modifying code) within 1K of a recently fetched code page.
+MACHINE_CLEARS.MEMORY_ORDERING
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	Counts the number of machine clears due to memory ordering caused by a snoop from an external agent. Does not count internally generated machine clears such as those due to memory disambiguation.
+MACHINE_CLEARS.FP_ASSIST
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	Counts the number of floating point operations retired that required microcode assist.
+MACHINE_CLEARS.DISAMBIGUATION
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	Counts the number of machine clears due to memory ordering in which an internal load passes an older store within the same CPU.
+MACHINE_CLEARS.FAST
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	Counts the number of machine clears that flush the pipeline and restart the machine without the use of microcode.
+MACHINE_CLEARS.PAGE_FAULT
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	Counts the number of machine clears due to a page fault.  Counts both I-Side and D-Side (Loads/Stores) page faults.  A page fault occurs when either the page is not present, or an access violation occurs.
+MACHINE_CLEARS.FPC_VIRTUAL_TRAP
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	Counts the number of virtual traps taken.
+MACHINE_CLEARS.SLOW
+	SAV MINIMUM=2:DEFAULT=20003
+	PEBS DEFAULT=YES
+	This event is deprecated.
+MACHINE_CLEARS.MRN_NUKE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of machines clears due to memory renaming.
+BR_INST_RETIRED.ALL_BRANCHES
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the total number of branch instructions retired for all branch types.
+BR_INST_RETIRED.JCC
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event BR_INST_RETIRED.COND
+BR_INST_RETIRED.COND
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of retired JCC (Jump on Conditional Code) branch instructions retired, includes both taken and not taken branches.
+BR_INST_RETIRED.TAKEN
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of taken branch instructions retired.
+BR_INST_RETIRED.FAR_BRANCH
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of far branch instructions retired, includes far jump, far call and return, and interrupt call and return.
+BR_INST_RETIRED.NEAR_TAKEN
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of near taken branch instructions retired.
+BR_INST_RETIRED.REL_JMP
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of near relative JMP branch instructions retired.
+BR_INST_RETIRED.NON_RETURN_IND
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event BR_INST_RETIRED.INDIRECT
+BR_INST_RETIRED.INDIRECT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of near indirect JMP and near indirect CALL branch instructions retired.
+BR_INST_RETIRED.INDIRECT_JMP
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of near indirect JMP branch instructions retired.
+BR_INST_RETIRED.RETURN
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event BR_INST_RETIRED.NEAR_RETURN
+BR_INST_RETIRED.NEAR_RETURN
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of near RET branch instructions retired.
+BR_INST_RETIRED.CALL
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event BR_INST_RETIRED.NEAR_CALL
+BR_INST_RETIRED.NEAR_CALL
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of near CALL branch instructions retired.
+BR_INST_RETIRED.IND_CALL
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event BR_INST_RETIRED.INDIRECT_CALL
+BR_INST_RETIRED.INDIRECT_CALL
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of near indirect CALL branch instructions retired.
+BR_INST_RETIRED.REL_CALL
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of near relative CALL branch instructions retired.
+BR_INST_RETIRED.TAKEN_JCC
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event BR_INST_RETIRED.COND_TAKEN
+BR_INST_RETIRED.COND_TAKEN
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of taken JCC (Jump on Conditional Code) branch instructions retired.
+BR_MISP_RETIRED.ALL_BRANCHES
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the total number of mispredicted branch instructions retired for all branch types.
+BR_MISP_RETIRED.JCC
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event BR_MISP_RETIRED.COND
+BR_MISP_RETIRED.COND
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of mispredicted JCC (Jump on Conditional Code) branch instructions retired.
+BR_MISP_RETIRED.NEAR_TAKEN
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of mispredicted near taken branch instructions retired.
+BR_MISP_RETIRED.NON_RETURN_IND
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event BR_MISP_RETIRED.INDIRECT
+BR_MISP_RETIRED.INDIRECT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of mispredicted near indirect JMP and near indirect CALL branch instructions retired.
+BR_MISP_RETIRED.INDIRECT_JMP
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of mispredicted near indirect JMP branch instructions retired.
+BR_MISP_RETIRED.RETURN
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of mispredicted near RET branch instructions retired.
+BR_MISP_RETIRED.IND_CALL
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event BR_MISP_RETIRED.INDIRECT_CALL
+BR_MISP_RETIRED.INDIRECT_CALL
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of mispredicted near indirect CALL branch instructions retired.
+BR_MISP_RETIRED.TAKEN_JCC
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event BR_MISP_RETIRED.COND_TAKEN
+BR_MISP_RETIRED.COND_TAKEN
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of mispredicted taken JCC (Jump on Conditional Code) branch instructions retired.
+ARITH.IDIV_OCCUPANCY
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of active integer dividers per cycle.
+ARITH.IDIV_ACTIVE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles any of the two integer dividers are active.
+ARITH.FPDIV_ACTIVE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles the floating point divider is in the loop stage.
+ARITH.DIV_ACTIVE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of cycles when any of the floating point or integer dividers are active.
+ARITH.DIV_OCCUPANCY
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event is deprecated.
+ARITH.IDIV_UOPS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of integer divider uops executed per cycle.
+ARITH.FPDIV_UOPS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of floating point divider uops executed per cycle.
+ARITH.DIV_UOPS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event is deprecated.
+MEM_UOPS_RETIRED.LOAD_LATENCY_GT_4
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=UNEXPECTED
+	Counts the number of tagged load uops retired that exceed the latency threshold of 4. Only counts with PEBS enabled.
+MEM_UOPS_RETIRED.LOAD_LATENCY_GT_128
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=UNEXPECTED
+	Counts the number of tagged load uops retired that exceed the latency threshold of 128. Only counts with PEBS enabled.
+MEM_UOPS_RETIRED.LOAD_LATENCY_GT_64
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=UNEXPECTED
+	Counts the number of tagged load uops retired that exceed the latency threshold of 64. Only counts with PEBS enabled.
+MEM_UOPS_RETIRED.LOAD_LATENCY_GT_32
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=UNEXPECTED
+	Counts the number of tagged load uops retired that exceed the latency threshold of 32. Only counts with PEBS enabled.
+MEM_UOPS_RETIRED.LOAD_LATENCY_GT_16
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=UNEXPECTED
+	Counts the number of tagged load uops retired that exceed the latency threshold of 16. Only counts with PEBS enabled.
+MEM_UOPS_RETIRED.LOAD_LATENCY_GT_8
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=UNEXPECTED
+	Counts the number of tagged load uops retired that exceed the latency threshold of 8. Only counts with PEBS enabled.
+MEM_UOPS_RETIRED.LOAD_LATENCY_GT_512
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=UNEXPECTED
+	Counts the number of tagged load uops retired that exceed the latency threshold of 512. Only counts with PEBS enabled.
+MEM_UOPS_RETIRED.LOAD_LATENCY_GT_256
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=UNEXPECTED
+	Counts the number of tagged load uops retired that exceed the latency threshold of 256. Only counts with PEBS enabled.
+MEM_UOPS_RETIRED.LOAD_LATENCY_GT_2048
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=UNEXPECTED
+	Counts the number of tagged load uops retired that exceed the latency threshold of 2048. Only counts with PEBS enabled.
+MEM_UOPS_RETIRED.LOAD_LATENCY_GT_1024
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=UNEXPECTED
+	Counts the number of tagged load uops retired that exceed the latency threshold of 1024. Only counts with PEBS enabled.
+MEM_UOPS_RETIRED.STORE_LATENCY
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of stores uops retired.
+MEM_UOPS_RETIRED.DTLB_MISS_LOADS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event MEM_UOPS_RETIRED.STLB_MISS_LOADS
+MEM_UOPS_RETIRED.STLB_MISS_LOADS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of load ops retired that miss in the second Level TLB.
+MEM_UOPS_RETIRED.DTLB_MISS_STORES
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event MEM_UOPS_RETIRED.STLB_MISS_STORES
+MEM_UOPS_RETIRED.STLB_MISS_STORES
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of store ops retired that miss in the second level TLB.
+MEM_UOPS_RETIRED.DTLB_MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	This event is deprecated. Refer to new event MEM_UOPS_RETIRED.STLB_MISS
+MEM_UOPS_RETIRED.STLB_MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the total number of load and store uops retired that missed in the second level TLB.
+MEM_UOPS_RETIRED.LOCK_LOADS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of load uops retired that performed one or more locks.
+MEM_UOPS_RETIRED.SPLIT_LOADS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of retired split load uops.
+MEM_UOPS_RETIRED.SPLIT_STORES
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of retired split store uops.
+MEM_UOPS_RETIRED.SPLIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of memory uops retired that were splits.
+MEM_UOPS_RETIRED.ALL_LOADS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of load uops retired.
+MEM_UOPS_RETIRED.ALL_STORES
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of store uops retired.
+MEM_UOPS_RETIRED.ALL
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of memory uops retired.
+MEM_LOAD_UOPS_RETIRED.L1_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of load uops retired that hit in the L1 data cache.
+MEM_LOAD_UOPS_RETIRED.L2_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of load uops retired that hit in the L2 cache.
+MEM_LOAD_UOPS_RETIRED.L3_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of load uops retired that hit in the L3 cache.
+MEM_LOAD_UOPS_RETIRED.L1_MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of load uops retired that miss in the L1 data cache.
+MEM_LOAD_UOPS_RETIRED.L2_MISS
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of load uops retired that miss in the L2 cache.
+MEM_LOAD_UOPS_RETIRED.HITM
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of load uops retired that hit in the L3 cache, in which a snoop was required and modified data was forwarded from another core or module.
+MEM_LOAD_UOPS_RETIRED.DRAM_HIT
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the number of load uops retired that hit in DRAM.
+MEM_LOAD_UOPS_RETIRED_MISC.L3_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of load uops retired that miss in the L3 cache.
+MEM_LOAD_UOPS_RETIRED_MISC.HIT_E_F
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of load uops retired that hit in the L3 cache, in which a snoop was required, and non-modified data was forwarded.
+MISC_RETIRED1.LFENCE
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of LFENCE instructions retired.
+MISC_RETIRED1.CL_INST
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of CLFLUSH, CLWB, and CLDEMOTE instructions retired.
+MISC_RETIRED2.KEYLOCKER_ACCESS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of accesses to KeyLocker cache.
+MISC_RETIRED2.KEYLOCKER_MISS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of misses to KeyLocker cache.
+MISC_RETIRED.LBR_INSERTS
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	Counts the number of LBR entries recorded. Requires LBRs to be enabled in IA32_LBR_CTL. [This event is alias to LBR_INSERTS.ANY]
+LBR_INSERTS.ANY
+	SAV MINIMUM=2:DEFAULT=1000003
+	PEBS DEFAULT=YES
+	This event is deprecated. [This event is alias to MISC_RETIRED.LBR_INSERTS]
+BACLEARS.ANY
+	SAV MINIMUM=2:DEFAULT=100003
+	PEBS DEFAULT=YES
+	Counts the total number of BACLEARS due to all branch types including conditional and unconditional jumps, returns, and indirect branches.
+BTCLEAR.ANY
+	SAV MINIMUM=2:DEFAULT=200003
+	PEBS DEFAULT=YES
+	Counts the total number of BTCLEARS.
+UNC_CLOCK.SOCKET
+	This 48-bit fixed counter counts the UCLK cycles.
+UNC_ARB_TRK_OCCUPANCY.ALL
+	Each cycle counts number of all outgoing valid entries in ReqTrk. Such entry is defined as valid from its allocation in ReqTrk till deallocation. Accounts for Coherent and non-coherent traffic.
+UNC_ARB_TRK_REQUESTS.ALL
+	Counts the number of coherent and in-coherent requests initiated by IA cores, processor graphic units, or LLC.
+UNC_ARB_REQ_TRK_REQUEST.DRD
+	Number of all coherent Data Read entries. Doesn't include prefetches [This event is alias to UNC_ARB_TRK_REQUESTS.RD]
+UNC_ARB_TRK_REQUESTS.RD
+	Number of all coherent Data Read entries. Doesn't include prefetches [This event is alias to UNC_ARB_REQ_TRK_REQUEST.DRD]
+UNC_ARB_COH_TRK_REQUESTS.ALL
+	Number of requests allocated in Coherency Tracker.
+UNC_ARB_REQ_TRK_OCCUPANCY.DRD
+	Each cycle count number of 'valid' coherent Data Read entries . Such entry is defined as valid when it is allocated till deallocation. Doesn't include prefetches [This event is alias to UNC_ARB_TRK_OCCUPANCY.RD]
+UNC_ARB_TRK_OCCUPANCY.RD
+	Each cycle count number of 'valid' coherent Data Read entries . Such entry is defined as valid when it is allocated till deallocation. Doesn't include prefetches [This event is alias to UNC_ARB_REQ_TRK_OCCUPANCY.DRD]
+UNC_ARB_DAT_REQUESTS.RD
+	This event is deprecated. Refer to new event UNC_ARB_REQ_TRK_REQUEST.DRD
+UNC_ARB_IFA_OCCUPANCY.ALL
+	This event is deprecated. Refer to new event UNC_ARB_DAT_OCCUPANCY.ALL
+UNC_ARB_DAT_OCCUPANCY.ALL
+	Each cycle counts number of any coherent request at memory controller that were issued by any core.
+UNC_ARB_DAT_OCCUPANCY.RD
+	Each cycle counts number of coherent reads pending on data return from memory controller that were issued by any core.
+UNC_MC0_RDCAS_COUNT_FREERUN
+	Counts every 64B read  request entering the Memory Controller 0 to DRAM (sum of all channels).
+UNC_MC1_RDCAS_COUNT_FREERUN
+	Counts every 64B read request entering the Memory Controller 1 to DRAM (sum of all channels).
+UNC_MC0_WRCAS_COUNT_FREERUN
+	Counts every 64B write request entering the Memory Controller 0 to DRAM (sum of all channels). Each write request counts as a new request incrementing this counter. However, same cache line write requests (both full and partial) are combined to a single 64 byte data transfer to DRAM.
+UNC_MC1_WRCAS_COUNT_FREERUN
+	Counts every 64B write request entering the Memory Controller 1 to DRAM (sum of all channels). Each write request counts as a new request incrementing this counter. However, same cache line write requests (both full and partial) are combined to a single 64 byte data transfer to DRAM.
+UNC_M_CLOCKTICKS
+	Number of clocks
+UNC_M_VC0_REQUESTS_RD
+	Incoming VC0 read request
+UNC_M_VC0_REQUESTS_WR
+	Incoming VC0 write request
+UNC_M_VC1_REQUESTS_RD
+	Incoming VC1 read request
+UNC_M_VC1_REQUESTS_WR
+	Incoming VC1 write request
+UNC_M_PREFETCH_RD
+	Incoming read prefetch request from IA.
+UNC_M_DRAM_THERMAL_HOT
+	Any Rank at Hot state
+UNC_M_DRAM_THERMAL_WARM
+	Any Rank at Warm state
+UNC_M_DRAM_PAGE_HIT_RD
+	incoming read request page status is Page Hit
+UNC_M_DRAM_PAGE_EMPTY_RD
+	incoming read request page status is Page Empty
+UNC_M_DRAM_PAGE_MISS_RD
+	incoming read request page status is Page Miss
+UNC_M_DRAM_PAGE_HIT_WR
+	incoming write request page status is Page Hit
+UNC_M_DRAM_PAGE_EMPTY_WR
+	incoming write request page status is Page Empty
+UNC_M_DRAM_PAGE_MISS_WR
+	incoming write request page status is Page Miss
+UNC_M_CAS_COUNT_RD
+	Read CAS command sent to DRAM
+UNC_M_CAS_COUNT_WR
+	Write CAS command sent to DRAM
+UNC_M_ACT_COUNT_RD
+	ACT command for a read request sent to DRAM
+UNC_M_ACT_COUNT_WR
+	ACT command for a write request sent to DRAM
+UNC_M_ACT_COUNT_TOTAL
+	ACT command sent to DRAM
+UNC_M_PRE_COUNT_PAGE_MISS
+	PRE command sent to DRAM for a read/write request
+UNC_M_PRE_COUNT_IDLE
+	PRE command sent to DRAM due to page table idle timer expiration
+FREERUN_CORE_C3_RESIDENCY
+	CORE_C3_RESIDENCY
+FREERUN_CORE_C6_RESIDENCY
+	CORE_C6_RESIDENCY
+FREERUN_CORE_C7_RESIDENCY
+	CORE_C7_RESIDENCY
+FREERUN_CORE_SDC_RESIDENCY
+	CORE_SDC_RESIDENCY
+FREERUN_LLC_FLUSHED_RESIDENCY
+	PCU_CR_LLC_FLUSHED_RCNTR
+FREERUN_PKG_C10_RESIDENCY
+	PCU_CR_PC10_RCNTR
+FREERUN_PKG_C2_RESIDENCY
+	PCU_CR_PC2_RCNTR
+FREERUN_PKG_C3_RESIDENCY
+	PCU_CR_PC3_RCNTR
+FREERUN_PKG_C6_RESIDENCY
+	PCU_CR_PC6_RCNTR
+FREERUN_PKG_C7_RESIDENCY
+	PCU_CR_PC7_RCNTR
+FREERUN_PKG_C8_RESIDENCY
+	PCU_CR_PC8_RCNTR
+FREERUN_PKG_C9_RESIDENCY
+	PCU_CR_PC9_RCNTR
+FREERUN_PKG_SDC_DEEP_RESIDENCY
+	PCU_CR_PKG_SDC_DEEP_RESIDENCY
+FREERUN_PKG_SDC_SHALLOW_RESIDENCY
+	PCU_CR_PKG_SDC_SHALLOW_RESIDENCY
+IA32_PACKAGE_THERM_STATUS
+	IA32_PACKAGE_THERM_STATUS
+STATIC_PKG_POWER_SKU_UNIT
+	PCU_CR_PACKAGE_POWER_SKU_UNIT
+STATIC_TEMPERATURE_TARGET
+	IA32_TEMPERATURE_TARGET
+UNC_DRAM_ENERGY_STATUS
+	PCU_CR_DRAM_ENERGY_STATUS
+UNC_IA32_HW_FEEDBACK_CHAR
+	Returns type of code executed on current h/w thread
+UNC_IA32_THERM_STATUS
+	Thermal Status for Digital thermometer
+UNC_PKG_ENERGY_STATUS
+	Running counter of package energy
+UNC_PP0_ENERGY_STATUS
+	Running counter of IA core energy
+UNC_PP1_ENERGY_STATUS
+	Running counter of GT core energy

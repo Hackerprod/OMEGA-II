@@ -1,0 +1,13 @@
+h0_scaffold.cpp
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_scaffold.cpp(224): error C2664: 'bool t0h0::ShardCopies::bCopiesAreIndependentNonAliasingEqualAndPretouched::<lambda_747ea0d4a4e81548175d02eaffacf9d4>::operator ()(t0q4::WeightMatrix &) const': el argumento 1 no puede convertirse de 'const _Ty' a 't0q4::WeightMatrix &'
+        with
+        [
+            _Ty=t0q4::WeightMatrix
+        ]
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_scaffold.cpp(224): note: Se pierden calificadores en la conversi¢n
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_scaffold.cpp(220): note: vea la declaraci¢n de 't0h0::ShardCopies::bCopiesAreIndependentNonAliasingEqualAndPretouched::<lambda_747ea0d4a4e81548175d02eaffacf9d4>::operator ()'
+C:\Projects\OMEGA\Ejercise\T0\src\build\..\h0_scaffold.cpp(224): note: al hacer coincidir la lista de argumentos '(const _Ty)'
+        with
+        [
+            _Ty=t0q4::WeightMatrix
+        ]

@@ -1,3 +1,0 @@
-﻿T0-M L1 spill-free compare exact command
-output_directory=D:\Install\Dev\Projects\IA\Ejercise\cpu-native-arch\sweep-output\t0m-l1-spillfree-compare
-build\t0m_int8_probe.exe --D 64 --S 1 --R 1 --mode compare --variant A --S-tile 8 --workers 1 --cpus 0 --rows-per-worker 64 --iterations 4 --timed-repetitions 20 --warmup 5

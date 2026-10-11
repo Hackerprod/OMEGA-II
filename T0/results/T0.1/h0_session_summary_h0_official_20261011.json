@@ -1,0 +1,11 @@
+{
+  "SESSION": "HOLD",
+  "segment_id": "h0_official_20261011",
+  "performance_series_started": false,
+  "preflight": null,
+  "variant_order": null,
+  "completed_cells": [],
+  "official_timing_performed": false,
+  "status": "H0_HOLD",
+  "reason": "RuntimeError: H0 preflight command failed: Get-CimInstance : Consulta no v\ufffdlida \r\nEn l\ufffdnea: 9 Car\ufffdcter: 29\r\n+ ... 11;$i++){$r=Get-CimInstance -ClassName Win32_PerfFormattedData_PerfOS ...\r\n+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : InvalidArgument: (:) [Get-CimInstance], CimException\r\n    + FullyQualifiedErrorId : HRESULT 0x80041017,Microsoft.Management.Infrastructure.CimCmdlets.GetCimInstanceCommand\r\n \r\n"
+}

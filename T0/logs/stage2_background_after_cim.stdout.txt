@@ -1,0 +1,1136 @@
+{
+    "captured_utc":  "2026-10-10T12:54:22.6129783Z",
+    "cpu_counter":  "CIM Win32_PerfFormattedData_PerfOS_Processor(_Total).PercentProcessorTime",
+    "sample_interval_seconds":  1,
+    "expected_samples":  11,
+    "cpu_samples":  [
+                        {
+                            "Timestamp":  "2026-10-10T12:54:09.7650422Z",
+                            "InstanceName":  "_Total",
+                            "PercentProcessorTime":  6,
+                            "PercentIdleTime":  96,
+                            "PercentUserTime":  0,
+                            "PercentPrivilegedTime":  0
+                        },
+                        {
+                            "Timestamp":  "2026-10-10T12:54:11.0486404Z",
+                            "InstanceName":  "_Total",
+                            "PercentProcessorTime":  4,
+                            "PercentIdleTime":  98,
+                            "PercentUserTime":  0,
+                            "PercentPrivilegedTime":  0
+                        },
+                        {
+                            "Timestamp":  "2026-10-10T12:54:12.3355748Z",
+                            "InstanceName":  "_Total",
+                            "PercentProcessorTime":  1,
+                            "PercentIdleTime":  98,
+                            "PercentUserTime":  1,
+                            "PercentPrivilegedTime":  0
+                        },
+                        {
+                            "Timestamp":  "2026-10-10T12:54:13.6225648Z",
+                            "InstanceName":  "_Total",
+                            "PercentProcessorTime":  1,
+                            "PercentIdleTime":  97,
+                            "PercentUserTime":  0,
+                            "PercentPrivilegedTime":  0
+                        },
+                        {
+                            "Timestamp":  "2026-10-10T12:54:14.9037491Z",
+                            "InstanceName":  "_Total",
+                            "PercentProcessorTime":  0,
+                            "PercentIdleTime":  99,
+                            "PercentUserTime":  0,
+                            "PercentPrivilegedTime":  0
+                        },
+                        {
+                            "Timestamp":  "2026-10-10T12:54:16.1835449Z",
+                            "InstanceName":  "_Total",
+                            "PercentProcessorTime":  2,
+                            "PercentIdleTime":  98,
+                            "PercentUserTime":  2,
+                            "PercentPrivilegedTime":  0
+                        },
+                        {
+                            "Timestamp":  "2026-10-10T12:54:17.4674361Z",
+                            "InstanceName":  "_Total",
+                            "PercentProcessorTime":  5,
+                            "PercentIdleTime":  98,
+                            "PercentUserTime":  0,
+                            "PercentPrivilegedTime":  0
+                        },
+                        {
+                            "Timestamp":  "2026-10-10T12:54:18.7540747Z",
+                            "InstanceName":  "_Total",
+                            "PercentProcessorTime":  0,
+                            "PercentIdleTime":  99,
+                            "PercentUserTime":  0,
+                            "PercentPrivilegedTime":  0
+                        },
+                        {
+                            "Timestamp":  "2026-10-10T12:54:20.0379870Z",
+                            "InstanceName":  "_Total",
+                            "PercentProcessorTime":  5,
+                            "PercentIdleTime":  97,
+                            "PercentUserTime":  0,
+                            "PercentPrivilegedTime":  0
+                        },
+                        {
+                            "Timestamp":  "2026-10-10T12:54:21.3242859Z",
+                            "InstanceName":  "_Total",
+                            "PercentProcessorTime":  6,
+                            "PercentIdleTime":  98,
+                            "PercentUserTime":  0,
+                            "PercentPrivilegedTime":  0
+                        },
+                        {
+                            "Timestamp":  "2026-10-10T12:54:22.6129783Z",
+                            "InstanceName":  "_Total",
+                            "PercentProcessorTime":  5,
+                            "PercentIdleTime":  96,
+                            "PercentUserTime":  0,
+                            "PercentPrivilegedTime":  0
+                        }
+                    ],
+    "processes":  [
+                      {
+                          "ProcessId":  0,
+                          "ParentProcessId":  0,
+                          "Name":  "System Idle Process",
+                          "CommandLine":  null
+                      },
+                      {
+                          "ProcessId":  4,
+                          "ParentProcessId":  0,
+                          "Name":  "System",
+                          "CommandLine":  null
+                      },
+                      {
+                          "ProcessId":  368,
+                          "ParentProcessId":  4,
+                          "Name":  "Registry",
+                          "CommandLine":  null
+                      },
+                      {
+                          "ProcessId":  928,
+                          "ParentProcessId":  4,
+                          "Name":  "smss.exe",
+                          "CommandLine":  null
+                      },
+                      {
+                          "ProcessId":  1232,
+                          "ParentProcessId":  1220,
+                          "Name":  "csrss.exe",
+                          "CommandLine":  null
+                      },
+                      {
+                          "ProcessId":  1328,
+                          "ParentProcessId":  1220,
+                          "Name":  "wininit.exe",
+                          "CommandLine":  null
+                      },
+                      {
+                          "ProcessId":  1336,
+                          "ParentProcessId":  1320,
+                          "Name":  "csrss.exe",
+                          "CommandLine":  null
+                      },
+                      {
+                          "ProcessId":  1412,
+                          "ParentProcessId":  1328,
+                          "Name":  "services.exe",
+                          "CommandLine":  null
+                      },
+                      {
+                          "ProcessId":  1420,
+                          "ParentProcessId":  1328,
+                          "Name":  "lsass.exe",
+                          "CommandLine":  null
+                      },
+                      {
+                          "ProcessId":  1480,
+                          "ParentProcessId":  1320,
+                          "Name":  "winlogon.exe",
+                          "CommandLine":  "winlogon.exe"
+                      },
+                      {
+                          "ProcessId":  1628,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k DcomLaunch -p"
+                      },
+                      {
+                          "ProcessId":  1660,
+                          "ParentProcessId":  1328,
+                          "Name":  "fontdrvhost.exe",
+                          "CommandLine":  "\"fontdrvhost.exe\""
+                      },
+                      {
+                          "ProcessId":  1652,
+                          "ParentProcessId":  1480,
+                          "Name":  "fontdrvhost.exe",
+                          "CommandLine":  "\"fontdrvhost.exe\""
+                      },
+                      {
+                          "ProcessId":  1764,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k RPCSS -p"
+                      },
+                      {
+                          "ProcessId":  1804,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k DcomLaunch -p -s LSM"
+                      },
+                      {
+                          "ProcessId":  1876,
+                          "ParentProcessId":  1480,
+                          "Name":  "dwm.exe",
+                          "CommandLine":  "\"dwm.exe\""
+                      },
+                      {
+                          "ProcessId":  1980,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNetworkRestricted -s BTAGService"
+                      },
+                      {
+                          "ProcessId":  1988,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s bthserv"
+                      },
+                      {
+                          "ProcessId":  1992,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s BthAvctpSvc"
+                      },
+                      {
+                          "ProcessId":  2040,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s NcbService"
+                      },
+                      {
+                          "ProcessId":  8,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNetworkRestricted -p -s TimeBrokerSvc"
+                      },
+                      {
+                          "ProcessId":  1180,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s hidserv"
+                      },
+                      {
+                          "ProcessId":  2068,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s nsi"
+                      },
+                      {
+                          "ProcessId":  2096,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netprofm -p -s netprofm"
+                      },
+                      {
+                          "ProcessId":  2196,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k UserProfileService -p -s ProfSvc"
+                      },
+                      {
+                          "ProcessId":  2244,
+                          "ParentProcessId":  1412,
+                          "Name":  "NVDisplay.Container.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\nv_dispi.inf_amd64_da865124972e1f80\\Display.NvContainer\\NVDisplay.Container.exe -arg \u003cExeDir\u003e\\arguments.txt"
+                      },
+                      {
+                          "ProcessId":  2276,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s UserManager"
+                      },
+                      {
+                          "ProcessId":  2400,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -p -s EventLog"
+                      },
+                      {
+                          "ProcessId":  2420,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k NetworkService -p"
+                      },
+                      {
+                          "ProcessId":  2500,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s EventSystem"
+                      },
+                      {
+                          "ProcessId":  2508,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs -p -s Themes"
+                      },
+                      {
+                          "ProcessId":  2600,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s DeviceAssociationService"
+                      },
+                      {
+                          "ProcessId":  2688,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcsRedirectionGuard -p -s SENS"
+                      },
+                      {
+                          "ProcessId":  2772,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Schedule"
+                      },
+                      {
+                          "ProcessId":  2804,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s AudioEndpointBuilder"
+                      },
+                      {
+                          "ProcessId":  2816,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s FontCache"
+                      },
+                      {
+                          "ProcessId":  2948,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -p"
+                      },
+                      {
+                          "ProcessId":  2996,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s TextInputManagementService"
+                      },
+                      {
+                          "ProcessId":  3052,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNetworkRestricted -p -s Dhcp"
+                      },
+                      {
+                          "ProcessId":  3060,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -p -s DusmSvc"
+                      },
+                      {
+                          "ProcessId":  3120,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceHttp -p"
+                      },
+                      {
+                          "ProcessId":  3132,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k appmodel -p -s StateRepository"
+                      },
+                      {
+                          "ProcessId":  3208,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNetworkRestricted -p -s Wcmsvc"
+                      },
+                      {
+                          "ProcessId":  3356,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p"
+                      },
+                      {
+                          "ProcessId":  3384,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs -p -s ShellHWDetection"
+                      },
+                      {
+                          "ProcessId":  3436,
+                          "ParentProcessId":  1412,
+                          "Name":  "spoolsv.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\spoolsv.exe"
+                      },
+                      {
+                          "ProcessId":  3464,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNoNetworkFirewall -p"
+                      },
+                      {
+                          "ProcessId":  3500,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -p -s LanmanWorkstation"
+                      },
+                      {
+                          "ProcessId":  3736,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNoNetwork -p"
+                      },
+                      {
+                          "ProcessId":  3828,
+                          "ParentProcessId":  1412,
+                          "Name":  "AsusUpdateCheck.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\AsusUpdateCheck.exe"
+                      },
+                      {
+                          "ProcessId":  3836,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s DispBrokerDesktopSvc"
+                      },
+                      {
+                          "ProcessId":  3852,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k NetworkService -p"
+                      },
+                      {
+                          "ProcessId":  3856,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNoNetwork -p -s DPS"
+                      },
+                      {
+                          "ProcessId":  3868,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s IKEEXT"
+                      },
+                      {
+                          "ProcessId":  3884,
+                          "ParentProcessId":  1412,
+                          "Name":  "DtsApo4Service.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\DTS\\PC\\APO4x\\DtsApo4Service.exe"
+                      },
+                      {
+                          "ProcessId":  3904,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k NetSvcs -p -s iphlpsvc"
+                      },
+                      {
+                          "ProcessId":  3916,
+                          "ParentProcessId":  1412,
+                          "Name":  "Everything.exe",
+                          "CommandLine":  "\"C:\\Program Files\\Everything\\Everything.exe\" -svc"
+                      },
+                      {
+                          "ProcessId":  3972,
+                          "ParentProcessId":  1412,
+                          "Name":  "nvcontainer.exe",
+                          "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\NvContainer\\nvcontainer.exe\" -s NvContainerLocalSystem -a -f \"C:\\ProgramData\\NVIDIA Corporation\\NVIDIA App\\NvContainer\\NvContainerLocalSystem.log\" -l 3 -d \"C:\\Program Files\\NVIDIA Corporation\\NvContainer\\plugins\\LocalSystem\" -r -p 30000  -ert"
+                      },
+                      {
+                          "ProcessId":  3980,
+                          "ParentProcessId":  1412,
+                          "Name":  "jhi_service.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\dal.inf_amd64_af50fdb80983f7bc\\jhi_service.exe"
+                      },
+                      {
+                          "ProcessId":  4040,
+                          "ParentProcessId":  1412,
+                          "Name":  "sshd.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\OpenSSH\\sshd.exe"
+                      },
+                      {
+                          "ProcessId":  4052,
+                          "ParentProcessId":  1412,
+                          "Name":  "RstMwService.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\iastorvd.inf_amd64_f28d27d12c1c64c5\\RstMwService.exe"
+                      },
+                      {
+                          "ProcessId":  4060,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s TrkWks"
+                      },
+                      {
+                          "ProcessId":  4068,
+                          "ParentProcessId":  1412,
+                          "Name":  "RtkAudUService64.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\realtekservice.inf_amd64_ac680e5c6c566c10\\RtkAudUService64.exe"
+                      },
+                      {
+                          "ProcessId":  3492,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Winmgmt"
+                      },
+                      {
+                          "ProcessId":  4104,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s WpnService"
+                      },
+                      {
+                          "ProcessId":  4124,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k WSAIFabricSvcGroup -p -s WSAIFabricSvc"
+                      },
+                      {
+                          "ProcessId":  4196,
+                          "ParentProcessId":  1412,
+                          "Name":  "WMIRegistrationService.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\mewmiprov.inf_amd64_d51901c26227fb29\\WMIRegistrationService.exe"
+                      },
+                      {
+                          "ProcessId":  4264,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k NetworkServiceNetworkRestricted -p -s PolicyAgent"
+                      },
+                      {
+                          "ProcessId":  4276,
+                          "ParentProcessId":  1412,
+                          "Name":  "zerotier-one_x64.exe",
+                          "CommandLine":  "C:\\ProgramData\\ZeroTier\\One\\zerotier-one_x64.exe"
+                      },
+                      {
+                          "ProcessId":  4300,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s LanmanServer"
+                      },
+                      {
+                          "ProcessId":  6424,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k osprivacy -p -s camsvc"
+                      },
+                      {
+                          "ProcessId":  6860,
+                          "ParentProcessId":  3356,
+                          "Name":  "wlanext.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\WLANExt.exe 1397090872592"
+                      },
+                      {
+                          "ProcessId":  6948,
+                          "ParentProcessId":  1412,
+                          "Name":  "Intel_PIE_Service.exe",
+                          "CommandLine":  "\"C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\piecomponent.inf_amd64_c8af063cc2ca3ad0\\Intel_PIE_Service.exe\""
+                      },
+                      {
+                          "ProcessId":  7244,
+                          "ParentProcessId":  2244,
+                          "Name":  "NVDisplay.Container.exe",
+                          "CommandLine":  "\"C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\nv_dispi.inf_amd64_da865124972e1f80\\Display.NvContainer\\NVDisplay.Container.exe\" -f %ProgramData%\\NVIDIA\\DisplaySessionContainer%d.log -d C:\\WINDOWS\\System32\\DriverStore\\FileRepository\\nv_dispi.inf_amd64_da865124972e1f80\\Display.NvContainer\\plugins\\Session -r -l 3 -p 30000 -cfg NVDisplay.ContainerLocalSystem\\Parameters\\Session /ert -c"
+                      },
+                      {
+                          "ProcessId":  7268,
+                          "ParentProcessId":  3972,
+                          "Name":  "nvcontainer.exe",
+                          "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\NvContainer\\nvcontainer.exe\" -f \"C:\\ProgramData\\NVIDIA Corporation\\NVIDIA App\\NvContainer\\NvContainerSession%d.log\" -d \"C:\\Program Files\\NVIDIA Corporation\\NvContainer\\plugins\\Session\" -r -l 3 -p 30000  -ert -c"
+                      },
+                      {
+                          "ProcessId":  7308,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -s RmSvc"
+                      },
+                      {
+                          "ProcessId":  6520,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s Netman"
+                      },
+                      {
+                          "ProcessId":  7180,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p"
+                      },
+                      {
+                          "ProcessId":  8408,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -p -s lmhosts"
+                      },
+                      {
+                          "ProcessId":  5616,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s Appinfo"
+                      },
+                      {
+                          "ProcessId":  5888,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k WebThreatDefense -p -s webthreatdefsvc"
+                      },
+                      {
+                          "ProcessId":  5820,
+                          "ParentProcessId":  3972,
+                          "Name":  "nvcontainer.exe",
+                          "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\NvContainer\\nvcontainer.exe\" -f \"C:\\ProgramData\\NVIDIA Corporation\\NVIDIA App\\NvContainer\\NvContainerUser%dSPUser.log\" -d \"C:\\Program Files\\NVIDIA Corporation\\NvContainer\\plugins\\SPUser\" -r -l 3 -p 30000 -st \"C:\\Program Files\\NVIDIA Corporation\\NvContainer\\NvContainerTelemetryApi.dll\" -c"
+                      },
+                      {
+                          "ProcessId":  6132,
+                          "ParentProcessId":  3972,
+                          "Name":  "nvcontainer.exe",
+                          "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\NvContainer\\nvcontainer.exe\" -f \"C:\\ProgramData\\NVIDIA Corporation\\NVIDIA App\\NvContainer\\NvContainerUser%d.log\" -d \"C:\\Program Files\\NVIDIA Corporation\\NvContainer\\plugins\\User\" -r -l 3 -p 30000   -c"
+                      },
+                      {
+                          "ProcessId":  6004,
+                          "ParentProcessId":  2276,
+                          "Name":  "sihost.exe",
+                          "CommandLine":  "sihost.exe"
+                      },
+                      {
+                          "ProcessId":  9080,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k BthAppGroup -p -s BluetoothUserService"
+                      },
+                      {
+                          "ProcessId":  9064,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k UnistackSvcGroup -s CDPUserSvc"
+                      },
+                      {
+                          "ProcessId":  5372,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s webthreatdefusersvc"
+                      },
+                      {
+                          "ProcessId":  5336,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k UnistackSvcGroup -s WpnUserService"
+                      },
+                      {
+                          "ProcessId":  2552,
+                          "ParentProcessId":  2772,
+                          "Name":  "taskhostw.exe",
+                          "CommandLine":  "taskhostw.exe {222A245B-E637-4AE9-A93F-A59CA119A75E}"
+                      },
+                      {
+                          "ProcessId":  4340,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s TokenBroker"
+                      },
+                      {
+                          "ProcessId":  9200,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s CDPSvc"
+                      },
+                      {
+                          "ProcessId":  8836,
+                          "ParentProcessId":  8504,
+                          "Name":  "explorer.exe",
+                          "CommandLine":  "C:\\WINDOWS\\Explorer.EXE"
+                      },
+                      {
+                          "ProcessId":  9352,
+                          "ParentProcessId":  6004,
+                          "Name":  "CrossDeviceResume.exe",
+                          "CommandLine":  "\"C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\CrossDeviceResume.exe\" /tileid MicrosoftWindows.Client.CBS_cw5n1h2txyewy!CrossDeviceResumeApp"
+                      },
+                      {
+                          "ProcessId":  10024,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k ClipboardSvcGroup -p -s cbdhsvc"
+                      },
+                      {
+                          "ProcessId":  9900,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s PcaSvc"
+                      },
+                      {
+                          "ProcessId":  10856,
+                          "ParentProcessId":  3972,
+                          "Name":  "nvsphelper64.exe",
+                          "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\ShadowPlay\\nvsphelper64.exe\""
+                      },
+                      {
+                          "ProcessId":  10884,
+                          "ParentProcessId":  5820,
+                          "Name":  "NVIDIA Overlay.exe",
+                          "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe\""
+                      },
+                      {
+                          "ProcessId":  4532,
+                          "ParentProcessId":  10884,
+                          "Name":  "NVIDIA Overlay.exe",
+                          "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe\" --type=gpu-process --no-sandbox --start-stack-profiler --user-data-dir=\"C:\\Users\\hackerprod\\AppData\\Local\\NVIDIA Corporation\\NVIDIA Overlay\\CefCache\" --gpu-preferences=UAAAAAAAAADgAQAMAAAAAAAAAAAAAAAAAABgAAEAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAEAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --field-trial-handle=2440,i,10345996256864857463,9428666816329227723,262144 --variations-seed-version --enable-logging=handle --log-file=2436 --mojo-platform-channel-handle=2388 /prefetch:2"
+                      },
+                      {
+                          "ProcessId":  7276,
+                          "ParentProcessId":  10884,
+                          "Name":  "NVIDIA Overlay.exe",
+                          "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --no-sandbox --start-stack-profiler --user-data-dir=\"C:\\Users\\hackerprod\\AppData\\Local\\NVIDIA Corporation\\NVIDIA Overlay\\CefCache\" --field-trial-handle=3112,i,10345996256864857463,9428666816329227723,262144 --variations-seed-version --enable-logging=handle --log-file=3132 --mojo-platform-channel-handle=3128 /prefetch:11"
+                      },
+                      {
+                          "ProcessId":  11252,
+                          "ParentProcessId":  10884,
+                          "Name":  "NVIDIA Overlay.exe",
+                          "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=service --no-sandbox --user-data-dir=\"C:\\Users\\hackerprod\\AppData\\Local\\NVIDIA Corporation\\NVIDIA Overlay\\CefCache\" --field-trial-handle=3172,i,10345996256864857463,9428666816329227723,262144 --variations-seed-version --enable-logging=handle --log-file=3208 --mojo-platform-channel-handle=3204 /prefetch:13"
+                      },
+                      {
+                          "ProcessId":  11376,
+                          "ParentProcessId":  10884,
+                          "Name":  "NVIDIA Overlay.exe",
+                          "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe\" --type=renderer --user-data-dir=\"C:\\Users\\hackerprod\\AppData\\Local\\NVIDIA Corporation\\NVIDIA Overlay\\CefCache\" --no-sandbox --video-capture-use-gpu-memory-buffer --lang=en-US --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1791496914231370 --launch-time-ticks=294344603 --field-trial-handle=5484,i,10345996256864857463,9428666816329227723,262144 --variations-seed-version --enable-logging=handle --log-file=5324 --mojo-platform-channel-handle=5312 /prefetch:1"
+                      },
+                      {
+                          "ProcessId":  11752,
+                          "ParentProcessId":  4136,
+                          "Name":  "cmd.exe",
+                          "CommandLine":  "\"C:\\Windows\\System32\\cmd.exe\" /d /c \"C:\\projects\\Dev-Tools\\satellite\\run.cmd\""
+                      },
+                      {
+                          "ProcessId":  11760,
+                          "ParentProcessId":  11752,
+                          "Name":  "conhost.exe",
+                          "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+                      },
+                      {
+                          "ProcessId":  11848,
+                          "ParentProcessId":  11752,
+                          "Name":  "node.exe",
+                          "CommandLine":  "node  dist\\cli.js run "
+                      },
+                      {
+                          "ProcessId":  9724,
+                          "ParentProcessId":  2996,
+                          "Name":  "ctfmon.exe",
+                          "CommandLine":  "/QuitInfo:0000000000000278;000000000000027C; "
+                      },
+                      {
+                          "ProcessId":  12696,
+                          "ParentProcessId":  8836,
+                          "Name":  "RtkAudUService64.exe",
+                          "CommandLine":  "\"C:\\Windows\\System32\\DriverStore\\FileRepository\\realtekservice.inf_amd64_ac680e5c6c566c10\\RtkAudUService64.exe\" -background"
+                      },
+                      {
+                          "ProcessId":  12872,
+                          "ParentProcessId":  8836,
+                          "Name":  "Everything.exe",
+                          "CommandLine":  "\"C:\\Program Files\\Everything\\Everything.exe\" -startup"
+                      },
+                      {
+                          "ProcessId":  4080,
+                          "ParentProcessId":  1412,
+                          "Name":  "codex-windows-sandbox-service.exe",
+                          "CommandLine":  "\"C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1002.7124.0_x64__2p2nqsd0c76g0\\app\\resources\\codex-windows-sandbox-service.exe\""
+                      },
+                      {
+                          "ProcessId":  13132,
+                          "ParentProcessId":  1628,
+                          "Name":  "ShellExperienceHost.exe",
+                          "CommandLine":  "\"C:\\Windows\\SystemApps\\ShellExperienceHost_cw5n1h2txyewy\\ShellExperienceHost.exe\" -ServerName:App.AppXtk181tbxbce2qsex02s8tw7hfxa9xb3t.mca"
+                      },
+                      {
+                          "ProcessId":  1068,
+                          "ParentProcessId":  1628,
+                          "Name":  "RuntimeBroker.exe",
+                          "CommandLine":  "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding"
+                      },
+                      {
+                          "ProcessId":  10248,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k InvSvcGroup -p -s InventorySvc"
+                      },
+                      {
+                          "ProcessId":  5664,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s UsoSvc"
+                      },
+                      {
+                          "ProcessId":  12396,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k whesvc -p -s whesvc"
+                      },
+                      {
+                          "ProcessId":  13176,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k UnistackSvcGroup"
+                      },
+                      {
+                          "ProcessId":  6436,
+                          "ParentProcessId":  1412,
+                          "Name":  "WUDFHost.exe",
+                          "CommandLine":  "\"C:\\Windows\\System32\\WUDFHost.exe\" -HostGUID:{193a1820-d9ac-4997-8c55-be817523f6aa} -IoEventPortName:\\UMDFCommunicationPorts\\WUDF\\HostProcess-793872ce-2f7b-4a00-b734-916f0e5bf72f -SystemEventPortName:\\UMDFCommunicationPorts\\WUDF\\HostProcess-6e8fbba0-f87d-4ff7-8f3e-c6a5f978f6be -IoCancelEventPortName:\\UMDFCommunicationPorts\\WUDF\\HostProcess-41c970ff-55e8-448e-9893-975ac1897923 -NonStateChangingEventPortName:\\UMDFCommunicationPorts\\WUDF\\HostProcess-519189b8-cc30-448f-9e6f-572ebd18d3d1 -LifetimeId:dddaef2d-80ef-4ce9-8df3-7641d9c2ab28 -DeviceGroupId:WpdFsGroup -HostArg:0"
+                      },
+                      {
+                          "ProcessId":  6884,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k UdkSvcGroup -s UdkUserSvc"
+                      },
+                      {
+                          "ProcessId":  6596,
+                          "ParentProcessId":  1628,
+                          "Name":  "StartMenuExperienceHost.exe",
+                          "CommandLine":  "\"C:\\Windows\\SystemApps\\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\\StartMenuExperienceHost.exe\" -ServerName:FullTrustApp.AppXykjsye98af63ez2annt9djke8trg8stn.mca"
+                      },
+                      {
+                          "ProcessId":  1320,
+                          "ParentProcessId":  1628,
+                          "Name":  "SearchHost.exe",
+                          "CommandLine":  "\"C:\\Windows\\SystemApps\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\SearchHost.exe\" -ServerName:CortanaUI.AppXstmwaab17q5s3y22tp6apqz7a45vwv65.mca"
+                      },
+                      {
+                          "ProcessId":  1792,
+                          "ParentProcessId":  1628,
+                          "Name":  "RuntimeBroker.exe",
+                          "CommandLine":  "C:\\Windows\\System32\\RuntimeBroker.exe -Embedding"
+                      },
+                      {
+                          "ProcessId":  1956,
+                          "ParentProcessId":  1320,
+                          "Name":  "msedgewebview2.exe",
+                          "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\154.0.4258.62\\msedgewebview2.exe\" --embedded-browser-webview=1 --webview-exe-name=SearchHost.exe --webview-exe-version=2125.30600.0.0 --user-data-dir=\"C:\\Users\\hackerprod\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\" --noerrdialogs --disable-features=msSmartScreenProtection --edge-webview-enable-mojo-ipcz --enable-features=msEdgeFluentOverlayScrollbar --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26100.7462) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26100 IsWebView2/True (WebView2Version 154.0.4258.53)\" --lang=es-ES --mojo-named-platform-channel-pipe=1320.12440.12870446997561577626 /pfhostedapp:dd7136122c2cf25d5264c7f5e74d7875aa50d825"
+                      },
+                      {
+                          "ProcessId":  2252,
+                          "ParentProcessId":  1956,
+                          "Name":  "msedgewebview2.exe",
+                          "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\154.0.4258.62\\msedgewebview2.exe\" --type=crashpad-handler --user-data-dir=C:\\Users\\hackerprod\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView /prefetch:4 /pfhostedapp:dd7136122c2cf25d5264c7f5e74d7875aa50d825 --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\hackerprod\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\\Crashpad --annotation=IsOfficialBuild=1 --annotation=channel= --annotation=chromium-version=154.0.8037.98 \"--annotation=exe=C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\154.0.4258.62\\msedgewebview2.exe\" --annotation=plat=Win64 \"--annotation=prod=Edge WebView2\" --annotation=ver=154.0.4258.62 --initial-client-data=0x170,0x174,0x178,0x14c,0x180,0x7ffab38b83e0,0x7ffab38b83f0,0x7ffab38b8400"
+                      },
+                      {
+                          "ProcessId":  5680,
+                          "ParentProcessId":  1956,
+                          "Name":  "msedgewebview2.exe",
+                          "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\154.0.4258.62\\msedgewebview2.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=es --service-sandbox-type=none --noerrdialogs --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26100.7462) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26100 IsWebView2/True (WebView2Version 154.0.4258.53)\" --user-data-dir=\"C:\\Users\\hackerprod\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\" --webview-exe-name=SearchHost.exe --webview-exe-version=2125.30600.0.0 --embedded-browser-webview=1 --always-read-main-dll --metrics-shmem-handle=2180,i,14701087181517824109,5084290414260492171,524288 --field-trial-handle=2020,i,12491319887356829475,11450552994598931964,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --pseudonymization-salt-handle=1916,i,16827096024285508484,4935045770781928851,4 --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2284 /prefetch:11 /pfhostedapp:dd7136122c2cf25d5264c7f5e74d7875aa50d825"
+                      },
+                      {
+                          "ProcessId":  5212,
+                          "ParentProcessId":  1956,
+                          "Name":  "msedgewebview2.exe",
+                          "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\154.0.4258.62\\msedgewebview2.exe\" --type=gpu-process --gpu-recent-crash-count=0 --noerrdialogs --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26100.7462) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26100 IsWebView2/True (WebView2Version 154.0.4258.53)\" --user-data-dir=\"C:\\Users\\hackerprod\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\" --webview-exe-name=SearchHost.exe --webview-exe-version=2125.30600.0.0 --embedded-browser-webview=1 --gpu-preferences=WAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAQAAAAAAAAAADAAAAAAAAADgAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAoAAAAAAAAAAgAAAAAAAAAEAAAAAIAAAABAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --always-read-main-dll --metrics-shmem-handle=1964,i,10769029294634672528,10843106728045484309,262144 --field-trial-handle=2020,i,12491319887356829475,11450552994598931964,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --pseudonymization-salt-handle=1916,i,16827096024285508484,4935045770781928851,4 --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=2012 /prefetch:2 /pfhostedapp:dd7136122c2cf25d5264c7f5e74d7875aa50d825"
+                      },
+                      {
+                          "ProcessId":  8808,
+                          "ParentProcessId":  1956,
+                          "Name":  "msedgewebview2.exe",
+                          "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\154.0.4258.62\\msedgewebview2.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=es --service-sandbox-type=service --noerrdialogs --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26100.7462) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26100 IsWebView2/True (WebView2Version 154.0.4258.53)\" --user-data-dir=\"C:\\Users\\hackerprod\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\" --webview-exe-name=SearchHost.exe --webview-exe-version=2125.30600.0.0 --embedded-browser-webview=1 --always-read-main-dll --metrics-shmem-handle=2588,i,230070987584914523,12028616066420679316,524288 --field-trial-handle=2020,i,12491319887356829475,11450552994598931964,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --pseudonymization-salt-handle=1916,i,16827096024285508484,4935045770781928851,4 --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2600 /prefetch:13 /pfhostedapp:dd7136122c2cf25d5264c7f5e74d7875aa50d825"
+                      },
+                      {
+                          "ProcessId":  7572,
+                          "ParentProcessId":  1956,
+                          "Name":  "msedgewebview2.exe",
+                          "CommandLine":  "\"C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\154.0.4258.62\\msedgewebview2.exe\" --type=renderer --noerrdialogs --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64; Cortana 1.18.9.23723; 10.0.0.0.26100.7462) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.26100 IsWebView2/True (WebView2Version 154.0.4258.53)\" --user-data-dir=\"C:\\Users\\hackerprod\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\" --webview-exe-name=SearchHost.exe --webview-exe-version=2125.30600.0.0 --embedded-browser-webview=1 --video-capture-use-gpu-memory-buffer --lang=es --js-flags --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --js-flags=--ms-user-locale=es_US --always-read-main-dll --launch-time-ticks=1114601452 --metrics-shmem-handle=3956,i,5177930544069196003,2566442690656720532,1048576 --field-trial-handle=2020,i,12491319887356829475,11450552994598931964,262144 --enable-features=msEdgeFluentOverlayScrollbar --disable-features=msSmartScreenProtection --variations-seed-version --pseudonymization-salt-handle=1916,i,16827096024285508484,4935045770781928851,4 --trace-process-track-uuid=3190708990997080739 --mojo-platform-channel-handle=3968 /pfhostedapp:dd7136122c2cf25d5264c7f5e74d7875aa50d825 /prefetch:1"
+                      },
+                      {
+                          "ProcessId":  12800,
+                          "ParentProcessId":  8836,
+                          "Name":  "osk.exe",
+                          "CommandLine":  "\"C:\\WINDOWS\\system32\\osk.exe\" "
+                      },
+                      {
+                          "ProcessId":  10068,
+                          "ParentProcessId":  8836,
+                          "Name":  "cmd.exe",
+                          "CommandLine":  "\"C:\\WINDOWS\\system32\\cmd.exe\" "
+                      },
+                      {
+                          "ProcessId":  8072,
+                          "ParentProcessId":  10068,
+                          "Name":  "conhost.exe",
+                          "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+                      },
+                      {
+                          "ProcessId":  13148,
+                          "ParentProcessId":  1628,
+                          "Name":  "OpenConsole.exe",
+                          "CommandLine":  "\"C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminalPreview_1.26.2734.0_x64__8wekyb3d8bbwe\\OpenConsole.exe\" -Embedding"
+                      },
+                      {
+                          "ProcessId":  1548,
+                          "ParentProcessId":  1628,
+                          "Name":  "WindowsTerminal.exe",
+                          "CommandLine":  "\"C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminalPreview_1.26.2734.0_x64__8wekyb3d8bbwe\\WindowsTerminal.exe\" -Embedding"
+                      },
+                      {
+                          "ProcessId":  10768,
+                          "ParentProcessId":  10068,
+                          "Name":  "claude.exe",
+                          "CommandLine":  "\"C:\\npm-global\\\\node_modules\\@anthropic-ai\\claude-code\\bin\\claude.exe\"    "
+                      },
+                      {
+                          "ProcessId":  4616,
+                          "ParentProcessId":  10768,
+                          "Name":  "node.exe",
+                          "CommandLine":  "node C:\\Projects\\Dev-tools\\dist\\channel-plugin\\devmcp-channel.js"
+                      },
+                      {
+                          "ProcessId":  7456,
+                          "ParentProcessId":  4616,
+                          "Name":  "conhost.exe",
+                          "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+                      },
+                      {
+                          "ProcessId":  4312,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcsRedirectionGuard -p -s lfsvc"
+                      },
+                      {
+                          "ProcessId":  10816,
+                          "ParentProcessId":  2272,
+                          "Name":  "pythonw.exe",
+                          "CommandLine":  "\"C:\\Program Files\\Python313\\pythonw.exe\" \"C:\\Users\\hackerprod\\phonekbd\\server\\phonekbd_server.py\" "
+                      },
+                      {
+                          "ProcessId":  2060,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs -p"
+                      },
+                      {
+                          "ProcessId":  3284,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p -s seclogon"
+                      },
+                      {
+                          "ProcessId":  8128,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceAndNoImpersonation -p -s SSDPSRV"
+                      },
+                      {
+                          "ProcessId":  11808,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s DisplayEnhancementService"
+                      },
+                      {
+                          "ProcessId":  3236,
+                          "ParentProcessId":  8836,
+                          "Name":  "cmd.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\cmd.exe /c \"\"C:\\Projects\\OMEGA\\Claude-agent.cmd\" \""
+                      },
+                      {
+                          "ProcessId":  13812,
+                          "ParentProcessId":  3236,
+                          "Name":  "conhost.exe",
+                          "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+                      },
+                      {
+                          "ProcessId":  13496,
+                          "ParentProcessId":  1628,
+                          "Name":  "OpenConsole.exe",
+                          "CommandLine":  "\"C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminalPreview_1.26.2734.0_x64__8wekyb3d8bbwe\\OpenConsole.exe\" -Embedding"
+                      },
+                      {
+                          "ProcessId":  7556,
+                          "ParentProcessId":  3236,
+                          "Name":  "claude.exe",
+                          "CommandLine":  "\"C:\\npm-global\\\\node_modules\\@anthropic-ai\\claude-code\\bin\\claude.exe\"    --resume 7560e09f-7a27-4f09-91b5-2be14b889fda --dangerously-skip-permissions  --dangerously-load-development-channels server:devmcp-channel"
+                      },
+                      {
+                          "ProcessId":  15348,
+                          "ParentProcessId":  7556,
+                          "Name":  "node.exe",
+                          "CommandLine":  "node C:\\Projects\\Dev-tools\\dist\\channel-plugin\\devmcp-channel.js"
+                      },
+                      {
+                          "ProcessId":  13980,
+                          "ParentProcessId":  15348,
+                          "Name":  "conhost.exe",
+                          "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+                      },
+                      {
+                          "ProcessId":  13636,
+                          "ParentProcessId":  1548,
+                          "Name":  "OpenConsole.exe",
+                          "CommandLine":  "\"C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminalPreview_1.26.2734.0_x64__8wekyb3d8bbwe\\OpenConsole.exe\" --headless --textMeasurement graphemes --width 129 --height 33 --signal 0x1658 --server 0x144c"
+                      },
+                      {
+                          "ProcessId":  14000,
+                          "ParentProcessId":  1548,
+                          "Name":  "cmd.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\cmd.exe"
+                      },
+                      {
+                          "ProcessId":  15268,
+                          "ParentProcessId":  14000,
+                          "Name":  "opencode.exe",
+                          "CommandLine":  "\"C:\\npm-global\\\\node_modules\\opencode-ai\\bin\\opencode.exe\"    --auto --port 9999"
+                      },
+                      {
+                          "ProcessId":  15752,
+                          "ParentProcessId":  9152,
+                          "Name":  "notepad++.exe",
+                          "CommandLine":  "\"C:\\Program Files\\Notepad++\\notepad++.exe\" "
+                      },
+                      {
+                          "ProcessId":  15240,
+                          "ParentProcessId":  8836,
+                          "Name":  "cmd.exe",
+                          "CommandLine":  "\"C:\\WINDOWS\\system32\\cmd.exe\" "
+                      },
+                      {
+                          "ProcessId":  15796,
+                          "ParentProcessId":  15240,
+                          "Name":  "conhost.exe",
+                          "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+                      },
+                      {
+                          "ProcessId":  10956,
+                          "ParentProcessId":  1628,
+                          "Name":  "OpenConsole.exe",
+                          "CommandLine":  "\"C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminalPreview_1.26.2734.0_x64__8wekyb3d8bbwe\\OpenConsole.exe\" -Embedding"
+                      },
+                      {
+                          "ProcessId":  16152,
+                          "ParentProcessId":  15240,
+                          "Name":  "claude.exe",
+                          "CommandLine":  "\"C:\\npm-global\\\\node_modules\\@anthropic-ai\\claude-code\\bin\\claude.exe\"    "
+                      },
+                      {
+                          "ProcessId":  3088,
+                          "ParentProcessId":  16152,
+                          "Name":  "node.exe",
+                          "CommandLine":  "node C:\\Projects\\Dev-tools\\dist\\channel-plugin\\devmcp-channel.js"
+                      },
+                      {
+                          "ProcessId":  15532,
+                          "ParentProcessId":  3088,
+                          "Name":  "conhost.exe",
+                          "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+                      },
+                      {
+                          "ProcessId":  15424,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s NPSMSvc"
+                      },
+                      {
+                          "ProcessId":  15888,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k LocalService -p -s SstpSvc"
+                      },
+                      {
+                          "ProcessId":  12456,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k DevicesFlow -s DevicesFlowUserSvc"
+                      },
+                      {
+                          "ProcessId":  8104,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs"
+                      },
+                      {
+                          "ProcessId":  14616,
+                          "ParentProcessId":  6004,
+                          "Name":  "ShellHost.exe",
+                          "CommandLine":  "\"C:\\Windows\\System32\\ShellHost.exe\""
+                      },
+                      {
+                          "ProcessId":  17020,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalService -p -s LicenseManager"
+                      },
+                      {
+                          "ProcessId":  14848,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s DsSvc"
+                      },
+                      {
+                          "ProcessId":  5060,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  null
+                      },
+                      {
+                          "ProcessId":  15712,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\svchost.exe -k LocalSystemNetworkRestricted -p -s WdiSystemHost"
+                      },
+                      {
+                          "ProcessId":  8892,
+                          "ParentProcessId":  2772,
+                          "Name":  "taskhostw.exe",
+                          "CommandLine":  "taskhostw.exe"
+                      },
+                      {
+                          "ProcessId":  16956,
+                          "ParentProcessId":  1628,
+                          "Name":  "WmiPrvSE.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\wbem\\wmiprvse.exe"
+                      },
+                      {
+                          "ProcessId":  10772,
+                          "ParentProcessId":  1412,
+                          "Name":  "svchost.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\svchost.exe -k GPSvcGroup"
+                      },
+                      {
+                          "ProcessId":  9432,
+                          "ParentProcessId":  15268,
+                          "Name":  "powershell.exe",
+                          "CommandLine":  "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE -NoLogo -NoProfile -NonInteractive -Command \"python \u0027C:\\Projects\\OMEGA\\Ejercise\\T0\\src\\capture_stage2.py\u0027 --resume-i\""
+                      },
+                      {
+                          "ProcessId":  17348,
+                          "ParentProcessId":  9432,
+                          "Name":  "conhost.exe",
+                          "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+                      },
+                      {
+                          "ProcessId":  17376,
+                          "ParentProcessId":  9432,
+                          "Name":  "python.exe",
+                          "CommandLine":  "\"C:\\Program Files\\Python313\\python.exe\" C:\\Projects\\OMEGA\\Ejercise\\T0\\src\\capture_stage2.py --resume-i"
+                      },
+                      {
+                          "ProcessId":  3148,
+                          "ParentProcessId":  10884,
+                          "Name":  "NVIDIA Overlay.exe",
+                          "CommandLine":  "\"C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\CEF\\NVIDIA Overlay.exe\" --type=utility --utility-sub-type=data_decoder.mojom.DataDecoderService --lang=en-US --service-sandbox-type=service --no-sandbox --video-capture-use-gpu-memory-buffer --user-data-dir=\"C:\\Users\\hackerprod\\AppData\\Local\\NVIDIA Corporation\\NVIDIA Overlay\\CefCache\" --field-trial-handle=7832,i,10345996256864857463,9428666816329227723,262144 --variations-seed-version --enable-logging=handle --log-file=7860 --mojo-platform-channel-handle=8544 /prefetch:14"
+                      },
+                      {
+                          "ProcessId":  18088,
+                          "ParentProcessId":  17376,
+                          "Name":  "powershell.exe",
+                          "CommandLine":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoProfile -NonInteractive -Command \"\n$ErrorActionPreference = \u0027Stop\u0027\n$processes = @(Get-CimInstance Win32_Process | Select-Object ProcessId,ParentProcessId,Name,CommandLine)\n$cpu = @()\nfor ($i=0; $i -lt 11; $i++) {\n    $row = Get-CimInstance -ClassName Win32_PerfFormattedData_PerfOS_Processor -Filter \\\"Name=\u0027_Total\u0027\\\"\n    $cpu += [pscustomobject]@{ Timestamp=(Get-Date).ToUniversalTime().ToString(\u0027o\u0027); InstanceName=$row.Name; PercentProcessorTime=$row.PercentProcessorTime; PercentIdleTime=$row.PercentIdleTime; PercentUserTime=$row.PercentUserTime; PercentPrivilegedTime=$row.PercentPrivilegedTime }\n    if ($i -lt 10) { Start-Sleep -Seconds 1 }\n}\n[ordered]@{ captured_utc=(Get-Date).ToUniversalTime().ToString(\u0027o\u0027); cpu_counter=\u0027CIM Win32_PerfFormattedData_PerfOS_Processor(_Total).PercentProcessorTime\u0027; sample_interval_seconds=1; expected_samples=11; cpu_samples=$cpu; processes=$processes } | ConvertTo-Json -Depth 6\n\""
+                      },
+                      {
+                          "ProcessId":  18012,
+                          "ParentProcessId":  1628,
+                          "Name":  "WmiPrvSE.exe",
+                          "CommandLine":  "C:\\WINDOWS\\system32\\wbem\\wmiprvse.exe"
+                      }
+                  ]
+}

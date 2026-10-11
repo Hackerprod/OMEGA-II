@@ -1,0 +1,74 @@
+{
+  "SESSION": "PREFLIGHT_PASS_WAITING_FOR_H0_AUTHORIZATION",
+  "segment_id": "h0_pf_check_20261011",
+  "session_preflight_pass": true,
+  "checks": {
+    "chrome_absent": true,
+    "power_plan_matches": true,
+    "hardware_matches": true,
+    "topology_matches": true,
+    "cpu_load_observation_only": true
+  },
+  "preflight": {
+    "power_guid": "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",
+    "cpu_names": [
+      "13th Gen Intel(R) Core(TM) i7-13700F"
+    ],
+    "logical_processors": 24,
+    "chrome_before": [],
+    "chrome_after": [],
+    "cpu_samples": [
+      {
+        "utc": "2026-10-11T12:14:46.5128636Z",
+        "cpu": 2
+      },
+      {
+        "utc": "2026-10-11T12:14:47.7975958Z",
+        "cpu": 7
+      },
+      {
+        "utc": "2026-10-11T12:14:49.0874618Z",
+        "cpu": 6
+      },
+      {
+        "utc": "2026-10-11T12:14:50.3732704Z",
+        "cpu": 0
+      },
+      {
+        "utc": "2026-10-11T12:14:51.6583939Z",
+        "cpu": 4
+      },
+      {
+        "utc": "2026-10-11T12:14:52.9454333Z",
+        "cpu": 9
+      },
+      {
+        "utc": "2026-10-11T12:14:54.2257807Z",
+        "cpu": 4
+      },
+      {
+        "utc": "2026-10-11T12:14:55.5086146Z",
+        "cpu": 11
+      },
+      {
+        "utc": "2026-10-11T12:14:56.7944789Z",
+        "cpu": 5
+      },
+      {
+        "utc": "2026-10-11T12:14:58.0751094Z",
+        "cpu": 7
+      },
+      {
+        "utc": "2026-10-11T12:14:59.3659847Z",
+        "cpu": 5
+      }
+    ],
+    "mean_cpu_percent": 5.454545454545454,
+    "max_cpu_percent": 11
+  },
+  "topology_sha256": "8E5CDA8410873852C3DD266E2CC1535376DEEA3705328173BC879117F4574CAF",
+  "performance_series_started": false,
+  "official_timing_performed": false,
+  "official_timing_mode_enabled": false,
+  "h0_plan": "results/T0.1/h0_measurement_plan.json"
+}

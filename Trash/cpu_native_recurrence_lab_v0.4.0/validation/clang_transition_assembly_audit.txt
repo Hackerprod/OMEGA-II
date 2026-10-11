@@ -1,1 +1,0 @@
-PASS transitions contain AVX2 scale/shift, saturated packing, and RMS vector paths

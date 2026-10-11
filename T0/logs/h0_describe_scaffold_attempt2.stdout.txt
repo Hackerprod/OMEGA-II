@@ -1,0 +1,1 @@
+{"record":"H0_scaffold","status":"SCAFFOLD_ONLY_WAITING_FOR_OFFICIAL_FREEZE","primary_isa":"AVX-VNNI-256","workers":8,"SMT":false,"geometry":"[O,512]; O and W_real follow MD/30 table","m_tile":"1/2/4","official_timing_available":false,"measurement":false}
