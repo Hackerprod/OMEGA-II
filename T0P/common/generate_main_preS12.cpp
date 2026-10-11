@@ -1,0 +1,4 @@
+#include "common.hpp"
+#include <iostream>
+#include <filesystem>
+int main(int argc,char**argv)try{std::filesystem::path root=argc>1?argv[1]:"T0P/common/data";std::filesystem::create_directories(root);for(int m:{1,4,8,16})for(int fi=0;fi<int(t0common::Fixture::Count);++fi){auto c=t0common::generate(m,t0common::Fixture(fi));auto p=root/("m"+std::to_string(m)+"_"+t0common::fixture_name(c.fixture)+".bin");t0common::save_cell(c,p);auto read=t0common::load_cell(p);if(read.sha256!=c.sha256)throw std::runtime_error("roundtrip SHA256 mismatch");std::cout<<p.string()<<" sha256="<<read.sha256<<" bytes="<<std::filesystem::file_size(p)<<"\n";}return 0;}catch(const std::exception&e){std::cerr<<"ERROR: "<<e.what()<<"\n";return 1;}

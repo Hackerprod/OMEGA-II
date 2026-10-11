@@ -1,36 +1,43 @@
-﻿# Congelación de referencia LibTorch CPU — T0P-Q4-RESIDENCY
+﻿# Freeze de referencia Torch CPU â€” T0P-Q4-RESIDENCY
 
-## Selección
+## Cambio de esta revisiÃ³n
 
-Se usa el LibTorch ya instalado en `C:\Projects\OMEGA\.venv_cuda\Lib\site-packages\torch`: versión 2.11.0+cu128. Tiene `torch\include`, `torch\lib`, `torch_cpu.dll/.lib`, `torch.lib` y `c10.lib`. Aunque el paquete incluye CUDA, ATen CPU es operativo: el ejecutable C++ enlazó con MSVC 14.44.35207 y ejecutó `at::matmul` en CPU. No se descargó un archivo externo; URL y SHA256 de descarga: N/A. No se instaló ni modificó nada en el venv.
+El adaptador consume las 20 celdas canÃ³nicas de `T0P/common/data` (M=1,4,8,16 por cinco fixtures) y usa el generador, la referencia INT32/double y el verificador comunes. El formato serializado, hashes y conversiones ggml/OMEGA estÃ¡n documentados en [common/README.md](../common/README.md). El test ejecutable del verificador acepta una salida vÃ¡lida y rechaza NaN, Inf y una salida finita fuera de tolerancia.
 
-## Contrato implementado
+Se evaluaron sin cronÃ³metro `at::mm`, `at::matmul`, `at::linear`, `at::mv` para M=1 y la ruta explÃ­cita `at::mkldnn_linear`. El detalle celda a celda estÃ¡ en `adapter/verify_common_all.txt`. Las candidatas densas tienen errores fuera de tolerancia en la mayorÃ­a de fixtures; por ello quedan `NOT_COMPARABLE` para esas celdas. MÃ¡ximo observado global: absoluto 1.28125, relativo 0.00421186945661 (el relativo excluye referencias exactamente cero; los errores absolutos de esas referencias sÃ­ cuentan). Los mÃ¡ximos por candidata y M estÃ¡n en el log y el JSON. No se selecciona una candidata de rendimiento a partir de estos resultados.
 
-Dimensiones O=1024, I=512, M=1,4,8,16; semilla de pesos `0x544F505F515034`, de activaciones `0x544F505F414354`, mismas funciones `t0q4::generate_weights/generate_activations` de `T0\src\q4_kernel.cpp`. FP32: se aplican todas las escalas de grupo a Q4 y a INT8 antes del producto. El peso se desquantiza y transpone una vez a un tensor contiguo estático `[I,O]`; cada aplicación crea X dinámico `[M,I]`. No se llama a una API privada de prepack: oneDNN/MKL puede empaquetar internamente según despacho.
+## Torch, precisiÃ³n y concurrencia
 
-La operación es `at::matmul(X,Wt)`, sin gradientes (`at::NoGradGuard`), `at::set_num_threads(N)` configurable por CLI y `at::set_num_interop_threads(1)`. La API C++ disponible `at::globalContext().setFloat32MatmulPrecision("highest")` establece precisión máxima FP32; no se usa BF16/TF32 deliberadamente. El backend compilado y observado declara BLAS=MKL, USE_MKL=ON, USE_MKLDNN=ON, capacidad CPU AVX2, `hasMKLDNN=1`, MKL 2025.3 y oneDNN/MKL-DNN 3.10.2. El paquete es CUDA-enabled, pero estas ejecuciones usan tensores CPU. Configuración íntegra en `adapter\verify_m4.txt`.
+Se usa el paquete instalado Torch 2.11.0+cu128 solo con tensores CPU. Antes de ATen se fijan `OMP_NUM_THREADS=1`, `MKL_NUM_THREADS=1`, `OMP_DYNAMIC=FALSE`, `MKL_DYNAMIC=FALSE`, intra-op=1 e inter-op=1; el log confirma los seis valores efectivos. El proceso de validaciÃ³n es un Ãºnico hilo y cada celda estÃ¡ protegida por `NoGradGuard`; no crea worker threads.
 
-## Equivalencia (sin cronómetro)
+Se leyÃ³ el `ATen/Context.h` del venv. La API `setFloat32Precision` fija y el getter confirma `generic/all=ieee`, `mkldnn/matmul=ieee`, `cuda/matmul=ieee`. TambiÃ©n se registran `float32MatmulPrecision`, TF32 CuBLAS/CuDNN/oneDNN, controles FP16/BF16 de reducciÃ³n expuestos por ese header y autocast CPU/CUDA. Los valores efectivos constan en el log.
 
-Se ejecutó cada M con N=4 para verificar la instalación; no son datos de rendimiento. Una referencia escalar independiente extrae cada nibble, calcula cada producto de grupo en INT32 y suma `dot * scale_x * scale_w` en double. Resultado: máximos absolutos 0, máximos relativos 0, fallos 0 para M=1,4,8,16; tolerancia `|y-y_ref| <= 1e-5 + 1e-5|y_ref|`. La ruta FP32 no promete identidad bit a bit en general. No se usa `_int_mm`. La igualdad exacta observada corresponde a estos fixtures concretos.
+Para `from_blob(...).clone()`, las direcciones que se consultan y registran son las de los clones usados realmente: X, W `[O,I]` y W transpuesto contiguo `[I,O]`. Para cada tensor se registra direcciÃ³n, tamaÃ±o, alineaciÃ³n, regiÃ³n de memoria, estado/tipo/protecciÃ³n y allocation base; la asignaciÃ³n observada es privada, comprometida y PAGE_READWRITE. W y Wt son representaciones persistentes de 2 MiB cada una por celda; X es dinÃ¡mico de 2 KiB, 8 KiB, 16 KiB o 32 KiB.
 
-## Rutas candidatas y selección futura
+## Ruta oneDNN y atribuciÃ³n
 
-Candidatas que conservan la matemática FP32: `at::mm(X,Wt)`, `at::matmul(X,Wt)` (la implementación congelada), y `at::linear(X,W)` con W contiguo `[O,I]` y bias ausente. Para m=1, además `at::mv` fila por fila solo como candidata de diagnóstico si la celda se define con esa forma; no sustituye una ruta matricial para m>1. MKLDNN explícito podría evaluarse solo si se documenta conversión/layout y se verifica equivalencia; no forma parte de este freeze. `_int_mm` no es candidata porque no incorpora las escalas por grupo. `torch.compile` no está preregistrado.
+La ruta explÃ­cita sÃ­ ejecuta `aten::mkldnn_linear` y su resultado se convierte con `to_dense()` fuera de cualquier cronÃ³metro. Se preparan X y W en layout MKLDNN antes de ejecutar el operador. Los valores se contrastan con el verificador comÃºn. ATen informa literalmente `Cannot access data pointer of Tensor that doesn't have storage` al intentar inspeccionar la asignaciÃ³n opaca empaquetada; no es posible confirmar sus pÃ¡ginas/asignador con la API instalada. Queda `NOT_COMPARABLE_PAGE_POLICY`, aunque la operaciÃ³n y su dispatch estÃ¡n disponibles. No se interpreta `hasMKLDNN` como prueba de dispatch.
 
-Regla antes de la campaña: «la más rápida cualificada por celda», exigiendo contrato/equivalencia y ausencia de reducción de precisión. Sin benchmark en esta tarea, ninguna ruta ha sido ordenada ni elegida por velocidad.
+Se instalÃ³ un callback global `RecordFunction` fuera de cualquier cronÃ³metro. Evidencia registrada por candidata: `mm â†’ aten::mm`; `matmul â†’ aten::matmul, aten::mm`; `linear â†’ aten::linear, aten::matmul, aten::mm`; `mv â†’ aten::mv, aten::addmv_`; oneDNN explÃ­cito â†’ `aten::mkldnn_linear` (mÃ¡s la conversiÃ³n `aten::to_dense`). No se afirma quÃ© biblioteca BLAS interna ejecuta cada `aten::mm`.
 
-## Compilación y estado
+## Dependencias y compilaciÃ³n
 
-`adapter\build.cmd` usa vcvars64, SDK 10.0.26100.0, MSVC 14.44.35207; `/O2 /std:c++17 /arch:AVX2 /fp:precise /EHsc /MD /DNDEBUG`; enlaza `torch.lib torch_cpu.lib c10.lib`. Ejecuciones de verificación con 4 hilos; los hilos definitivos por celda quedan por fijarse/controlarse para la futura comparación (N hilos configurable). No se hicieron mediciones cronometradas ni R llamadas de rendimiento.
+El proceso enumerÃ³ 37 mÃ³dulos cargados usando `EnumProcessModules` y `GetModuleFileNameEx`; el manifiesto registra las rutas absolutas, tamaÃ±o en disco, tamaÃ±o mapeado y SHA-256 de cada uno, incluidos `torch_cpu.dll`, `c10.dll`, `libiomp5md.dll`, runtimes de MSVC y DLL CUDA cargadas por la distribuciÃ³n. No todos se usan por los tensores CPU; se incluyen porque el proceso los cargÃ³.
 
-SHA256 (bytes en disco):
+Build MSVC x64 con SDK 10.0.26100.0 y toolset 14.44.35207 mediante `adapter/build.cmd`. El build enlaza las fuentes comunes y Torch; el generador independiente se construye con `common/build.cmd`. Hashes de los binarios, fuentes, 20 celdas, log y mÃ³dulos: `SHA256SUMS_ref_torch.txt`; el script de freeze verificÃ³ todas las entradas contra disco. Todo resultado compilado estÃ¡ dentro de `T0P/common` o `T0P/ref_torch`.
 
-- `adapter\ref_torch.cpp`: a7ae81986a27fe42b912b0f8a1e91c60724081a25bea082be00f442cacb95180
-- `adapter\ref_torch.exe`: 09a56c447fb3b7bd2102572ace622b07664167875668442f45412e14fb240a66
-- `adapter\build.cmd`: 8c004cd3d478c8eceeee52a1e44fe121128ea84252c640c034751f3d6199e69a
-- Fuente externa usada `T0\src\q4_kernel.cpp`: 3955e7bc266a0848d3e0c2c99f3e22006b2c47280d63f576ab89efde2e86b045
-- Header externo usado `T0\src\q4_kernel.hpp`: 22e7a71c88c66c82e9658f964213f184f181d836cf688b579678756e8a590a7b
+## Estado y ambigÃ¼edades abiertas
 
-Ambigüedades que quedan abiertas: si la congelación exige una distribución CPU-only pese a que el paquete CUDA ejecuta el backend CPU; si «prepacking» requiere un formato oneDNN persistente explícito en vez del peso FP32 transpuesto contiguo; cuál API candidata gobernará cada celda; lista final de N, afinidad/P-cores y R para el futuro bloque cronometrado; y política exacta para determinar en runtime si el dispatch de una forma usa MKL u oneDNN cuando el build contiene ambos. No se resuelven aquí.
+No se hizo benchmark cronometrado. La prueba corriÃ³ 20 celdas y registrÃ³ errores de todas las candidatas disponibles; la unidad del verificador pasÃ³. Las rutas densas permanecen registradas, pero sus celdas fallidas no son comparables bajo la tolerancia de aceptaciÃ³n. El oneDNN explÃ­cito permanece fuera de candidatas comparables por la asignaciÃ³n/polÃ­tica de pÃ¡ginas opaca.
+
+Siguen abiertas la inspecciÃ³n externa de pÃ¡ginas del almacenamiento MKLDNN; la elegibilidad de Torch FP32 para una futura vara tras los fallos numÃ©ricos observados; y la afinidad/ejecuciÃ³n del futuro harness de varios workers. No se resuelven con una mediciÃ³n cronometrada. `ref_ggml` y `T0\SHA256SUMS.txt` no se modificaron.
+
+## ReevaluaciÃ³n S-12 (2026-10-11)
+
+Se aplicÃ³ `reference64()` y `verify_s12()` a 36 celdas (nueve fixtures Ã— cuatro M). `mm`, `matmul` y `linear` pasan S-12 en 36/36; `mv` en M=1 pasa 9/9. RepresentaciÃ³n FP32 efectiva X/W coincide exactamente con la desquantizaciÃ³n canÃ³nica y cada salida registra el operador recibido (`aten::mm`, `aten::matmul`/`aten::mm`, `aten::linear` y dispatch anidado, `aten::mv`/`aten::addmv_`). `mkldnn_linear` tiene salida numÃ©rica S-12 vÃ¡lida en 36/36 y dispatch `aten::mkldnn_linear`, pero el estado final es NOT_COMPARABLE por la polÃ­tica de pÃ¡ginas/alocaciÃ³n no inspeccionable del tensor opaco.
+
+La tolerancia antigua se sigue calculando por celda; muchas filas la incumplen, sin gate. El log completo es `adapter/verify_common_all.txt`. No se cronometrÃ³. Los fixtures S-12 nuevos estÃ¡n congelados en `../common/NEW_FIXTURES_FROZEN.json` antes de QA.
+
+Abierto: el fixture `single_coordinate` actual prueba la posiciÃ³n 0 y no recorre las 512; la cuestiÃ³n de la variante casi exacta sigue remitida a Sol como ambigÃ¼edad de definiciÃ³n aunque esta construcciÃ³n cumple S/|r|â‰¥1e5. `mkldnn_linear` conserva el impedimento de inspecciÃ³n fÃ­sica de pÃ¡ginas.
+
 

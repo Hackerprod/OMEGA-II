@@ -1,36 +1,50 @@
-# Congelación de referencia ggml
+﻿# Congelación de referencia ggml
 
-## Fuente
-- Proyecto: `ggml-org/llama.cpp`; `v0.6.0` es una release estable de GitHub (`prerelease=false`, publicada 2026-10-05).
-- Commit del tag verificado por API: `d81235049384534c167caea52b85a694f6103d14` (coincide con el ZIP registrado). El objeto annotated tag es `69ecae922d2b60c1fa8c590279f4e2099af75111`; el tag no tiene firma verificada.
-- URL de descarga: `https://github.com/ggml-org/llama.cpp/archive/refs/tags/v0.6.0.zip`
-- Archivo: `llama.cpp-v0.6.0-source-20261011-a1.zip`; SHA256 registrado `54D8E1F79B4A8BC0EF70B2ECE968C0A8AFE8030EDB8257D64DEDFB1169983414`.
-- Árbol fuente `llama.cpp-0.6.0` y build `build_llama` estaban presentes. DLL e import libraries CPU se conservaron; no fue necesaria reextracción ni recompilación del proyecto.
+## Fuente y build
 
-## Build CPU
-Release con Ninja incluido en Visual Studio BuildTools; MSVC 19.44.35229.0, toolset 14.44.35207. Opciones: `GGML_NATIVE=OFF`, `GGML_AVX2=ON`, `GGML_AVX_VNNI=ON`, `GGML_CUDA=OFF`, tests/ejemplos/tools OFF. CMake registró `/arch:AVX2`, `GGML_AVX2`, `GGML_FMA`, `GGML_F16C`, `__AVXVNNI__`, `GGML_AVX_VNNI`, `__BMI2__`, `GGML_BMI2`. DLL: `ggml-base.dll`, `ggml.dll`, `ggml-cpu.dll` en `build_llama/bin`; import libraries en `build_llama/ggml/src`.
+- Proyecto: `ggml-org/llama.cpp`, v0.6.0, commit `d81235049384534c167caea52b85a694f6103d14`; SHA256 del ZIP: `54D8E1F79B4A8BC0EF70B2ECE968C0A8AFE8030EDB8257D64DEDFB1169983414`.
+- Se reutilizaron `build_llama/bin/ggml-cpu.dll` y `ggml-base.dll`; no se recompiló ggml. CMake registrado: Release/Ninja, MSVC 19.44.35229.0, `GGML_NATIVE=OFF`, `GGML_AVX2=ON`, `GGML_AVX_VNNI=ON`, CUDA/tests/ejemplos/tools OFF.
+- `adapter/build.cmd` compila el adaptador y el archivo upstream `arch/x86/repack.cpp` sin modificarlo, para poder llamar los kernels repack que el DLL no exporta. El kernel conserva la aritmética upstream. El build reutilizado de ggml sigue siendo el registrado.
 
-## Adaptador y ruta efectiva
-Adaptador mínimo: `adapter/main.cpp`, compilado como `adapter/adapter.exe`, enlazando las import libraries del build y `T0/src/q4_kernel.cpp`. Cada producto es una llamada a `ggml_mul_mat`, evaluada por `ggml_graph_compute_with_ctx(..., 1)` (una hebra).
+## Entradas comunes y candidatas
 
-Para m=1,4,8,16 se selecciona el type trait CPU de Q4_0 `ggml_vec_dot_q4_0_q8_0`, que llama al helper `mul_sum_i8_pairs_float`; en este build `__AVXVNNI__` habilita `mul_sum_us8_pairs_float` con `vpdpbusd` AVX-VNNI. El adaptador imprime detección runtime `AVX2=1`, `AVX-VNNI=1` en cada ejecución. Para m>1 se procesan varias filas de salida del operador, pero sigue siendo el vector dot por fila. `ggml_gemm_q4_0_8x8_q8_0` y repack están presentes en el árbol, pero no son seleccionados por esta ruta del grafo CPU ni por estos tamaños; no se afirma que se haya ejecutado GEMM.
+Se cargaron las 20 celdas canónicas `T0P/common/data` (fixtures `uniform`, `mixed_cancellation`, `varied_scales`, `sub127`, `extremes`; M=1,4,8,16). Antes de usarlas, el SHA-256 del archivo se comparó con el hash regenerado por `t0common::generate`. Todos coincidieron. Referencia: `t0common::reference`, productos por grupo INT32 y acumulación double.
 
-## Formato y equivalencia
-Se generan pesos/activaciones con `t0q4::generate_weights(O=1024,I=512,seed=0x23456789abcdef01)` y `generate_activations(M,I,seed=0x1020304050607080)`. Las escalas de activación son FP16-exactas y se verifica su round-trip. Conversión Q4 preserva `d` FP16 y reordena el almacenamiento local intercalado de pares a ggml Q4_0: nibble bajo q[0..15]+8, nibble alto q[16..31]+8. Q8 copia los 32 int8 y guarda la escala FP16 exacta. No se recuantiza.
+- **A, plana:** `ggml_mul_mat`, pesos Q4_0 en buffer plano; Q4_0 CPU trait `vec_dot`, una hebra. Se registró la dirección y RVA del callback de `ggml_get_type_traits_cpu(Q4_0)` dentro del `ggml-cpu.dll` cargado. En el fuente congelado el trait apunta a `ggml_vec_dot_q4_0_q8_0` y AVX-VNNI usa `vpdpbusd`.
+- **B, repack:** llamada directa a `ggml_gemv_q4_0_8x8_q8_0` para M=1 y `ggml_gemm_q4_0_8x8_q8_0` para M=4,8,16. Se ejecutaron las 4 formas en los 5 fixtures.
+- Pesos: copia de escala FP16 y transformación de `block_q4_0x8` con interleave y XOR `0x8888888888888888`; reconstrucción de códigos/escalas exacta bit a bit.
+- Activaciones: copia sin pérdida de INT8/escalas FP16 a `block_q8_0x4`; M=1 usa Q8_0 original. No hay recuantización, ni Q8→F32→Q8. No se alteró upstream.
 
-Referencia independiente: suma entera exacta de los 32 productos de cada grupo, convertida a float y multiplicada por las dos escalas; tolerancia `1e-5 + 1e-5*abs(y_ref)`. Ejecución completada sin cronometraje:
+**Despacho:** B usa llamada directa a las direcciones enlazadas de las funciones upstream; nombre, dirección y M aparecen por celda en `adapter/qa_output.txt`. Para A se observó el callback real del trait y su RVA (`0xc8ad0` en esa ejecución). Limitación: `ggml-cpu.dll` no exporta el símbolo y no hay PDB; no se pudo confirmar su nombre con resolución simbólica ni breakpoint. La identificación nominal se apoya en la asignación del trait del fuente local. Los kernels no exponen sus productos INT32 por grupo; la referencia común sí los calcula, pero la igualdad interna no se capturó por separado.
 
-| m | Máximo error absoluto | Máx. error/tolerancia | Discrepancias |
-|---:|---:|---:|---:|
-| 1 | 0 | 0 | 0 |
-| 4 | 0 | 0 | 0 |
-| 8 | 0.001953125 | 0.0103252959 | 0 |
-| 16 | 0.001953125 | 0.0103252959 | 0 |
+## QA numérico sin cronometraje
 
-La discrepancia de formato detectada al implementar fue el orden de nibbles: el archivo de congelación inicial describía incorrectamente pares low/high adyacentes para ggml Q4_0. El adaptador aplica el layout real de ggml y la equivalencia pasa en todos los casos.
+Se ejecutaron 40 celdas ruta-fixture-M. Las entradas, referencia y salidas fueron finitas. `adapter/QA_RESULTS.md` contiene por celda error absoluto máximo, error relativo máximo, error normalizado `max |y-y_ref| / Σ_f |x_f·w_f|`, conteo de salidas fuera de tolerancia, hash canónico y función ejecutada. También están las líneas completas de ejecución en `adapter/qa_output.txt`.
 
-## Límites y ambigüedades
-- Los resultados caracterizan `ggml_mul_mat` en este commit/build/CPU; no comparan el GEMM repack porque el grafo no lo seleccionó.
-- Runtime informó AVX-VNNI y build definió `__AVXVNNI__`; la ruta observada en el fuente es el helper VNNI. El tag es release estable, aunque su tag anotado no está firmado.
-- No se hicieron benchmarks ni mediciones de rendimiento cronometradas.
-- SHA256 de fuente y binario del adaptador y archivos registrados: `SHA256SUMS_ref_ggml.txt`.
+Se informa la tolerancia de MD/35 `|y-y_ref| ≤ 1e-5 + 1e-5|y_ref|`, sin decidir si gobierna. Varias celdas uniform, varied_scales y sub127 no la pasan; mixed_cancellation y extremes sí. Los errores permanecen reportados sin escoger criterio ni descartar celdas. No se midió rendimiento.
+
+## Fronteras y hebras
+
+El adaptador separa `prepare()` y `prepare_activations()` de `run_once_*()`. La preparación estática cubre hash/carga, conversión y repack de pesos, contexto, grafo, tensores, scratch y salida. La preparación dinámica empaqueta las activaciones Q8 sin pérdida por aplicación. Para frontera de entradas preparadas queda fuera del kernel; para frontera dinámica se cobra preparación dinámica más kernel. `run_once_*` reutiliza estructuras y no hace asignaciones del adaptador. La QA preparó una vez las entradas antes de cada ejecución; no se hizo benchmark.
+
+El proceso recibió `OMP_NUM_THREADS=1` y `OMP_DYNAMIC=FALSE` antes de iniciar; el adaptador los verificó. Grafo: `n_threads=1`. No se cambió configuración del sistema.
+
+## Módulos cargados
+
+`EnumProcessModules` registró 17 módulos con ruta absoluta, tamaño y SHA-256; el inventario está en `adapter/QA_RESULTS.md` y `REF_FREEZE.json`, y sus hashes están en `SHA256SUMS_ref_ggml.txt`. Incluye `ggml-cpu.dll`, `ggml-base.dll`, `VCOMP140.DLL`, `VCRUNTIME140.dll`, `VCRUNTIME140_1.dll`, `MSVCP140.dll` y dependencias del sistema. `ggml.dll` no fue cargado por este ejecutable y por eso no figura como módulo efectivo.
+
+## Estado y ambigüedades
+
+S-8…S-11 implementados para QA de la vara. Sin mediciones de rendimiento ni selección de ganador. Queda abierta la identidad runtime nominal del callback A (símbolo no exportado/PDB ausente), la captura de productos internos por grupo y cuál tolerancia gobierna. Los resultados de precisión no se interpretan para resolver esas decisiones. Hashes del manifiesto verificados al actualizarlo.
+
+## Reevaluación S-12 (sin cronometraje)
+
+Se ejecutaron 72 celdas canónicas (nueve fixtures × cuatro M × flat/repack) y 2.048 lotes de barrido (512 coordenadas × cuatro M × flat/repack). Las 72 pasan la cota S-12 con cero salidas fallidas; los errores máximos normalizados constan por fila en `adapter/QA_RESULTS.md`. La tolerancia antigua se calcula y registra como diagnóstico, no como gate. Los 20 hashes originales siguen intactos; las 16 celdas nuevas tenían hashes congelados antes de la ronda.
+
+Representación: `exact_representation()` reconstruye desde `block_q4_0`, almacenamiento `block_q4_0x8` posterior a interleave/XOR 0x8888888888888888 y `block_q8_0x4`; los 36 controles por celda pasan en los dos almacenamientos. B ejecuta directamente GEMV para M=1 y GEMM para M=4,8,16; A ejecuta `ggml_mul_mat`, con evidencia del callback real del trait y su RVA. Ningún kernel expone sus dots INT32 por grupo y no se capturaron por separado; esta limitación impide certificar los productos internos antes del escalado. No se atribuye equivalencia exacta de esos productos a partir de la salida agregada.
+
+La variante `cancellation_high` da S/|r|≈2049; `cancellation_extreme` usa cancelación exacta de dos grupos más un término de escala FP16 mínima y da S/|r|≈9.55e11. La interpretación de “casi exacta” sigue abierta a Sol por truncamiento de MD/38. `single_coordinate` recorre las 512 posiciones en 512 lotes por M y pasa con igualdad exacta. No se cambió upstream ni se hicieron benchmarks.
+
+
+
+Límite de inspección de ggml: `ggml_mul_mat` entrega solo la salida final escalada desde el callback del trait y su símbolo no está exportado ni tiene PDB. Las funciones upstream repack enlazadas directamente, GEMV/GEMM, tampoco exponen el arreglo de dots INT32 por grupo. La API común `exact_group_dots()` existe y sus pruebas de oráculo pasan, pero no se pudo alimentar con resultados internos del kernel sin alterar upstream; por eso los productos exactos de los kernels quedan como limitación abierta.

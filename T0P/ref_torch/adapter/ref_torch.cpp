@@ -1,71 +1,56 @@
-#include "q4_kernel.hpp"
+﻿#include "common.hpp"
 #include <ATen/ATen.h>
 #include <ATen/Context.h>
 #include <ATen/Version.h>
+#include <ATen/autocast_mode.h>
+#include <ATen/record_function.h>
+#include <ATen/ops/mkldnn_linear.h>
 #include <torch/headeronly/version.h>
-#include <torch/csrc/api/include/torch/utils.h>
+#include <torch/utils.h>
+#include <ATen/Parallel.h>
+#define NOMINMAX
+#include <windows.h>
+#include <psapi.h>
+#include <bcrypt.h>
+#include <fstream>
 #include <cmath>
-#include <cstdint>
+#include <cstdlib>
+#include <iomanip>
 #include <iostream>
+#include <map>
+#include <set>
+#include <sstream>
 #include <stdexcept>
-#include <string>
-#include <vector>
 
-static float half_to_float(std::uint16_t h) {
-    const unsigned sign = (h >> 15) & 1, exp = (h >> 10) & 31, frac = h & 1023;
-    if (exp == 0) return std::ldexp(static_cast<float>(frac), -24) * (sign ? -1.f : 1.f);
-    if (exp == 31) return frac ? NAN : (sign ? -INFINITY : INFINITY);
-    return (sign ? -1.f : 1.f) * std::ldexp(1.f + static_cast<float>(frac) / 1024.f, static_cast<int>(exp) - 15);
+static std::set<std::string> ops;
+struct CandidateStats{double abs=0,rel=0,error_over_B=0;std::size_t failed_fixtures=0,cells=0;};
+static std::unique_ptr<at::ObserverContext> on_op(const at::RecordFunction& f){ops.insert(f.name());return nullptr;}
+static std::string env(const char* n){char* p=nullptr;size_t z=0;if(_dupenv_s(&p,&z,n)||!p)return "UNSET";std::string s(p);free(p);return s;}
+static std::string file_sha256(const wchar_t* path){BCRYPT_ALG_HANDLE alg=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;if(BCryptOpenAlgorithmProvider(&alg,BCRYPT_SHA256_ALGORITHM,nullptr,0)<0)return"HASH_ERROR";DWORD objlen=0,cb=0;BCryptGetProperty(alg,BCRYPT_OBJECT_LENGTH,(PUCHAR)&objlen,sizeof(objlen),&cb,0);std::vector<UCHAR>obj(objlen),out(32),buf(1<<16);if(BCryptCreateHash(alg,&hash,obj.data(),objlen,nullptr,0,0)<0){BCryptCloseAlgorithmProvider(alg,0);return"HASH_ERROR";}std::ifstream f(path,std::ios::binary);while(f){f.read((char*)buf.data(),buf.size());auto n=f.gcount();if(n>0&&BCryptHashData(hash,buf.data(),(ULONG)n,0)<0)break;}BCryptFinishHash(hash,out.data(),ULONG(out.size()),0);BCryptDestroyHash(hash);BCryptCloseAlgorithmProvider(alg,0);std::ostringstream s;s<<std::hex<<std::setfill('0');for(auto x:out)s<<std::setw(2)<<unsigned(x);return s.str();}
+static void report_loaded_modules(){std::vector<HMODULE>mods(4096);DWORD needed=0;if(!EnumProcessModules(GetCurrentProcess(),mods.data(),DWORD(mods.size()*sizeof(HMODULE)),&needed)){std::cout<<"module_inventory=ERROR code="<<GetLastError()<<"\n";return;}mods.resize(needed/sizeof(HMODULE));std::sort(mods.begin(),mods.end());mods.erase(std::unique(mods.begin(),mods.end()),mods.end());for(auto m:mods){wchar_t path[32768]{};DWORD n=GetModuleFileNameExW(GetCurrentProcess(),m,path,DWORD(std::size(path)));if(!n)continue;std::wstring ws(path,n);std::string p(ws.begin(),ws.end());MODULEINFO mi{};GetModuleInformation(GetCurrentProcess(),m,&mi,sizeof(mi));WIN32_FILE_ATTRIBUTE_DATA ad{};ULARGE_INTEGER size{};if(GetFileAttributesExW(path,GetFileExInfoStandard,&ad))size.HighPart=ad.nFileSizeHigh,size.LowPart=ad.nFileSizeLow;std::cout<<"loaded_module path="<<p<<" image_bytes="<<mi.SizeOfImage<<" file_bytes="<<size.QuadPart<<" sha256="<<file_sha256(path)<<"\n";}std::cout<<"module_count="<<mods.size()<<"\n";}
+static void configure(){_putenv_s("OMP_NUM_THREADS","1");_putenv_s("MKL_NUM_THREADS","1");_putenv_s("OMP_DYNAMIC","FALSE");_putenv_s("MKL_DYNAMIC","FALSE");at::set_num_threads(1);at::set_num_interop_threads(1);auto& c=at::globalContext();c.setFloat32Precision(at::Float32Backend::GENERIC,at::Float32Op::ALL,at::Float32Precision::IEEE);c.setFloat32Precision(at::Float32Backend::MKLDNN,at::Float32Op::MATMUL,at::Float32Precision::IEEE);c.setFloat32Precision(at::Float32Backend::CUDA,at::Float32Op::MATMUL,at::Float32Precision::IEEE);c.setAllowTF32OneDNN(false);c.setAllowTF32CuBLAS(false);c.setAllowTF32CuDNN(false);c.setAllowFP16ReductionCuBLAS(false,false);c.setAllowBF16ReductionCuBLAS(false,false);c.setAllowFP16AccumulationCuBLAS(false);c.setAllowFP16ReductionCPU(false);at::autocast::set_autocast_enabled(at::kCPU,false);at::autocast::set_autocast_enabled(at::kCUDA,false);}
+static at::Tensor tensor(const std::vector<float>&v,std::vector<int64_t> shape){return at::from_blob(const_cast<float*>(v.data()),shape,at::TensorOptions().dtype(at::kFloat).device(at::kCPU)).clone();}
+static void report_buffer(const char*name,const at::Tensor&t){auto p=reinterpret_cast<std::uintptr_t>(t.data_ptr());MEMORY_BASIC_INFORMATION mbi{};VirtualQuery(reinterpret_cast<void*>(p),&mbi,sizeof(mbi));std::cout<<"buffer="<<name<<" effective_ptr=0x"<<std::hex<<p<<std::dec<<" bytes="<<t.nbytes()<<" align64="<<(p%64==0)<<" page_base=0x"<<std::hex<<reinterpret_cast<std::uintptr_t>(mbi.BaseAddress)<<std::dec<<" region_bytes="<<mbi.RegionSize<<" state="<<mbi.State<<" type="<<mbi.Type<<" page_protect=0x"<<std::hex<<mbi.Protect<<" allocation_protect=0x"<<mbi.AllocationProtect<<std::dec<<" allocation_base=0x"<<std::hex<<reinterpret_cast<std::uintptr_t>(mbi.AllocationBase)<<std::dec<<"\n";}
+static std::vector<float> unpack_weights(const t0common::Cell&c,bool trans){std::vector<float>v(size_t(t0common::O)*t0common::I);for(int o=0;o<t0common::O;++o)for(int i=0;i<t0common::I;++i)v[trans?size_t(i)*t0common::O+o:size_t(o)*t0common::I+i]=float(c.wq[o*t0common::I+i])*c.ws[o*t0common::G+i/32];return v;}
+static at::Tensor run_candidate(const std::string&name,const at::Tensor&X,const at::Tensor&W,const at::Tensor&Wt,const at::Tensor&Xd,const at::Tensor&Wd,int M){
+ if(name=="mm")return at::mm(X,Wt);if(name=="matmul")return at::matmul(X,Wt);if(name=="linear")return at::linear(X,W,std::optional<at::Tensor>());if(name=="mkldnn_linear")return at::mkldnn_linear(Xd,Wd,std::optional<at::Tensor>());
+ return at::mv(W,X[0]).unsqueeze(0);
 }
-static int q4(const std::uint8_t* p, std::size_t j) {
-    unsigned n = (j & 1) ? p[j / 2] >> 4 : p[j / 2] & 15;
-    return n >= 8 ? static_cast<int>(n) - 16 : static_cast<int>(n);
-}
-int main(int argc, char** argv) try {
-    constexpr std::size_t O=1024, I=512;
-    if (argc != 3) throw std::runtime_error("usage: ref_torch.exe M threads");
-    const std::size_t M=std::stoul(argv[1]); const int threads=std::stoi(argv[2]);
-    if (!(M==1 || M==4 || M==8 || M==16) || threads<1) throw std::runtime_error("invalid M or thread count");
-    at::set_num_threads(threads); at::set_num_interop_threads(1);
-    at::globalContext().setFloat32MatmulPrecision("highest");
-    at::NoGradGuard no_grad;
-    const auto w=t0q4::generate_weights(O,I,0x544F505F515034ULL,false);
-    const auto a=t0q4::generate_activations(M,I,0x544F505F414354ULL,false);
-    std::vector<float> x(M*I), wt(I*O);
-    for(std::size_t m=0;m<M;++m) for(std::size_t j=0;j<I;++j)
-        x[m*I+j]=a.scale[m*a.groups_per_row+j/32]*static_cast<float>(a.q[m*I+j]);
-    // Static packing: dequantize and transpose once into contiguous [I,O] for X @ W^T.
-    for(std::size_t o=0;o<O;++o) for(std::size_t j=0;j<I;++j) {
-        const auto* g=w.storage.data()+(o*w.groups_per_row+j/32)*18;
-        wt[j*O+o]=half_to_float(static_cast<std::uint16_t>(g[16] | (g[17]<<8)))*static_cast<float>(q4(g,j%32));
-    }
-    auto X=at::from_blob(x.data(),{static_cast<std::int64_t>(M),static_cast<std::int64_t>(I)},at::TensorOptions().dtype(at::kFloat)).clone();
-    auto Wt=at::from_blob(wt.data(),{static_cast<std::int64_t>(I),static_cast<std::int64_t>(O)},at::TensorOptions().dtype(at::kFloat)).clone();
-    at::Tensor Y=at::matmul(X,Wt);
-    Y=Y.contiguous();
-    const float* y=Y.data_ptr<float>(); double max_abs=0, max_rel=0; std::size_t bad=0;
-    for(std::size_t m=0;m<M;++m) for(std::size_t o=0;o<O;++o) {
-        double ref=0;
-        for(std::size_t g=0;g<w.groups_per_row;++g) {
-            const auto* p=w.storage.data()+(o*w.groups_per_row+g)*18;
-            std::int32_t dot=0;
-            for(std::size_t k=0;k<32;++k) dot += static_cast<std::int32_t>(a.q[m*I+g*32+k])*q4(p,k);
-            const double ws=half_to_float(static_cast<std::uint16_t>(p[16] | (p[17]<<8)));
-            ref += static_cast<double>(dot)*static_cast<double>(a.scale[m*w.groups_per_row+g])*ws;
-        }
-        const double err=std::abs(static_cast<double>(y[m*O+o])-ref);
-        const double tol=1e-5+1e-5*std::abs(ref);
-        if(err>max_abs) max_abs=err;
-        if(err/(std::abs(ref)+1e-30)>max_rel) max_rel=err/(std::abs(ref)+1e-30);
-        if(err>tol) ++bad;
-    }
-    std::cout << "torch_version=" << TORCH_VERSION << " M=" << M << " threads=" << threads << "\n";
-    std::cout << "mkldnn=" << at::globalContext().hasMKLDNN() << " mkl=" << at::get_mkl_version() << " oneDNN=" << at::get_mkldnn_version() << "\n";
-    std::cout << "precision=highest grad=disabled op=at::matmul shape=["<<M<<",512]x[512,1024]\n";
-    std::cout << "max_abs_error=" << max_abs << " max_rel_error=" << max_rel << " failures=" << bad << "\n";
-    std::cout << "--- ATen build config ---\n" << at::show_config() << "\n";
-    return bad ? 2 : 0;
-} catch(const std::exception& e) { std::cerr << "ERROR: " << e.what() << "\n"; return 1; }
+int main(int argc,char**argv) try {
+ if(argc==2&&std::string(argv[1])=="--unit"){t0common::verifier_unit_tests();std::cout<<"verifier_unit_tests=PASS (S12 inside/outside boundaries on both signs; NaN; Inf; inconsistent size; exact zero for S=0; negative code and FP16-bit mutations despite zero activation; legacy diagnostic)\n";return 0;}
+ configure();at::NoGradGuard no_grad;at::addGlobalCallback(at::RecordFunctionCallback(&on_op));
+ std::cout<<"torch="<<TORCH_VERSION<<" intra="<<at::get_num_threads()<<" inter="<<at::get_num_interop_threads()<<" OMP_NUM_THREADS="<<env("OMP_NUM_THREADS")<<" MKL_NUM_THREADS="<<env("MKL_NUM_THREADS")<<" OMP_DYNAMIC="<<env("OMP_DYNAMIC")<<" MKL_DYNAMIC="<<env("MKL_DYNAMIC")<<"\n";
+ auto&ctx=at::globalContext();std::cout<<"fp32_precision generic/all="<<at::precision2str(ctx.float32Precision(at::Float32Backend::GENERIC,at::Float32Op::ALL))<<" mkldnn/matmul="<<at::precision2str(ctx.float32Precision(at::Float32Backend::MKLDNN,at::Float32Op::MATMUL))<<" cuda/matmul="<<at::precision2str(ctx.float32Precision(at::Float32Backend::CUDA,at::Float32Op::MATMUL))<<" float32_matmul_precision_enum="<<int(ctx.float32MatmulPrecision())<<"\n";std::cout<<"tf32_onednn="<<ctx.allowTF32OneDNN()<<" tf32_cublas="<<ctx.allowTF32CuBLAS()<<" tf32_cudnn="<<ctx.allowTF32CuDNN()<<" bf16_reduction_cublas="<<int(ctx.allowBF16ReductionCuBLAS())<<" fp16_reduction_cublas="<<int(ctx.allowFP16ReductionCuBLAS())<<" fp16_accumulation_cublas="<<ctx.allowFP16AccumulationCuBLAS()<<" fp16_reduction_cpu="<<ctx.allowFP16ReductionCPU()<<" cpu_bf16_reduction=NO_API_IN_INSTALLED_CONTEXT_H autocast_cpu="<<at::autocast::is_autocast_enabled(at::kCPU)<<" autocast_cuda="<<at::autocast::is_autocast_enabled(at::kCUDA)<<"\n";
+ std::vector<std::string> candidates={"mm","matmul","linear","mv"};bool mkldnn_ok=ctx.hasMKLDNN();std::string mkldnn_reason=mkldnn_ok?"available":"at::globalContext().hasMKLDNN()==false";
+ bool allpass=true;double overall_abs=0,overall_rel=0;std::map<std::string,std::set<std::string>>dispatch;std::map<std::string,CandidateStats>stats;
+ for(int M:{1,4,8,16})for(int fi=0;fi<int(t0common::Fixture::Count);++fi){auto fixture=t0common::Fixture(fi);auto path=std::filesystem::path("T0P/common/data")/("m"+std::to_string(M)+"_"+t0common::fixture_name(fixture)+".bin");auto c=t0common::load_cell(path);std::cout<<"cell M="<<M<<" fixture="<<t0common::fixture_name(c.fixture)<<" canonical_sha256="<<c.sha256<<" source="<<path.string()<<"\n";auto x=tensor([&]{std::vector<float>v(size_t(M)*t0common::I);for(int m=0;m<M;++m)for(int i=0;i<t0common::I;++i)v[m*t0common::I+i]=float(c.xq[m*t0common::I+i])*c.xs[m*t0common::G+i/32];return v;}(),{M,t0common::I});auto w=tensor(unpack_weights(c,false),{t0common::O,t0common::I});auto wt=tensor(unpack_weights(c,true),{t0common::I,t0common::O});report_buffer("X_clone_effective",x);report_buffer("W_persistent_clone_effective",w);report_buffer("Wt_persistent_clone_effective",wt);at::Tensor xd,wd;bool this_mkldnn=false;if(mkldnn_ok){try{xd=x.to_mkldnn();wd=w.to_mkldnn();this_mkldnn=true;std::cout<<"buffer=W_mkldnn_packed_effective opaque_mkldnn_layout=yes inspectable_data_ptr=no logical_bytes_accounted="<<size_t(t0common::O)*t0common::I*sizeof(float)<<"\n";}catch(const std::exception&e){mkldnn_ok=false;mkldnn_reason=e.what();}}else std::cout<<"candidate=mkldnn_linear status=NOT_AVAILABLE cause="<<mkldnn_reason<<"\n";
+  bool representation=true;auto expected_x=[&]{std::vector<float>v(size_t(M)*t0common::I);for(int m=0;m<M;++m)for(int i=0;i<t0common::I;++i)v[m*t0common::I+i]=float(c.xq[m*t0common::I+i])*c.xs[m*t0common::G+i/32];return v;}();auto expected_w=unpack_weights(c,false);representation=std::equal(expected_x.begin(),expected_x.end(),x.data_ptr<float>())&&std::equal(expected_w.begin(),expected_w.end(),w.data_ptr<float>());std::cout<<"control_representation effective_fp32_X_W="<<(representation?"PASS":"FAIL")<<" bits=scales_preserved_via_exact_decode\n";
+  auto runlist=candidates;if(this_mkldnn)runlist.push_back("mkldnn_linear");for(auto& name:runlist){if(name=="mv"&&M!=1)continue;ops.clear();try{auto y=run_candidate(name,x,w,wt,xd,wd,M);if(name=="mkldnn_linear")y=y.to_dense();y=y.contiguous();dispatch[name].insert(ops.begin(),ops.end());std::vector<float>v(y.data_ptr<float>(),y.data_ptr<float>()+y.numel());auto old=t0common::verify(c,v);auto q=t0common::verify_s12(c,v);bool exact_single=true;if(c.fixture==t0common::Fixture::SingleCoordinate){auto rr=t0common::reference64(c);for(size_t i=0;i<v.size();++i)exact_single&=(double(v[i])==rr.r64[i]);}allpass&=q.pass&&representation&&exact_single;auto&st=stats[name+"/m="+std::to_string(M)];++st.cells;st.abs=std::max(st.abs,old.max_abs);st.rel=std::max(st.rel,old.max_rel);if(!q.pass||!representation||!exact_single||name=="mkldnn_linear")++st.failed_fixtures;st.error_over_B=std::max(st.error_over_B,q.max_error_over_B);bool numeric_rep_pass=q.pass&&representation&&exact_single;std::cout<<"candidate="<<name<<" status="<<(numeric_rep_pass&&name!="mkldnn_linear"?"AVAILABLE_PASS":"NOT_COMPARABLE")<<(numeric_rep_pass&&name!="mkldnn_linear"?"":(name=="mkldnn_linear"?" cause=opaque_MKLDNN_page_policy":" cause=S12_or_representation_or_exact_fixture_failed"))<<" S12_failures="<<q.failures<<" single_coordinate_exact="<<exact_single<<" max_error_over_B="<<std::setprecision(12)<<q.max_error_over_B<<" old_tolerance_pass="<<old.pass<<" old_tolerance_failures="<<old.failures<<" representation="<<representation<<" ops=";for(auto&o:ops)std::cout<<o<<",";std::cout<<"\n";for(auto&f:q.failed)std::cout<<"S12_FAIL m="<<f.m<<" o="<<f.o<<" r64="<<f.r64<<" y="<<f.y<<" abs="<<f.error<<" S="<<f.S<<" B="<<f.B<<" error_over_B="<<f.error_over_B<<" S_over_abs_r="<<f.S_over_abs_r<<"\n";}catch(const std::exception&e){std::cout<<"candidate="<<name<<" status="<<(name=="mkldnn_linear"?"NOT_COMPARABLE":"UNAVAILABLE")<<" cause="<<e.what()<<"\n";if(name=="mkldnn_linear"){mkldnn_ok=false;mkldnn_reason=e.what();}}}
+ }
+ for(int M:{1,4,8,16}){auto base=t0common::generate_single_coordinate(M,0);auto w=tensor(unpack_weights(base,false),{t0common::O,t0common::I});auto wt=tensor(unpack_weights(base,true),{t0common::I,t0common::O});std::vector<std::string> names=candidates;if(mkldnn_ok)names.push_back("mkldnn_linear");for(const auto&name:names){if(name=="mv"&&M!=1)continue;std::size_t exact_fail=0,s12_fail=0;double max_ratio=0;for(int pos=0;pos<t0common::I;++pos){auto c=t0common::generate_single_coordinate(M,pos);std::vector<float>xv(size_t(M)*t0common::I);for(int m=0;m<M;++m)for(int i=0;i<t0common::I;++i)xv[m*t0common::I+i]=float(c.xq[m*t0common::I+i])*c.xs[m*t0common::G+i/32];auto x=tensor(xv,{M,t0common::I});auto ew=unpack_weights(c,false);if(!std::equal(xv.begin(),xv.end(),x.data_ptr<float>())||!std::equal(ew.begin(),ew.end(),w.data_ptr<float>()))++exact_fail;at::Tensor xd,wd;if(name=="mkldnn_linear"){xd=x.to_mkldnn();wd=w.to_mkldnn();}ops.clear();auto y=run_candidate(name,x,w,wt,xd,wd,M);if(name=="mkldnn_linear")y=y.to_dense();y=y.contiguous();dispatch[name].insert(ops.begin(),ops.end());std::vector<float>out(y.data_ptr<float>(),y.data_ptr<float>()+y.numel());auto rr=t0common::reference64(c);auto v=t0common::verify_s12(c,out);s12_fail+=v.failures;max_ratio=std::max(max_ratio,v.max_error_over_B);for(size_t i=0;i<out.size();++i)if(double(out[i])!=rr.r64[i])++exact_fail;}std::cout<<"SINGLE_SWEEP candidate="<<name<<" M="<<M<<" positions=512 batches=512 exact_failures="<<exact_fail<<" S12_failures="<<s12_fail<<" max_error_over_B="<<max_ratio<<"\n";if(exact_fail||s12_fail)allpass=false;}}
+ std::cout<<"mkldnn_linear_final="<<(mkldnn_ok?"NOT_COMPARABLE_PAGE_POLICY":"NOT_AVAILABLE")<<" cause="<<(mkldnn_ok?"ATen opaque MKLDNN tensor has no data_ptr; effective packed-buffer page/allocation policy cannot be inspected under the stated contract":mkldnn_reason)<<"\n";for(auto&kv:stats)std::cout<<"candidate_summary="<<kv.first<<" max_abs="<<kv.second.abs<<" max_rel="<<kv.second.rel<<" failing_fixtures="<<kv.second.failed_fixtures<<"\n";for(auto&kv:dispatch){std::cout<<"dispatch_candidate="<<kv.first<<" observed_ops=";for(auto&s:kv.second)std::cout<<s<<",";std::cout<<"\n";}std::cout<<"overall_numerical_equivalence="<<(allpass?"PASS":"FAIL")<<" benchmark_timed=false\n"<<at::show_config()<<"\n";report_loaded_modules();return 0;
+}catch(const std::exception&e){std::cerr<<"ERROR: "<<e.what()<<"\n";return 1;}
+
 
 
 

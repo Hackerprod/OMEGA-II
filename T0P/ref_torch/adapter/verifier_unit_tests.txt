@@ -1,0 +1,1 @@
+﻿verifier_unit_tests=PASS (S12 inside/outside boundaries on both signs; NaN; Inf; inconsistent size; exact zero for S=0; negative code and FP16-bit mutations despite zero activation; legacy diagnostic)

@@ -1,0 +1,645 @@
+{
+  "campaign": "T0P-Q4-RESIDENCY",
+  "revision": "common-inputs-and-S10-adapter-validation",
+  "torch_version": "2.11.0+cu128",
+  "binary": "CPU ATen only; CUDA-enabled wheel package",
+  "dimensions": {
+    "O": 1024,
+    "I": 512,
+    "M": [
+      1,
+      4,
+      8,
+      16
+    ]
+  },
+  "common_input_contract": {
+    "generator": "T0P/common/common.cpp; SplitMix64 state=0x6a09e667f3bcc909 XOR (M<<24) XOR (fixture_id<<40), fixed mixer and fixture-specific deterministic rules documented in README",
+    "serialization": "T0P/common/README.md: ASCII magic, little-endian u32 metadata, signed int8 code arrays, little-endian IEEE binary16 scale arrays in fixed O/I/G/M order",
+    "canonical_cells": [
+      {
+        "M": 1,
+        "fixture": "uniform",
+        "file": "T0P/common/data/m1_uniform.bin",
+        "sha256": "624fd2634edf96a40662ca22239a08ea80bcfdf7109d12c97f070394b4c1201a",
+        "bytes": 557627
+      },
+      {
+        "M": 1,
+        "fixture": "mixed_cancellation",
+        "file": "T0P/common/data/m1_mixed_cancellation.bin",
+        "sha256": "b6f413422c006cf3481fdc687903029e44029cbf181ed5c42bd117d81693a9e2",
+        "bytes": 557627
+      },
+      {
+        "M": 1,
+        "fixture": "varied_scales",
+        "file": "T0P/common/data/m1_varied_scales.bin",
+        "sha256": "4a17a481d1feeeca1cded4a55543b357293f3bcb0f5f892aeedc242c36e735fd",
+        "bytes": 557627
+      },
+      {
+        "M": 1,
+        "fixture": "sub127",
+        "file": "T0P/common/data/m1_sub127.bin",
+        "sha256": "d1fba0eacd18f186c49f514000b02e05244ac1f59dc9665233faaea346324504",
+        "bytes": 557627
+      },
+      {
+        "M": 1,
+        "fixture": "extremes",
+        "file": "T0P/common/data/m1_extremes.bin",
+        "sha256": "9cb27f021e98803456bdad30d62ae4926ed42bd87332764ad58a4b887877d172",
+        "bytes": 557627
+      },
+      {
+        "M": 4,
+        "fixture": "uniform",
+        "file": "T0P/common/data/m4_uniform.bin",
+        "sha256": "2291ff305c38988bc0fb69512add517d9761d4aa490e3adedf7c5731e1dc2a15",
+        "bytes": 559259
+      },
+      {
+        "M": 4,
+        "fixture": "mixed_cancellation",
+        "file": "T0P/common/data/m4_mixed_cancellation.bin",
+        "sha256": "686d8af40d842ce18e5bc0569f164fa96a945c941e75d7eb313d5b50eb05b4c1",
+        "bytes": 559259
+      },
+      {
+        "M": 4,
+        "fixture": "varied_scales",
+        "file": "T0P/common/data/m4_varied_scales.bin",
+        "sha256": "03d67b453db41a2315358ff59d8a84a01348359ad769eafe3aec5aa1f7c85659",
+        "bytes": 559259
+      },
+      {
+        "M": 4,
+        "fixture": "sub127",
+        "file": "T0P/common/data/m4_sub127.bin",
+        "sha256": "c01584fed6c2889147dec1c5db33da5f0e7c7ff9d4b183771b384b67f53c2448",
+        "bytes": 559259
+      },
+      {
+        "M": 4,
+        "fixture": "extremes",
+        "file": "T0P/common/data/m4_extremes.bin",
+        "sha256": "19f78dc83b91af14d2c45edd5afd5cf1b6c4e16eb6508cc48908e230b7ed5bd2",
+        "bytes": 559259
+      },
+      {
+        "M": 8,
+        "fixture": "uniform",
+        "file": "T0P/common/data/m8_uniform.bin",
+        "sha256": "e7e45ef2562c27f09595a156b108089c799e317aa38690fb891b950b9a46c4e1",
+        "bytes": 561435
+      },
+      {
+        "M": 8,
+        "fixture": "mixed_cancellation",
+        "file": "T0P/common/data/m8_mixed_cancellation.bin",
+        "sha256": "dedbfa30f68059c8a0462c8357e2337d2e0f67d4de1a2e9797a3bb5b8eea1a54",
+        "bytes": 561435
+      },
+      {
+        "M": 8,
+        "fixture": "varied_scales",
+        "file": "T0P/common/data/m8_varied_scales.bin",
+        "sha256": "b5255ab84f3aac361aecae3139ecc8e237d97d75762b406fe9880496d07971e8",
+        "bytes": 561435
+      },
+      {
+        "M": 8,
+        "fixture": "sub127",
+        "file": "T0P/common/data/m8_sub127.bin",
+        "sha256": "ea45f55660feb8153a9e65aa043c1fd1f86749957f6c044f855a6d9edeee8ab1",
+        "bytes": 561435
+      },
+      {
+        "M": 8,
+        "fixture": "extremes",
+        "file": "T0P/common/data/m8_extremes.bin",
+        "sha256": "de56dcfe96751628f10ef859f628dab1cea14f2ca45ed566682720293bdd6356",
+        "bytes": 561435
+      },
+      {
+        "M": 16,
+        "fixture": "uniform",
+        "file": "T0P/common/data/m16_uniform.bin",
+        "sha256": "fd30ed34cf6bd1381680cde611871747567e69f9455ecfd9e15e9f62359fdb77",
+        "bytes": 565787
+      },
+      {
+        "M": 16,
+        "fixture": "mixed_cancellation",
+        "file": "T0P/common/data/m16_mixed_cancellation.bin",
+        "sha256": "e9cdf28570e0d64d0ac4e2e7f0dbab62a3bfc14ab82b504cc011918596fa8161",
+        "bytes": 565787
+      },
+      {
+        "M": 16,
+        "fixture": "varied_scales",
+        "file": "T0P/common/data/m16_varied_scales.bin",
+        "sha256": "25c011bb6f0eb5fae7adbc03d7ee8ab8dfaf9e60fe897e0636af524c269ee22d",
+        "bytes": 565787
+      },
+      {
+        "M": 16,
+        "fixture": "sub127",
+        "file": "T0P/common/data/m16_sub127.bin",
+        "sha256": "f18ac9823ddceaf2ac8a8bb84826e2bf4fe1f69802912c1aafb017569a95ce46",
+        "bytes": 565787
+      },
+      {
+        "M": 16,
+        "fixture": "extremes",
+        "file": "T0P/common/data/m16_extremes.bin",
+        "sha256": "09f10e0afc3e9f90a4f63dec60599b7a8d26f9bfdd903ee8889a67748c950477",
+        "bytes": 565787
+      }
+    ],
+    "fixtures": [
+      "uniform",
+      "mixed_cancellation",
+      "varied_scales",
+      "sub127",
+      "extremes"
+    ],
+    "scale_rule": "FP16 bits preserved; FP32 values are exact decodes of the same binary16 bits",
+    "ggml_and_omega_conversion": "documented and implemented by ggml_q4_0(), ggml_q8_0(), omega_q4_18() in common.cpp; no requantization"
+  },
+  "acceptance_reference": {
+    "algorithm": "exact signed int32 dot per 32-code group; apply original FP16-representable activation and weight scales; accumulate groups in double; output FP32",
+    "tolerance": "abs(y-y_ref) <= 1e-5 + 1e-5*abs(y_ref)",
+    "finite_checks": [
+      "weight scales",
+      "activation scales",
+      "reference",
+      "candidate output",
+      "absolute error"
+    ],
+    "verifier_unit_tests": "PASS: valid accepted; NaN rejected; Inf rejected; finite out-of-tolerance value rejected",
+    "relative_error_convention": "max relative excludes exactly-zero references; max absolute includes them"
+  },
+  "adapter_run": {
+    "input": "all 20 serialized common cells loaded from T0P/common/data",
+    "candidate_summaries": [
+      {
+        "candidate": "linear",
+        "M": 1,
+        "max_abs": 0.21875,
+        "max_rel_nonzero_reference": 0.000622262923696,
+        "failing_fixtures": 3
+      },
+      {
+        "candidate": "linear",
+        "M": 16,
+        "max_abs": 0.8125,
+        "max_rel_nonzero_reference": 0.00421186945661,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "linear",
+        "M": 4,
+        "max_abs": 0.875,
+        "max_rel_nonzero_reference": 0.00126620195708,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "linear",
+        "M": 8,
+        "max_abs": 0.6875,
+        "max_rel_nonzero_reference": 0.00311814659177,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "matmul",
+        "M": 1,
+        "max_abs": 1.28125,
+        "max_rel_nonzero_reference": 0.00040506539675,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "matmul",
+        "M": 16,
+        "max_abs": 0.8125,
+        "max_rel_nonzero_reference": 0.00421186945661,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "matmul",
+        "M": 4,
+        "max_abs": 0.875,
+        "max_rel_nonzero_reference": 0.00126620195708,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "matmul",
+        "M": 8,
+        "max_abs": 0.6875,
+        "max_rel_nonzero_reference": 0.00311814659177,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "mkldnn_linear",
+        "M": 1,
+        "max_abs": 0.21875,
+        "max_rel_nonzero_reference": 0.000622262923696,
+        "failing_fixtures": 3
+      },
+      {
+        "candidate": "mkldnn_linear",
+        "M": 16,
+        "max_abs": 0.8125,
+        "max_rel_nonzero_reference": 0.00421186945661,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "mkldnn_linear",
+        "M": 4,
+        "max_abs": 0.875,
+        "max_rel_nonzero_reference": 0.00126620195708,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "mkldnn_linear",
+        "M": 8,
+        "max_abs": 0.6875,
+        "max_rel_nonzero_reference": 0.00311814659177,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "mm",
+        "M": 1,
+        "max_abs": 1.28125,
+        "max_rel_nonzero_reference": 0.00040506539675,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "mm",
+        "M": 16,
+        "max_abs": 0.8125,
+        "max_rel_nonzero_reference": 0.00421186945661,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "mm",
+        "M": 4,
+        "max_abs": 0.875,
+        "max_rel_nonzero_reference": 0.00126620195708,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "mm",
+        "M": 8,
+        "max_abs": 0.6875,
+        "max_rel_nonzero_reference": 0.00311814659177,
+        "failing_fixtures": 4
+      },
+      {
+        "candidate": "mv",
+        "M": 1,
+        "max_abs": 0.21875,
+        "max_rel_nonzero_reference": 0.000622262923696,
+        "failing_fixtures": 3
+      }
+    ],
+    "overall": "overall_max_abs=1.28125 overall_max_rel=0.00421186945661 all_pass=0 benchmark_timed=false",
+    "timed_benchmark": false,
+    "dispatch_observed_ops": {
+      "linear": [
+        "aten::as_strided",
+        "aten::linear",
+        "aten::matmul",
+        "aten::mm",
+        "aten::resolve_conj",
+        "aten::t",
+        "aten::transpose"
+      ],
+      "matmul": [
+        "aten::matmul",
+        "aten::mm",
+        "aten::resolve_conj"
+      ],
+      "mkldnn_linear": [
+        "aten::_to_dense",
+        "aten::as_strided_",
+        "aten::empty",
+        "aten::mkldnn_linear",
+        "aten::resize_",
+        "aten::to_dense"
+      ],
+      "mm": [
+        "aten::mm",
+        "aten::resolve_conj"
+      ],
+      "mv": [
+        "aten::addmv_",
+        "aten::as_strided",
+        "aten::empty",
+        "aten::mv",
+        "aten::select",
+        "aten::unsqueeze"
+      ]
+    },
+    "explicit_mkldnn": {
+      "status": "NOT_COMPARABLE_PAGE_POLICY",
+      "detail": "ATen opaque MKLDNN tensor has no data_ptr; effective packed-buffer page/allocation policy cannot be inspected under the stated contract",
+      "operator_observed": "aten::mkldnn_linear"
+    }
+  },
+  "threads": {
+    "effective": "torch=2.11.0 intra=1 inter=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_DYNAMIC=FALSE MKL_DYNAMIC=FALSE",
+    "policy_and_precision_readback": [
+      "fp32_precision generic/all=ieee mkldnn/matmul=ieee cuda/matmul=ieee float32_matmul_precision_enum=0",
+      "tf32_onednn=0 tf32_cublas=0 tf32_cudnn=0 bf16_reduction_cublas=2 fp16_reduction_cublas=2 fp16_accumulation_cublas=0 fp16_reduction_cpu=0 cpu_bf16_reduction=NO_API_IN_INSTALLED_CONTEXT_H autocast_cpu=0 autocast_cuda=0"
+    ],
+    "worker_model": "one process thread; no worker thread created"
+  },
+  "buffer_pages": {
+    "method": "VirtualQuery on the effective ATen tensor data_ptr after from_blob(...).clone()",
+    "effective_tensors": [
+      "dynamic X clone",
+      "persistent FP32 W [O,I] clone",
+      "persistent contiguous FP32 Wt [I,O] clone"
+    ],
+    "log": "T0P/ref_torch/adapter/verify_common_all.txt; records pointer, bytes, alignment, region, state, type and page protection",
+    "mkldnn_limitation": "packed opaque tensor has no data_ptr; exact ATen error recorded; excluded from comparable candidates"
+  },
+  "loaded_modules": [
+    {
+      "path": "C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_torch\\adapter\\ref_torch.exe",
+      "image_bytes": 184320,
+      "file_bytes": 174080,
+      "sha256": "dbb3db86478233beea590436b5c6eb5811013ea72a851b1999e489d436428d89"
+    },
+    {
+      "path": "C:\\Projects\\OMEGA\\.venv_cuda\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "image_bytes": 266858496,
+      "file_bytes": 265966080,
+      "sha256": "db2e314d0e15bc5753232eb6edb905a84e233953400a499fd7181a0edff5e1e6"
+    },
+    {
+      "path": "C:\\Projects\\OMEGA\\.venv_cuda\\Lib\\site-packages\\torch\\lib\\cupti64_2025.1.1.dll",
+      "image_bytes": 4521984,
+      "file_bytes": 4483664,
+      "sha256": "d026870a2c503d1b6e38a793170823ceca83d776f9b887f63fb0bb5c93d5c525"
+    },
+    {
+      "path": "C:\\Projects\\OMEGA\\.venv_cuda\\Lib\\site-packages\\torch\\lib\\uv.dll",
+      "image_bytes": 2871296,
+      "file_bytes": 195072,
+      "sha256": "fa569e682fc5fb7a8eb94c6829af9f30a569748dbbc6bce39735d48bc960bcf8"
+    },
+    {
+      "path": "C:\\Projects\\OMEGA\\.venv_cuda\\Lib\\site-packages\\torch\\lib\\libiomp5md.dll",
+      "image_bytes": 1892352,
+      "file_bytes": 1614184,
+      "sha256": "eb14cf741b10a6ca176acded284bff7b069e421f49927e28fef9685c6f62abf3"
+    },
+    {
+      "path": "C:\\Projects\\OMEGA\\.venv_cuda\\Lib\\site-packages\\torch\\lib\\c10.dll",
+      "image_bytes": 1138688,
+      "file_bytes": 1088000,
+      "sha256": "5132443efbbe4d147eb44c30ccbfc2eb48de4e8e937306cb7dce694c7eb08a1a"
+    },
+    {
+      "path": "C:\\Projects\\OMEGA\\.venv_cuda\\Lib\\site-packages\\torch\\lib\\cudart64_12.dll",
+      "image_bytes": 598016,
+      "file_bytes": 573952,
+      "sha256": "c2c9a9c22a9bcba90e261825968836787b331038047a26770cffb7a583c28344"
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\MSVCP140.dll",
+      "image_bytes": 561152,
+      "file_bytes": 557728,
+      "sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9"
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140.dll",
+      "image_bytes": 122880,
+      "file_bytes": 124544,
+      "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066"
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+      "image_bytes": 2367488,
+      "file_bytes": 2262424,
+      "sha256": "c821a11c26e939e7a2e96c7e68a9fceadf39ab6873140951902d2a676381d9c9"
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140_1.dll",
+      "image_bytes": 49152,
+      "file_bytes": 49792,
+      "sha256": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f"
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+      "image_bytes": 212992,
+      "file_bytes": 224584,
+      "sha256": "70c6298e4836c05d1a4b27529f1a97ac991aeca5ceaaca40f3f712402e0a09c9"
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+      "image_bytes": 176128,
+      "file_bytes": 187376,
+      "sha256": "b31261f53f426cd45ca03dfe0ce8d8caf9f6df728bc54fdd3d6182a0d3324bb6"
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+      "image_bytes": 49152,
+      "file_bytes": 59336,
+      "sha256": "ec94c57fa1b9904a30d2fc35e4537ae8f056a52eceb1c4f34bb37ab6eeb26472"
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\MSASN1.dll",
+      "image_bytes": 77824,
+      "file_bytes": 88248,
+      "sha256": "27a1172a8c21722b6f776ff00b81d8cfc65888d1e7ceb78776c0ba94bbd008fe"
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+      "image_bytes": 172032,
+      "file_bytes": 183264,
+      "sha256": "9ee5d54e9fbd795611322dd040e9978508c09091a6fdda40ea6f563e066da3ce"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\gdi32full.dll",
+      "image_bytes": 1228800,
+      "file_bytes": 1232800,
+      "sha256": "1133a30fbd644948d1fd9821fe32b578ad7fe477fc1fc20cc4ba3fc750b50e7c"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\WINTRUST.dll",
+      "image_bytes": 524288,
+      "file_bytes": 534504,
+      "sha256": "4071778b4487d4b5ad2bbc3578eebada6e2e81a371cdf290c1090130b7c7171e"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+      "image_bytes": 4124672,
+      "file_bytes": 4133496,
+      "sha256": "c7a7123a06c728989606c8caba989e68a59180aa8eb8bc712eebb3d59db6e3a1"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\CRYPT32.dll",
+      "image_bytes": 1536000,
+      "file_bytes": 1534432,
+      "sha256": "0f549c9c035ec2dfd39a2dcf6fd8f13dab8515ac748759b3583dcdb155ffe011"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\msvcp_win.dll",
+      "image_bytes": 667648,
+      "file_bytes": 641944,
+      "sha256": "be9c8407b3d168fd09248d985ac37e744714c1a8d3b72961f24926afdf480c8f"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\ucrtbase.dll",
+      "image_bytes": 1355776,
+      "file_bytes": 1373328,
+      "sha256": "c2ed69b4a1bb9432c75134e813c70539e27c8c1fe96a784d9be78c874e93d9d5"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\win32u.dll",
+      "image_bytes": 159744,
+      "file_bytes": 170912,
+      "sha256": "86be11c9e7fc8931d1f76ac69afb5b149b61a4a95603e4833e0b98f1de0598fb"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+      "image_bytes": 737280,
+      "file_bytes": 745240,
+      "sha256": "39a735df6720821ad42ef5e2b4753b3f18c8b35297064062193399bbee97db47"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\combase.dll",
+      "image_bytes": 3690496,
+      "file_bytes": 3716128,
+      "sha256": "93c0850327562f90eff88dcc9919a33720531653d35c9971eeb5fed18ba34381"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\GDI32.dll",
+      "image_bytes": 176128,
+      "file_bytes": 187392,
+      "sha256": "dcb0e1ac8e4af783b906a8964471edfd53cdd216ff0daf893aa747009fb97e5a"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+      "image_bytes": 823296,
+      "file_bytes": 836128,
+      "sha256": "4f84d975b80158f842426d6c609bf635294e490c0128416a1b5172e6f0a3e45b"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\msvcrt.dll",
+      "image_bytes": 692224,
+      "file_bytes": 699768,
+      "sha256": "e87671c629f8ba6483336a5fe3814ddc642c5bbd3ca6ab9097dc1369fb34db7f"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\USER32.dll",
+      "image_bytes": 1855488,
+      "file_bytes": 1873248,
+      "sha256": "e159acbaa3e7a44213ad8faebdf45427d7008b03d5dfdc21c0cb0c9c63b712a1"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\RPCRT4.dll",
+      "image_bytes": 1146880,
+      "file_bytes": 1162568,
+      "sha256": "478667ffc376c9725af56ede8fc56f68d4a4804b92afc2977187e185525fb393"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\sechost.dll",
+      "image_bytes": 679936,
+      "file_bytes": 691520,
+      "sha256": "32881e3ea52060a84c1e9cd8faa728acf96d1d1229e518a267fbe0bf6b7e8469"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\OLEAUT32.dll",
+      "image_bytes": 876544,
+      "file_bytes": 885688,
+      "sha256": "3146b15435de6c26ffa43f0626f87ab5d05f612eaa0a22d059006cd28f84aa71"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\IMM32.DLL",
+      "image_bytes": 200704,
+      "file_bytes": 212168,
+      "sha256": "a9c460d2e4b17e3b59a3c9e4462d0733264a4e817988a7f41768caf7a662f90e"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\PSAPI.DLL",
+      "image_bytes": 32768,
+      "file_bytes": 42696,
+      "sha256": "aee47f2535e0196552513d37be8411a9b9c649a50c3d847488162580d8b88793"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\imagehlp.dll",
+      "image_bytes": 131072,
+      "file_bytes": 137832,
+      "sha256": "58117bbc51c4a56b6c4789e190f33a540b7734e394ada9652e2832e3d2e16588"
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\WS2_32.dll",
+      "image_bytes": 475136,
+      "file_bytes": 489056,
+      "sha256": "fb26504a5d5a1b2045e526f873b84bbba57ea5715a16d2f48e26919abc273240"
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+      "image_bytes": 2519040,
+      "file_bytes": 2522000,
+      "sha256": "9e35cbb412da1af9c01180a942989e0b45d6a40375052535e3631a473a53c3e4"
+    }
+  ],
+  "build": {
+    "compiler": "MSVC 14.44.35207 x64",
+    "sdk": "10.0.26100.0",
+    "commands": [
+      "T0P/common/build.cmd",
+      "T0P/ref_torch/adapter/build.cmd"
+    ]
+  },
+  "ambiguities_open": [
+    "ATen opaque MKLDNN storage allocator and physical page policy cannot be inspected through installed public API",
+    "FP32 dense candidates fail the acceptance tolerance on most fixtures; future Torch comparator eligibility remains open",
+    "multiworker affinity and 8P harness execution were not in this untimed adapter validation"
+  ],
+  "artifacts": {
+    "T0P/ref_torch/adapter/ref_torch.cpp": "2f0eabee76e9bec771731e4a810842808937214a60f35b7f92b6a83fdfb1c6fc",
+    "T0P/ref_torch/adapter/build.cmd": "cd5d83acdace7a7edef899ac47b9f94e16be2313be57bb3e2bb256c83a2b4096",
+    "T0P/ref_torch/adapter/ref_torch.exe": "dbb3db86478233beea590436b5c6eb5811013ea72a851b1999e489d436428d89",
+    "T0P/ref_torch/adapter/ref_torch.exp": "46e1a9224defb96ec208763607eadf62db1546611dd13cf025df059863870aa0",
+    "T0P/ref_torch/adapter/ref_torch.lib": "dd47137393a89d4ccb86a2330907fd00513fb0c64faf5beff0b350b37e161bfd",
+    "T0P/ref_torch/adapter/obj/ref_torch.obj": "04cd511ad7338fc3c6e0cab943ba51079c7d845eaab94d7683722df8bc65b69f",
+    "T0P/ref_torch/adapter/verify_common_all.txt": "b328ec1e42812ecb6f8bd265c89b04f5da620626163eea5b626c1987d081ef71",
+    "T0P/ref_torch/adapter/verifier_unit_tests.txt": "7faf3a6c5107ca7bd8fac5b6c2c440ad7b121f77cd6f4c892d628a82afa0553c",
+    "T0P/ref_torch/adapter/update_freeze.py": "86a237aae04f08302fdc2fa3cc47c8ac0ca1fdeb1f9f15233c9256373c44d922",
+    "T0P/ref_torch/REF_FREEZE.md": "975df5962a231c63dce24bd121f3a454bdb728cc92e9f3253713e245e8ee8985",
+    "T0P/common/README.md": "16d0c1b56c350459979846bfcd03df27e6ac322f4e3ad0f3676fd03538451532",
+    "T0P/common/common.hpp": "7bbf005406196db1e1255d5116b3048fa0f24185c5092f606e0029c6a1aca7e2",
+    "T0P/common/common.cpp": "99fe0d9ab20294e0f5c95380b1859037639f1afb1745ca50bcfa06cf47bb165d",
+    "T0P/common/build.cmd": "90a50d0449d31d359d26d2760165aa103a154b4d70afdec4d19a351655636fec",
+    "T0P/common/generate_main.cpp": "025101dd146220756a28d2f6f23f8859910aad60a1d74fcefab5b3f1760ca677",
+    "T0P/common/generate_cells.exe": "96911e31273fa2035838649d7706d77e2b85bd18088572d13480cd0d4d11597d",
+    "T0P/common/obj/common.obj": "cbf09ff2263c62557042145dc2f5bac9b641bd2567e7d6d47f73d47d33dd50f6",
+    "T0P/common/data/m16_extremes.bin": "09f10e0afc3e9f90a4f63dec60599b7a8d26f9bfdd903ee8889a67748c950477",
+    "T0P/common/data/m16_mixed_cancellation.bin": "e9cdf28570e0d64d0ac4e2e7f0dbab62a3bfc14ab82b504cc011918596fa8161",
+    "T0P/common/data/m16_sub127.bin": "f18ac9823ddceaf2ac8a8bb84826e2bf4fe1f69802912c1aafb017569a95ce46",
+    "T0P/common/data/m16_uniform.bin": "fd30ed34cf6bd1381680cde611871747567e69f9455ecfd9e15e9f62359fdb77",
+    "T0P/common/data/m16_varied_scales.bin": "25c011bb6f0eb5fae7adbc03d7ee8ab8dfaf9e60fe897e0636af524c269ee22d",
+    "T0P/common/data/m1_extremes.bin": "9cb27f021e98803456bdad30d62ae4926ed42bd87332764ad58a4b887877d172",
+    "T0P/common/data/m1_mixed_cancellation.bin": "b6f413422c006cf3481fdc687903029e44029cbf181ed5c42bd117d81693a9e2",
+    "T0P/common/data/m1_sub127.bin": "d1fba0eacd18f186c49f514000b02e05244ac1f59dc9665233faaea346324504",
+    "T0P/common/data/m1_uniform.bin": "624fd2634edf96a40662ca22239a08ea80bcfdf7109d12c97f070394b4c1201a",
+    "T0P/common/data/m1_varied_scales.bin": "4a17a481d1feeeca1cded4a55543b357293f3bcb0f5f892aeedc242c36e735fd",
+    "T0P/common/data/m4_extremes.bin": "19f78dc83b91af14d2c45edd5afd5cf1b6c4e16eb6508cc48908e230b7ed5bd2",
+    "T0P/common/data/m4_mixed_cancellation.bin": "686d8af40d842ce18e5bc0569f164fa96a945c941e75d7eb313d5b50eb05b4c1",
+    "T0P/common/data/m4_sub127.bin": "c01584fed6c2889147dec1c5db33da5f0e7c7ff9d4b183771b384b67f53c2448",
+    "T0P/common/data/m4_uniform.bin": "2291ff305c38988bc0fb69512add517d9761d4aa490e3adedf7c5731e1dc2a15",
+    "T0P/common/data/m4_varied_scales.bin": "03d67b453db41a2315358ff59d8a84a01348359ad769eafe3aec5aa1f7c85659",
+    "T0P/common/data/m8_extremes.bin": "de56dcfe96751628f10ef859f628dab1cea14f2ca45ed566682720293bdd6356",
+    "T0P/common/data/m8_mixed_cancellation.bin": "dedbfa30f68059c8a0462c8357e2337d2e0f67d4de1a2e9797a3bb5b8eea1a54",
+    "T0P/common/data/m8_sub127.bin": "ea45f55660feb8153a9e65aa043c1fd1f86749957f6c044f855a6d9edeee8ab1",
+    "T0P/common/data/m8_uniform.bin": "e7e45ef2562c27f09595a156b108089c799e317aa38690fb891b950b9a46c4e1",
+    "T0P/common/data/m8_varied_scales.bin": "b5255ab84f3aac361aecae3139ecc8e237d97d75762b406fe9880496d07971e8"
+  }
+}
