@@ -1,0 +1,1030 @@
+{
+  "project": "ggml-org/llama.cpp",
+  "tag": "v0.6.0",
+  "tag_release": {
+    "stable": true,
+    "prerelease": false,
+    "published_at": "2026-10-05T16:56:22Z",
+    "tag_object": "69ecae922d2b60c1fa8c590279f4e2099af75111",
+    "tag_signed": false
+  },
+  "commit": "d81235049384534c167caea52b85a694f6103d14",
+  "api_verification": "https://api.github.com/repos/ggml-org/llama.cpp/git/tags/69ecae922d2b60c1fa8c590279f4e2099af75111",
+  "source_url": "https://github.com/ggml-org/llama.cpp/archive/refs/tags/v0.6.0.zip",
+  "source_file": "llama.cpp-v0.6.0-source-20261011-a1.zip",
+  "source_sha256": "54D8E1F79B4A8BC0EF70B2ECE968C0A8AFE8030EDB8257D64DEDFB1169983414",
+  "compiler": "MSVC 19.44.35229.0 (toolset 14.44.35207)",
+  "build": {
+    "configuration": "Release",
+    "generator": "Ninja from Visual Studio BuildTools",
+    "options": [
+      "GGML_NATIVE=OFF",
+      "GGML_AVX2=ON",
+      "GGML_AVX_VNNI=ON",
+      "GGML_CUDA=OFF",
+      "GGML_BUILD_TESTS=OFF",
+      "GGML_BUILD_EXAMPLES=OFF",
+      "LLAMA_BUILD_TESTS=OFF",
+      "LLAMA_BUILD_EXAMPLES=OFF",
+      "LLAMA_BUILD_SERVER=OFF"
+    ],
+    "reported_arch_flags": [
+      "/arch:AVX2",
+      "GGML_AVX2",
+      "GGML_FMA",
+      "GGML_F16C",
+      "__AVXVNNI__",
+      "GGML_AVX_VNNI",
+      "__BMI2__",
+      "GGML_BMI2"
+    ],
+    "libraries": [
+      "build_llama/bin/ggml-base.dll",
+      "build_llama/bin/ggml.dll",
+      "build_llama/bin/ggml-cpu.dll"
+    ],
+    "build_reused": true
+  },
+  "adapter": {
+    "status": "COMPILED_AND_RUN_QA_REFERENCE_READY",
+    "source": "adapter/main.cpp",
+    "source_sha256": "79ca6c7990e87b7dbbe15ce948968722fa22e7678695071a36e0a0459fe8e99d",
+    "binary": "adapter/adapter.exe",
+    "binary_sha256": "06f001ad424e023b3ee540400dface0175032b8ee66ed4cbebcd2845292b8dae",
+    "operation": "S-14 plana ggml_mul_mat use_ref=false; repack upstream GEMV/GEMM; QA sin cronometraje",
+    "routes": {
+      "flat": "ggml_mul_mat -> Q4_0 CPU type-trait vec_dot callback (runtime address/RVA observed in ggml-cpu.dll; source maps it to ggml_vec_dot_q4_0_q8_0 -> AVX-VNNI vpdpbusd; runtime symbol identity limited by absent export/PDB)",
+      "repack_m1": "direct upstream ggml_gemv_q4_0_8x8_q8_0 call; supports M=1",
+      "repack_m4_m8_m16": "direct upstream ggml_gemm_q4_0_8x8_q8_0 call; supports M>=4 in multiples of 4; M=4,8,16 executed"
+    },
+    "runtime_features": {
+      "avx2": 1,
+      "avx_vnni": 1
+    },
+    "gemm_repack": "Present in source but not selected by ggml_mul_mat CPU graph for these cases",
+    "equivalence": {
+      "status": "PASS",
+      "shape": {
+        "O": 1024,
+        "I": 512
+      },
+      "m": [
+        1,
+        4,
+        8,
+        16
+      ],
+      "seeds": {
+        "weights": "0x23456789abcdef01",
+        "activations": "0x1020304050607080"
+      },
+      "activation_scales_fp16_exact": true,
+      "tolerance": "1e-5 + 1e-5*abs(y_ref)",
+      "max_abs_error_by_m": {
+        "1": 0.0,
+        "4": 0.0,
+        "8": 0.001953125,
+        "16": 0.001953125
+      },
+      "max_error_over_tolerance": 0.0103252959,
+      "mismatches": {
+        "1": 0,
+        "4": 0,
+        "8": 0,
+        "16": 0
+      },
+      "format_note": "ggml Q4_0 low nibbles hold q[0..15]+8; high nibbles hold q[16..31]+8. Adapter reorders local interleaved Q4 pairs accordingly."
+    },
+    "build_script": "adapter/build.cmd",
+    "build_note": "Upstream arch/x86/repack.cpp compiled unchanged with /arch:AVX2 /D__AVXVNNI__; verifier/adapter unit uses /fp:strict."
+  },
+  "benchmarking": "NOT_RUN",
+  "blockers": [],
+  "manifest": "SHA256SUMS_ref_ggml.txt",
+  "canonical_inputs": {
+    "m": [
+      1,
+      4,
+      8,
+      16
+    ],
+    "all_cells_verified": true,
+    "hash_check": "loaded cell SHA256 equals canonical generator SHA256 before use",
+    "fixtures": [
+      "uniform",
+      "mixed_cancellation",
+      "varied_scales",
+      "sub127",
+      "extremes"
+    ],
+    "source": "T0P/common canonical cells"
+  },
+  "dispatch_evidence": {
+    "flat_governing": {
+      "configuration": "ggml_mul_mat; plan.use_ref=false; GGML_LLAMAFILE conservado",
+      "m1": {
+        "callback_reached": true,
+        "module": "ggml-cpu.dll",
+        "sha256": "cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23",
+        "base": "0x7ffabad00000",
+        "rva": "0xc8ad0",
+        "return": "0x7ffabad0455a",
+        "route": "ggml_vec_dot_q4_0_q8_0; sgemm attempted and returned false before trait fallback"
+      },
+      "m4_m8_m16": {
+        "route": "llamafile_sgemm",
+        "runtime": {
+          "module": "ggml-cpu.dll",
+          "sha256": "cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23",
+          "base": "0x7ffabad00000",
+          "rva": "0xc4dc0",
+          "caller_return": "0x7ffabad02a92",
+          "breakpoint": "INT3 entry"
+        },
+        "callback_reached": false,
+        "arithmetic": "Q4_0 x Q8_0 AVX2 tinyBLAS_Q0_AVX",
+        "return_evidence": "Callsite tests AL; false branches to fallback; callback absent, so true return inferred from source and runtime"
+      }
+    },
+    "repack": {
+      "source": "upstream arch/x86/repack.cpp sin cambios",
+      "object_sha256": "4823ad6760b2ee22aa27855bbac2d89b0bb1e081639898415d7b7d854c74f98e",
+      "vpdpbusd_count": 218,
+      "routes": {
+        "1": "ggml_gemv_q4_0_8x8_q8_0",
+        "4": "ggml_gemm_q4_0_8x8_q8_0",
+        "8": "ggml_gemm_q4_0_8x8_q8_0",
+        "16": "ggml_gemm_q4_0_8x8_q8_0"
+      }
+    }
+  },
+  "repack_adapter": {
+    "group_products": "reference calculates per-group INT32; kernel intermediates not instrumented",
+    "weights": "bit-preserving block_q4_0x8 interleave, copied FP16 scale and XOR 0x8888888888888888; inverse reconstruction exact",
+    "activations": "bit-preserving Q8_0 to block_q8_0x4 INT8 and FP16 scales; M=1 original Q8_0",
+    "requantization": "none",
+    "availability": {
+      "m16": "AVAILABLE GEMM",
+      "m1": "AVAILABLE GEMV",
+      "m4": "AVAILABLE GEMM",
+      "m8": "AVAILABLE GEMM"
+    }
+  },
+  "qa": {
+    "raw_output": "adapter/qa_output.txt",
+    "reference": "T0P/common::reference (INT32 per group, double accumulation)",
+    "cells": [
+      {
+        "m": 1,
+        "fixture": "uniform",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.00244140625,
+        "max_rel": 0.000340308592393,
+        "max_normalized": 2.62501842577e-08,
+        "canonical_sha256": "624fd2634edf96a40662ca22239a08ea80bcfdf7109d12c97f070394b4c1201a",
+        "route": "flat",
+        "failed_outputs": 5
+      },
+      {
+        "m": 1,
+        "fixture": "uniform",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemv_q4_0_8x8_q8_0",
+        "max_abs": 0.001953125,
+        "max_rel": 3.72565042021e-05,
+        "max_normalized": 3.13231326981e-08,
+        "canonical_sha256": "624fd2634edf96a40662ca22239a08ea80bcfdf7109d12c97f070394b4c1201a",
+        "route": "repack",
+        "failed_outputs": 2
+      },
+      {
+        "m": 4,
+        "fixture": "uniform",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.001953125,
+        "max_rel": 0.000390887497791,
+        "max_normalized": 3.20566692062e-08,
+        "canonical_sha256": "2291ff305c38988bc0fb69512add517d9761d4aa490e3adedf7c5731e1dc2a15",
+        "route": "flat",
+        "failed_outputs": 26
+      },
+      {
+        "m": 4,
+        "fixture": "uniform",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.0029296875,
+        "max_rel": 0.000253396471459,
+        "max_normalized": 4.53676264532e-08,
+        "canonical_sha256": "2291ff305c38988bc0fb69512add517d9761d4aa490e3adedf7c5731e1dc2a15",
+        "route": "repack",
+        "failed_outputs": 14
+      },
+      {
+        "m": 8,
+        "fixture": "uniform",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.001953125,
+        "max_rel": 0.000443618448997,
+        "max_normalized": 2.94498647105e-08,
+        "canonical_sha256": "e7e45ef2562c27f09595a156b108089c799e317aa38690fb891b950b9a46c4e1",
+        "route": "flat",
+        "failed_outputs": 42
+      },
+      {
+        "m": 8,
+        "fixture": "uniform",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.0029296875,
+        "max_rel": 0.000248607906045,
+        "max_normalized": 3.44946555579e-08,
+        "canonical_sha256": "e7e45ef2562c27f09595a156b108089c799e317aa38690fb891b950b9a46c4e1",
+        "route": "repack",
+        "failed_outputs": 13
+      },
+      {
+        "m": 16,
+        "fixture": "uniform",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.0029296875,
+        "max_rel": 0.00171745451764,
+        "max_normalized": 3.47285866768e-08,
+        "canonical_sha256": "fd30ed34cf6bd1381680cde611871747567e69f9455ecfd9e15e9f62359fdb77",
+        "route": "flat",
+        "failed_outputs": 86
+      },
+      {
+        "m": 16,
+        "fixture": "uniform",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.00390625,
+        "max_rel": 0.000798016259318,
+        "max_normalized": 4.19120899474e-08,
+        "canonical_sha256": "fd30ed34cf6bd1381680cde611871747567e69f9455ecfd9e15e9f62359fdb77",
+        "route": "repack",
+        "failed_outputs": 41
+      },
+      {
+        "m": 1,
+        "fixture": "mixed_cancellation",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0,
+        "max_rel": 0,
+        "max_normalized": 0,
+        "canonical_sha256": "b6f413422c006cf3481fdc687903029e44029cbf181ed5c42bd117d81693a9e2",
+        "route": "flat",
+        "failed_outputs": 0
+      },
+      {
+        "m": 1,
+        "fixture": "mixed_cancellation",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_gemv_q4_0_8x8_q8_0",
+        "max_abs": 0,
+        "max_rel": 0,
+        "max_normalized": 0,
+        "canonical_sha256": "b6f413422c006cf3481fdc687903029e44029cbf181ed5c42bd117d81693a9e2",
+        "route": "repack",
+        "failed_outputs": 0
+      },
+      {
+        "m": 4,
+        "fixture": "mixed_cancellation",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0,
+        "max_rel": 0,
+        "max_normalized": 0,
+        "canonical_sha256": "686d8af40d842ce18e5bc0569f164fa96a945c941e75d7eb313d5b50eb05b4c1",
+        "route": "flat",
+        "failed_outputs": 0
+      },
+      {
+        "m": 4,
+        "fixture": "mixed_cancellation",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0,
+        "max_rel": 0,
+        "max_normalized": 0,
+        "canonical_sha256": "686d8af40d842ce18e5bc0569f164fa96a945c941e75d7eb313d5b50eb05b4c1",
+        "route": "repack",
+        "failed_outputs": 0
+      },
+      {
+        "m": 8,
+        "fixture": "mixed_cancellation",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0,
+        "max_rel": 0,
+        "max_normalized": 0,
+        "canonical_sha256": "dedbfa30f68059c8a0462c8357e2337d2e0f67d4de1a2e9797a3bb5b8eea1a54",
+        "route": "flat",
+        "failed_outputs": 0
+      },
+      {
+        "m": 8,
+        "fixture": "mixed_cancellation",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0,
+        "max_rel": 0,
+        "max_normalized": 0,
+        "canonical_sha256": "dedbfa30f68059c8a0462c8357e2337d2e0f67d4de1a2e9797a3bb5b8eea1a54",
+        "route": "repack",
+        "failed_outputs": 0
+      },
+      {
+        "m": 16,
+        "fixture": "mixed_cancellation",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0,
+        "max_rel": 0,
+        "max_normalized": 0,
+        "canonical_sha256": "e9cdf28570e0d64d0ac4e2e7f0dbab62a3bfc14ab82b504cc011918596fa8161",
+        "route": "flat",
+        "failed_outputs": 0
+      },
+      {
+        "m": 16,
+        "fixture": "mixed_cancellation",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0,
+        "max_rel": 0,
+        "max_normalized": 0,
+        "canonical_sha256": "e9cdf28570e0d64d0ac4e2e7f0dbab62a3bfc14ab82b504cc011918596fa8161",
+        "route": "repack",
+        "failed_outputs": 0
+      },
+      {
+        "m": 1,
+        "fixture": "varied_scales",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.0029296875,
+        "max_rel": 9.36908673724e-05,
+        "max_normalized": 2.89373700316e-08,
+        "canonical_sha256": "4a17a481d1feeeca1cded4a55543b357293f3bcb0f5f892aeedc242c36e735fd",
+        "route": "flat",
+        "failed_outputs": 3
+      },
+      {
+        "m": 1,
+        "fixture": "varied_scales",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemv_q4_0_8x8_q8_0",
+        "max_abs": 0.001953125,
+        "max_rel": 1.11598540083e-05,
+        "max_normalized": 2.16783228469e-08,
+        "canonical_sha256": "4a17a481d1feeeca1cded4a55543b357293f3bcb0f5f892aeedc242c36e735fd",
+        "route": "repack",
+        "failed_outputs": 1
+      },
+      {
+        "m": 4,
+        "fixture": "varied_scales",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.0029296875,
+        "max_rel": 0.000210406125708,
+        "max_normalized": 2.86142686797e-08,
+        "canonical_sha256": "03d67b453db41a2315358ff59d8a84a01348359ad769eafe3aec5aa1f7c85659",
+        "route": "flat",
+        "failed_outputs": 21
+      },
+      {
+        "m": 4,
+        "fixture": "varied_scales",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.00390625,
+        "max_rel": 7.89020408832e-05,
+        "max_normalized": 4.16780029377e-08,
+        "canonical_sha256": "03d67b453db41a2315358ff59d8a84a01348359ad769eafe3aec5aa1f7c85659",
+        "route": "repack",
+        "failed_outputs": 9
+      },
+      {
+        "m": 8,
+        "fixture": "varied_scales",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.00390625,
+        "max_rel": 0.00163596784705,
+        "max_normalized": 3.34579148944e-08,
+        "canonical_sha256": "b5255ab84f3aac361aecae3139ecc8e237d97d75762b406fe9880496d07971e8",
+        "route": "flat",
+        "failed_outputs": 27
+      },
+      {
+        "m": 8,
+        "fixture": "varied_scales",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.005859375,
+        "max_rel": 0.00012707194062,
+        "max_normalized": 5.4346809851e-08,
+        "canonical_sha256": "b5255ab84f3aac361aecae3139ecc8e237d97d75762b406fe9880496d07971e8",
+        "route": "repack",
+        "failed_outputs": 8
+      },
+      {
+        "m": 16,
+        "fixture": "varied_scales",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.00390625,
+        "max_rel": 0.0003298468167,
+        "max_normalized": 3.92348094805e-08,
+        "canonical_sha256": "25c011bb6f0eb5fae7adbc03d7ee8ab8dfaf9e60fe897e0636af524c269ee22d",
+        "route": "flat",
+        "failed_outputs": 74
+      },
+      {
+        "m": 16,
+        "fixture": "varied_scales",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.005859375,
+        "max_rel": 0.000442690900585,
+        "max_normalized": 5.11635788665e-08,
+        "canonical_sha256": "25c011bb6f0eb5fae7adbc03d7ee8ab8dfaf9e60fe897e0636af524c269ee22d",
+        "route": "repack",
+        "failed_outputs": 27
+      },
+      {
+        "m": 1,
+        "fixture": "sub127",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.00048828125,
+        "max_rel": 0.000292499307037,
+        "max_normalized": 2.52999560809e-08,
+        "canonical_sha256": "d1fba0eacd18f186c49f514000b02e05244ac1f59dc9665233faaea346324504",
+        "route": "flat",
+        "failed_outputs": 3
+      },
+      {
+        "m": 1,
+        "fixture": "sub127",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemv_q4_0_8x8_q8_0",
+        "max_abs": 0.00048828125,
+        "max_rel": 0.000117918568805,
+        "max_normalized": 2.20630603931e-08,
+        "canonical_sha256": "d1fba0eacd18f186c49f514000b02e05244ac1f59dc9665233faaea346324504",
+        "route": "repack",
+        "failed_outputs": 2
+      },
+      {
+        "m": 4,
+        "fixture": "sub127",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.0009765625,
+        "max_rel": 0.000256879932976,
+        "max_normalized": 3.49399894479e-08,
+        "canonical_sha256": "c01584fed6c2889147dec1c5db33da5f0e7c7ff9d4b183771b384b67f53c2448",
+        "route": "flat",
+        "failed_outputs": 15
+      },
+      {
+        "m": 4,
+        "fixture": "sub127",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.0009765625,
+        "max_rel": 6.80781848254e-05,
+        "max_normalized": 3.76957641658e-08,
+        "canonical_sha256": "c01584fed6c2889147dec1c5db33da5f0e7c7ff9d4b183771b384b67f53c2448",
+        "route": "repack",
+        "failed_outputs": 6
+      },
+      {
+        "m": 8,
+        "fixture": "sub127",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.0009765625,
+        "max_rel": 0.00101565840427,
+        "max_normalized": 3.74899752065e-08,
+        "canonical_sha256": "ea45f55660feb8153a9e65aa043c1fd1f86749957f6c044f855a6d9edeee8ab1",
+        "route": "flat",
+        "failed_outputs": 36
+      },
+      {
+        "m": 8,
+        "fixture": "sub127",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.000732421875,
+        "max_rel": 0.000538564470834,
+        "max_normalized": 3.32988257894e-08,
+        "canonical_sha256": "ea45f55660feb8153a9e65aa043c1fd1f86749957f6c044f855a6d9edeee8ab1",
+        "route": "repack",
+        "failed_outputs": 16
+      },
+      {
+        "m": 16,
+        "fixture": "sub127",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.000732421875,
+        "max_rel": 0.000377981635554,
+        "max_normalized": 3.11049755583e-08,
+        "canonical_sha256": "f18ac9823ddceaf2ac8a8bb84826e2bf4fe1f69802912c1aafb017569a95ce46",
+        "route": "flat",
+        "failed_outputs": 65
+      },
+      {
+        "m": 16,
+        "fixture": "sub127",
+        "md35_tolerance_pass": false,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.00146484375,
+        "max_rel": 0.000204775293152,
+        "max_normalized": 4.97662541739e-08,
+        "canonical_sha256": "f18ac9823ddceaf2ac8a8bb84826e2bf4fe1f69802912c1aafb017569a95ce46",
+        "route": "repack",
+        "failed_outputs": 22
+      },
+      {
+        "m": 1,
+        "fixture": "extremes",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.0625,
+        "max_rel": 2.18701947082e-07,
+        "max_normalized": 2.18701941672e-07,
+        "canonical_sha256": "9cb27f021e98803456bdad30d62ae4926ed42bd87332764ad58a4b887877d172",
+        "route": "flat",
+        "failed_outputs": 0
+      },
+      {
+        "m": 1,
+        "fixture": "extremes",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_gemv_q4_0_8x8_q8_0",
+        "max_abs": 0.0625,
+        "max_rel": 2.18701947082e-07,
+        "max_normalized": 2.18701941672e-07,
+        "canonical_sha256": "9cb27f021e98803456bdad30d62ae4926ed42bd87332764ad58a4b887877d172",
+        "route": "repack",
+        "failed_outputs": 0
+      },
+      {
+        "m": 4,
+        "fixture": "extremes",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.0625,
+        "max_rel": 2.24345578339e-07,
+        "max_normalized": 2.24345590027e-07,
+        "canonical_sha256": "19f78dc83b91af14d2c45edd5afd5cf1b6c4e16eb6508cc48908e230b7ed5bd2",
+        "route": "flat",
+        "failed_outputs": 0
+      },
+      {
+        "m": 4,
+        "fixture": "extremes",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.0625,
+        "max_rel": 2.24345578339e-07,
+        "max_normalized": 2.24345590027e-07,
+        "canonical_sha256": "19f78dc83b91af14d2c45edd5afd5cf1b6c4e16eb6508cc48908e230b7ed5bd2",
+        "route": "repack",
+        "failed_outputs": 0
+      },
+      {
+        "m": 8,
+        "fixture": "extremes",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.0625,
+        "max_rel": 2.34884423945e-07,
+        "max_normalized": 2.34884434609e-07,
+        "canonical_sha256": "de56dcfe96751628f10ef859f628dab1cea14f2ca45ed566682720293bdd6356",
+        "route": "flat",
+        "failed_outputs": 0
+      },
+      {
+        "m": 8,
+        "fixture": "extremes",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.0625,
+        "max_rel": 2.34884423945e-07,
+        "max_normalized": 2.34884434609e-07,
+        "canonical_sha256": "de56dcfe96751628f10ef859f628dab1cea14f2ca45ed566682720293bdd6356",
+        "route": "repack",
+        "failed_outputs": 0
+      },
+      {
+        "m": 16,
+        "fixture": "extremes",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_mul_mat",
+        "max_abs": 0.0625,
+        "max_rel": 2.29521806236e-07,
+        "max_normalized": 2.29521817129e-07,
+        "canonical_sha256": "09f10e0afc3e9f90a4f63dec60599b7a8d26f9bfdd903ee8889a67748c950477",
+        "route": "flat",
+        "failed_outputs": 0
+      },
+      {
+        "m": 16,
+        "fixture": "extremes",
+        "md35_tolerance_pass": true,
+        "finite": true,
+        "function": "ggml_gemm_q4_0_8x8_q8_0",
+        "max_abs": 0.0625,
+        "max_rel": 2.29521806236e-07,
+        "max_normalized": 2.29521817129e-07,
+        "canonical_sha256": "09f10e0afc3e9f90a4f63dec60599b7a8d26f9bfdd903ee8889a67748c950477",
+        "route": "repack",
+        "failed_outputs": 0
+      }
+    ],
+    "status": "EXECUTED_NO_TIMING",
+    "normalized_error": "max |y-y_ref| / sum_f |x_f*w_f| with scales applied",
+    "all_outputs_finite": true,
+    "report": "adapter/QA_RESULTS.md",
+    "tolerance": "MD/35 1e-5+1e-5*abs(y_ref), reported but not selected as governing"
+  },
+  "loaded_modules": [
+    {
+      "path": "C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\adapter\\adapter.exe",
+      "sha256": "d95fa549b90152406a69e1fbcd6e60c179ab5f06cb8791fef9e2b770a7c857f9",
+      "size": 385024
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+      "sha256": "9e35cbb412da1af9c01180a942989e0b45d6a40375052535e3631a473a53c3e4",
+      "size": 2519040
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+      "sha256": "4f84d975b80158f842426d6c609bf635294e490c0128416a1b5172e6f0a3e45b",
+      "size": 823296
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+      "sha256": "c7a7123a06c728989606c8caba989e68a59180aa8eb8bc712eebb3d59db6e3a1",
+      "size": 4124672
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\ucrtbase.dll",
+      "sha256": "c2ed69b4a1bb9432c75134e813c70539e27c8c1fe96a784d9be78c874e93d9d5",
+      "size": 1355776
+    },
+    {
+      "path": "C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build_llama\\bin\\ggml-cpu.dll",
+      "sha256": "cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23",
+      "size": 1658880
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+      "sha256": "39a735df6720821ad42ef5e2b4753b3f18c8b35297064062193399bbee97db47",
+      "size": 737280
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\msvcrt.dll",
+      "sha256": "e87671c629f8ba6483336a5fe3814ddc642c5bbd3ca6ab9097dc1369fb34db7f",
+      "size": 692224
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\sechost.dll",
+      "sha256": "32881e3ea52060a84c1e9cd8faa728acf96d1d1229e518a267fbe0bf6b7e8469",
+      "size": 679936
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\RPCRT4.dll",
+      "sha256": "478667ffc376c9725af56ede8fc56f68d4a4804b92afc2977187e185525fb393",
+      "size": 1146880
+    },
+    {
+      "path": "C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build_llama\\bin\\ggml-base.dll",
+      "sha256": "8ac75aca8cd5a716bbbec7a171fea55f0a115315a8afb0dc499c37338a29bbc4",
+      "size": 696320
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+      "sha256": "9ee5d54e9fbd795611322dd040e9978508c09091a6fdda40ea6f563e066da3ce",
+      "size": 172032
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\MSVCP140.dll",
+      "sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+      "size": 561152
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140.dll",
+      "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+      "size": 122880
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\VCRUNTIME140_1.dll",
+      "sha256": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+      "size": 49152
+    },
+    {
+      "path": "C:\\WINDOWS\\SYSTEM32\\VCOMP140.DLL",
+      "sha256": "55aba23cdcd6484fbb06f4155b8ca75adfce7a881f10afd0c49457165e677164",
+      "size": 196608
+    },
+    {
+      "path": "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+      "sha256": "a2169ce3ad4b7cb060d75519b1b078f52ed79a8aa20d416aaec2762875be55f8",
+      "size": 675840
+    }
+  ],
+  "thread_policy": {
+    "n_threads": 1,
+    "OMP_NUM_THREADS": "1",
+    "effective": "verified by adapter before calls; parent process sets env before launch",
+    "OMP_DYNAMIC": "FALSE"
+  },
+  "boundaries": {
+    "static": "candidate weights and static repack, context/graph/plan, scratch and output buffers",
+    "dynamic_flat": "Flat-only Q8_0 copy to reused buffer",
+    "dynamic_repack": "Lossless direct block_q8_0x4 packing from canonical activation codes/scales; M=1 uses required Q8_0 buffer",
+    "qa": "reconstruction, exact representation, exact group isolation, dispatch and page checks are outside run_once",
+    "timing": "not run",
+    "static_flat": "Flat-only Q4_0 weights plus context/graph/plan/scratch/output",
+    "static_repack": "Repack-only block_q4_0x8 weights and output; no flat context/graph",
+    "static_qa": "Combined static candidate layouts only for QA",
+    "run_once": "kernel only with no QA side effects or adapter allocations",
+    "dynamic_qa": "Both activation layouts only for reconstruction/isolation controls",
+    "flat_plan": "plan.use_ref configured during static preparation; run_once_flat only calls ggml_graph_compute"
+  },
+  "limits": [
+    "No performance timing performed.",
+    "Runtime callback symbol name lacks export/PDB; reached address/RVA and VPDPBUSD arithmetic are recorded.",
+    "SeLockMemoryPrivilege absent; normal allocations used and every effective buffer page queried with QueryWorkingSetEx.",
+    "MKLDNN opaque storage remains excluded as NOT_COMPARABLE_PAGE_POLICY."
+  ],
+  "S12_reevaluation": {
+    "state": "HISTORIAL_PRE_S13",
+    "preserved_under": "HISTORIAL_preS13.S12_reevaluation_preS13"
+  },
+  "revision": "S15 governing state; S14 and earlier retained as history",
+  "HISTORIAL_preS13": {
+    "adapter_source_sha256": "6F85CAF29D35BE018D5ADE2087B497F7A652B5944D03FADBC25D6ED6F3D5D71E",
+    "S12_adapter_source_sha256": "2d0325c8e337be72af367b9e559aebe654a91c7b46446d5857a8d9bb95b1d6da",
+    "statement": "Los conteos y afirmaciones anteriores de S-8 a S-12 son historial.",
+    "S12_reevaluation_preS13": {
+      "max_error_over_B": "see adapter/QA_RESULTS.md per route/fixture/M",
+      "fixtures": 36,
+      "new_fixture_manifest": "T0P/common/NEW_FIXTURES_FROZEN.json",
+      "open_ambiguities": [
+        "kernel group INT32 products are not exposed or captured before scaling",
+        "MD/38 cancellation wording is truncated; constructions documented as open interpretation"
+      ],
+      "integer_group_dot_control": "not directly observable from ggml kernels; see ambiguity",
+      "new_fixture_manifest_sha256": "c5357fb756dad2afd7f755fff5ea14889b0ca06b6a8f694a61d3987d0f6591ed",
+      "route_fixture_M_rows": 72,
+      "flat_and_effective_repack_representation_checks": "36/36 PASS per cell across flat and repacked effective storage",
+      "legacy_tolerance": "reported diagnostically, no longer a gate",
+      "all_S12_pass": true,
+      "all_timed": false,
+      "failed_outputs": 0,
+      "coordinate_sweep": {
+        "all_S12_failures": 0,
+        "batches_per_M": 512,
+        "routes": [
+          "flat",
+          "repack"
+        ],
+        "all_exact_failures": 0,
+        "positions": 512
+      }
+    }
+  },
+  "qa_final": {
+    "log": "adapter/qa_output.txt",
+    "process_exit_code": 0,
+    "gate": "adapter/qa_gate_results.txt FINAL_VERDICT=PASS",
+    "cells": "80/80",
+    "page_queries": 230,
+    "page_query_failures": 0,
+    "exact_cancellation_checks_per_route": 29696,
+    "exact_cancellation_failures_per_route": 0,
+    "exact_group_dot_isolation": {
+      "flat_checks": 2375680,
+      "flat_failures": 0,
+      "repack_checks": 2375680,
+      "repack_failures": 0
+    },
+    "coordinate_sweep": "512 positions per M; both routes; zero failures",
+    "static_route_isolation": "PASS",
+    "dynamic_route_isolation": "PASS"
+  },
+  "HISTORIAL_S13": {
+    "adapter_source_sha256": "3443096a32825142af671fa339fc7b479b70c38b17c6ee92b781c4d25ebb8f4f",
+    "repack_source": "llama.cpp-0.6.0/ggml/src/ggml-cpu/arch/x86/repack.cpp",
+    "repack_object_sha256": "164709fc775ccb6beed59bd16290fb686d483302e7d4cc3faf10ccd87ad2833a",
+    "repack_vpdpbusd_instructions": 218,
+    "historical_object_sha256": "cc3223ed3d4afff5c7f665059b30ca6e75425891254fb01d8b0a624b8f477f3b",
+    "historical_rebuilt_object_sha256": "52c82e43008604654eda786c7359d697b7ba67927405d9a0086ca719afcdfba4",
+    "exact_group_dot_isolation": {
+      "flat_checks": 2375680,
+      "flat_failures": 0,
+      "repack_checks": 2375680,
+      "repack_failures": 0
+    },
+    "exact_cancellation": {
+      "per_route_checks": 29696,
+      "per_route_failures": 0
+    },
+    "flat_callback": {
+      "m1": "REACHED; ggml-cpu.dll RVA 0xc8ad0; callback disassembly contains VPDPBUSD",
+      "m4": "REACHED; ggml-cpu.dll RVA 0xc8ad0; callback disassembly contains VPDPBUSD",
+      "m8": "REACHED; ggml-cpu.dll RVA 0xc8ad0; callback disassembly contains VPDPBUSD",
+      "m16": "REACHED; ggml-cpu.dll RVA 0xc8ad0; callback disassembly contains VPDPBUSD"
+    },
+    "machine_gate": "PASS; process exit 0; 80/80 cells; qa_gate.py FINAL_VERDICT=PASS",
+    "large_pages": "HOLD_RESOURCE: SeLockMemoryPrivilege absent; QueryWorkingSetEx PASS, LargePage=false",
+    "callback_module_sha256": "cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23",
+    "callback_disassembly": "adapter/ggml_cpu_disasm.txt; callback RVA 0xc8ad0 contains VPDPBUSD at RVA 0xc8baf, 0xc8c0a, 0xc8c5f, 0xc8caf, 0xc8d3a",
+    "adapter_binary_sha256": "7962aeef13b780602124a421023535bc3f32dc03d88ecf73b6c20bb14a4db4f6",
+    "repack_disassembly": "adapter/repack_x86_disasm.txt",
+    "exact_rational_B_checks": 2030,
+    "page_queries": 230,
+    "page_query_failures": 0,
+    "static_route_isolation": "PASS",
+    "dynamic_route_isolation": "PASS",
+    "repack_disassembly_sha256": "1c510ca6fb19621f3ef0e8975a167556bbe36b6d991332e337d327e584baf4bc"
+  },
+  "HISTORIAL_S14": {
+    "candidate_status": {
+      "ggml_flat": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      },
+      "ggml_repack": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      }
+    },
+    "qa": {
+      "cells_per_route": 40,
+      "coordinate_sweep": "512/512 exact for m=1,4,8,16; failures=0; mandatory",
+      "exact_group_dots_per_route": 2375680,
+      "exact_cancellation": "PASS"
+    },
+    "memory": {
+      "allocator": "common PageRegion/Buffer; MEM_LARGE_PAGES; GetLargePageMinimum rounding; own-token AdjustTokenPrivileges; flat ggml context no_alloc=true; tensor payloads explicitly bound to common regions",
+      "token": "SeLockMemoryPrivilege present and enabled in adapter process token",
+      "QueryWorkingSetEx": "230/230 buffer queries: every queried page valid and LargePage=1",
+      "effective_flat_output": "ggml_mul_mat result->data == p.out.data() in t0common::Buffer<float>; QueryWorkingSetEx inspects the address ggml writes, with no output copy"
+    },
+    "gate": {
+      "source_sha256": "1f97e0ea5dad947da26b249645c40d9630f49421449aa5e7cc6940632d650dc0",
+      "negative_tests": "PASS: injected sweep failure; missing mandatory control; privilege present with nonlarge pages (injected nonlarge page against successful baseline)"
+    },
+    "dispatch": {
+      "candidate": "ggml_flat use_ref=false; ggml_repack separate upstream path",
+      "module": "ggml-cpu.dll",
+      "module_sha256": "cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23",
+      "base": "0x7ffabad00000",
+      "m1": {
+        "route": "ggml_vec_dot_q4_0_q8_0 callback",
+        "rva": "0xc8ad0",
+        "return": "0x7ffabad0455a"
+      },
+      "m4_m8_m16": {
+        "route": "llamafile_sgemm; callback absent; true inferred from callsite AL test/fallback branch",
+        "rva": "0xc4dc0",
+        "return": "0x7ffabad02a92",
+        "arithmetic": "Q4_0 x Q8_0 tinyBLAS AVX2"
+      },
+      "evidence": "adapter/dispatch_s14_evidence.txt; adapter/dispatch_s14_disassembly.txt",
+      "outside_timer": true
+    },
+    "sources": {
+      "main.cpp": "79ca6c7990e87b7dbbe15ce948968722fa22e7678695071a36e0a0459fe8e99d",
+      "adapter.exe": "06f001ad424e023b3ee540400dface0175032b8ee66ed4cbebcd2845292b8dae",
+      "common.cpp": "7be077b6816bc72d1711693b804ada6b052dc3696d92c70a1acb759db1d4edbd",
+      "qa_gate.py": "1f97e0ea5dad947da26b249645c40d9630f49421449aa5e7cc6940632d650dc0",
+      "qa_output.txt": "e05a2c000c8360eed8cad227973039f60801e1ed5fd0a88f25b99e5b83e971ee",
+      "qa_gate_results.txt": "d9c3b9f6c7fe01992a040d4812a24e6749f314004256df9a4246f6a4396216e0",
+      "qa_gate_tests.py": "b45e331523d11e09fccc714d615cb6617578f7703e57e6155dff87882fd8d5c0"
+    },
+    "artifacts": {
+      "raw_output": "adapter/qa_output.txt",
+      "raw_output_sha256": "e05a2c000c8360eed8cad227973039f60801e1ed5fd0a88f25b99e5b83e971ee",
+      "gate_output": "adapter/qa_gate_results.txt",
+      "gate_output_sha256": "d9c3b9f6c7fe01992a040d4812a24e6749f314004256df9a4246f6a4396216e0",
+      "build": "adapter/build.cmd completed successfully",
+      "adapter_exit_code": 0,
+      "negative_gate_tests": "PASS"
+    }
+  },
+  "GOVERNING_S15": {
+    "decision": "S-15 blockers A and B closed; ggml Y remains directly bound to common large-page output region",
+    "candidate_status": {
+      "ggml_flat": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      },
+      "ggml_repack": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      }
+    },
+    "qa": {
+      "cells_per_route": 40,
+      "coordinate_sweep": "512/512 exact for m=1,4,8,16; failures=0; mandatory",
+      "exact_group_dots_per_route": 2375680,
+      "exact_cancellation": "PASS",
+      "S12": "PASS",
+      "representation": "PASS",
+      "mandatory_gate": "PASS"
+    },
+    "memory": {
+      "page_records": "240/240 expected; every record has queried_pages>0 and Valid=queried=LargePage",
+      "output": "flat ggml_mul_mat dst and repack output point directly to common t0common::Buffer; no output copy",
+      "privilege": "AVAILABLE"
+    },
+    "dispatch": "PASS in governing execution; use_ref=false; callback reached for m=1 and optimized matrix route for m=4,8,16; repack direct upstream GEMV/GEMM calls; 218 VPDPBUSD in repack object.",
+    "logs": {
+      "raw": "adapter/qa_s15_governing.txt",
+      "raw_sha256": "a736fc9201eb5e0b24b1fc36efd992d6a999136940cf5f069dd995149713cea5",
+      "exit_code": "adapter/qa_s15_exit_code.txt (0)",
+      "gate": "adapter/qa_gate_s15_governing.txt",
+      "gate_sha256": "d9c3b9f6c7fe01992a040d4812a24e6749f314004256df9a4246f6a4396216e0",
+      "gate_verdict": "PASS"
+    },
+    "hashes": {
+      "main.cpp": "11bc6be35d0c1cfca2afc02015a3c825d9981f2dc7400d42ecfeb371c55e585c",
+      "adapter.exe": "3dcbad85a709739474bff7a176be4c5b7e85e7939c14db67316843aa071109c7",
+      "common.cpp": "7be077b6816bc72d1711693b804ada6b052dc3696d92c70a1acb759db1d4edbd",
+      "qa_gate.py": "be7d608d3d03bcfaaeb9cca175129d8ba296e98c96bdda982b0c46b221b2dabe",
+      "PAGE_EXPECTED_S15.json": "aa8e25c5f1b0e93b0741ca32169757a9da1f980211151a91ffc383276c52b027",
+      "qa_gate_tests.py": "230bf65c5944928933cecbe1a769f49a0164b79c6280d6335ee5036226007829"
+    },
+    "negative_gate_tests": "PASS for both references; absent region, one row, contradictory duplicate, zero pages, invalid page, and Sol 119/120 deletion rejected",
+    "traceability_gaps": [
+      "qa_gate.py_preS14 no es byte a byte idéntico al gate precedente; se conserva como copia histórica, no como reproducción exacta.",
+      "Los .lib/.exp de la compilación histórica previa no se recuperaron; los artefactos actuales se compilaron y documentaron en esta ejecución, sin afirmar reproducción byte a byte."
+    ]
+  }
+}

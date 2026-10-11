@@ -18,3 +18,8 @@ S-12, representaciones exactas, barridos de 512 posiciones, cancelación exacta,
 | mv (m=1) | PASS | PASS | PASS | PASS |
 
 Logs gobernantes: [`adapter/qa_s15_governing.txt`](adapter/qa_s15_governing.txt), SHA-256 `b03332562ae5d65f1b3928680beb54c30550fdcd18ddd3627c353ba99d08c2de`; gate [`adapter/qa_gate_s15_governing.txt`](adapter/qa_gate_s15_governing.txt), SHA-256 `4bd5036988a36bf813f63607e4f20d91c0e0c0fa95d373a4a4b7e0f26e4acb5b`. Hashes de `ref_torch.cpp`: `213b8b99199e50ecd6c3523d4b0a638659eb7d167513ddbe7a3060eb0e04c9de`; `qa_gate.py`: `be7d608d3d03bcfaaeb9cca175129d8ba296e98c96bdda982b0c46b221b2dabe`; `PAGE_EXPECTED_S15.json`: `aa8e25c5f1b0e93b0741ca32169757a9da1f980211151a91ffc383276c52b027`. Detalles e identidades adicionales están en `REF_FREEZE.json`.
+
+
+## GOVERNING_S16
+
+Reevaluaci?n con el parser S-16 de `adapter/qa_s15_governing.txt` intacto: `adapter/qa_gate_s16_governing.txt`. `torch_mm`, `torch_matmul`, `torch_linear` y `torch_mv`: QA_NUMERICAL, DISPATCH_QUALIFIED, PAGE_POLICY y REFERENCE_READY = PASS. Crudo SHA-256 b03332562ae5d65f1b3928680beb54c30550fdcd18ddd3627c353ba99d08c2de; adaptador sin cambios: `ref_torch.cpp` 213b8b99199e50ecd6c3523d4b0a638659eb7d167513ddbe7a3060eb0e04c9de y `ref_torch.exe` 55e43af54de839da52612257c78f6b78cdcfe99d1248d5c82e137ddbd0b3d1cf. Hashes del parser, pruebas y pol?tica: ver bloque GOVERNING_S16 de `../common/REF_FREEZE.md`; pruebas S-16 PASS.

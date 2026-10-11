@@ -878,5 +878,74 @@
     "exact_rational_B_checks": 2030,
     "page_queries": 120,
     "page_query_failures": 0
+  },
+  "GOVERNING_S16": {
+    "decision": "S-16 page query coverage correction; governing logs re-evaluated unchanged",
+    "page_query_step": {
+      "file": "PAGE_QUERY_STEP_S16.json",
+      "sha256": "5472a44352fddaeb7796da33766e9d4e4d8103764991bc72adb38e48b272cab8",
+      "dwPageSize": 4096,
+      "dwAllocationGranularity": 65536,
+      "provenance": "GetSystemInfo on this machine, 2026-10-11; historical S-15 logs do not record their query step and use this explicitly documented machine value"
+    },
+    "parser": {
+      "file": "qa_gate.py",
+      "sha256": "a96728870e3c7604c916215d196838830327bc47024bb0a722698ee4c05f9416"
+    },
+    "tests": {
+      "file": "qa_gate_tests.py",
+      "sha256": "2c1050c35d8a3bf0fc90619ca9a84422187b5e5aabbb0ce376910e8f2a567ca4",
+      "record": "qa_gate_tests_s16.txt",
+      "record_sha256": "4af6b8278cf867a4cad376a3ce4b3be7fd43d5c6a877190782f3a74a78b35979",
+      "result": "PASS"
+    },
+    "policy": {
+      "rule": "queried_pages == ceil(((address mod dwPageSize)+bytes)/dwPageSize); valid_pages == queried_pages; large_pages == queried_pages; address and positive size are valid unsigned 64-bit values and address+size does not overflow"
+    },
+    "raw_logs_unchanged": {
+      "ref_torch/adapter/qa_s15_governing.txt": "b03332562ae5d65f1b3928680beb54c30550fdcd18ddd3627c353ba99d08c2de",
+      "ref_ggml/adapter/qa_s15_governing.txt": "a736fc9201eb5e0b24b1fc36efd992d6a999136940cf5f069dd995149713cea5"
+    },
+    "results": {
+      "torch_gate": "ref_torch/adapter/qa_gate_s16_governing.txt",
+      "torch_gate_sha256": "bb0f01959b77c9e4a8eba22470adc8075ec41718f4b708045373b3754b007d3a",
+      "ggml_gate": "ref_ggml/adapter/qa_gate_s16_governing.txt",
+      "ggml_gate_sha256": "1de9df6e49c2bbb039043cfc6c427fbd8609a7bb5ba003a2dd4fefffa6606a70",
+      "all_six_candidates": "QA_NUMERICAL=PASS, DISPATCH_QUALIFIED=PASS, PAGE_POLICY=PASS, REFERENCE_READY=PASS"
+    },
+    "adapters_unchanged": {
+      "ref_torch/adapter/ref_torch.cpp": "213b8b99199e50ecd6c3523d4b0a638659eb7d167513ddbe7a3060eb0e04c9de",
+      "ref_torch/adapter/ref_torch.exe": "55e43af54de839da52612257c78f6b78cdcfe99d1248d5c82e137ddbd0b3d1cf",
+      "ref_ggml/adapter/main.cpp": "11bc6be35d0c1cfca2afc02015a3c825d9981f2dc7400d42ecfeb371c55e585c",
+      "ref_ggml/adapter/adapter.exe": "3dcbad85a709739474bff7a176be4c5b7e85e7939c14db67316843aa071109c7"
+    },
+    "kernel_qa_reexecuted": false,
+    "candidate_status": {
+      "torch_mm": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      },
+      "torch_matmul": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      },
+      "torch_linear": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      },
+      "torch_mv": {
+        "QA_NUMERICAL": "PASS",
+        "DISPATCH_QUALIFIED": "PASS",
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
+      }
+    },
+    "gate_result": "adapter/qa_gate_s16_governing.txt"
   }
 }

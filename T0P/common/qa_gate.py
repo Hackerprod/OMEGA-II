@@ -1,10 +1,17 @@
 ﻿#!/usr/bin/env python3
-"""S-14 machine gate. Numerical, dispatch and page policy are independent states."""
+"""S-16 machine gate. Numerical, dispatch and page policy are independent states."""
 import json, re, sys
 from pathlib import Path
 
 MS=(1,4,8,16)
 FIXTURES=("uniform","mixed_cancellation","varied_scales","sub127","extremes","zero_input","single_coordinate","cancellation_high","cancellation_extreme","cancellation_exact_groups")
+U64_MAX=(1<<64)-1
+
+def page_query_step():
+    data=json.loads((Path(__file__).with_name("PAGE_QUERY_STEP_S16.json")).read_text(encoding="utf-8"))
+    p=data["dwPageSize"]
+    if not isinstance(p,int) or p<=0 or p>U64_MAX: raise ValueError("invalid dwPageSize in PAGE_QUERY_STEP_S16.json")
+    return p
 
 def read_log(path):
     raw=Path(path).read_bytes()
@@ -22,6 +29,7 @@ def page_policy(text, reference, candidate=None):
     privilege=re.search(r"LARGE_PAGE_PRIVILEGE=(AVAILABLE|HOLD|FAIL)",text)
     if not privilege or privilege.group(1)!="AVAILABLE": return "FAIL"
     expected=expected_page_rows(reference)
+    p=page_query_step()
     if candidate is not None:
         expected=[r for r in expected if r["candidate"]==candidate]
     if not expected: return "FAIL"
@@ -33,12 +41,15 @@ def page_policy(text, reference, candidate=None):
         key=(fixture,m,cand,buf,fn)
         if cand!=candidate and candidate is not None: continue
         if key in found: return "FAIL"  # duplicates, including contradictory duplicates
-        found[key]=(alias,address,int(size),int(q),int(v),int(l),status)
+        found[key]=(alias,int(address,16),int(size),int(q),int(v),int(l),status)
     if set(found)!=set(wanted): return "FAIL"
     alias_addresses={}
     for key,record in found.items():
         alias,address,size,q,v,l,status=record; spec=wanted[key]
-        if alias!=spec["alias"] or size!=spec["bytes"] or q<=0 or q!=v or q!=l or status!="PASS": return "FAIL"
+        if (alias!=spec["alias"] or size!=spec["bytes"] or size<=0 or size>U64_MAX or
+            address<=0 or address>U64_MAX or size>U64_MAX-address or q<=0 or
+            q!=((address%p+size+p-1)//p) or q!=v or q!=l or status!="PASS"):
+            return "FAIL"
         if alias in alias_addresses and alias_addresses[alias]!=(address,size): return "FAIL"
         alias_addresses[alias]=(address,size)
     return "PASS"
@@ -49,8 +60,7 @@ def state_line(candidate, numerical, dispatch, pages):
     print(f"candidate={candidate} QA_NUMERICAL={numerical} DISPATCH_QUALIFIED={dispatch} PAGE_POLICY={pages} REFERENCE_READY={ready}")
     return ready
 
-def gate_ggml(path):
-    text=read_log(path); overall=True
+def gate_ggml_text(text):
     cells={"flat":set(),"repack":set()}
     for line in text.splitlines():
         cm=re.search(r"CELL fixture=(\S+) m=(\d+) route=(flat|repack).*?finite=(\d+) S12_pass=(\d+) S12_failures=(\d+)",line)
@@ -96,8 +106,10 @@ def gate_ggml(path):
         aggregate.append(state_line("ggml_"+route,numerical,dispatch,pages))
     return "FAIL" if all_pages!="PASS" or "FAIL" in aggregate else "HOLD" if "HOLD" in aggregate else "PASS"
 
-def gate_torch(path):
-    text=read_log(path); overall=True
+def gate_ggml(path):
+    return gate_ggml_text(read_log(path))
+
+def gate_torch_text(text):
     candidates=("mm","matmul","linear","mv")
     rows={n:[] for n in candidates}
     current=None
@@ -126,6 +138,9 @@ def gate_torch(path):
         pages=page_policy(text,"torch","torch_"+name)
         aggregate.append(state_line("torch_"+name,numerical,dispatch,pages))
     return "FAIL" if all_pages!="PASS" or "FAIL" in aggregate else "HOLD" if "HOLD" in aggregate else "PASS"
+
+def gate_torch(path):
+    return gate_torch_text(read_log(path))
 
 if __name__=="__main__":
     if len(sys.argv)!=3 or sys.argv[1] not in {"ggml","torch"}:

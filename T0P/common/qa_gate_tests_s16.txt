@@ -1,0 +1,6 @@
+page_policy_tests reference=ggml baseline=PASS missing=REJECTED one_row=REJECTED duplicate=REJECTED zero_pages=REJECTED sol_119_of_120=REJECTED valid_pages_mismatch=REJECTED
+page_policy_tests reference=torch baseline=PASS missing=REJECTED one_row=REJECTED duplicate=REJECTED zero_pages=REJECTED sol_119_of_120=REJECTED valid_pages_mismatch=REJECTED
+record_mutations q_greater=REJECTED valid_less_than_q=REJECTED large_less_than_q=REJECTED misaligned_address_recount=PASS misaligned_stale_count=REJECTED n_zero=REJECTED
+sol_counterexample reference=ggml candidate=ggml_flat weights bytes=294912 original_q=72 q=v=l=1 PAGE_POLICY=FAIL REFERENCE_READY=FAIL
+sol_counterexample reference=torch candidate=torch_mm Wt bytes=2097152 original_q=512 q=v=l=1 PAGE_POLICY=FAIL REFERENCE_READY=FAIL
+qa_gate_s16_tests=PASS

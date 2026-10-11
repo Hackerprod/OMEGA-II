@@ -1,0 +1,23 @@
+{
+  "revision": "S-16",
+  "dwPageSize": 4096,
+  "unit": "bytes",
+  "source": "GetSystemInfo, called on this machine on 2026-10-11",
+  "observed": {
+    "dwPageSize": 4096,
+    "dwAllocationGranularity": 65536
+  },
+  "policy": "Use dwPageSize as the QueryWorkingSetEx address step; do not use dwAllocationGranularity.",
+  "governing_logs": {
+    "ref_torch/adapter/qa_s15_governing.txt": {
+      "step_recorded_in_log": false,
+      "step_used": 4096,
+      "basis": "This machine's GetSystemInfo result above; the historical log does not record a query step."
+    },
+    "ref_ggml/adapter/qa_s15_governing.txt": {
+      "step_recorded_in_log": false,
+      "step_used": 4096,
+      "basis": "This machine's GetSystemInfo result above; the historical log does not record a query step."
+    }
+  }
+}

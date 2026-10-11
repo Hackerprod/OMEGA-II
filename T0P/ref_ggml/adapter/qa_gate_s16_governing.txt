@@ -1,0 +1,5 @@
+candidate=ggml_flat coverage_cells=40/40 sweep=PASS exact_group=PASS cancellation=PASS controls=PASS
+candidate=ggml_flat QA_NUMERICAL=PASS DISPATCH_QUALIFIED=PASS PAGE_POLICY=PASS REFERENCE_READY=PASS
+candidate=ggml_repack coverage_cells=40/40 sweep=PASS exact_group=PASS cancellation=PASS controls=PASS
+candidate=ggml_repack QA_NUMERICAL=PASS DISPATCH_QUALIFIED=PASS PAGE_POLICY=PASS REFERENCE_READY=PASS
+FINAL_VERDICT=PASS
