@@ -23,7 +23,13 @@ El callsite prueba que AL=0 deriva al fallback. El retorno capturado sin callbac
 
 | Candidata | QA_NUMERICAL | DISPATCH_QUALIFIED | PAGE_POLICY | REFERENCE_READY |
 |---|---|---|---|---|
-| ggml plana | PASS | PASS | HOLD | HOLD |
-| ggml repack | PASS | PASS | HOLD | HOLD |
+| ggml plana | PASS | PASS | PASS | PASS |
+| ggml repack | PASS | PASS | PASS | PASS |
 
-El token de esta sesi?n no tiene `SeLockMemoryPrivilege`. `QueryWorkingSetEx` confirm? p?ginas v?lidas en las regiones efectivas y `LargePage=0`; por eso PAGE_POLICY queda HOLD de recurso. No se cambi? ninguna pol?tica del sistema. Al concederse el privilegio al usuario y abrir una sesi?n nueva, el mismo ejecutable intenta las p?ginas grandes.
+### Memoria efectiva y hashes gobernantes
+
+El contexto ggml usa `no_alloc=true`; pesos, activaciones y el `dst` de `ggml_mul_mat` apuntan directamente a `t0common::Buffer`. El `dst` es `p.out.data()` y es la misma dirección que escribe ggml y que consulta `QueryWorkingSetEx` (sin copia posterior). Las 230 consultas informaron todas sus páginas válidas y grandes; por ejemplo, `flat_output` para m=1: `address=0x1d034400000`, `bytes=4096`, `large_pages=1/1`. El privilegio aparece `AVAILABLE` tras habilitarlo en el token del proceso. No se cambió ninguna política del sistema.
+
+Gate ejecutado sobre `adapter/qa_output.txt`: ambas candidatas pasan QA numérica, despacho, política de páginas y `REFERENCE_READY`; pasan también S-12, exactitud, `EXACT_GROUP_DOT_ISOLATION`, barrido de coordenadas, cancelación y aislamiento de rutas. Las pruebas negativas del gate pasan.
+
+Hashes actuales: `adapter/main.cpp` SHA-256 `79ca6c7990e87b7dbe15ce948968722fa22e7678695071a36e0a0459fe8e99d`; `adapter/adapter.exe` SHA-256 `06f001ad424e023b3ee540400dface0175032b8ee66ed4cbebcd2845292b8dae`; `adapter/qa_output.txt` SHA-256 `e05a2c000c8360eed8cad227973039f60801e1ed5fd0a88f25b99e5b83e971ee`; `adapter/qa_gate_results.txt` SHA-256 `d9c3b9f6c7fe01992a040d4812a24e6749f314004256df9a4246f6a4396216e0`.

@@ -17,5 +17,9 @@ def check(mutated, expected):
 check(source.replace("flat_failures=0","flat_failures=1",1),"sweep=FAIL")
 check(source.replace("STATIC_ROUTE_ISOLATION flat=PASS repack=PASS status=PASS\n",""),"controls=FAIL")
 large_page_text=source.replace("LARGE_PAGE_PRIVILEGE=HOLD","LARGE_PAGE_PRIVILEGE=AVAILABLE",1)
+if large_page_text==source:
+    # A successful baseline already has AVAILABLE; inject the actual failure
+    # condition so the gate must reject non-large pages with privilege enabled.
+    large_page_text=source.replace("large_pages=1","large_pages=0",1)
 assert qa_gate.page_policy(large_page_text)=="FAIL"
 print("qa_gate_negative_tests=PASS injected_sweep_failure=REJECTED missing_control=REJECTED privilege_present_nonlarge=FAIL")

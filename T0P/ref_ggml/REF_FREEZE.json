@@ -46,11 +46,11 @@
     "build_reused": true
   },
   "adapter": {
-    "status": "COMPILED_AND_RUN_QA",
+    "status": "COMPILED_AND_RUN_QA_REFERENCE_READY",
     "source": "adapter/main.cpp",
-    "source_sha256": "368423f33e73cc2fdf63f934a1e522019c0ef12398d3711ae57e7c286e5bc656",
+    "source_sha256": "79ca6c7990e87b7dbbe15ce948968722fa22e7678695071a36e0a0459fe8e99d",
     "binary": "adapter/adapter.exe",
-    "binary_sha256": "0e1d802a7ad2f0f618039833f158bd214a4ea7c694d759ef1c9979fbf25f1fdf",
+    "binary_sha256": "06f001ad424e023b3ee540400dface0175032b8ee66ed4cbebcd2845292b8dae",
     "operation": "S-14 plana ggml_mul_mat use_ref=false; repack upstream GEMV/GEMM; QA sin cronometraje",
     "routes": {
       "flat": "ggml_mul_mat -> Q4_0 CPU type-trait vec_dot callback (runtime address/RVA observed in ggml-cpu.dll; source maps it to ggml_vec_dot_q4_0_q8_0 -> AVX-VNNI vpdpbusd; runtime symbol identity limited by absent export/PDB)",
@@ -910,14 +910,14 @@
       "ggml_flat": {
         "QA_NUMERICAL": "PASS",
         "DISPATCH_QUALIFIED": "PASS",
-        "PAGE_POLICY": "HOLD",
-        "REFERENCE_READY": "HOLD"
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
       },
       "ggml_repack": {
         "QA_NUMERICAL": "PASS",
         "DISPATCH_QUALIFIED": "PASS",
-        "PAGE_POLICY": "HOLD",
-        "REFERENCE_READY": "HOLD"
+        "PAGE_POLICY": "PASS",
+        "REFERENCE_READY": "PASS"
       }
     },
     "qa": {
@@ -927,13 +927,14 @@
       "exact_cancellation": "PASS"
     },
     "memory": {
-      "allocator": "common PageRegion/Buffer; MEM_LARGE_PAGES; GetLargePageMinimum rounding; own-token AdjustTokenPrivileges only; aligned normal fallback marked",
-      "token": "SeLockMemoryPrivilege absent; resource HOLD",
-      "QueryWorkingSetEx": "Valid=1; LargePage=0"
+      "allocator": "common PageRegion/Buffer; MEM_LARGE_PAGES; GetLargePageMinimum rounding; own-token AdjustTokenPrivileges; flat ggml context no_alloc=true; tensor payloads explicitly bound to common regions",
+      "token": "SeLockMemoryPrivilege present and enabled in adapter process token",
+      "QueryWorkingSetEx": "230/230 buffer queries: every queried page valid and LargePage=1",
+      "effective_flat_output": "ggml_mul_mat result->data == p.out.data() in t0common::Buffer<float>; QueryWorkingSetEx inspects the address ggml writes, with no output copy"
     },
     "gate": {
       "source_sha256": "1f97e0ea5dad947da26b249645c40d9630f49421449aa5e7cc6940632d650dc0",
-      "negative_tests": "PASS: injected sweep failure; missing mandatory control; privilege present with nonlarge pages"
+      "negative_tests": "PASS: injected sweep failure; missing mandatory control; privilege present with nonlarge pages (injected nonlarge page against successful baseline)"
     },
     "dispatch": {
       "candidate": "ggml_flat use_ref=false; ggml_repack separate upstream path",
@@ -955,10 +956,22 @@
       "outside_timer": true
     },
     "sources": {
-      "main.cpp": "368423f33e73cc2fdf63f934a1e522019c0ef12398d3711ae57e7c286e5bc656",
-      "adapter.exe": "0e1d802a7ad2f0f618039833f158bd214a4ea7c694d759ef1c9979fbf25f1fdf",
+      "main.cpp": "79ca6c7990e87b7dbbe15ce948968722fa22e7678695071a36e0a0459fe8e99d",
+      "adapter.exe": "06f001ad424e023b3ee540400dface0175032b8ee66ed4cbebcd2845292b8dae",
       "common.cpp": "7be077b6816bc72d1711693b804ada6b052dc3696d92c70a1acb759db1d4edbd",
-      "qa_gate.py": "1f97e0ea5dad947da26b249645c40d9630f49421449aa5e7cc6940632d650dc0"
+      "qa_gate.py": "1f97e0ea5dad947da26b249645c40d9630f49421449aa5e7cc6940632d650dc0",
+      "qa_output.txt": "e05a2c000c8360eed8cad227973039f60801e1ed5fd0a88f25b99e5b83e971ee",
+      "qa_gate_results.txt": "d9c3b9f6c7fe01992a040d4812a24e6749f314004256df9a4246f6a4396216e0",
+      "qa_gate_tests.py": "b45e331523d11e09fccc714d615cb6617578f7703e57e6155dff87882fd8d5c0"
+    },
+    "artifacts": {
+      "raw_output": "adapter/qa_output.txt",
+      "raw_output_sha256": "e05a2c000c8360eed8cad227973039f60801e1ed5fd0a88f25b99e5b83e971ee",
+      "gate_output": "adapter/qa_gate_results.txt",
+      "gate_output_sha256": "d9c3b9f6c7fe01992a040d4812a24e6749f314004256df9a4246f6a4396216e0",
+      "build": "adapter/build.cmd completed successfully",
+      "adapter_exit_code": 0,
+      "negative_gate_tests": "PASS"
     }
   }
 }

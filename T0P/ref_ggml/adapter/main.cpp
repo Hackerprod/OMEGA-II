@@ -89,8 +89,11 @@ Prepared prepare_static(const fs::path& data,int m,t0common::Fixture f,Candidate
     if(sha_file(data/name)!=p.c.sha256)throw std::runtime_error("hash del archivo no coincide: "+name);
     prepare_weights(p.c,p,route); p.out.resize(size_t(m)*O);
     if(route==CandidateRoute::Repack)return p;
-    ggml_init_params ip{32*1024*1024,nullptr,false};p.ctx=ggml_init(ip);if(!p.ctx)throw std::runtime_error("ggml_init");
-    auto*w=ggml_new_tensor_2d(p.ctx,GGML_TYPE_Q4_0,I,O);p.weight=w;auto*x=ggml_new_tensor_2d(p.ctx,GGML_TYPE_Q8_0,I,m);w->data=p.flatw.data();p.input=x;p.result=ggml_mul_mat(p.ctx,w,x);p.graph=ggml_new_graph(p.ctx);ggml_build_forward_expand(p.graph,p.result);
+    // Keep tensor metadata in ggml's context arena, but bind every live tensor
+    // payload to the common large-page regions. In particular, ggml's actual
+    // MUL_MAT destination must be the same buffer checked by QueryWorkingSetEx.
+    ggml_init_params ip{32*1024*1024,nullptr,true};p.ctx=ggml_init(ip);if(!p.ctx)throw std::runtime_error("ggml_init");
+    auto*w=ggml_new_tensor_2d(p.ctx,GGML_TYPE_Q4_0,I,O);p.weight=w;auto*x=ggml_new_tensor_2d(p.ctx,GGML_TYPE_Q8_0,I,m);w->data=p.flatw.data();p.input=x;p.result=ggml_mul_mat(p.ctx,w,x);p.result->data=p.out.data();p.graph=ggml_new_graph(p.ctx);ggml_build_forward_expand(p.graph,p.result);
     auto tp=ggml_threadpool_params_default(1);p.threadpool=ggml_threadpool_new(&tp);if(!p.threadpool)throw std::runtime_error("threadpool create");p.plan=ggml_graph_plan(p.graph,1,p.threadpool);p.plan.use_ref=false;p.work.resize(p.plan.work_size);p.plan.work_data=p.work.empty()?nullptr:reinterpret_cast<uint8_t*>(p.work.data());
     return p;
 }
