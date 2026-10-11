@@ -1,0 +1,15 @@
+@echo off
+setlocal
+set "ROOT=%~dp0.."
+set "TORCH=C:\Projects\OMEGA\.venv_cuda\Lib\site-packages\torch"
+set "SRC=C:\Projects\OMEGA\Ejercise\T0\src"
+set "VS=C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools"
+if not exist "%ROOT%\adapter\obj" mkdir "%ROOT%\adapter\obj"
+call "%VS%\VC\Auxiliary\Build\vcvars64.bat" 10.0.26100.0 -vcvars_ver=14.44.35207 >nul
+if errorlevel 1 exit /b 1
+cl /nologo /c /O2 /std:c++17 /arch:AVX2 /fp:precise /EHsc /MD /DNDEBUG /D_WIN32_WINNT=0x0A00 /I"%SRC%" /I"%TORCH%\include" /I"%TORCH%\include\torch\csrc\api\include" "%ROOT%\adapter\ref_torch.cpp" /Fo:"%ROOT%\adapter\obj\ref_torch.obj"
+if errorlevel 1 exit /b %errorlevel%
+cl /nologo /c /O2 /std:c++17 /arch:AVX2 /fp:precise /EHsc /MD /DNDEBUG /D_WIN32_WINNT=0x0A00 /I"%SRC%" "%SRC%\q4_kernel.cpp" /Fo:"%ROOT%\adapter\obj\q4_kernel.obj"
+if errorlevel 1 exit /b %errorlevel%
+link /INCREMENTAL:NO "%ROOT%\adapter\obj\ref_torch.obj" "%ROOT%\adapter\obj\q4_kernel.obj" /LIBPATH:"%TORCH%\lib" torch.lib torch_cpu.lib c10.lib /OUT:"%ROOT%\adapter\ref_torch.exe"
+exit /b %errorlevel%

@@ -409,6 +409,8 @@ Forma esperada: curva con rodilla (m pequeño limitado por L2/dequant/ocupación
 
 **Registro histórico MD/29–34 (T0.1/H0, 2026-10-11; no se reescribe).** MD/29–32 gobernaron la ejecución histórica de H0, incluidas sus desviaciones científicas respecto de §6.1 (umbrales `ρ₁≤2/3` y `ρ₄≤0.90` en vez de `≤0.50`; `m_gate=4`; coste promedio; barrido W reducido), reconocidas por Sol en MD/34 D-C (solo `K_gate=16` es adaptación legítima de hardware). Adjudicación (MD/34 D-A): **H0_FAIL firme** → `FALLIDA_LINEA_MUERTA_PHYSICAL_PREMISE` (limitada al kernel/configuración/protocolo examinados; no refuta la recurrencia en general); T0.2/H1 y T0.3 `NOT_STARTED`; cualquier investigación posterior exige hipótesis y protocolo nuevos y prospectivos (no repetición para rescatar este FAIL). H0-K: `H0_K_LITERAL_MD29=PASS` (histórico) pero `H0_K_SCIENTIFIC=NOT_ESTABLISHED`, `C_L2_knee=null`, `B_L2_operational=null` (MD/34 D-B; criterio confundido con el trabajo).
 
+**Campaña T0′ `T0P-Q4-RESIDENCY` (MD/35, 2026-10-11).** Protocolo nuevo y prospectivo aprobado por Sol, informado por el H0_FAIL firme de T0.1 (no lo cambia ni lo rescata); criterios en T0.md §10: competencia ≥90 % de ggml Q4_0 (m=1,4,8,16; por core y 8P), margen D′_hot≥2.00, residencia ρ≤0.50 marginal (K=16, m=1), matrixización max(S8,S16)≥1.50, control B≈C≤0.15, expulsión con CLFLUSHOPT, páginas grandes, barrido hasta ~128 MiB agregados. Medición oficial no autorizada hasta revisión y congelación del protocolo ejecutable. Estado: EN_PREPARACIÓN (sin fase numerada en el tablero hasta que Sol la asigne).
+
 ### TBD consolidados
 
 TBD-VERIFY: `N_P`, `N_E`, `L2_P`, `L2_E` y su compartición, `LLC`, RAM (módulos/canales/velocidad), ISA por CPUID, bare metal, herramienta de contadores Intel en Windows.

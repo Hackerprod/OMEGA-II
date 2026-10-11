@@ -1,0 +1,84 @@
+﻿{
+    "campaign":  "T0P-Q4-RESIDENCY",
+    "torch_version":  "2.11.0+cu128",
+    "selection":  "venv_cuda LibTorch; CPU ATen verified",
+    "source_url":  null,
+    "download_sha256":  null,
+    "download":  "not downloaded",
+    "include":  "C:\\Projects\\OMEGA\\.venv_cuda\\Lib\\site-packages\\torch\\include",
+    "lib":  "C:\\Projects\\OMEGA\\.venv_cuda\\Lib\\site-packages\\torch\\lib",
+    "dimensions":  {
+                       "O":  1024,
+                       "M":  [
+                                 1,
+                                 4,
+                                 8,
+                                 16
+                             ],
+                       "I":  512
+                   },
+    "seeds":  {
+                  "weights":  "0x544F505F515034",
+                  "activations":  "0x544F505F414354"
+              },
+    "operation":  "at::matmul(X,Wt)",
+    "precision":  "highest",
+    "no_grad":  true,
+    "static_weight_layout":  "contiguous FP32 [I,O], group scales applied",
+    "dynamic_activation_layout":  "FP32 [M,I], group scales applied per invocation",
+    "backend":  {
+                    "build":  "CUDA-enabled distribution, CPU tensors",
+                    "blas":  "MKL",
+                    "onednn":  "MKL-DNN 3.10.2",
+                    "cpu_capability":  "AVX2",
+                    "mkl":  "oneMKL 2025.3",
+                    "mkldnn":  true
+                },
+    "flags":  [
+                  "/O2",
+                  "/std:c++17",
+                  "/arch:AVX2",
+                  "/fp:precise",
+                  "/EHsc",
+                  "/MD",
+                  "/DNDEBUG"
+              ],
+    "threads":  {
+                    "configurable":  true,
+                    "verified":  4,
+                    "future_policy":  "control and record N per cell"
+                },
+    "equivalence":  {
+                        "failures":  0,
+                        "runs":  "M=1,4,8,16; N=4; untimed",
+                        "max_abs_error":  0,
+                        "bitwise_general_identity":  false,
+                        "reference":  "INT32 exact group dot, double scale accumulation",
+                        "tolerance":  "1e-5 + 1e-5*abs(y_ref)",
+                        "uses_int_mm":  false,
+                        "max_relative_error":  0
+                    },
+    "candidates":  [
+                       "at::mm",
+                       "at::matmul",
+                       "at::linear",
+                       "at::mv for M=1 diagnostic only",
+                       "explicit MKLDNN only after separate qualification"
+                   ],
+    "selection_rule":  "fastest qualified per cell",
+    "timed_benchmark_run":  false,
+    "hashes":  {
+                   "adapter_exe":  "09a56c447fb3b7bd2102572ace622b07664167875668442f45412e14fb240a66",
+                   "adapter_cpp":  "a7ae81986a27fe42b912b0f8a1e91c60724081a25bea082be00f442cacb95180",
+                   "upstream_q4_cpp":  "3955e7bc266a0848d3e0c2c99f3e22006b2c47280d63f576ab89efde2e86b045",
+                   "upstream_q4_hpp":  "22e7a71c88c66c82e9658f964213f184f181d836cf688b579678756e8a590a7b",
+                   "build_cmd":  "8c004cd3d478c8eceeee52a1e44fe121128ea84252c640c034751f3d6199e69a"
+               },
+    "ambiguities":  [
+                        "CPU-only distribution required or CPU-capable CUDA package accepted",
+                        "whether explicit persistent oneDNN packed format is required",
+                        "governing API by cell",
+                        "future N/affinity/R policy",
+                        "runtime attribution MKL vs oneDNN dispatch"
+                    ]
+}

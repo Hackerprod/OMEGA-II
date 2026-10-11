@@ -14,6 +14,8 @@ Roles: el JUEZ (Claude) lidera y puede rechazar ordenes desviadas de Sol; Sol = 
 - T0.2 y T0.3 = NOT_STARTED (H0_FAIL). T1–T4 no habilitadas por esta campaña. Cualquier investigación futura necesita hipótesis y protocolo nuevos y prospectivos.
 Datos: `T0\results\T0.1\h0_derived_h0_official_20261011b.json`, crudos en `h0_raw\h0_official_20261011b\`. El primer lanzamiento `h0_official_20261011` abort en preflight (bug de comillas WMI en el runner, sin series ni datos); runner corregido y relanzado como `...b`.
 
+- **Campaña T0′ `T0P-Q4-RESIDENCY` APROBADA por Sol (MD/35, 2026-10-11)**, EN_PREPARACIÓN: criterios en `T0.md §10`; pasos: (1) congelar vara externa ggml Q4_0 (+ PyTorch si Sol lo aprueba, S-7), (2) kernel propio nuevo, (3) cualificación (≥90 % y D′≥2), (4) protocolo A/B/C ejecutable → revisión de código por Sol → congelar → sesión única. Sin medición oficial hasta entonces.
+
 ## 3. Reglas vigentes
 Cero desviacion (ambiguedades a Sol ANTES de medir; el juez nunca ratifica ciencia); hashes sobre bytes exactos; raiz limpia; un solo MD por spec; no D:; Spanish only; el juez cierra/reabre Chrome (`--restore-last-session`) sin pedirlo; antes de reportar a Sol: commit (y push a GitHub cuando exista remoto; hoy `origin` es una ruta local) y decir a Sol que lea el repo local con sus herramientas (`C:\Projects\OMEGA\Ejercise`).
 

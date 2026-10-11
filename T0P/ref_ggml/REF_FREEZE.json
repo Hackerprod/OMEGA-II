@@ -1,0 +1,51 @@
+{
+  "project": "ggml-org/llama.cpp",
+  "tag": "v0.6.0",
+  "tag_release": {"stable": true, "prerelease": false, "published_at": "2026-10-05T16:56:22Z", "tag_object": "69ecae922d2b60c1fa8c590279f4e2099af75111", "tag_signed": false},
+  "commit": "d81235049384534c167caea52b85a694f6103d14",
+  "api_verification": "https://api.github.com/repos/ggml-org/llama.cpp/git/tags/69ecae922d2b60c1fa8c590279f4e2099af75111",
+  "source_url": "https://github.com/ggml-org/llama.cpp/archive/refs/tags/v0.6.0.zip",
+  "source_file": "llama.cpp-v0.6.0-source-20261011-a1.zip",
+  "source_sha256": "54D8E1F79B4A8BC0EF70B2ECE968C0A8AFE8030EDB8257D64DEDFB1169983414",
+  "compiler": "MSVC 19.44.35229.0 (toolset 14.44.35207)",
+  "build": {
+    "configuration": "Release",
+    "generator": "Ninja from Visual Studio BuildTools",
+    "options": ["GGML_NATIVE=OFF", "GGML_AVX2=ON", "GGML_AVX_VNNI=ON", "GGML_CUDA=OFF", "GGML_BUILD_TESTS=OFF", "GGML_BUILD_EXAMPLES=OFF", "LLAMA_BUILD_TESTS=OFF", "LLAMA_BUILD_EXAMPLES=OFF", "LLAMA_BUILD_SERVER=OFF"],
+    "reported_arch_flags": ["/arch:AVX2", "GGML_AVX2", "GGML_FMA", "GGML_F16C", "__AVXVNNI__", "GGML_AVX_VNNI", "__BMI2__", "GGML_BMI2"],
+    "libraries": ["build_llama/bin/ggml-base.dll", "build_llama/bin/ggml.dll", "build_llama/bin/ggml-cpu.dll"],
+    "build_reused": true
+  },
+  "adapter": {
+    "status": "COMPILED_AND_RUN",
+    "source": "adapter/main.cpp",
+    "source_sha256": "A9E3D22BA695300717485656673AC9A789FBEBDF8371EB2EC7D922FDC0CA3BC1",
+    "binary": "adapter/adapter.exe",
+    "binary_sha256": "1D5D233C48B9F4434286ABDCEED6B5387923B54B00096AC395C886C3778E7BCC",
+    "operation": "ggml_mul_mat, graph CPU, one thread per call",
+    "routes": {
+      "m=1": "ggml_vec_dot_q4_0_q8_0 -> mul_sum_i8_pairs_float -> mul_sum_us8_pairs_float, AVX-VNNI vpdpbusd",
+      "m=4": "ggml_vec_dot_q4_0_q8_0 -> mul_sum_i8_pairs_float -> mul_sum_us8_pairs_float, AVX-VNNI vpdpbusd",
+      "m=8": "ggml_vec_dot_q4_0_q8_0 -> mul_sum_i8_pairs_float -> mul_sum_us8_pairs_float, AVX-VNNI vpdpbusd",
+      "m=16": "ggml_vec_dot_q4_0_q8_0 -> mul_sum_i8_pairs_float -> mul_sum_us8_pairs_float, AVX-VNNI vpdpbusd"
+    },
+    "runtime_features": {"avx2": 1, "avx_vnni": 1},
+    "gemm_repack": "Present in source but not selected by ggml_mul_mat CPU graph for these cases",
+    "equivalence": {
+      "status": "PASS",
+      "shape": {"O": 1024, "I": 512},
+      "m": [1, 4, 8, 16],
+      "seeds": {"weights": "0x23456789abcdef01", "activations": "0x1020304050607080"},
+      "activation_scales_fp16_exact": true,
+      "tolerance": "1e-5 + 1e-5*abs(y_ref)",
+      "max_abs_error_by_m": {"1": 0.0, "4": 0.0, "8": 0.001953125, "16": 0.001953125},
+      "max_error_over_tolerance": 0.0103252959,
+      "mismatches": {"1": 0, "4": 0, "8": 0, "16": 0},
+      "format_note": "ggml Q4_0 low nibbles hold q[0..15]+8; high nibbles hold q[16..31]+8. Adapter reorders local interleaved Q4 pairs accordingly."
+    }
+  },
+  "benchmarking": "NOT_RUN",
+  "limits": ["Route evidence is for ggml_mul_mat on this commit/build/CPU; the repack GEMM was not selected.", "The GitHub release tag is stable but its annotated tag signature is unverified."],
+  "blockers": [],
+  "manifest": "SHA256SUMS_ref_ggml.txt"
+}

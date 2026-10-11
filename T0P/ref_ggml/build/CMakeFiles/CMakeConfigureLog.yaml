@@ -1,0 +1,869 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      The system is: Windows - 10.0.26100 - AMD64
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      CMakeCCompilerId.c
+      Microsoft (R) Incremental Linker Version 14.44.35229.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      /out:CMakeCCompilerId.exe 
+      CMakeCCompilerId.obj 
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+      
+      The C compiler identification is MSVC, found in:
+        C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/3.31.6-msvc6/CompilerIdC/CMakeCCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1288 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        main.c
+        Nota: inclusi├│n del archivo: C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build\\CMakeFiles\\ShowIncludes\\foo.h
+        
+      Found prefix "Nota: inclusi├│n del archivo: "
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      CMakeCXXCompilerId.cpp
+      Microsoft (R) Incremental Linker Version 14.44.35229.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      /out:CMakeCXXCompilerId.exe 
+      CMakeCXXCompilerId.obj 
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/3.31.6-msvc6/CompilerIdCXX/CMakeCXXCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1288 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Detecting CXX compiler /showIncludes prefix:
+        main.c
+        Nota: inclusi├│n del archivo: C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build\\CMakeFiles\\ShowIncludes\\foo.h
+        
+      Found prefix "Nota: inclusi├│n del archivo: "
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1250 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" did not match "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      cl : L├¡nea de comandos warning D9002 : se omite la opci├│n desconocida '--version'
+      cl : L├¡nea de comandos error D8003 : falta el nombre del archivo de c├│digo fuente
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1250 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the ASM compiler is AppleClang using "--version" did not match "(Apple (clang|LLVM) version)":
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      cl : L├¡nea de comandos warning D9002 : se omite la opci├│n desconocida '--version'
+      cl : L├¡nea de comandos error D8003 : falta el nombre del archivo de c├│digo fuente
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1250 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the ASM compiler is Clang using "--version" did not match "(clang version)":
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      cl : L├¡nea de comandos warning D9002 : se omite la opci├│n desconocida '--version'
+      cl : L├¡nea de comandos error D8003 : falta el nombre del archivo de c├│digo fuente
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1250 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the ASM compiler is ARMClang using "--version" did not match "armclang":
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      cl : L├¡nea de comandos warning D9002 : se omite la opci├│n desconocida '--version'
+      cl : L├¡nea de comandos error D8003 : falta el nombre del archivo de c├│digo fuente
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1250 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the ASM compiler is OrangeC using "--version" did not match "occ \\(OrangeC\\) Version":
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      cl : L├¡nea de comandos warning D9002 : se omite la opci├│n desconocida '--version'
+      cl : L├¡nea de comandos error D8003 : falta el nombre del archivo de c├│digo fuente
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1250 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the ASM compiler is HP using "-V" did not match "HP C":
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      cl : L├¡nea de comandos error D8004 : '/V' requiere un argumento
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1250 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the ASM compiler is Intel using "--version" did not match "(ICC)":
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      cl : L├¡nea de comandos warning D9002 : se omite la opci├│n desconocida '--version'
+      cl : L├¡nea de comandos error D8003 : falta el nombre del archivo de c├│digo fuente
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1250 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the ASM compiler is IntelLLVM using "--version" did not match "(Intel[^
+      ]+oneAPI)":
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      cl : L├¡nea de comandos warning D9002 : se omite la opci├│n desconocida '--version'
+      cl : L├¡nea de comandos error D8003 : falta el nombre del archivo de c├│digo fuente
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1250 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the ASM compiler is SunPro using "-V" did not match "Sun C":
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      cl : L├¡nea de comandos error D8004 : '/V' requiere un argumento
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1250 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the ASM compiler is XL using "-qversion" did not match "XL C":
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+      cl : L├¡nea de comandos warning D9002 : se omite la opci├│n desconocida '-qversion'
+      cl : L├¡nea de comandos error D8003 : falta el nombre del archivo de c├│digo fuente
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake:1237 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineASMCompiler.cmake:135 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the ASM compiler is MSVC using "-?" matched "Microsoft":
+      Compilador de optimizaci├│n de C/C++ de Microsoft (R) versi├│n 19.44.35229 para x64
+      (C) Microsoft Corporation. Todos los derechos reservados.
+      
+                               OPCIONES DEL COMPILADOR DE C/C++
+      
+      
+                                    -OPTIMIZACI├ôN-
+      
+      /O1 optimizaciones m├íximas (favorecer el espacio)
+      /O2 optimizaciones m├íximas (favorecer la velocidad)
+      /Ob<n> expansi├│n alineada (valor predeterminado n=0)
+      /Od deshabilitar optimizaciones (valor predeterminado)
+      /Og habilitar optimizaci├│n global       /Oi[-] habilitar funciones intr├¡nsecas
+      /Os favorecer el espacio de c├│digo      /Ot favorecer la velocidad del c├│digo
+      /Ox optimizaciones (favorecer la velocidad)
+      /favor:<blend|AMD64|INTEL64|ATOM> seleccionar el procesador para optimizar. Opciones:
+          blend - combinaci├│n de optimizaciones para diferentes procesadores 64x
+          AMD64 - procesadores AMD de 64 bits
+          INTEL64 - procesadores Intel(R)64
+          ATOM - procesadores Intel(R) Atom(TM)
+      
+                                   -GENERACI├ôN DE C├ôDIGO-
+      
+      /Gu[-] asegurarse de que las distintas funciones tengan direcciones diferentes
+      /Gw[-] separar variables globales para el vinculador
+      /GF habilitar agrupaci├│n de cadenas de solo lectura
+      /Gy[-] separar funciones para vinculador
+      /GS[-] habilitar comprobaciones de seguridad
+      /GR[-] habilitar C++ RTTI               
+      /guard:cf[-] habilitar CFG (protecci├│n de flujo de control)
+      /guard:ehcont[-] habilitar metadatos de continuaci├│n EH (CET)
+      /EHs habilitar C++ EH (sin excepciones SEH)
+      /EHa habilitar C++ EH (con excepciones SEH)
+      /EHc establecer valores predeterminados de "C" externos en nothrow
+      /EHr generar siempre comprobaciones de finalizaci├│n de tiempo de ejecuci├│n noexcept
+      /fp:<contract|except[-]|fast|precise|strict> elegir modelo de punto flotante:
+          contract - tenga en cuenta las contracciones de punto flotante al generar c├│digo
+          except[-] - se tienen en cuenta las excepciones de punto flotante al generar el c├│digo
+          fast - modelo de punto flotante "fast"; los resultados son menos predecibles
+          precise - modelo de punto flotante "precise"; los resultados son predecibles
+          strict - modelo de punto flotante "strict" (implica /fp:except)
+      /Qfast_transcendentals generar intr├¡nsecos de FP insertados incluso con /fp:except
+      /Qspectre[-] habilitar mitigaciones para CVE 2017-5753
+      /Qpar[-] habilitar generaci├│n de c├│digo paralelo
+      /Qpar-report:1 diagn├│stico de paralelizador autom├ítico; indicar bucles paralelizados
+      /Qpar-report:2 diagn├│stico de paralelizador autom├ítico; indicar bucles no paralelizados
+      /Qvec-report:1 diagn├│stico de vectorizador autom├ítico; indicar bucles vectorizados
+      /Qvec-report:2 diagn├│stico de vectorizador autom├ítico; indicar bucles no vectorizados
+      /GL[-] habilitar generaci├│n de c├│digo en tiempo de v├¡nculo
+      /volatile:<iso|ms> elegir modelo vol├ítil:
+          iso - La adquisici├│n o liberaci├│n de sem├íntica no se garantiza en accesos vol├ítiles
+          ms - La adquisici├│n o liberaci├│n de sem├íntica se garantiza en accesos vol├ítiles
+      /GA Optimizar para una aplicaci├│n Windows
+      /Ge forzar comprobaci├│n de la pila para todas las funciones
+      /Gs[n├║mero] controlar llamadas de comprobaci├│n de la pila
+      /Gh habilitar llamada a la funci├│n _penter
+      /GH habilitar llamada a la funci├│n _pexit
+      /GT generar accesos TLS seguros para fibras
+      /RTC1 Habilitar comprobaciones r├ípidas (/RTCsu)
+      /RTCc Convertir en comprobaciones de tipo m├ís peque├▒o
+      /RTCs Comprobaci├│n en tiempo de ejecuci├│n del marco de pila
+      /RTCu Comprobaciones de uso local no inicializadas
+      /clr[:option] compilar para Common Language Runtime, donde la opci├│n es:
+          pure : producir archivo de salida solo IL (sin c├│digo ejecutable nativo)
+          seguro : genera un archivo de salida comprobable solo il.
+          netcore : producir ensamblados destinados al entorno de ejecuci├│n de .NET Core
+          noAssembly : no producir un ensamblado
+          nostdlib : omitir el directorio de .NET Framework del sistema al buscar ensamblados
+          nostdimport : no importar ning├║n ensamblado necesario impl├¡citamente
+          initialAppDomain : habilitar el comportamiento inicial de AppDomain de Visual C++ 2002
+          implicitKeepAlive- : desactivar la emisi├│n impl├¡cita de System::GC::KeepAlive(this)
+          char_t- : desactivar la compatibilidad con metadatos para char8_t, char16_t y char32_t
+          ECMAParamArray : usar reglas especificadas en ECMA-372/14.6 para sobrecargas con matrices de par├ímetros (impl├¡citas por /clr)
+          ECMAParamArray- : usar nuevas reglas para sobrecargas con matrices de par├ímetros (impl├¡citas por /clr:netcore)
+      /fsanitize=address Habilitar codegen de AddressSanitizer
+      /homeparams Hacer que los par├ímetros pasados en registros se escriban en la pila
+      /GZ Habilitar comprobaciones de pila (/RTCs)
+      /Gv convenci├│n de llamada __vectorcall  
+      (Versi├│n preliminar) /dynamicdeopt Habilitar depuraci├│n din├ímica; colocar puntos de interrupci├│n desoptimizados y entrar en cualquier lugar con la desoptimizaci├│n de funciones a petici├│n
+      (Versi├│n preliminar) /dynamicdeopt:suffix <suffix> Sufijo de extensi├│n de archivo para la salida desoptimizada (valor predeterminado: .alt)
+      (Versi├│n preliminar) /dynamicdeopt:sync Generar salida desoptimizada despu├®s de la salida optimizada en lugar de en paralelo
+      /arch:<SSE2|SSE4.2|AVX|AVX2|AVX512|AVX10.x> Requisitos m├¡nimos de la arquitectura de CPU, uno de estos:
+         SSE2: (valor predeterminado) permitir el uso de instrucciones disponibles con CPU habilitadas para SSE2
+         SSE4.2: permitir el uso de instrucciones disponibles con CPU habilitadas con SSE┬á4.2
+         AVX: permitir el uso de instrucciones disponibles con CPU habilitadas para AVX
+         AVX2: permitir el uso de instrucciones disponibles con CPU habilitadas para AVX2
+         AVX512: permitir el uso de instrucciones disponibles con CPU habilitadas para AVX-512
+         AVX10.x: permitir el uso de instrucciones disponibles con CPU habilitadas para AVX10.x Los valores v├ílidos de x son 1
+      /QIntel-jcc-erratum habilitar las mitigaciones para los errores de JCC de Intel
+      /Qspectre-load Habilitar las mitigaciones de Spectre para todas las instrucciones que cargan memoria
+      /Qspectre-load Habilitar las mitigaciones de Spectre para todas las instrucciones de flujo de control que cargan memoria
+      /Qspectre-jmp[-] Habilitar mitigaciones de Spectre para instrucciones de salto incondicionales
+      /fpcvt:<IA|BC> Compatibilidad de las conversiones de punto flotante a entero sin signo
+         IA - Resultados compatibles con la instrucci├│n VCVTTSD2USI
+         BC - Resultados compatibles con VS2017 y el compilador anterior
+      /jumptablerdata Colocar tablas de acsaltos para cambiar las instrucciones de case en la secci├│n .rdata
+      /vlen=<256|512> Elija una longitud de vector de 256 o 512 para la generaci├│n autom├ítica de c├│digo
+      /vlen Elegir longitud de vector predeterminada en funci├│n de la configuraci├│n de /arch
+      
+                                    -ARCHIVOS DE SALIDA-
+      
+      /Fa[archivo] asignar nombre al archivo de listas de ensamblado
+      /FA[scu] configurar listas de ensamblado
+      /Fd[archivo] asignar nombre al archivo .PDB
+      /Fe<archivo> asignar nombre a un archivo ejecutable
+      /Fm[archivo] asignar nombre al archivo de asignaciones
+      /Fo<archivo> asignar nombre al archivo objeto
+      /Fp<archivo> asignar nombre al archivo de encabezado precompilado
+      /Fr[archivo] asignar nombre al archivo del explorador de c├│digo fuente
+      /FR[archivo] asignar nombre al archivo .SBR
+      /Fi[archivo] asignar nombre al archivo preprocesado
+      /Fd: <archivo> asignar nombre al archivo .PDB
+      /Fe: <archivo> asignar nombre a un archivo ejecutable
+      /Fm: <archivo> asignar nombre al archivo de asignaciones
+      /Fo: <archivo> asignar nombre al archivo objeto
+      /Fp: <archivo> asignar nombre al archivo .PCH
+      /FR: <archivo> asignar nombre al archivo .SBR
+      /Fi: <archivo> asignar nombre al archivo preprocesado
+      /Ft<dir>: ubicaci├│n de los archivos de encabezado generados para #import
+      /doc[archivo] procesar comentarios de la documentaci├│n XML y, opcionalmente, asignar nombre al archivo .xdc
+      
+                                    -PREPROCESADOR-
+      
+      /AI<directorio> agregar a la ruta de acceso de b├║squeda del ensamblado
+      /FU<archivo> importar ensamblado/m├│dulo .NET
+      /FU:asFriend<file> importar ensamblado/m├│dulo .NET como ensamblado de confianza
+      /C no quitar comentarios                /D<nombre>{=|#}<texto> definir macro
+      /E preprocesar para stdout              /EP preprocesar para stdout, no #line
+      /P preprocesar para archivo             /Fx combinar c├│digo insertado en archivo
+      /FI<archivo> asignar nombre a un archivo de inclusi├│n obligatorio
+      /U<nombre> quitar macro predefinida     /u quitar todas las macros predefinidas
+      /I<directorio> agregar para incluir ruta de acceso de b├║squeda
+      /X omitir "lugares est├índar"            
+      /PH genera file_hash de #pragma al procesar previamente
+      /PD Imprimir todas las definiciones de macros
+      
+                                      -LENGUAJE-
+      
+      /std:<c++14|c++17|c++20|c++latest> Versi├│n est├índar de C++
+          c++14 - ISO/IEC 14882:2014 (predeterminado)
+          c++17 - ISO/IEC 14882:2017
+          c++20 - ISO/IEC 14882:2020
+          c++latest: ├║ltimo est├índar de borrador (conjunto de caracter├¡sticas sujeto a cambios)
+      /std:<c11|c17|clatest> versi├│n est├índar de C
+          c11 - ISO/IEC 9899:2011
+          c17 - ISO/IEC 9899:2018
+          clatest - ├║ltimo borrador est├índar (conjunto de caracter├¡sticas sujeto a cambios)
+      /permissive[-] habilitar c├│digo no conforme para su compilaci├│n
+                     (conjunto de caracter├¡sticas sujeto a cambios) (desactivado de forma predeterminada en C++20 y versiones posteriores)
+      /Za deshabilitar extensiones (no recomendado para C++)
+      /ZW habilitar extensiones de lenguaje de WinRT
+      /Zs solamente comprobaci├│n de sintaxis  
+      /await habilitar extensi├│n de funciones reanudables
+      /await: habilitar la compatibilidad est├índar de las corutinas de C++20 con versiones de idioma anteriores
+      /constexpr:depth<N>     l├¡mite de profundidad de recursividad para la evaluaci├│n de constexpr (predeterminado: 512)
+      /constexpr:backtrace<N> mostrar N evaluaciones de constexpr en diagn├│sticos (predeterminado: 10)
+      /constexpr:steps<N>     finalizar evaluaci├│n de constexpr despu├®s de N pasos (predeterminado: 1048576)
+      /Zi habilitar informaci├│n de depuraci├│n 
+      /Z7 habilitar informaci├│n de depuraci├│n antigua
+      /Zo[-] generar informaci├│n de depuraci├│n m├ís rica para el c├│digo optimizado (activado de manera predeterminada)
+      /ZH:[MD5| SHA1| SHA_256] algoritmo hash para calcular la suma de comprobaci├│n de archivo en la informaci├│n de depuraci├│n (valor predeterminado: SHA_256)
+      /Zp[n] structs de paquete en l├¡mite de n bytes
+      /Zl omitir nombre de biblioteca predeterminado de .OBJ
+      /vd{0|1|2} deshabilitar o habilitar vtordisp
+      /vm<x> tipo de punteros a miembros      
+      /Zc:arg1[,arg2] conforme al lenguaje, donde los argumentos pueden ser:
+        forScope[-]           exigir Standard C++ para reglas de ├ímbito
+        wchar_t[-]            wchar_t es el tipo nativo, no un typedef
+        auto[-]               exigir el nuevo significado de Standard C++ para auto
+        trigraphs[-]          habilitar tr├¡grafos (desactivados de forma predeterminada)
+        rvalueCast[-]         exigir reglas de conversi├│n de tipo expl├¡cito de Standard C++
+                              (activado de forma predeterminada en C++20 o posterior, impl├¡cito por /permissive-)
+        strictStrings[-]      deshabilitar string-literal en [char|wchar_t]*
+                              conversion (activado de forma predeterminada en C++20 o posterior, impl├¡cito por /permissive-)
+        implicitNoexcept[-]   habilitar noexcept impl├¡cito en funciones requeridas
+        threadSafeInit[-]     habilitar la inicializaci├│n est├ítica local segura para subprocesos
+        inline[-]             quitar datos o funci├│n sin referencia si es
+                              COMDAT o solo tiene vinculaci├│n interna (desactivado de forma predeterminada)
+        sizedDealloc[-]       habilitar la desasignaci├│n de tama├▒o global de C++14
+                              functions (activado de forma predeterminada)
+        throwingNew[-]        supone que se inicia el operador new en caso de error (desactivado de manera predeterminada)
+        referenceBinding[-]   un elemento temporal no se enlazar├í a un elemento que no es const
+                              lvalue reference (activado de forma predeterminada en C++20 o posterior, impl├¡cito por /permissive-)
+        twoPhase-             deshabilitar la b├║squeda de nombres en dos fases
+        ternary[-]            exigir reglas de C++11 al operador condicional
+                              (activado de forma predeterminada en C++20 o posterior, impl├¡cito por /permissive-)
+        noexceptTypes[-]      exigir reglas noexcept de C++17 (activadas de forma predeterminada en C++17 o versiones posteriores)
+        alignedNew[-]         habilitar la alineaci├│n con C++17 de objetos asignados din├ímicamente (activada de forma predeterminada)
+        hiddenFriend[-]       exigir reglas de confianza ocultas de C++ est├índar
+                              (activado de forma predeterminada en C++20 o posterior, impl├¡cito por /permissive-)
+        externC[-]            exigir reglas de Standard C++ para funciones "extern 'C'"
+                              (activado de forma predeterminada en C++20 o posterior, impl├¡cito por /permissive-)
+        lambda[-]             Compatibilidad con lambda mejorada con el uso del nuevo procesador de lambda
+                              (activado de forma predeterminada en C++20 o posterior, impl├¡cito por /permissive-)
+        tlsGuards[-]          generar comprobaciones en tiempo de ejecuci├│n para la inicializaci├│n de variables TLS (activado de forma predeterminada)
+        zeroSizeArrayNew[-]   llama al miembro new o delete para las matrices de tama├▒o 0 de los objetos (activado de forma predeterminada)
+        static_assert[-] control estricto de 'static_assert' (activado de forma predeterminada en C++20 o posterior,
+                              impl├¡cito por /permissive-)
+        gotoScope[-]          no puede saltar m├ís all├í de la inicializaci├│n de una variable (impl├¡cita por /permissive-)
+        templateScope[-]      aplicar las reglas de sombra de los par├ímetros de las plantillas de C++ Est├índar
+        enumTypes[-]          habilitar tipos de enumeraci├│n subyacentes de C++ est├índar (desactivado de forma predeterminada)
+        checkGwOdr[-]         exigir infracciones de reglas de una definici├│n de C++ est├índar
+                              cuando se ha habilitado /Gw (desactivado de forma predeterminada)
+        nrvo[-]               habilitar la elisi├│n de movimiento y copia opcional (activada de forma predeterminada en C++20 o posterior,
+                              impl├¡cito por /permissive- o /O2)
+        __STDC__              definir __STDC__ a 1 en C
+        __cplusplus[-]        la macro __cplusplus informa del est├índar de C++ admitido (desactivado de forma predeterminada)
+        char8_t[-]            habilitar la compatibilidad con literales 'u8' nativos de C++20 como 'const char8_t'
+                              (activado de forma predeterminada en C++20 o posterior)
+        externConstexpr[-]    habilitar la vinculaci├│n externa para variables constexpr en C++
+                              (activado de forma predeterminada en C++20 o posterior, impl├¡cito por /permissive-)
+        preprocesador[-]       habilitar el preprocesador conforme est├índar en C/C++
+                              (activado de forma predeterminada en C11 o posterior)
+      /ZI habilitar informaci├│n de depuraci├│n de Editar y Continuar
+      /openmp habilitar extensiones de lenguaje de OpenMP 2.0
+      /openmp:experimentale habilita las extensiones de lenguaje OpenMP 2.0 m├ís la selecci├│n de las extensiones de lenguaje OpenMP 3.0+
+      /openmp:llvm Extensiones de lenguaje de OpenMP que usan el entorno de ejecuci├│n de LLVM
+      
+                                    -VARIOS-
+      
+      @<file> archivo de respuesta de opciones/?, /help imprimir este mensaje de ayuda
+      /bigobj generar formato de objeto extendido
+      /c solo compilar, no vincular           
+      /FC utilizar nombres de ruta de acceso completos en diagn├│sticos
+      /H<num> longitud m├íxima de nombre externo
+      /J el tipo de car├ícter predeterminado no tiene signo
+      /MP[n] usar hasta 'n' procesos para la compilaci├│n
+      /nologo suprimir el mensaje de copyright
+      /showIncludes mostrar nombres de archivo de inclusi├│n
+      /Tc<source file> compilar archivo como .c
+      /Tp<source file> compilar archivo como .cpp
+      /TC compilar todos los archivos como .c 
+      /TP compilar todos los archivos como .cpp
+      /V<string> establecer cadena de versi├│n /Yc[archivo] crear archivo .PCH
+      /Yd poner informaci├│n de depuraci├│n en todos los .OBJ
+      /Yl[sym] insertar ref. .PCH para biblioteca de depuraci├│n
+      /Yu[archivo] usar archivo .PCH          /Y- deshabilitar todas las opciones PCH
+      /Zm<n> asignaci├│n m├íxima de memoria (% del valor predeterminado)
+      /FS fuerza el uso de MSPDBSRV.EXE       
+      /source-charset:<nombre-iana>|.nnnn establecer juego de caracteres de origen
+      /execution-charset:<nombre-iana>|.nnnn establecer juego de caracteres de ejecuci├│n
+      /utf-8 establecer juego de caracteres de origen y ejecuci├│n en UTF-8
+      /validate-charset[-] validar los archivos UTF-8 ├║nicamente para caracteres v├ílidos
+      /fastfail[-] habilitar modo fast-fail   /JMC[-] habilitar solo mi c├│digo nativo
+      /presetPadding[-]: inicializar el relleno a cero para tipos de clase basados en la pila
+      /volatileMetadata [-] generar metadatos en accesos a memoria vol├ítil
+      /sourcelink [file] archivo que contiene informaci├│n de v├¡nculo de origen
+      
+                                      -VINCULACI├ôN-
+      
+      /LD Crear .DLL                          /LDd Crear biblioteca de depuraci├│n .DLL
+      /LN Crear .netmodule                    /F<n├║m> establecer tama├▒o de pila
+      /link [bibliotecas y opciones del vinculador]
+      /MD vincular con MSVCRT.LIB             /MT vincular con LIBCMT.LIB
+      /MDd vincular con biblioteca de depuraci├│n MSVCRTD.LIB
+      /MTd vincular con biblioteca de depuraci├│n LIBCMTD.LIB
+      
+                                    -AN├üLISIS DE C├ôDIGO-
+      
+      /analyze[-] Habilitar an├ílisis nativo   
+      /analyze:quiet[-] Ninguna advertencia para la consola
+      /analyze:log<nombre> Advertencias para archivo
+      /analyze:autolog Registro en *.pftlog   
+      /analyze:autolog:ext<ext> Registro en *.<ext>
+      /analyze:autolog- Ning├║n archivo de registro
+      /analyze:WX- Advertencias no graves     
+      /analyze:stacksize<n├║m> Marco de pila m├íximo
+      /analyze:max_paths<n├║m> Rutas de acceso m├íximas
+      /analyze:only Analizar, sin generaci├│n de c├│digo
+      
+                                    -DIAGN├ôSTICO-
+      
+      /diagnostics:<args,...> controla el formato de los mensajes de diagn├│stico:
+                   classic   - conserva el formato anterior
+                   column[-] - imprime la informaci├│n de columna
+                   caret[-]  - imprime la columna y la l├¡nea de origen indicada
+      /Wall habilitar todas las advertencias  /w   deshabilitar todas las advertencias
+      /W<n> establecer nivel de advertencia (predeterminado n=1)
+      /Wv:xx[.yy[.zzzzz]] deshabilitar advertencias especificadas despu├®s de la versi├│n xx.yy.zzzzz
+      /WX tratar advertencias como errores    /WL habilitar diagn├│sticos de una l├¡nea
+      /wd<n> deshabilitar advertencia n       
+      /we<n> tratar advertencia n como un error
+      /wo<n> emitir advertencia n una vez     
+      /w<l><n> establecer nivel de advertencia 1-4 para n
+      /external:I <ruta de acceso>      - ubicaci├│n de encabezados externos
+      /external:env:<var>     - variable de entorno con ubicaciones de encabezados externos
+      /external:anglebrackets - tratar todos los encabezados incluidos mediante <> como externos
+      /external:W<n>          - nivel de advertencia para los encabezados externos
+      /external:templates[-]  - evaluar el nivel de advertencia en la cadena de creaci├│n de una instancia de plantilla
+      /sdl habilitar advertencias y caracter├¡sticas de seguridad adicionales
+      las opciones del compilador no reconocidas /options:strict son un error
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-anv1y4"
+      binary: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-anv1y4"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-anv1y4'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_d5572
+        [1/2] C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Ob0 /Od /RTC1 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_d5572.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_d5572.dir\\ /FS -c "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.31\\Modules\\CMakeCCompilerABI.c"
+        Nota: inclusi├│n del archivo: C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.31\\Modules\\CMakeCompilerABI.h
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_d5572.dir --rc=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_d5572.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_d5572.exe /implib:cmTC_d5572.lib /pdb:cmTC_d5572.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': C:/PROGRA~2/MICROS~2/2022/BUILDT~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Running the C compiler's linker: "C:/PROGRA~2/MICROS~2/2022/BUILDT~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35229.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-0qvieu"
+      binary: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-0qvieu"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-0qvieu'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_47328
+        [1/2] C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /EHsc  /Ob0 /Od /RTC1 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_47328.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_47328.dir\\ /FS -c "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.31\\Modules\\CMakeCXXCompilerABI.cpp"
+        Nota: inclusi├│n del archivo: C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.31\\Modules\\CMakeCompilerABI.h
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_47328.dir --rc=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_47328.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_47328.exe /implib:cmTC_47328.lib /pdb:cmTC_47328.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/PROGRA~2/MICROS~2/2022/BUILDT~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/PROGRA~2/MICROS~2/2022/BUILDT~1/VC/Tools/MSVC/1444~1.352/bin/Hostx64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35229.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake:108 (try_compile)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CheckCSourceCompiles.cmake:58 (cmake_check_source_compiles)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "CMakeLists.txt:297 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-3gnmwi"
+      binary: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-3gnmwi"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/llama.cpp-0.6.0/ggml/cmake/"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-3gnmwi'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_983cc
+        [1/2] C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DCMAKE_HAVE_LIBC_PTHREAD  /DWIN32 /D_WINDOWS  /Ob0 /Od /RTC1 -std:c11 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_983cc.dir\\src.c.obj /FdCMakeFiles\\cmTC_983cc.dir\\ /FS -c C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3gnmwi\\src.c
+        FAILED: CMakeFiles/cmTC_983cc.dir/src.c.obj 
+        C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo -DCMAKE_HAVE_LIBC_PTHREAD  /DWIN32 /D_WINDOWS  /Ob0 /Od /RTC1 -std:c11 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_983cc.dir\\src.c.obj /FdCMakeFiles\\cmTC_983cc.dir\\ /FS -c C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3gnmwi\\src.c
+        C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3gnmwi\\src.c(1): fatal error C1083: No se puede abrir el archivo incluir: 'pthread.h': No such file or directory
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CheckLibraryExists.cmake:78 (try_compile)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindThreads.cmake:175 (_threads_check_lib)"
+      - "CMakeLists.txt:297 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthreads"
+    directories:
+      source: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-rb4hsv"
+      binary: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-rb4hsv"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/llama.cpp-0.6.0/ggml/cmake/"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREADS_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-rb4hsv'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_a3888
+        [1/2] C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS -DCHECK_FUNCTION_EXISTS=pthread_create /Ob0 /Od /RTC1 -std:c11 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_a3888.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_a3888.dir\\ /FS -c C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rb4hsv\\CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_a3888.dir --rc=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_a3888.dir\\CheckFunctionExists.c.obj  /out:cmTC_a3888.exe /implib:cmTC_a3888.lib /pdb:cmTC_a3888.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthreads.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        FAILED: cmTC_a3888.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_a3888.dir --rc=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_a3888.dir\\CheckFunctionExists.c.obj  /out:cmTC_a3888.exe /implib:cmTC_a3888.lib /pdb:cmTC_a3888.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthreads.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        LINK Pass 1: command "C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_a3888.dir\\CheckFunctionExists.c.obj /out:cmTC_a3888.exe /implib:cmTC_a3888.lib /pdb:cmTC_a3888.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_a3888.dir/intermediate.manifest CMakeFiles\\cmTC_a3888.dir/manifest.res" failed (exit code 1104) with the following output:
+        LINK : fatal error LNK1104: no se puede abrir el archivo 'pthreads.lib'\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CheckLibraryExists.cmake:78 (try_compile)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindThreads.cmake:176 (_threads_check_lib)"
+      - "CMakeLists.txt:297 (find_package)"
+    checks:
+      - "Looking for pthread_create in pthread"
+    directories:
+      source: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-crlhr5"
+      binary: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-crlhr5"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/llama.cpp-0.6.0/ggml/cmake/"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREAD_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-crlhr5'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_63d7c
+        [1/2] C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS -DCHECK_FUNCTION_EXISTS=pthread_create /Ob0 /Od /RTC1 -std:c11 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_63d7c.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_63d7c.dir\\ /FS -c C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build\\CMakeFiles\\CMakeScratch\\TryCompile-crlhr5\\CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_63d7c.dir --rc=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_63d7c.dir\\CheckFunctionExists.c.obj  /out:cmTC_63d7c.exe /implib:cmTC_63d7c.lib /pdb:cmTC_63d7c.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthread.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        FAILED: cmTC_63d7c.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_63d7c.dir --rc=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_63d7c.dir\\CheckFunctionExists.c.obj  /out:cmTC_63d7c.exe /implib:cmTC_63d7c.lib /pdb:cmTC_63d7c.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthread.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        LINK Pass 1: command "C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_63d7c.dir\\CheckFunctionExists.c.obj /out:cmTC_63d7c.exe /implib:cmTC_63d7c.lib /pdb:cmTC_63d7c.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_63d7c.dir/intermediate.manifest CMakeFiles\\cmTC_63d7c.dir/manifest.res" failed (exit code 1104) with the following output:
+        LINK : fatal error LNK1104: no se puede abrir el archivo 'pthread.lib'\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindOpenMP.cmake:252 (try_compile)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindOpenMP.cmake:522 (_OPENMP_GET_FLAGS)"
+      - "src/CMakeLists.txt:340 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-fvvdo5"
+      binary: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-fvvdo5"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/llama.cpp-0.6.0/ggml/cmake/"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_openmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-fvvdo5'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_cd7ba
+        [1/2] C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS -openmp /Ob0 /Od /RTC1 -std:c11 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_cd7ba.dir\\OpenMPTryFlag.c.obj /FdCMakeFiles\\cmTC_cd7ba.dir\\ /FS -c C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fvvdo5\\OpenMPTryFlag.c
+        Nota: inclusi├│n del archivo: C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\omp.h
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_cd7ba.dir --rc=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_cd7ba.dir\\OpenMPTryFlag.c.obj  /out:cmTC_cd7ba.exe /implib:cmTC_cd7ba.lib /pdb:cmTC_cd7ba.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindOpenMP.cmake:252 (try_compile)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindOpenMP.cmake:522 (_OPENMP_GET_FLAGS)"
+      - "src/CMakeLists.txt:340 (find_package)"
+    description: "Detecting CXX OpenMP compiler info"
+    directories:
+      source: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-nh4llc"
+      binary: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-nh4llc"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/llama.cpp-0.6.0/ggml/cmake/"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_CXX_openmp"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-nh4llc'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_6e947
+        [1/2] C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /EHsc -openmp /Ob0 /Od /RTC1 -std:c++17 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_6e947.dir\\OpenMPTryFlag.cpp.obj /FdCMakeFiles\\cmTC_6e947.dir\\ /FS -c C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nh4llc\\OpenMPTryFlag.cpp
+        Nota: inclusi├│n del archivo: C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\omp.h
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_6e947.dir --rc=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_6e947.dir\\OpenMPTryFlag.cpp.obj  /out:cmTC_6e947.exe /implib:cmTC_6e947.lib /pdb:cmTC_6e947.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindOpenMP.cmake:456 (try_compile)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindOpenMP.cmake:596 (_OPENMP_GET_SPEC_DATE)"
+      - "src/CMakeLists.txt:340 (find_package)"
+    description: "Detecting C OpenMP version"
+    directories:
+      source: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-0kbgm2"
+      binary: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-0kbgm2"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/llama.cpp-0.6.0/ggml/cmake/"
+    buildResult:
+      variable: "OpenMP_SPECTEST_C_"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-0kbgm2'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_18aee
+        [1/2] C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS -openmp /Ob0 /Od /RTC1 -std:c11 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_18aee.dir\\OpenMPCheckVersion.c.obj /FdCMakeFiles\\cmTC_18aee.dir\\ /FS -c C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build\\CMakeFiles\\CMakeScratch\\TryCompile-0kbgm2\\OpenMPCheckVersion.c
+        Nota: inclusi├│n del archivo: C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\stdio.h
+        Nota: inclusi├│n del archivo:  C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h
+        Nota: inclusi├│n del archivo:   C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\vcruntime.h
+        Nota: inclusi├│n del archivo:    C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\sal.h
+        Nota: inclusi├│n del archivo:     C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\concurrencysal.h
+        Nota: inclusi├│n del archivo:    C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\vadefs.h
+        Nota: inclusi├│n del archivo:  C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt_wstdio.h
+        Nota: inclusi├│n del archivo:   C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt_stdio_config.h
+        Nota: inclusi├│n del archivo: C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\omp.h
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_18aee.dir --rc=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_18aee.dir\\OpenMPCheckVersion.c.obj  /out:cmTC_18aee.exe /implib:cmTC_18aee.lib /pdb:cmTC_18aee.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindOpenMP.cmake:456 (try_compile)"
+      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/FindOpenMP.cmake:596 (_OPENMP_GET_SPEC_DATE)"
+      - "src/CMakeLists.txt:340 (find_package)"
+    description: "Detecting CXX OpenMP version"
+    directories:
+      source: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-yu1m8b"
+      binary: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-yu1m8b"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_MODULE_PATH: "C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/llama.cpp-0.6.0/ggml/cmake/"
+    buildResult:
+      variable: "OpenMP_SPECTEST_CXX_"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Projects/OMEGA/Ejercise/T0P/ref_ggml/build/CMakeFiles/CMakeScratch/TryCompile-yu1m8b'
+        
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_c5a47
+        [1/2] C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /EHsc -openmp /Ob0 /Od /RTC1 -std:c++17 -MDd -Zi /showIncludes /FoCMakeFiles\\cmTC_c5a47.dir\\OpenMPCheckVersion.cpp.obj /FdCMakeFiles\\cmTC_c5a47.dir\\ /FS -c C:\\Projects\\OMEGA\\Ejercise\\T0P\\ref_ggml\\build\\CMakeFiles\\CMakeScratch\\TryCompile-yu1m8b\\OpenMPCheckVersion.cpp
+        Nota: inclusi├│n del archivo: C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\stdio.h
+        Nota: inclusi├│n del archivo:  C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt.h
+        Nota: inclusi├│n del archivo:   C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\vcruntime.h
+        Nota: inclusi├│n del archivo:    C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\sal.h
+        Nota: inclusi├│n del archivo:     C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\concurrencysal.h
+        Nota: inclusi├│n del archivo:    C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\vadefs.h
+        Nota: inclusi├│n del archivo:  C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt_wstdio.h
+        Nota: inclusi├│n del archivo:   C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.26100.0\\ucrt\\corecrt_stdio_config.h
+        Nota: inclusi├│n del archivo: C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\include\\omp.h
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --msvc-ver=1944 --intdir=CMakeFiles\\cmTC_c5a47.dir --rc=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WINDOW~3\\10\\bin\\100261~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~2\\MICROS~2\\2022\\BUILDT~1\\VC\\Tools\\MSVC\\1444~1.352\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_c5a47.dir\\OpenMPCheckVersion.cpp.obj  /out:cmTC_c5a47.exe /implib:cmTC_c5a47.lib /pdb:cmTC_c5a47.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+...
