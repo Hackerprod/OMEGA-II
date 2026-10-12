@@ -1,0 +1,63 @@
+# EVICT_QA_RESULTS
+
+## Estado
+
+**HOLD_EVICTION_NOT_QUALIFIED.** La biblioteca compila y la QA determinista pasa. Los ocho P-cores superan el umbral de razón temporal; las fracciones LLC agregadas sobre ventanas completamente observadas también están dentro de los límites. Sin embargo, la atribución temporal de S-20 no pasa para ningún P-core en ambas condiciones caliente/fría: cobertura inferior mínima 93,594 %, bajo 95 %, y hueco superior máximo 66,421 ms, sobre 20 ms. No se interpola ni rellena ninguna ventana. Se mantienen todos los criterios sin cambios.
+
+La captura conjunta final entregó 3600/3600 grupos, pie temporal y stderr vacío; el mapa QPC–UTC tuvo 12.866 filas y U=0,558350 ms. Las fracciones son resultados diagnósticos del conjunto de ventanas enteras observadas, pero no califican el control por el fallo temporal. La cualificación global del lector S-20 en `T0P/telemetry/QUALIFICATION_RESULTS.md` sigue `HOLD_INSTRUMENTATION` por INST_RETIRED, aunque el conjunto de eventos L2/LLC fue capturado en el grupo conjunto oficial.
+
+## Cobertura y pruebas negativas
+
+Las asignaciones large-page reales usaron un mínimo de 2.097.152 B y comprobaron alineación, tamaño y materialización DUMMY. X/Y y las regiones preparadas/sumas/scratch se asignaron separadas para m=1 y m=16.
+
+| Rango | Líneas esperadas | Líneas tocadas únicas | Intentos | Líneas ajenas | Compartidas | QA |
+|---|---:|---:|---:|---:|---:|---|
+| O=912, 262.656 B | 4.104 | 4.104 | 5.016 | 2.487 | 0 | PASS |
+| O=1024, 294.912 B | 4.608 | 4.608 | 5.632 | 2.487 | 0 | PASS |
+| O=58256, 16.777.728 B | 262.152 | 262.152 | 320.408 | 2.487 | 0 | PASS |
+| 8 × O=1024, 2.359.296 B | 36.864 | 36.864 | 45.056 | 0 tocadas | 0 | PASS |
+
+Los intentos extra son líneas repetidas entre los subrangos de códigos/escalas; el conjunto único coincide exactamente. Las intersecciones con X, Y, activaciones preparadas, sumas correctoras y scratch son cero.
+
+| Contraprueba | Resultado |
+|---|---|
+| Omitir la última línea | REJECTED |
+| Desplazar un byte | REJECTED |
+| Añadir región X | REJECTED |
+
+## Tiempos y contadores por P-core
+
+La selección oficial fue `CLFLUSHOPT` por CPUID.07H:EBX[23]. `CLFLUSH` se midió como diagnóstico separado, sin modificar la elección oficial. Cada fase tuvo ≥2,52 s de tiempo de acceso medido y N=31.
+
+| Core / LP | t frío CLFLUSHOPT (s) | t caliente (s) | mediana frío/caliente | Razón CLFLUSH diagnóstico | LLC frío | LLC caliente | Cobertura fría/caliente | Hueco máximo (ms) | Estado |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| P0 / 0 | 0,011003 | 0,001712 | 6,383336 | 6,356977 | 0,953175 | 0,002184 | 96,34 % / 93,90 % | 56,330 | HOLD |
+| P1 / 2 | 0,011000 | 0,001676 | 6,554337 | 6,564710 | 0,954975 | 0,002017 | 95,12 % / 95,68 % | 42,140 | HOLD |
+| P2 / 4 | 0,011053 | 0,001605 | 6,893983 | 6,887567 | 0,952688 | 0,002552 | 94,10 % / 93,61 % | 66,421 | HOLD |
+| P3 / 6 | 0,011059 | 0,001587 | 7,000096 | 6,990545 | 0,954935 | 0,001894 | 94,14 % / 96,30 % | 59,126 | HOLD |
+| P4 / 8 | 0,011191 | 0,001557 | 7,158955 | 7,082312 | 0,934204 | 0,002932 | 96,64 % / 95,78 % | 36,200 | HOLD |
+| P5 / 10 | 0,011222 | 0,001548 | 7,219389 | 7,138990 | 0,949482 | 0,002082 | 95,82 % / 93,73 % | 51,005 | HOLD |
+| P6 / 12 | 0,011082 | 0,001574 | 7,012522 | 6,999510 | 0,965256 | 0,001456 | 95,94 % / 93,59 % | 51,220 | HOLD |
+| P7 / 14 | 0,011177 | 0,001602 | 6,968461 | 6,900849 | 0,965577 | 0,002431 | 95,23 % / 94,63 % | 62,384 | HOLD |
+
+Los ocho cocientes temporales pasan ≥1,50; las ocho fracciones frías pasan ≥0,90 y las calientes pasan ≤0,10. Aun así, todos los P-cores quedan en HOLD porque el requisito debe pasar también la cobertura y hueco temporal S-20 en ambas condiciones. Ventanas reales máximas: 79,451 ms; cantidad por condición: 38–45, superior al mínimo 20.
+
+## Rango arquitectónico y compilación
+
+Después del victim-buffer: ocho shards de 294.912 B, ocho workers fijados/verificados, lectura de control previa `sink=6082560`, cobertura 36.864/36.864 líneas y nueva expulsión con barrera. La comparación CLFLUSH repitió el control de lectura y la expulsión.
+
+Comando de compilación/QA: `T0P\evict\build.cmd`; resultado `BUILD_EXIT=0`, `EXECUTION=PASS`, `QA=PASS`. El ejecutable enlaza el allocator real `T0P\common\common.cpp`; exige large pages y aborta con HOLD si se activa fallback. No ejecuta kernels Q4, ggml ni Torch.
+
+La primera captura EMON se conserva en `capture/` y no se usó: la incertidumbre QPC–UTC fue U=2,163800 ms (>1 ms). La segunda captura `capture_r2/` es la analizada. No se atribuyen resultados de la primera.
+
+Corrección propuesta para una repetición futura, sin aplicar aquí: sincronizar los límites de cada fase fría/caliente con límites de ventanas completas del mismo lector EMON, mediante una señal de coordinación QPC. Mantener N=31, victim-buffer de 8 MiB, los umbrales S-19/S-20 y la regla de no interpolar.
+
+## Archivos crudos
+
+- `evict_qa_raw.log`: ejecución final de QA, coverage, negativas, tiempos y repetición arquitectónica.
+- `capture_r2/evict_qa_raw.txt`, `capture_r2/eviction_windows.csv`: ejecución concurrente con EMON y marcas por condición.
+- `capture_r2/emon_joint_raw.txt`, `capture_r2/emon_joint_stderr.txt`: salida cruda del lector CLI conjunto.
+- `capture_r2/clock_map.csv`: muestras QPC/UTC con bracket.
+- `capture_r2/eviction_cache_fractions.csv`: sumas de eventos, cobertura y adjudicación por P-core/condición.
+- `capture_r2/capture_status.txt`: 3600 grupos y footer completos; `Start-Process` no expuso ExitCode en este host, por lo que la comprobación usa grupos, footer, stderr vacío y la salida `EXECUTION=PASS` del worker.
+- `capture/capture_status.txt`, `capture/clock_map.csv`, `capture/emon_joint_raw.txt`: primer intento retenido y descartado por U>1 ms.

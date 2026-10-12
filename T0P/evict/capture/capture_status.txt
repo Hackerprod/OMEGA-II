@@ -1,0 +1,9 @@
+﻿EMON_EXIT=
+EMON_GROUPS=3600
+EMON_3600_AND_FOOTER=True
+WORKER_EXIT=
+CONFIG=C:\Projects\OMEGA\Ejercise\T0P\telemetry\reader\emon_joint_qualification.edp
+RAW=C:\Projects\OMEGA\Ejercise\T0P\evict\capture\emon_joint_raw.txt
+CLOCK_MAP=C:\Projects\OMEGA\Ejercise\T0P\evict\capture\clock_map.csv
+WORKER_RAW=C:\Projects\OMEGA\Ejercise\T0P\evict\capture\evict_qa_raw.txt
+WORKER_STDERR=C:\Projects\OMEGA\Ejercise\T0P\evict\capture\evict_qa_stderr.txt

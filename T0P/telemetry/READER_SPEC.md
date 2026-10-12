@@ -1,4 +1,4 @@
-# READER_SPEC — lector conjunto de telemetría S-20
+﻿# READER_SPEC — lector conjunto de telemetría S-20
 
 ## Estado y uso
 
@@ -77,3 +77,16 @@ La prueba de instrucciones debe mantener el grupo conjunto CLI y las marcas QPC 
 **Lector oficial único:** EMON CLI conjunto por `-collect-edp`, con alineación de marcas civiles a QPC; el camino de lecturas acumulativas API queda NO OFICIAL por los snapshots rancios documentados en las dos ejecuciones R4. D1, D2 REF_TSC y D3 pasan según la adquisición CLI conjunta vigente. Para INST_RETIRED el método principal predeclarado es la diferencia REP−BASE, usando spans de ventanas EMON que intersectan marcas QPC y el fondo LP0 por segundo de una BASE de igual duración/configuración/LP. El resultado R5 fue HOLD_INSTRUMENTATION en las cinco repeticiones (errores −2,814509 %, −2,876797 %, −2,608884 %, −2,489418 %, −2,687137 %); fondo BASE: 1.855.169.176 instrucciones en 4,016419 s. Los conteos del hermano SMT no se midieron aparte. El cálculo por ventanas completamente contenidas queda como diagnóstico y declara la hipótesis de ritmo constante.
 
 Estado global: **HOLD_INSTRUMENTATION**. El lector solo será **QUALIFIED** cuando D1–D3 e INST_RETIRED pasen; no se modificaron umbrales. Detalle: `logs\inst_cli_analysis_r5.txt` y `QUALIFICATION_RESULTS.md`.
+
+## Método S-20 A para bloques acolchados (T0P/evict)
+
+La cualificación de expulsión usa EMON CLI oficial conjunto y bloques de **la misma condición con márgenes**, analizados offline. El método se propone para ratificación de Sol. Para cada celda/condición se ejecuta continuamente la misma carga, las mismas operaciones y el mismo estado de caché en `[t_pad_ini,t_pad_fin]`; la región científicamente medida `[t_ini,t_fin]` queda dentro, con `m_ini,m_fin ≥ 0,200 s` (dos veces la ventana EMON máxima observada: 0,100 s). No se intercala otra condición ni se añade flush/acondicionamiento ajeno.
+
+La región es interior al bloque acolchado; no se redefine el bloque como la propia región. Los márgenes no son muestra de rendimiento, no entran en el estadístico de la condición ni en el denominador de cobertura. Se aceptan ventanas EMON completas que solapan la región y están contenidas en el acolchado, después de aplicar U; las que cruzan el límite del acolchado se excluyen y se reportan. Los contadores no se interpolan. Cobertura y huecos se evalúan sobre la unión de las ventanas elegibles recortada a `[t_ini,t_fin]` con S-20 A: se resta `2U` a cada segmento unido para la cobertura inferior; la cota de hueco agrega U en extremos y 2U entre segmentos.
+
+Implementación común: `reader/sync/emon_window_sync.hpp/.cpp`, API `analyze_padded_block(PaddedBlock, vector<WindowInterval>, U_ms, required_margin_ms=200)`. `BlockAnalysis` devuelve ambos márgenes, cobertura inferior, máximo hueco superior, ventana máxima, cantidad usada y cruces excluidos, validaciones y motivo. Rechaza orden/intervalos inválidos y duplicados. QA determinista cubre cruce de condición, margen insuficiente, hueco >20 ms, cobertura <95 %, duplicados y orden.
+
+El módulo `WindowSync`/`EmonPipeReader` sigue disponible para diagnóstico de llegada de stdout. La alternancia observada (+2/−60 ms; p95 64 ms; máximo previo 81 ms) descarta su uso como sincronizador oficial. En la repetición nueva, la máxima demora diagnóstica fue 143,628 ms; no se informa mediana porque la salida del harness no ordenó la serie para calcularla. Los límites oficiales salen de las marcas del bloque y el mapa civil↔QPC, no de la detección de llegada.
+
+Umbrales inmutables: duración ≥2 s, ≥20 ventanas, cobertura ≥95 %, hueco ≤20 ms, ventana ≤100 ms, U≤1 ms; ratio frío/caliente ≥1,50, LLC fría ≥0,90 y caliente ≤0,10. La ejecución de cualificación, los márgenes y la matriz están en `T0P/evict/EVICT_QA_RESULTS.md`.
+

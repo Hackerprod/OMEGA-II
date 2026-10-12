@@ -1,0 +1,39 @@
+# EVICT_SPEC — biblioteca y control independiente S-19
+
+## Alcance y decisiones
+
+`evict_range(ptr, bytes)` expulsa cada línea de 64 B que intersecta el intervalo semiabierto `[ptr, ptr+bytes)`, incluidos los extremos parciales. Rechaza punteros nulos, longitud cero y desbordamiento de dirección. Cada llamada termina con `SFENCE` y `MFENCE`.
+
+`evict_weights_regions()` acepta una lista de rangos con etiqueta `WeightCodes` o `WeightScales`; rechaza X, Y, activaciones preparadas, sumas correctoras, scratch y salida. `RegionKind` mantiene esas clases distintas. La selección del proceso se congela una vez: `CLFLUSHOPT` si `CPUID.07H:EBX[23]`, de lo contrario `CLFLUSH`. `evict_range_diagnostic()` y `evict_weights_regions_diagnostic()` fuerzan solo una comparación diagnóstica y nunca cambian la selección oficial. No se usa CLWB ni prefetch por software.
+
+La variante multihilo exige ocho workers. Cada worker se fija y verifica en LP `0,2,4,6,8,10,12,14`, identificados como los ocho P-cores de mayor clase de eficiencia mediante `GetLogicalProcessorInformationEx`. Una barrera al inicio coordina el comienzo; una barrera tras `SFENCE` de cada worker y un `MFENCE` del hilo llamador completan la expulsión.
+
+## Layout y asignaciones
+
+Se reproduce el stride Q4 de 288 B por fila de salida: 256 B de códigos y 32 B de escalas FP16. El shard O=1024 ocupa 294.912 B (262.144 B de códigos + 32.768 B de escalas). Para O=912 y O=58256 se usa el mismo stride. Los contenidos son bytes DUMMY `0xA5`; no se cargan ni ejecutan kernels Q4, ggml o Torch.
+
+Todos los bloques de QA se obtienen del `t0common::PageRegion` real, con `SeLockMemoryPrivilege` habilitado solo en el token del proceso, y se rechaza cualquier fallback de páginas normales. Se comprueban `large == true`, tamaño asignado suficiente y dirección alineada a `GetLargePageMinimum()` (2 MiB observado). X y Y se materializan para m=1 y m=16; activaciones preparadas y sumas correctoras también se materializan separadamente. Al estar cada región en una asignación grande separada y alineada, no comparte líneas de 64 B con pesos.
+
+## Cobertura determinista
+
+La prueba de registro enumera las direcciones que el expulsador intentaría tocar y compara el conjunto con todas las líneas que intersectan códigos y escalas. También compara los conjuntos con las líneas de X, Y, activaciones, sumas y scratch. Las regiones de códigos/escalas pueden compartir una línea entre sí; las direcciones repetidas se admiten y se reportan como intentos, mientras la cobertura se adjudica por líneas únicas.
+
+Las tres contrapruebas deben ser rechazadas: eliminar la última línea, desplazar el comienzo un byte manteniendo el tamaño y añadir una región X a `evict_weights_regions()`. La verificación arquitectónica cubre ocho shards independientes con ocho workers concurrentes, y se repite después del control victim-buffer.
+
+## Control LLC independiente
+
+Cada P-core usa un victim-buffer de 8 MiB en large pages. Un ciclo dependiente contiene una carga de puntero por línea; las líneas siguen una permutación determinista de Fisher–Yates construida con xorshift32 y semilla fija `0x53493139`. No hay prefetch software. Cada condición reúne N=31 mediciones por P-core; se acumulan al menos 2,5 s de accesos medidos por condición. El tiempo por medición es el promedio de los recorridos dependientes de esa réplica. El cociente gobernante se calcula como `mediana_r(t_frío,r / t_caliente,r)`.
+
+EMON se ejecuta por CLI con el archivo conjunto oficial `T0P/telemetry/reader/emon_joint_qualification.edp` (3600 grupos, un grupo conjunto, sin multiplexación). El programa escribe marcas QPC y UTC de cada condición. El acompañante captura una correspondencia QPC–UTC cada 5 ms mediante brackets nativos; el analizador ajusta la recta QPC/FILETIME y calcula `U = residuo_máximo + bracket_máximo/2 + 0,5 ms`. En la segunda captura `U=0,558350 ms` (residuo 0,032900 ms; bracket 0,050900 ms), dentro del límite S-20 de 1 ms.
+
+Para cada ventana EMON se reconstruye `end_QPC` desde su sello civil y la recta de alineación; `start_QPC = end_QPC − ΔTHREAD/f_TSC`, usando `f_TSC=2112,003049 MHz` de la calibración D1. Solo se suman ventanas enteras dentro del intervalo de condición, con guardia de U en ambos límites. Se excluyen ventanas parciales; no se interpolan ni extrapolan contadores. LLC se calcula como `Σ OFFCORE_REQUESTS.L3_MISS_DEMAND_DATA_RD / Σ OFFCORE_REQUESTS.DEMAND_DATA_RD`; L2 como `Σ L2_RQSTS.DEMAND_DATA_RD_MISS / Σ L2_RQSTS.ALL_DEMAND_DATA_RD`. Numeradores y denominadores incluyen el mismo par LP del P-core y las mismas ventanas; un denominador cero es no estimable.
+
+La cobertura inferior es `Σ max(0, duración_ventana − 2U) / duración_condición`. El hueco superior suma la incertidumbre U a ambos extremos de cada intervalo no cubierto. Se mantienen los mínimos S-20: duración ≥2 s, ≥20 ventanas, cobertura ≥95 %, hueco máximo ≤20 ms, ventana ≤100 ms. Las ventanas parcialmente solapadas quedan excluidas de las fracciones.
+
+## Control sobre pesos arquitectónicos
+
+Tras el recorrido victim-buffer se releen los bytes de control, se registran las ocho asignaciones `[294912 B]`, se verifica la cobertura y se expulsa el conjunto con ocho workers. Se repite con CLFLUSH como diagnóstico. El código y las escalas siguen siendo memoria DUMMY con el tamaño, stride y alineación contractuales.
+
+## Cualificación
+
+Un PASS de expulsión exige conjuntamente cobertura completa, cero líneas ajenas, contrapruebas rechazadas, `mediana(t_frío/t_caliente) ≥ 1,50`, `fracción LLC fría ≥0,90`, `fracción LLC caliente ≤0,10` y los límites temporales de S-20. No se cambian los tamaños ni los umbrales. Si una condición falla, el estado es `HOLD_EVICTION_NOT_QUALIFIED` cuando la adquisición o su cobertura temporal no permite adjudicar el control.

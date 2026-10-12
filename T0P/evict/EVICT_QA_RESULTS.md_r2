@@ -1,0 +1,86 @@
+# EVICT_QA_RESULTS
+
+## Estado de esta repetición
+
+**HOLD_INSTRUMENTATION / HOLD_EVICTION_NOT_QUALIFIED.** La repetición física única conserva los resultados, sin relajar S-19 ni S-20. El control LLC DUMMY pasa sus umbrales físicos; la asignación temporal oficial no pasa. La captura conjunta EMON terminó con código 0 y 3.600/3.600 grupos. La alineación bloqueada por llegada de `stdout` tuvo retardo mediano **62,737 ms**, máximo **157,103 ms**, U de reloj civil/QPC **1,000 ms** y cota S-20 A de extremo **U + retardo máximo = 158,103 ms** (>20 ms). El máximo de retardo basta para HOLD.
+
+Se usó una tubería anónima de Windows, lectura de `stdout` byte a byte con ensamblado de líneas y toma QPC/FILETIME al completar cada línea de marca civil. `stdout` no se sondeó desde archivo. La configuración fue la oficial `-collect-edp` + `emon_joint_qualification.edp`; no se modificó el grupo ni su período. La salida cruda y su `stderr` (0 bytes) están en `capture_sync_r1/emon_stdout.txt` y `.stderr`. El ajuste QPC/FILETIME a partir de las 64 marcas de fase tuvo residuo máximo 0,002 ms.
+
+La corrida integrada retuvo los 3.600 tiempos en memoria y guardó sus 32 marcas de fase en `capture_sync_r1/eviction_windows.csv`. Una segunda captura dedicada solo a medir latencia (sin repetir el benchmark) exportó los 3.600 retardos a `T0P/telemetry/reader/sync/emon_pipe_distribution_r1.txt.delay.csv`: mínimo 3,110 ms; P10 4,498 ms; mediana 57,634 ms; P90 114,574 ms; P95 126,316 ms; P99 139,392 ms; máximo 156,928 ms; U=1 ms; cota extrema 157,928 ms. Su salida cruda está en el archivo hermano `.txt`. No se atribuyen grupos parciales ni se interpolan contadores. Para el HOLD se usa además el peor máximo de la corrida integrada, 157,103 ms (U + Dmáx = 158,103 ms).
+
+## QA de expulsión y ejecución
+
+CPUID seleccionó **CLFLUSHOPT** (`CPUID.07H:EBX[23]`); CLFLUSH fue solo diagnóstico. La biblioteca compiló y ejecutó con large pages de 2 MiB y memoria DUMMY. La QA determinista obtuvo:
+
+| Rango | Líneas esperadas/tocadas | Intentos | Líneas ajenas compartidas | Resultado |
+|---|---:|---:|---:|---|
+| O=912 | 4.104/4.104 | 5.016 | 0 | PASS |
+| O=1024 | 4.608/4.608 | 5.632 | 0 | PASS |
+| O=58256 | 262.152/262.152 | 320.408 | 0 | PASS |
+| 8 shards × O=1024 | 36.864/36.864 | 45.056 | 0 | PASS |
+
+Las contrapruebas omitir última línea, desplazar un byte e incluir X se rechazaron. Las 39 asignaciones large-page, alineación y barrera de 8 workers pasaron. Control arquitectónico: 8 shards × 294.912 B, lectura previa `sink=6082560`, expulsión concurrente de 8 workers y repetición CLFLUSH ejecutadas. **La fase arquitectónica no tuvo marcas de condición sincronizadas propias**, así que sus eventos LLC no son adjudicables en esta repetición.
+
+## Resultados físicos por P-core
+
+N=31 por core. Los tiempos de recorrido son segundos; `ratio` es la mediana de los 31 cocientes fríos/calientes. Estos datos temporales pasan ≥1,50. Las fracciones LLC se suman sobre las ventanas completas observadas de la fase; son diagnósticas y no cualifican el HOLD temporal.
+
+| P / LP | Frío s | Caliente s | Ratio | Ratio CLFLUSH diag. | LLC fría | LLC caliente | LLC fría CLFLUSH diag. | LLC caliente CLFLUSH diag. |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| P0 / 0 | 0,010970 | 0,001733 | 6,308354 | 6,389261 | 0,952327 | 0,005990 | 0,944383 | 0,002939 |
+| P1 / 2 | 0,011010 | 0,001667 | 6,591267 | 6,518792 | 0,955611 | 0,002248 | 0,946494 | 0,002545 |
+| P2 / 4 | 0,011013 | 0,001600 | 6,837014 | 6,801491 | 0,955959 | 0,002794 | 0,944558 | 0,005225 |
+| P3 / 6 | 0,011079 | 0,001575 | 7,047578 | 6,952294 | 0,951938 | 0,002311 | 0,941964 | 0,002339 |
+| P4 / 8 | 0,011070 | 0,001565 | 7,016967 | 7,093548 | 0,950428 | 0,004205 | 0,942152 | 0,003639 |
+| P5 / 10 | 0,011715 | 0,001629 | 7,071423 | 7,119904 | 0,944051 | 0,004469 | 0,937223 | 0,002696 |
+| P6 / 12 | 0,011082 | 0,001578 | 7,038173 | 6,904738 | 0,965775 | 0,003742 | 0,957141 | 0,004417 |
+| P7 / 14 | 0,011137 | 0,001607 | 6,902600 | 6,845268 | 0,963022 | 0,001281 | 0,951170 | 0,001575 |
+
+Las ocho razones cumplen ≥1,50; LLC fría cumple ≥0,90 y caliente ≤0,10. El detalle de sumas L2/LLC, contadores, cobertura y estado por condición está en `capture_sync_r1/eviction_cache_fractions.csv`.
+
+## Ventanas S-20 por P-core y condición
+
+La cobertura inferior reduce cada intervalo completo en 2U; los extremos de bloque usan la cota S-20 A `U + retardo máximo`. `ventanas` cuenta solo grupos completos; mínimo exigido 20. Todos los bloques duraron ≥2 s, tuvieron 39–58 ventanas y ventanas individuales ≤100 ms. **Ninguno pasa** cobertura ≥95 % ni hueco extremo ≤20 ms. Cobertura mínima 91,442 %, hueco extremo máximo 230,978 ms.
+
+| P | Condición | Ventanas | Cobertura | Hueco superior ms | Ventana máx ms | Estado |
+|---|---|---:|---:|---:|---:|---|
+| P0 | frío CLFLUSHOPT | 45 | 94,283 % | 208,816 | 77,302 | HOLD |
+| P0 | caliente | 40 | 93,795 % | 214,484 | 76,594 | HOLD |
+| P0 | frío CLFLUSH diag. | 56 | 94,373 % | 216,633 | 77,877 | HOLD |
+| P0 | caliente CLFLUSH diag. | 41 | 93,524 % | 220,248 | 77,893 | HOLD |
+| P1 | frío CLFLUSHOPT | 45 | 93,980 % | 208,391 | 76,709 | HOLD |
+| P1 | caliente | 40 | 91,554 % | 222,532 | 77,230 | HOLD |
+| P1 | frío CLFLUSH diag. | 58 | 94,324 % | 209,729 | 76,995 | HOLD |
+| P1 | caliente CLFLUSH diag. | 43 | 93,647 % | 218,842 | 76,821 | HOLD |
+| P2 | frío CLFLUSHOPT | 45 | 93,471 % | 230,978 | 70,880 | HOLD |
+| P2 | caliente | 42 | 91,775 % | 214,714 | 70,473 | HOLD |
+| P2 | frío CLFLUSH diag. | 56 | 94,177 % | 219,888 | 77,306 | HOLD |
+| P2 | caliente CLFLUSH diag. | 42 | 93,659 % | 215,161 | 64,544 | HOLD |
+| P3 | frío CLFLUSHOPT | 45 | 93,768 % | 220,463 | 74,130 | HOLD |
+| P3 | caliente | 43 | 93,678 % | 218,724 | 76,659 | HOLD |
+| P3 | frío CLFLUSH diag. | 56 | 94,344 % | 217,338 | 77,325 | HOLD |
+| P3 | caliente CLFLUSH diag. | 40 | 91,671 % | 220,625 | 77,569 | HOLD |
+| P4 | frío CLFLUSHOPT | 44 | 93,941 % | 216,397 | 77,874 | HOLD |
+| P4 | caliente | 42 | 93,875 % | 212,196 | 78,451 | HOLD |
+| P4 | frío CLFLUSH diag. | 55 | 94,423 % | 217,238 | 77,852 | HOLD |
+| P4 | caliente CLFLUSH diag. | 40 | 93,525 % | 219,792 | 76,872 | HOLD |
+| P5 | frío CLFLUSHOPT | 45 | 93,845 % | 214,959 | 77,524 | HOLD |
+| P5 | caliente | 40 | 91,442 % | 222,869 | 78,108 | HOLD |
+| P5 | frío CLFLUSH diag. | 56 | 94,063 % | 219,312 | 64,853 | HOLD |
+| P5 | caliente CLFLUSH diag. | 39 | 93,691 % | 218,332 | 78,498 | HOLD |
+| P6 | frío CLFLUSHOPT | 44 | 91,931 % | 218,442 | 78,699 | HOLD |
+| P6 | caliente | 40 | 93,706 % | 215,889 | 75,560 | HOLD |
+| P6 | frío CLFLUSH diag. | 55 | 94,381 % | 216,899 | 77,427 | HOLD |
+| P6 | caliente CLFLUSH diag. | 40 | 93,491 % | 219,967 | 77,928 | HOLD |
+| P7 | frío CLFLUSHOPT | 45 | 93,806 % | 217,669 | 79,599 | HOLD |
+| P7 | caliente | 40 | 93,605 % | 219,191 | 77,009 | HOLD |
+| P7 | frío CLFLUSH diag. | 57 | 94,368 % | 217,641 | 77,758 | HOLD |
+| P7 | caliente CLFLUSH diag. | 41 | 93,720 % | 216,927 | 78,009 | HOLD |
+
+## Pruebas negativas y bloqueo
+
+`sync_qa.exe` compiló y ejecutó: límite no observado a tiempo, marca duplicada, marca fuera de orden, EMON detenido y retardo sobre presupuesto (>20 ms con U) fueron rechazados. La prueba de integración observó 3.600 marcas y el proceso EMON terminó con código 0. `capture_sync_r1/eviction_cache_fractions.csv`, `eviction_windows.csv`, `evict_sync_qa_raw.txt`, `emon_stdout.txt` y `emon_stdout.txt.stderr` conservan la evidencia.
+
+**Bloqueo:** el texto de EMON llega a la tubería después de su marca civil, mediana 62,737 ms y máximo 157,103 ms. El sync API puede esperar una marca nueva, pero conocerla tarde impide cerrar el hueco extremo en 20 ms. La arquitectura de 8 shards tampoco tuvo bloques LLC sincronizados por separado en la repetición. Estado final: `HOLD_INSTRUMENTATION` y, por consecuencia, `HOLD_EVICTION_NOT_QUALIFIED`.
+
+Alternativa propuesta, sin aplicar: añadir al colector oficial un pulso de límite QPC producido en el instante de adquisición de cada grupo (antes de imprimir la fila), o una interfaz de adquisición que entregue ese pulso/contador por evento en vivo. Mantener los eventos y umbrales S-20; volver a cualificar la incertidumbre y luego repetir la validación completa, incluida la fase arquitectónica delimitada.

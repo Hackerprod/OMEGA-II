@@ -1,0 +1,50 @@
+#include "emon_window_sync.hpp"
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
+#include <functional>
+#include <stdexcept>
+#include <string>
+#include <vector>
+
+using emon_sync::WindowSync;
+static void rejected(const char* name,const std::function<void()>& f) {
+  try { f(); } catch(const std::runtime_error& e) { std::printf("NEGATIVE_%s=PASS reason=%s\n",name,e.what());return; }
+  throw std::runtime_error(std::string("negative test unexpectedly passed: ")+name);
+}
+static std::wstring wide(const char* s){return std::wstring(s,s+std::strlen(s));}
+static std::string civil_from_filetime(uint64_t ft){FILETIME f{DWORD(ft),DWORD(ft>>32)},local{};SYSTEMTIME l{};FileTimeToLocalFileTime(&f,&local);FileTimeToSystemTime(&local,&l);char b[32];std::snprintf(b,sizeof(b),"%02u/%02u/%04u %02u:%02u:%02u.%03u",l.wMonth,l.wDay,l.wYear,l.wHour,l.wMinute,l.wSecond,l.wMilliseconds);return b;}
+
+int main(int argc,char**argv) {
+ try {
+  LARGE_INTEGER freq{};QueryPerformanceFrequency(&freq);
+  emon_sync::Config cfg{uint64_t(freq.QuadPart),1.0,19.0};
+  const uint64_t now=emon_sync::filetime_utc_now(),q=emon_sync::qpc_now();
+  {WindowSync s(cfg);rejected("UNOBSERVED_TIMEOUT",[&]{s.sync_begin_block(2);});}
+  {WindowSync s(cfg);std::string e;s.feed_line("10/11/2026 20:00:01.000",q,now,&e);rejected("DUPLICATE_MARK",[&]{s.feed_line("10/11/2026 20:00:01.000",q+1,now+10000,&e);s.sync_begin_block(2);});}
+  {WindowSync s(cfg);std::string e;s.feed_line("10/11/2026 20:00:02.000",q,now,&e);rejected("INVALID_ORDER",[&]{s.feed_line("10/11/2026 20:00:01.000",q+1,now+10000,&e);s.sync_begin_block(2);});}
+  {WindowSync s(cfg);s.process_stopped();rejected("EMON_STOPPED",[&]{s.sync_end_block(2);});}
+  {WindowSync s(cfg);std::string e;const auto mark=civil_from_filetime(now-250000);s.feed_line(mark,q,now,&e);if(s.timing_budget_pass()||s.endpoint_gap_upper_ms()<=20)throw std::runtime_error("delay budget test failed");std::printf("NEGATIVE_DELAY_OVER_BUDGET=PASS endpoint_gap_upper_ms=%.3f\n",s.endpoint_gap_upper_ms());}
+  std::printf("SYNC_NEGATIVE_QA=PASS\n");
+  if(argc==1)return 0;
+  if(argc!=6||std::string(argv[1])!="--capture")throw std::runtime_error("usage: sync_qa.exe [--capture emon.exe config.edp workdir raw.txt]");
+  SECURITY_ATTRIBUTES sa{sizeof(sa),nullptr,TRUE};HANDLE rd=nullptr,wr=nullptr;
+  if(!CreatePipe(&rd,&wr,&sa,0))throw std::runtime_error("CreatePipe failed");SetHandleInformation(rd,HANDLE_FLAG_INHERIT,0);
+  std::wstring emon=wide(argv[2]),edp=wide(argv[3]),wd=wide(argv[4]),raw=wide(argv[5]);
+  HANDLE out=CreateFileW(raw.c_str(),GENERIC_WRITE,FILE_SHARE_READ,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
+  if(out==INVALID_HANDLE_VALUE)throw std::runtime_error("raw capture exists or cannot be created");
+  HANDLE err=CreateFileW((raw+L".stderr").c_str(),GENERIC_WRITE,FILE_SHARE_READ,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
+  if(err==INVALID_HANDLE_VALUE)throw std::runtime_error("stderr capture exists or cannot be created");
+  STARTUPINFOW si{};si.cb=sizeof(si);si.dwFlags=STARTF_USESTDHANDLES;si.hStdInput=GetStdHandle(STD_INPUT_HANDLE);si.hStdOutput=wr;si.hStdError=err;
+  PROCESS_INFORMATION pi{};std::wstring cmd=L"\""+emon+L"\" -collect-edp \"edp_file="+edp+L"\"";
+  if(!CreateProcessW(emon.c_str(),cmd.data(),nullptr,nullptr,TRUE,CREATE_NO_WINDOW,nullptr,wd.c_str(),&si,&pi))throw std::runtime_error("CreateProcess EMON failed Win32="+std::to_string(GetLastError()));
+  CloseHandle(wr);CloseHandle(err);CloseHandle(pi.hThread);
+  WindowSync stream(cfg);std::string line;std::vector<double> delays;char ch;DWORD got=0;
+  while(ReadFile(rd,&ch,1,&got,nullptr)&&got){DWORD written=0;WriteFile(out,&ch,1,&written,nullptr);if(ch=='\n'){std::string e;if(stream.feed_line(line,emon_sync::qpc_now(),emon_sync::filetime_utc_now(),&e))delays.push_back(stream.boundaries().back().detection_delay_ms);line.clear();}else if(ch!='\r')line.push_back(ch);}
+  CloseHandle(rd);CloseHandle(out);stream.process_stopped();WaitForSingleObject(pi.hProcess,INFINITE);DWORD code=0;GetExitCodeProcess(pi.hProcess,&code);CloseHandle(pi.hProcess);
+  if(delays.empty())throw std::runtime_error("no EMON timestamps observed");std::sort(delays.begin(),delays.end());
+  const double med=delays[delays.size()/2],mx=delays.back();
+  std::printf("CAPTURE_EXIT=%lu\nCAPTURE_GROUPS=%llu\nREAD_METHOD=stdout anonymous pipe, byte-read line framing\nDETECTION_DELAY_MEDIAN_MS=%.3f\nDETECTION_DELAY_MAX_MS=%.3f\nALIGNMENT_U_MS=1.000\nS20_ENDPOINT_GAP_UPPER_MS=%.3f\nS20_ENDPOINT_GAP_FORMULA=U+max_detection_delay\nTIMING_BUDGET=%s\n",code,(unsigned long long)delays.size(),med,mx,1.0+mx,(1.0+mx<=20)?"PASS":"HOLD_INSTRUMENTATION");
+  return code==0?0:2;
+ }catch(const std::exception&e){std::fprintf(stderr,"SYNC_QA=HOLD cause=%s\n",e.what());return 2;}
+}

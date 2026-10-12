@@ -1,0 +1,6 @@
+NEGATIVE_UNOBSERVED_TIMEOUT=PASS reason=next EMON window boundary not observed before timeout
+NEGATIVE_DUPLICATE_MARK=PASS reason=duplicate civil timestamp
+NEGATIVE_INVALID_ORDER=PASS reason=out-of-order civil timestamp
+NEGATIVE_EMON_STOPPED=PASS reason=EMON process stopped before next window boundary
+NEGATIVE_DELAY_OVER_BUDGET=PASS endpoint_gap_upper_ms=26.844
+SYNC_NEGATIVE_QA=PASS

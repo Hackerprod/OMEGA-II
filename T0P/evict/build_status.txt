@@ -1,0 +1,6 @@
+build.cmd
+Compiler: MSVC 14.44.35229 toolchain
+Linker: MSVC Incremental Linker 14.44.35229
+Build result: BUILD_EXIT=0
+Execution: EXECUTION=PASS QA=PASS
+Final standalone output: evict_qa_raw.log
