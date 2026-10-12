@@ -1,0 +1,4 @@
+attempt=1
+state=SMOKE_TELEMETRY_ANALYZABLE
+invalid_blocks=0
+residency=NOT_STARTED

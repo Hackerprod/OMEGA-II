@@ -1,0 +1,5 @@
+captured_groups=20975
+expected_groups=20975
+footer=True
+raw_bytes=42608870
+status=COMPLETE

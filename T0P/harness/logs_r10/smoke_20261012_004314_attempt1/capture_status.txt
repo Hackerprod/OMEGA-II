@@ -1,0 +1,5 @@
+harness_exit=0
+emon_exit=CHECKED_BY_GROUP_COUNT_AND_FOOTER
+early_exit=False
+configured_groups=4272
+

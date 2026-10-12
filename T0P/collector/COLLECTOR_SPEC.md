@@ -1,25 +1,32 @@
-# Especificación del colector T0P
+# Especificación del cualificador T0P R10
 
-## Lo que integra este build
+## Entrada y ejecución única
 
-- Preregistro canónico S-19, SHA-256, validación estricta del plan, selección estadística y máquina de estados con `--self-test`.
-- Proveedores congelados llamados mediante `T0P\qualify\qualify.exe --dry-run`: kernel Q4, ggml flat/repack y Torch `_out`. Estos ejecutables validan rutas numéricas, dispatch y páginas; la ruta dry-run no cronometra.
-- Contrato de proveedor comprobado contra `SHA256SUMS_qualify.txt`; `dryrun_summary.json` debe tener 61 registros, estado PASS, `timed=false` y métricas de rendimiento nulas. Se guarda SHA-256 del contrato en `logs\smoke_*_provider_contract.txt`.
-- Gate físico de páginas sobre registros `PAGE` reales: `dwPageSize` de Windows, fórmula S-16, `QueryWorkingSetEx`, `Valid=1` y `LargePage=1` en todas las páginas informadas. Contrato: `PAGE_EXPECTED_COLLECTOR.json`.
-- QA de topología/afinidad/páginas/expulsión mediante `T0P\evict\evict_qa.exe`; QA negativa de telemetría mediante `telemetry_reader_r3.exe`.
-- Smoke: proveedores y expulsión bajo EMON CLI conjunto, acondicionamiento DUMMY 180 s con mapa QPC, verificación de plan/digest y corte oficial. Los datos llevan etiqueta SMOKE y no son rendimiento oficial.
-- `--official` rechaza si no existe `AUTHORIZED.json` (exit 20). No inicia mediciones oficiales.
+`qualify_r10.py` es la única entrada del cualificador. Consume directamente el `raw.jsonl`, `summary.jsonl` y `plan.json` de T0P, valida JSON estricto (claves únicas, RFC 8259, UTF-8, números finitos, sin bytes finales) y verifica el SHA-256 canónico del plan antes de leer resultados. No regenera ni reescribe el plan.
 
-La decisión numérica se aplica antes de medir una sesión autorizada: `G_ggml ≥ 0,90`, `G_Torch ≥ 1,20`, `H-KQ ≥ 33,1 MAC/ns/worker`, `D′ ≥ 2,00`; plateau no cualificado da `INVALID_IMPLEMENTATION`. Los cuatro casos de gate y los casos HOLD/cierre se ejercitan en `--self-test`. `PL1`, `PL2`, ventanas de potencia y `0x64F` se registran como `NOT_READABLE_WITH_AVAILABLE_INTERFACE` y no bloquean el colector.
+```powershell
+python T0P\collector\qualify_r10.py --raw <captura>\raw.jsonl --summary <captura>\summary.jsonl --plan T0P\collector\plan.json --output T0P\collector\logs_r10\qualification.json
+```
 
-## Telemetría y límites de esta integración
+Los datos `SMOKE` producen `SMOKE_ONLY`, `numeric_metrics_used=false` y `RESIDENCY=NOT_STARTED`; sus cifras nunca alimentan los umbrales. Para datos `OFFICIAL`, solo se usan filas `VALID` con S-20 estimable, afinidad efectiva correcta y páginas grandes donde el proveedor las requiere. Frecuencia TSC frente a EMON ≤3 %, frecuencia activa y potencia positivas, flags térmicos actuales apagados, estado térmico presente y margen TCC ≥5 °C son condiciones de instrumento.
 
-Lector oficial único: `emon -collect-edp edp_file=T0P\telemetry\reader\emon_joint_qualification.edp`. La API EMON no es oficial. La cualificación vigente de referencia aporta D1/D2 REF_TSC/D3 PASS y el método de instrucciones `(a)` con etiqueta `INST_RETIRED_METHOD=a_PENDING_SOL_RATIFICATION`; ambos métodos deben conservarse en los resultados de sesión.
+## Selección y criterios congelados
 
-Los criterios por ventana son cobertura ≥95 %, hueco superior ≤20 ms, ≥20 ventanas, ventana ≤100 ms, U≤1 ms y márgenes de la misma condición ≥0,2 s antes y después. El smoke actual captura EMON y ejecuta el acondicionamiento, pero todavía no enlaza marcas de inicio/fin por cada proveedor para emitir análisis acolchado S-20 A ni deriva potencia/frecuencia/flags térmicos por bloque. Tampoco ejecuta competencias N=3, `P_instr` plateau, `BW_DRAM` ni H-KQ cronometrados. La QA de expulsión existente está cualificada como `EVICTION_QUALIFIED`; el smoke vuelve a ejecutar su QA local, sin atribuir su salida a ventanas EMON.
+La vara de referencia se selecciona dentro de cada unidad (frontera, m, P-core/8P) usando exclusivamente su propia mediana de tiempo entre variantes elegibles; los empates se resuelven por identificador ASCII. OMEGA no participa en la selección. El gate se expresa como razón de rendimiento, equivalente a `mediana(t_OMEGA)/mediana(t_referencia)`:
 
-Por tanto, este build no declara `PREFLIGHT=PASS` ni habilita una campaña oficial. Trabajo pendiente de la parte 1: proveedores cronometrados (incluidos `P_instr`, `BW_DRAM` y H-KQ), competencia N=3, integración de bloques medidos y parser/análisis estricto de ventanas acolchadas y derivación S-20 A/B/C/E. La parte 2 continúa siendo residencia A/B/C, barrido W, derivador final y parser estricto integrado de `AUTHORIZED.json`.
+- `G_ggml ≥0,90` para ggml flat/repack.
+- `G_Torch ≥1,20` entre `mm`, `matmul`, `linear` y `mv` donde corresponda.
+- Ambas fronteras MD/35, `m∈{1,4,8,16}`, cada P-core y 8P; no se compensan celdas.
+- `H-KQ`: para OMEGA 8P y `m=1,8`, mediana agregada y mínimo entre medianas por worker `≥33,1 MAC/ns`.
+- `D′_hot=0,5625·P_Ω,8P,m=1/BW_DRAM,8P ≥2,00`; BW usa 256 MiB por worker en 8P, lectura load-only y cuatro cargas vectoriales de 256 bits.
+- `P_instr`: U=8 y cadenas `{1,2,4,8,10,12,14}`. `δ12,14=|P12−P14|/((P12+P14)/2)≤3 %`.
 
-## Contratos y ejecución
+Las filas sin `VALID` no entran en medianas ni razones. Un dato inválido de EMON/frecuencia/potencia/térmica, afinidad, página o cobertura detiene la cualificación en `HOLD_INSTRUMENTATION`. El runner permite un único reintento global con el mismo plan, semilla y orden; el segundo fallo cierra en HOLD. Con instrumento válido, un umbral incumplido devuelve `FALLIDA_CUALIFICACION`, `CLOSED_Q4_256_THIS_I7`, `RESIDENCY=NOT_STARTED`. Plateau inválido devuelve `INVALID_IMPLEMENTATION` y también corta antes de residencia.
 
-`build.cmd` compila y corre QA determinista, plan y corte cerrado. `collector.exe --smoke` genera evidencias nuevas `logs\smoke_*`. `SHA256SUMS_collector.txt` resume los archivos de entrega y evidencias generadas, excepto el propio manifiesto. No se deben inferir throughput ni calificación oficial de los logs SMOKE.
+## Proveedores auxiliares r10
+
+El harness emite `BW_DRAM` y `P_instr` como proveedores nativos, fijados a P-cores. BW exige large pages verificadas para 256 MiB por worker ×8. P_instr ejecuta VPDPBUSD con U=8 y cadenas requeridas. El smoke N=3 enlaza estos proveedores, los cuatro proveedores de competencia, EMON y la derivación de telemetría; la salida queda etiquetada `SMOKE`.
+
+## Evidencia y límites de uso
+
+`--self-test` cubre PASS y cada frontera de gate sobre una matriz oficial sintética completa, H-KQ por mediana y mínimo de worker, plateau, telemetría inválida, segundo intento inválido, cobertura de un P-core/8P, selección ASCII independiente de OMEGA y negativas del parser. La matriz oficial y los proveedores no se han medido en sesión oficial en este r10. No se creó `AUTHORIZED.json`, no se inicia residencia ni se interpretan métricas SMOKE como resultados científicos. La integración de `AUTHORIZED.json` permanece cerrada.

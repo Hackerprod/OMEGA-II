@@ -1,0 +1,360 @@
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5085.847 a=0.992796 f_wall_mhz=5049.207
+PCORE=1 f_active_mhz=5085.154 a=0.992749 f_wall_mhz=5048.280
+PCORE=2 f_active_mhz=5086.959 a=0.992803 f_wall_mhz=5050.346
+PCORE=3 f_active_mhz=5087.588 a=0.992745 f_wall_mhz=5050.679
+PCORE=4 f_active_mhz=5086.207 a=0.992774 f_wall_mhz=5049.455
+PCORE=5 f_active_mhz=5087.053 a=0.992760 f_wall_mhz=5050.220
+PCORE=6 f_active_mhz=5088.881 a=0.992788 f_wall_mhz=5052.180
+PCORE=7 f_active_mhz=5089.075 a=0.992764 f_wall_mhz=5052.251
+P_pkg_w=189.132 u_E_j=6.103515625e-05 dE_counts=25153472 TCC_margin_c=28 thermal_current=False thermal_history=False L2=0.026222231060292367 LLC=0.24915215289081727 EMON_groups=135
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5085.807 a=0.989856 f_wall_mhz=5034.215
+PCORE=1 f_active_mhz=5085.272 a=0.989768 f_wall_mhz=5033.238
+PCORE=2 f_active_mhz=5086.898 a=0.989844 f_wall_mhz=5035.237
+PCORE=3 f_active_mhz=5087.784 a=0.989789 f_wall_mhz=5035.831
+PCORE=4 f_active_mhz=5086.365 a=0.989844 f_wall_mhz=5034.708
+PCORE=5 f_active_mhz=5086.829 a=0.989800 f_wall_mhz=5034.942
+PCORE=6 f_active_mhz=5088.629 a=0.989835 f_wall_mhz=5036.905
+PCORE=7 f_active_mhz=5089.019 a=0.989801 f_wall_mhz=5037.113
+P_pkg_w=188.795 u_E_j=6.103515625e-05 dE_counts=25047834 TCC_margin_c=29 thermal_current=False thermal_history=False L2=0.02586638532068253 LLC=0.2531375988881743 EMON_groups=133
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5085.796 a=0.986100 f_wall_mhz=5015.102
+PCORE=1 f_active_mhz=5085.242 a=0.986087 f_wall_mhz=5014.491
+PCORE=2 f_active_mhz=5086.884 a=0.986115 f_wall_mhz=5016.250
+PCORE=3 f_active_mhz=5087.819 a=0.986064 f_wall_mhz=5016.915
+PCORE=4 f_active_mhz=5086.370 a=0.986066 f_wall_mhz=5015.495
+PCORE=5 f_active_mhz=5086.963 a=0.986080 f_wall_mhz=5016.151
+PCORE=6 f_active_mhz=5088.821 a=0.986082 f_wall_mhz=5017.993
+PCORE=7 f_active_mhz=5089.154 a=0.986061 f_wall_mhz=5018.215
+P_pkg_w=189.343 u_E_j=6.103515625e-05 dE_counts=25035071 TCC_margin_c=25 thermal_current=False thermal_history=False L2=0.025104447545303363 LLC=0.25478908941823863 EMON_groups=131
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.460 a=0.989528 f_wall_mhz=5033.197
+PCORE=1 f_active_mhz=5086.834 a=0.989449 f_wall_mhz=5033.163
+PCORE=2 f_active_mhz=5086.480 a=0.989503 f_wall_mhz=5033.089
+PCORE=3 f_active_mhz=5086.461 a=0.989444 f_wall_mhz=5032.767
+PCORE=4 f_active_mhz=5086.607 a=0.989460 f_wall_mhz=5032.995
+PCORE=5 f_active_mhz=5086.974 a=0.989449 f_wall_mhz=5033.303
+PCORE=6 f_active_mhz=5086.793 a=0.989499 f_wall_mhz=5033.375
+PCORE=7 f_active_mhz=5086.714 a=0.989441 f_wall_mhz=5033.002
+P_pkg_w=192.375 u_E_j=6.103515625e-05 dE_counts=33727476 TCC_margin_c=27 thermal_current=False thermal_history=False L2=0.04949389414454309 LLC=0.0004640767166418407 EMON_groups=178
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.374 a=0.986406 f_wall_mhz=5017.227
+PCORE=1 f_active_mhz=5087.028 a=0.986396 f_wall_mhz=5017.825
+PCORE=2 f_active_mhz=5086.730 a=0.986429 f_wall_mhz=5017.697
+PCORE=3 f_active_mhz=5086.376 a=0.986368 f_wall_mhz=5017.038
+PCORE=4 f_active_mhz=5086.822 a=0.986389 f_wall_mhz=5017.585
+PCORE=5 f_active_mhz=5086.793 a=0.986367 f_wall_mhz=5017.444
+PCORE=6 f_active_mhz=5086.544 a=0.986413 f_wall_mhz=5017.435
+PCORE=7 f_active_mhz=5086.713 a=0.986363 f_wall_mhz=5017.347
+P_pkg_w=194.464 u_E_j=6.103515625e-05 dE_counts=34056737 TCC_margin_c=25 thermal_current=False thermal_history=False L2=0.04974471252401883 LLC=0.0005334517126776773 EMON_groups=176
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.124 a=0.989300 f_wall_mhz=5031.703
+PCORE=1 f_active_mhz=5086.953 a=0.989246 f_wall_mhz=5032.250
+PCORE=2 f_active_mhz=5086.469 a=0.989352 f_wall_mhz=5032.310
+PCORE=3 f_active_mhz=5086.637 a=0.989253 f_wall_mhz=5031.969
+PCORE=4 f_active_mhz=5086.882 a=0.989282 f_wall_mhz=5032.359
+PCORE=5 f_active_mhz=5086.916 a=0.989258 f_wall_mhz=5032.273
+PCORE=6 f_active_mhz=5086.792 a=0.989272 f_wall_mhz=5032.223
+PCORE=7 f_active_mhz=5086.569 a=0.989271 f_wall_mhz=5031.995
+P_pkg_w=194.079 u_E_j=6.103515625e-05 dE_counts=34019230 TCC_margin_c=25 thermal_current=False thermal_history=False L2=0.049668704223180836 LLC=0.00044789588089109365 EMON_groups=178
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.415 a=0.987503 f_wall_mhz=5025.815
+PCORE=1 f_active_mhz=5089.862 a=0.987445 f_wall_mhz=5025.959
+PCORE=2 f_active_mhz=5089.595 a=0.987486 f_wall_mhz=5025.906
+PCORE=3 f_active_mhz=5089.638 a=0.987417 f_wall_mhz=5025.596
+PCORE=4 f_active_mhz=5089.690 a=0.987446 f_wall_mhz=5025.795
+PCORE=5 f_active_mhz=5089.791 a=0.987446 f_wall_mhz=5025.897
+PCORE=6 f_active_mhz=5089.627 a=0.987417 f_wall_mhz=5025.585
+PCORE=7 f_active_mhz=5089.690 a=0.987430 f_wall_mhz=5025.710
+P_pkg_w=196.550 u_E_j=6.103515625e-05 dE_counts=36141526 TCC_margin_c=19 thermal_current=False thermal_history=False L2=0.026073203468432744 LLC=0.0964265976126495 EMON_groups=188
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.376 a=0.990942 f_wall_mhz=5043.274
+PCORE=1 f_active_mhz=5089.887 a=0.990909 f_wall_mhz=5043.616
+PCORE=2 f_active_mhz=5089.603 a=0.990910 f_wall_mhz=5043.340
+PCORE=3 f_active_mhz=5089.633 a=0.990888 f_wall_mhz=5043.256
+PCORE=4 f_active_mhz=5089.667 a=0.990978 f_wall_mhz=5043.748
+PCORE=5 f_active_mhz=5089.762 a=0.990932 f_wall_mhz=5043.608
+PCORE=6 f_active_mhz=5089.625 a=0.990887 f_wall_mhz=5043.245
+PCORE=7 f_active_mhz=5089.692 a=0.990888 f_wall_mhz=5043.315
+P_pkg_w=196.767 u_E_j=6.103515625e-05 dE_counts=36303411 TCC_margin_c=17 thermal_current=False thermal_history=False L2=0.027482176939557915 LLC=0.11071600723532862 EMON_groups=185
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.380 a=0.988635 f_wall_mhz=5031.537
+PCORE=1 f_active_mhz=5089.877 a=0.988603 f_wall_mhz=5031.866
+PCORE=2 f_active_mhz=5089.606 a=0.988599 f_wall_mhz=5031.580
+PCORE=3 f_active_mhz=5089.631 a=0.988582 f_wall_mhz=5031.520
+PCORE=4 f_active_mhz=5089.688 a=0.988609 f_wall_mhz=5031.712
+PCORE=5 f_active_mhz=5089.790 a=0.988610 f_wall_mhz=5031.817
+PCORE=6 f_active_mhz=5089.609 a=0.988585 f_wall_mhz=5031.513
+PCORE=7 f_active_mhz=5089.700 a=0.988589 f_wall_mhz=5031.620
+P_pkg_w=196.744 u_E_j=6.103515625e-05 dE_counts=36223494 TCC_margin_c=17 thermal_current=False thermal_history=False L2=0.026188696943431743 LLC=0.09819625134466266 EMON_groups=187
+BLOCK provider=omega cell=smoke_uniform_m1 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.478 a=0.976020 f_wall_mhz=4967.431
+PCORE=1 f_active_mhz=5089.895 a=0.975939 f_wall_mhz=4967.425
+PCORE=2 f_active_mhz=5089.606 a=0.976032 f_wall_mhz=4967.620
+PCORE=3 f_active_mhz=5089.631 a=0.975986 f_wall_mhz=4967.410
+PCORE=4 f_active_mhz=5089.692 a=0.976019 f_wall_mhz=4967.634
+PCORE=5 f_active_mhz=5089.786 a=0.975990 f_wall_mhz=4967.582
+PCORE=6 f_active_mhz=5089.617 a=0.975987 f_wall_mhz=4967.401
+PCORE=7 f_active_mhz=5089.692 a=0.975992 f_wall_mhz=4967.499
+P_pkg_w=205.347 u_E_j=6.103515625e-05 dE_counts=8229799 TCC_margin_c=20 thermal_current=False thermal_history=False L2=0.00014181534510953928 LLC=0.2507426737733492 EMON_groups=41
+BLOCK provider=omega cell=smoke_uniform_m1 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.482 a=0.977885 f_wall_mhz=4976.930
+PCORE=1 f_active_mhz=5089.883 a=0.977805 f_wall_mhz=4976.911
+PCORE=2 f_active_mhz=5089.603 a=0.977857 f_wall_mhz=4976.902
+PCORE=3 f_active_mhz=5089.631 a=0.977865 f_wall_mhz=4976.969
+PCORE=4 f_active_mhz=5089.695 a=0.977864 f_wall_mhz=4977.028
+PCORE=5 f_active_mhz=5089.799 a=0.977881 f_wall_mhz=4977.220
+PCORE=6 f_active_mhz=5089.629 a=0.977867 f_wall_mhz=4976.980
+PCORE=7 f_active_mhz=5089.688 a=0.977883 f_wall_mhz=4977.119
+P_pkg_w=209.983 u_E_j=6.103515625e-05 dE_counts=8434280 TCC_margin_c=19 thermal_current=False thermal_history=False L2=0.0001585652337464378 LLC=0.2903931183911429 EMON_groups=41
+BLOCK provider=omega cell=smoke_uniform_m1 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.486 a=0.964975 f_wall_mhz=4911.229
+PCORE=1 f_active_mhz=5089.889 a=0.964806 f_wall_mhz=4910.754
+PCORE=2 f_active_mhz=5089.605 a=0.964992 f_wall_mhz=4911.430
+PCORE=3 f_active_mhz=5089.633 a=0.964941 f_wall_mhz=4911.197
+PCORE=4 f_active_mhz=5089.685 a=0.964960 f_wall_mhz=4911.343
+PCORE=5 f_active_mhz=5089.795 a=0.964945 f_wall_mhz=4911.373
+PCORE=6 f_active_mhz=5089.625 a=0.964940 f_wall_mhz=4911.183
+PCORE=7 f_active_mhz=5089.689 a=0.964959 f_wall_mhz=4911.339
+P_pkg_w=206.409 u_E_j=6.103515625e-05 dE_counts=8176634 TCC_margin_c=20 thermal_current=False thermal_history=False L2=0.00015459622715982105 LLC=0.25867044395794037 EMON_groups=40
+BLOCK provider=P_instr cell=P_instr_U8_c1 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.299 a=0.954012 f_wall_mhz=4855.252
+PCORE=1 f_active_mhz=5089.852 a=0.954088 f_wall_mhz=4856.166
+PCORE=2 f_active_mhz=5089.605 a=0.954016 f_wall_mhz=4855.565
+PCORE=3 f_active_mhz=5089.643 a=0.954013 f_wall_mhz=4855.587
+PCORE=4 f_active_mhz=5089.253 a=0.954027 f_wall_mhz=4855.285
+PCORE=5 f_active_mhz=5089.781 a=0.954018 f_wall_mhz=4855.744
+PCORE=6 f_active_mhz=5089.618 a=0.954019 f_wall_mhz=4855.594
+PCORE=7 f_active_mhz=5089.704 a=0.954016 f_wall_mhz=4855.657
+P_pkg_w=87.398 u_E_j=6.103515625e-05 dE_counts=2799853 TCC_margin_c=53 thermal_current=False thermal_history=False L2=0.2333304642900947 LLC=0.2658860172693108 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c1 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.497 a=0.948687 f_wall_mhz=4828.342
+PCORE=1 f_active_mhz=5089.857 a=0.948566 f_wall_mhz=4828.063
+PCORE=2 f_active_mhz=5089.616 a=0.948685 f_wall_mhz=4828.442
+PCORE=3 f_active_mhz=5089.631 a=0.948642 f_wall_mhz=4828.238
+PCORE=4 f_active_mhz=5089.681 a=0.948681 f_wall_mhz=4828.484
+PCORE=5 f_active_mhz=5089.773 a=0.948645 f_wall_mhz=4828.389
+PCORE=6 f_active_mhz=5089.616 a=0.948644 f_wall_mhz=4828.231
+PCORE=7 f_active_mhz=5089.711 a=0.948645 f_wall_mhz=4828.328
+P_pkg_w=86.913 u_E_j=6.103515625e-05 dE_counts=2768759 TCC_margin_c=54 thermal_current=False thermal_history=False L2=0.23571271080583395 LLC=0.24587976685857607 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c1 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.472 a=0.955980 f_wall_mhz=4865.435
+PCORE=1 f_active_mhz=5089.851 a=0.956029 f_wall_mhz=4866.046
+PCORE=2 f_active_mhz=5089.601 a=0.955863 f_wall_mhz=4864.959
+PCORE=3 f_active_mhz=5089.646 a=0.955888 f_wall_mhz=4865.130
+PCORE=4 f_active_mhz=5089.683 a=0.956542 f_wall_mhz=4868.497
+PCORE=5 f_active_mhz=5089.781 a=0.956372 f_wall_mhz=4867.725
+PCORE=6 f_active_mhz=5089.625 a=0.955919 f_wall_mhz=4865.272
+PCORE=7 f_active_mhz=5089.716 a=0.955932 f_wall_mhz=4865.421
+P_pkg_w=87.487 u_E_j=6.103515625e-05 dE_counts=2806678 TCC_margin_c=54 thermal_current=False thermal_history=False L2=0.23807660290477167 LLC=0.24871483036615477 EMON_groups=33
+BLOCK provider=P_instr cell=P_instr_U8_c2 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.148 a=0.983555 f_wall_mhz=5005.459
+PCORE=1 f_active_mhz=5089.848 a=0.983404 f_wall_mhz=5005.377
+PCORE=2 f_active_mhz=5089.602 a=0.983477 f_wall_mhz=5005.506
+PCORE=3 f_active_mhz=5089.636 a=0.983396 f_wall_mhz=5005.127
+PCORE=4 f_active_mhz=5089.700 a=0.983442 f_wall_mhz=5005.427
+PCORE=5 f_active_mhz=5089.792 a=0.988048 f_wall_mhz=5028.959
+PCORE=6 f_active_mhz=5089.615 a=0.983395 f_wall_mhz=5005.103
+PCORE=7 f_active_mhz=5089.705 a=0.983402 f_wall_mhz=5005.224
+P_pkg_w=92.099 u_E_j=6.103515625e-05 dE_counts=3041570 TCC_margin_c=51 thermal_current=False thermal_history=False L2=0.23197915369623176 LLC=0.29460088063692114 EMON_groups=33
+BLOCK provider=P_instr cell=P_instr_U8_c2 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.282 a=0.947925 f_wall_mhz=4824.258
+PCORE=1 f_active_mhz=5089.753 a=0.947875 f_wall_mhz=4824.448
+PCORE=2 f_active_mhz=5089.605 a=0.947873 f_wall_mhz=4824.300
+PCORE=3 f_active_mhz=5089.628 a=0.947895 f_wall_mhz=4824.431
+PCORE=4 f_active_mhz=5089.680 a=0.947874 f_wall_mhz=4824.374
+PCORE=5 f_active_mhz=5089.787 a=0.947877 f_wall_mhz=4824.494
+PCORE=6 f_active_mhz=5089.620 a=0.947869 f_wall_mhz=4824.294
+PCORE=7 f_active_mhz=5089.715 a=0.947897 f_wall_mhz=4824.527
+P_pkg_w=92.885 u_E_j=6.103515625e-05 dE_counts=2956616 TCC_margin_c=50 thermal_current=False thermal_history=False L2=0.22561076126100102 LLC=0.21295492291094942 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c2 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.101 a=0.945281 f_wall_mhz=4810.629
+PCORE=1 f_active_mhz=5089.860 a=0.945179 f_wall_mhz=4810.830
+PCORE=2 f_active_mhz=5089.606 a=0.945229 f_wall_mhz=4810.841
+PCORE=3 f_active_mhz=5089.541 a=0.945196 f_wall_mhz=4810.614
+PCORE=4 f_active_mhz=5089.688 a=0.945223 f_wall_mhz=4810.891
+PCORE=5 f_active_mhz=5089.781 a=0.945186 f_wall_mhz=4810.789
+PCORE=6 f_active_mhz=5089.625 a=0.945184 f_wall_mhz=4810.632
+PCORE=7 f_active_mhz=5089.713 a=0.945213 f_wall_mhz=4810.864
+P_pkg_w=93.478 u_E_j=6.103515625e-05 dE_counts=2967095 TCC_margin_c=51 thermal_current=False thermal_history=False L2=0.22274398244190283 LLC=0.21379042024305261 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c4 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.243 a=0.952088 f_wall_mhz=4845.406
+PCORE=1 f_active_mhz=5089.871 a=0.952056 f_wall_mhz=4845.841
+PCORE=2 f_active_mhz=5089.481 a=0.952049 f_wall_mhz=4845.433
+PCORE=3 f_active_mhz=5089.635 a=0.952039 f_wall_mhz=4845.532
+PCORE=4 f_active_mhz=5089.670 a=0.952056 f_wall_mhz=4845.651
+PCORE=5 f_active_mhz=5089.796 a=0.952059 f_wall_mhz=4845.785
+PCORE=6 f_active_mhz=5089.637 a=0.952038 f_wall_mhz=4845.526
+PCORE=7 f_active_mhz=5089.710 a=0.952035 f_wall_mhz=4845.583
+P_pkg_w=109.413 u_E_j=6.103515625e-05 dE_counts=3497833 TCC_margin_c=46 thermal_current=False thermal_history=False L2=0.24534008778783553 LLC=0.2676600047548136 EMON_groups=33
+BLOCK provider=P_instr cell=P_instr_U8_c4 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.401 a=0.963019 f_wall_mhz=4901.187
+PCORE=1 f_active_mhz=5089.856 a=0.963046 f_wall_mhz=4901.766
+PCORE=2 f_active_mhz=5089.607 a=0.963029 f_wall_mhz=4901.438
+PCORE=3 f_active_mhz=5089.637 a=0.962971 f_wall_mhz=4901.172
+PCORE=4 f_active_mhz=5089.680 a=0.962996 f_wall_mhz=4901.339
+PCORE=5 f_active_mhz=5089.783 a=0.962977 f_wall_mhz=4901.343
+PCORE=6 f_active_mhz=5089.639 a=0.962987 f_wall_mhz=4901.258
+PCORE=7 f_active_mhz=5089.717 a=0.962970 f_wall_mhz=4901.244
+P_pkg_w=103.651 u_E_j=6.103515625e-05 dE_counts=3351466 TCC_margin_c=47 thermal_current=False thermal_history=False L2=0.23085794636002827 LLC=0.18482260962189465 EMON_groups=33
+BLOCK provider=P_instr cell=P_instr_U8_c4 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.278 a=0.946764 f_wall_mhz=4818.345
+PCORE=1 f_active_mhz=5089.859 a=0.946752 f_wall_mhz=4818.836
+PCORE=2 f_active_mhz=5089.451 a=0.946708 f_wall_mhz=4818.225
+PCORE=3 f_active_mhz=5089.636 a=0.946705 f_wall_mhz=4818.385
+PCORE=4 f_active_mhz=5089.677 a=0.946716 f_wall_mhz=4818.479
+PCORE=5 f_active_mhz=5089.786 a=0.946716 f_wall_mhz=4818.584
+PCORE=6 f_active_mhz=5089.629 a=0.946707 f_wall_mhz=4818.387
+PCORE=7 f_active_mhz=5089.713 a=0.946708 f_wall_mhz=4818.473
+P_pkg_w=104.330 u_E_j=6.103515625e-05 dE_counts=3316591 TCC_margin_c=48 thermal_current=False thermal_history=False L2=0.24823715466058632 LLC=0.27446146789355697 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c8 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.419 a=0.954695 f_wall_mhz=4858.844
+PCORE=1 f_active_mhz=5089.879 a=0.954670 f_wall_mhz=4859.157
+PCORE=2 f_active_mhz=5089.590 a=0.954700 f_wall_mhz=4859.031
+PCORE=3 f_active_mhz=5089.638 a=0.954673 f_wall_mhz=4858.938
+PCORE=4 f_active_mhz=5089.667 a=0.954676 f_wall_mhz=4858.983
+PCORE=5 f_active_mhz=5089.787 a=0.954665 f_wall_mhz=4859.043
+PCORE=6 f_active_mhz=5089.621 a=0.954646 f_wall_mhz=4858.789
+PCORE=7 f_active_mhz=5089.704 a=0.954647 f_wall_mhz=4858.871
+P_pkg_w=111.682 u_E_j=6.103515625e-05 dE_counts=3580296 TCC_margin_c=45 thermal_current=False thermal_history=False L2=0.23725963691109822 LLC=0.21954367416042578 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c8 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.162 a=0.955374 f_wall_mhz=4862.054
+PCORE=1 f_active_mhz=5089.867 a=0.955331 f_wall_mhz=4862.509
+PCORE=2 f_active_mhz=5089.595 a=0.955347 f_wall_mhz=4862.330
+PCORE=3 f_active_mhz=5089.638 a=0.955338 f_wall_mhz=4862.326
+PCORE=4 f_active_mhz=5089.654 a=0.955372 f_wall_mhz=4862.514
+PCORE=5 f_active_mhz=5089.790 a=0.955356 f_wall_mhz=4862.562
+PCORE=6 f_active_mhz=5089.623 a=0.955335 f_wall_mhz=4862.295
+PCORE=7 f_active_mhz=5089.705 a=0.955350 f_wall_mhz=4862.451
+P_pkg_w=115.358 u_E_j=6.103515625e-05 dE_counts=3700686 TCC_margin_c=44 thermal_current=False thermal_history=False L2=0.22542064884269247 LLC=0.22155355666653545 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c8 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.164 a=0.950789 f_wall_mhz=4838.723
+PCORE=1 f_active_mhz=5089.850 a=0.950678 f_wall_mhz=4838.808
+PCORE=2 f_active_mhz=5089.605 a=0.950707 f_wall_mhz=4838.723
+PCORE=3 f_active_mhz=5089.635 a=0.950671 f_wall_mhz=4838.567
+PCORE=4 f_active_mhz=5089.643 a=0.950714 f_wall_mhz=4838.797
+PCORE=5 f_active_mhz=5089.789 a=0.950684 f_wall_mhz=4838.782
+PCORE=6 f_active_mhz=5089.627 a=0.950670 f_wall_mhz=4838.555
+PCORE=7 f_active_mhz=5089.711 a=0.950687 f_wall_mhz=4838.721
+P_pkg_w=112.583 u_E_j=6.103515625e-05 dE_counts=3594041 TCC_margin_c=44 thermal_current=False thermal_history=False L2=0.23393361604174256 LLC=0.2256144459086745 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c10 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.387 a=0.956247 f_wall_mhz=4866.711
+PCORE=1 f_active_mhz=5089.846 a=0.956217 f_wall_mhz=4866.996
+PCORE=2 f_active_mhz=5089.603 a=0.956241 f_wall_mhz=4866.884
+PCORE=3 f_active_mhz=5089.631 a=0.956206 f_wall_mhz=4866.735
+PCORE=4 f_active_mhz=5089.654 a=0.956209 f_wall_mhz=4866.773
+PCORE=5 f_active_mhz=5089.792 a=0.956215 f_wall_mhz=4866.936
+PCORE=6 f_active_mhz=5089.626 a=0.956202 f_wall_mhz=4866.708
+PCORE=7 f_active_mhz=5089.707 a=0.956202 f_wall_mhz=4866.790
+P_pkg_w=114.249 u_E_j=6.103515625e-05 dE_counts=3668443 TCC_margin_c=43 thermal_current=False thermal_history=False L2=0.23565758916321436 LLC=0.24215073964390968 EMON_groups=33
+BLOCK provider=P_instr cell=P_instr_U8_c10 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.316 a=0.963054 f_wall_mhz=4901.284
+PCORE=1 f_active_mhz=5089.840 a=0.963005 f_wall_mhz=4901.541
+PCORE=2 f_active_mhz=5089.591 a=0.963033 f_wall_mhz=4901.442
+PCORE=3 f_active_mhz=5089.640 a=0.962998 f_wall_mhz=4901.313
+PCORE=4 f_active_mhz=5089.660 a=0.963032 f_wall_mhz=4901.503
+PCORE=5 f_active_mhz=5089.784 a=0.962995 f_wall_mhz=4901.439
+PCORE=6 f_active_mhz=5089.627 a=0.962993 f_wall_mhz=4901.275
+PCORE=7 f_active_mhz=5089.713 a=0.962995 f_wall_mhz=4901.369
+P_pkg_w=114.698 u_E_j=6.103515625e-05 dE_counts=3709107 TCC_margin_c=42 thermal_current=False thermal_history=False L2=0.22688183028324665 LLC=0.20119069781578758 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c10 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.188 a=0.963240 f_wall_mhz=4902.108
+PCORE=1 f_active_mhz=5089.848 a=0.963244 f_wall_mhz=4902.766
+PCORE=2 f_active_mhz=5089.523 a=0.963193 f_wall_mhz=4902.194
+PCORE=3 f_active_mhz=5089.637 a=0.963229 f_wall_mhz=4902.487
+PCORE=4 f_active_mhz=5089.661 a=0.963226 f_wall_mhz=4902.495
+PCORE=5 f_active_mhz=5089.781 a=0.963221 f_wall_mhz=4902.586
+PCORE=6 f_active_mhz=5089.617 a=0.963225 f_wall_mhz=4902.445
+PCORE=7 f_active_mhz=5089.707 a=0.963194 f_wall_mhz=4902.376
+P_pkg_w=118.990 u_E_j=6.103515625e-05 dE_counts=3848430 TCC_margin_c=41 thermal_current=False thermal_history=False L2=0.19596292796910394 LLC=0.2551894111548746 EMON_groups=33
+BLOCK provider=P_instr cell=P_instr_U8_c12 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.442 a=0.980578 f_wall_mhz=4990.597
+PCORE=1 f_active_mhz=5089.843 a=0.980473 f_wall_mhz=4990.456
+PCORE=2 f_active_mhz=5089.612 a=0.980577 f_wall_mhz=4990.755
+PCORE=3 f_active_mhz=5089.637 a=0.980545 f_wall_mhz=4990.621
+PCORE=4 f_active_mhz=5089.661 a=0.980581 f_wall_mhz=4990.822
+PCORE=5 f_active_mhz=5089.771 a=0.980510 f_wall_mhz=4990.573
+PCORE=6 f_active_mhz=5089.630 a=0.980536 f_wall_mhz=4990.564
+PCORE=7 f_active_mhz=5089.699 a=0.980536 f_wall_mhz=4990.633
+P_pkg_w=115.052 u_E_j=6.103515625e-05 dE_counts=3788203 TCC_margin_c=42 thermal_current=False thermal_history=False L2=0.2331594590535988 LLC=0.21677793052882413 EMON_groups=33
+BLOCK provider=P_instr cell=P_instr_U8_c12 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.527 a=0.947262 f_wall_mhz=4821.113
+PCORE=1 f_active_mhz=5089.854 a=0.947233 f_wall_mhz=4821.279
+PCORE=2 f_active_mhz=5089.476 a=0.947227 f_wall_mhz=4820.890
+PCORE=3 f_active_mhz=5089.643 a=0.947228 f_wall_mhz=4821.052
+PCORE=4 f_active_mhz=5089.649 a=0.947228 f_wall_mhz=4821.058
+PCORE=5 f_active_mhz=5089.788 a=0.947227 f_wall_mhz=4821.186
+PCORE=6 f_active_mhz=5089.625 a=0.947226 f_wall_mhz=4821.024
+PCORE=7 f_active_mhz=5089.701 a=0.947231 f_wall_mhz=4821.123
+P_pkg_w=115.990 u_E_j=6.103515625e-05 dE_counts=3689194 TCC_margin_c=44 thermal_current=False thermal_history=False L2=0.22342934582598348 LLC=0.17771153288962963 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c12 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.310 a=0.961227 f_wall_mhz=4891.982
+PCORE=1 f_active_mhz=5089.794 a=0.961124 f_wall_mhz=4891.924
+PCORE=2 f_active_mhz=5089.599 a=0.961194 f_wall_mhz=4892.093
+PCORE=3 f_active_mhz=5089.638 a=0.961167 f_wall_mhz=4891.991
+PCORE=4 f_active_mhz=5089.668 a=0.965635 f_wall_mhz=4914.764
+PCORE=5 f_active_mhz=5089.785 a=0.961171 f_wall_mhz=4892.153
+PCORE=6 f_active_mhz=5089.621 a=0.961167 f_wall_mhz=4891.974
+PCORE=7 f_active_mhz=5089.699 a=0.961181 f_wall_mhz=4892.122
+P_pkg_w=116.595 u_E_j=6.103515625e-05 dE_counts=3763371 TCC_margin_c=42 thermal_current=False thermal_history=False L2=0.2072308677962068 LLC=0.2284448394652517 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c14 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.172 a=0.955531 f_wall_mhz=4862.862
+PCORE=1 f_active_mhz=5089.865 a=0.955494 f_wall_mhz=4863.334
+PCORE=2 f_active_mhz=5089.470 a=0.955491 f_wall_mhz=4862.945
+PCORE=3 f_active_mhz=5089.636 a=0.955486 f_wall_mhz=4863.076
+PCORE=4 f_active_mhz=5089.655 a=0.959584 f_wall_mhz=4883.949
+PCORE=5 f_active_mhz=5089.789 a=0.955491 f_wall_mhz=4863.245
+PCORE=6 f_active_mhz=5089.631 a=0.955487 f_wall_mhz=4863.075
+PCORE=7 f_active_mhz=5089.698 a=0.955490 f_wall_mhz=4863.155
+P_pkg_w=135.478 u_E_j=6.103515625e-05 dE_counts=4347265 TCC_margin_c=37 thermal_current=False thermal_history=False L2=0.2371447341806555 LLC=0.29094410841081014 EMON_groups=32
+BLOCK provider=P_instr cell=P_instr_U8_c14 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.279 a=0.940584 f_wall_mhz=4786.893
+PCORE=1 f_active_mhz=5089.745 a=0.940562 f_wall_mhz=4787.222
+PCORE=2 f_active_mhz=5089.595 a=0.940560 f_wall_mhz=4787.069
+PCORE=3 f_active_mhz=5089.636 a=0.940531 f_wall_mhz=4786.960
+PCORE=4 f_active_mhz=5089.658 a=0.945106 f_wall_mhz=4810.265
+PCORE=5 f_active_mhz=5089.789 a=0.940534 f_wall_mhz=4787.120
+PCORE=6 f_active_mhz=5089.631 a=0.940530 f_wall_mhz=4786.952
+PCORE=7 f_active_mhz=5089.703 a=0.940534 f_wall_mhz=4787.038
+P_pkg_w=131.864 u_E_j=6.103515625e-05 dE_counts=4164634 TCC_margin_c=39 thermal_current=False thermal_history=False L2=0.22518460843425692 LLC=0.21482223416822846 EMON_groups=31
+BLOCK provider=P_instr cell=P_instr_U8_c14 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.191 a=0.970703 f_wall_mhz=4940.095
+PCORE=1 f_active_mhz=5089.799 a=0.970640 f_wall_mhz=4940.362
+PCORE=2 f_active_mhz=5089.584 a=0.970669 f_wall_mhz=4940.300
+PCORE=3 f_active_mhz=5089.619 a=0.970665 f_wall_mhz=4940.317
+PCORE=4 f_active_mhz=5089.662 a=0.975353 f_wall_mhz=4964.216
+PCORE=5 f_active_mhz=5089.802 a=0.970629 f_wall_mhz=4940.310
+PCORE=6 f_active_mhz=5089.630 a=0.970627 f_wall_mhz=4940.131
+PCORE=7 f_active_mhz=5089.687 a=0.970629 f_wall_mhz=4940.197
+P_pkg_w=132.971 u_E_j=6.103515625e-05 dE_counts=4333918 TCC_margin_c=38 thermal_current=False thermal_history=False L2=0.2308994749116613 LLC=0.24824223121603622 EMON_groups=33
+BLOCK provider=BW_DRAM cell=BW_DRAM_256MiB_8P replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.312 a=0.986266 f_wall_mhz=5019.414
+PCORE=1 f_active_mhz=5089.760 a=0.986407 f_wall_mhz=5020.576
+PCORE=2 f_active_mhz=5089.593 a=0.986298 f_wall_mhz=5019.855
+PCORE=3 f_active_mhz=5089.636 a=0.986232 f_wall_mhz=5019.562
+PCORE=4 f_active_mhz=5089.430 a=1.001440 f_wall_mhz=5096.760
+PCORE=5 f_active_mhz=5089.757 a=0.986242 f_wall_mhz=5019.733
+PCORE=6 f_active_mhz=5089.632 a=0.986260 f_wall_mhz=5019.699
+PCORE=7 f_active_mhz=5089.710 a=0.986258 f_wall_mhz=5019.765
+P_pkg_w=96.498 u_E_j=6.103515625e-05 dE_counts=3195476 TCC_margin_c=53 thermal_current=False thermal_history=False L2=0.7890443603069912 LLC=0.9755461840046714 EMON_groups=32
+BLOCK provider=BW_DRAM cell=BW_DRAM_256MiB_8P replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5089.516 a=0.962242 f_wall_mhz=4897.345
+PCORE=1 f_active_mhz=5089.781 a=0.961602 f_wall_mhz=4894.345
+PCORE=2 f_active_mhz=5089.548 a=0.961718 f_wall_mhz=4894.708
+PCORE=3 f_active_mhz=5089.633 a=0.961614 f_wall_mhz=4894.262
+PCORE=4 f_active_mhz=5050.138 a=0.976190 f_wall_mhz=4929.896
+PCORE=5 f_active_mhz=5089.712 a=0.961646 f_wall_mhz=4894.504
+PCORE=6 f_active_mhz=5089.638 a=0.961635 f_wall_mhz=4894.374
+PCORE=7 f_active_mhz=5089.713 a=0.961652 f_wall_mhz=4894.532
+P_pkg_w=95.609 u_E_j=6.103515625e-05 dE_counts=3089088 TCC_margin_c=53 thermal_current=False thermal_history=False L2=0.7891872017915611 LLC=0.9741039390155286 EMON_groups=32
+BLOCK provider=BW_DRAM cell=BW_DRAM_256MiB_8P replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5088.947 a=0.970900 f_wall_mhz=4940.858
+PCORE=1 f_active_mhz=5089.859 a=0.970788 f_wall_mhz=4941.175
+PCORE=2 f_active_mhz=5089.553 a=0.970984 f_wall_mhz=4941.873
+PCORE=3 f_active_mhz=5089.637 a=0.970908 f_wall_mhz=4941.569
+PCORE=4 f_active_mhz=5089.604 a=0.971010 f_wall_mhz=4942.055
+PCORE=5 f_active_mhz=5089.782 a=0.971023 f_wall_mhz=4942.294
+PCORE=6 f_active_mhz=5089.628 a=0.970945 f_wall_mhz=4941.750
+PCORE=7 f_active_mhz=5089.707 a=0.971083 f_wall_mhz=4942.529
+P_pkg_w=95.731 u_E_j=6.103515625e-05 dE_counts=3122313 TCC_margin_c=53 thermal_current=False thermal_history=False L2=0.788749704092325 LLC=0.9735407324119876 EMON_groups=33

@@ -1,0 +1,25 @@
+QUALIFIER_R10_SYNTHETIC_QA PASS
+case=all_pass state=QUALIFIED_FOR_RESIDENCY campaign=OPEN reason=all_gates_pass tries=1 retry_remaining=0 residency=NOT_STARTED continue_residency=NO PASS
+case=G_ggml_below_0.90 state=FALLIDA_CUALIFICACION campaign=CLOSED_Q4_256_THIS_I7 reason=G_ggml_below_0.9 tries=1 retry_remaining=0 residency=NOT_STARTED continue_residency=NO PASS
+case=G_Torch_below_1.20 state=FALLIDA_CUALIFICACION campaign=CLOSED_Q4_256_THIS_I7 reason=G_Torch_below_1.2 tries=1 retry_remaining=0 residency=NOT_STARTED continue_residency=NO PASS
+case=H_KQ_median_below_33.1 state=FALLIDA_CUALIFICACION campaign=CLOSED_Q4_256_THIS_I7 reason=H_KQ_median_below_33.1 tries=1 retry_remaining=0 residency=NOT_STARTED continue_residency=NO PASS
+case=H_KQ_worker_min_below_33.1 state=FALLIDA_CUALIFICACION campaign=CLOSED_Q4_256_THIS_I7 reason=H_KQ_worker_min_below_33.1 tries=1 retry_remaining=0 residency=NOT_STARTED continue_residency=NO PASS
+case=D_prime_below_2.00 state=FALLIDA_CUALIFICACION campaign=CLOSED_Q4_256_THIS_I7 reason=D_prime_hot_below_2.0 tries=1 retry_remaining=0 residency=NOT_STARTED continue_residency=NO PASS
+case=plateau_unstable state=INVALID_IMPLEMENTATION campaign=CLOSED_Q4_256_THIS_I7 reason=P_instr plateau unqualified tries=1 retry_remaining=0 residency=NOT_STARTED continue_residency=NO PASS
+case=telemetry_invalid state=HOLD_INSTRUMENTATION campaign=CLOSED_Q4_256_THIS_I7 reason=instrument_invalid tries=1 retry_remaining=1 residency=NOT_STARTED continue_residency=NO PASS
+case=second_attempt_invalid state=HOLD_INSTRUMENTATION campaign=CLOSED_Q4_256_THIS_I7 reason=instrument_invalid tries=2 retry_remaining=0 residency=NOT_STARTED continue_residency=NO PASS
+reference_selector=independent_of_OMEGA median_tie=ASCII_ggml_flat PASS
+worker_coverage=P-core_one_worker_and_8P_eight_workers PASS
+official_case=all_gates_pass state=QUALIFIED_FOR_RESIDENCY failed_gates=none residency=NOT_STARTED PASS
+official_case=G_ggml_below_0.90 state=FALLIDA_CUALIFICACION failed_gates=G_ggml residency=NOT_STARTED PASS
+official_case=G_Torch_below_1.20 state=FALLIDA_CUALIFICACION failed_gates=G_Torch residency=NOT_STARTED PASS
+official_case=H_KQ_median_below_33.1 state=FALLIDA_CUALIFICACION failed_gates=H-KQ_median residency=NOT_STARTED PASS
+official_case=H_KQ_worker_min_below_33.1 state=FALLIDA_CUALIFICACION failed_gates=H-KQ_worker_min residency=NOT_STARTED PASS
+official_case=D_prime_below_2.00 state=FALLIDA_CUALIFICACION failed_gates=D_prime_hot residency=NOT_STARTED PASS
+official_case=plateau_unstable state=INVALID_IMPLEMENTATION failed_gates=P_instr_plateau_delta12_14 residency=NOT_STARTED PASS
+official_case=telemetry_invalid state=HOLD_INSTRUMENTATION failed_gates=none residency=NOT_STARTED PASS
+strict_json case=duplicate_key rejected=PASS
+strict_json case=nan rejected=PASS
+strict_json case=overflow rejected=PASS
+strict_json case=bad_number rejected=PASS
+strict_json case=trailing rejected=PASS

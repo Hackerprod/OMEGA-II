@@ -1,0 +1,4 @@
+attempt=1
+status=INVALID_INSTRUMENTATION
+reason=EMON exited before harness start: exit=
+residency=NOT_STARTED

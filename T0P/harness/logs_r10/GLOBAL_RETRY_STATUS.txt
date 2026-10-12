@@ -1,0 +1,5 @@
+attempt2=C:\Projects\OMEGA\Ejercise\T0P\harness\logs_r10\smoke_20261012_000740_attempt2
+state=HOLD_INSTRUMENTATION
+campaign=CLOSED_Q4_256_THIS_I7
+residency=NOT_STARTED
+reason=EMON exited before harness start: exit=

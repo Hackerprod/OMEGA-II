@@ -1,0 +1,1 @@
+QUALIFIER_R10_SYNTHETIC_QA PASS cases=9 strict_json_negatives=5 evidence=C:\Projects\OMEGA\Ejercise\T0P\collector\logs_r10\synthetic_qa_r10.txt

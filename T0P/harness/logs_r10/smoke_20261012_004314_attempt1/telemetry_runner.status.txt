@@ -1,0 +1,1 @@
+TELEMETRY_DERIVATION_EXIT=0 invalid_samples_recorded=true

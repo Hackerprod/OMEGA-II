@@ -1,0 +1,24 @@
+﻿{
+    "label":  "SMOKE",
+    "official_measurement":  false,
+    "metrics_used":  false,
+    "N":  3,
+    "unit":  "smoke_uniform_m1",
+    "plan_sha256":  "39856a658f1ba7e70846870fc372c7f82042680d9d508f54805a4a433b78290c",
+    "R_common":  717041,
+    "provider_rates_median":  {
+                                  "ggml_repack":  86921.9142745,
+                                  "ggml_flat":  62689.915212,
+                                  "torch_mm":  66411.87861,
+                                  "omega":  284513.8013205
+                              },
+    "measurement_seconds":  99.013,
+    "estimated_plan_seconds":  174.013,
+    "safety_margin":  0.5,
+    "required_capture_seconds":  261.019,
+    "groups_per_second":  16.363636363636363,
+    "emon_groups":  4272,
+    "estimated_raw_bytes":  8552197,
+    "free_bytes_before":  13953269760,
+    "edp":  "C:\\Projects\\OMEGA\\Ejercise\\T0P\\harness\\logs_r10\\smoke_20261012_004314_attempt1\\emon_joint_qualification_r10.edp"
+}
