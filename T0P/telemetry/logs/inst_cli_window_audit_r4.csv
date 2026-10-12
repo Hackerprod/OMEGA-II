@@ -1,0 +1,2 @@
+group,window_start_offset_ms_from_loop_start,window_end_offset_ms_from_loop_start,window_ms,loop_overlap_ms,loop_coverage_fraction_of_window,INST_RETIRED_ANY_LP0_full_window,count_times_coverage_not_valid_as_loop_count
+163,-16.028400,46.971600,63.000000,19.857900,0.315204762,306408787,96581508.752

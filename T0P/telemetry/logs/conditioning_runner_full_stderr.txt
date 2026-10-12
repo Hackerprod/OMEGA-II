@@ -1,0 +1,9 @@
+Joint EMON capture failed with exit ; see C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\conditioning_joint_raw.txt / 
+C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\conditioning_joint_stderr.txt
+En C:\Projects\OMEGA\Ejercise\T0P\telemetry\scripts\run_joint_conditioning.ps1: 40 Car cter: 26
++ ... Exit -ne 0){throw "Joint EMON capture failed with exit $collectorExit ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Joint EMON capt...oint_stderr.txt:String) [], RuntimeException
+    + FullyQualifiedErrorId : Joint EMON capture failed with exit ; see C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\ 
+   conditioning_joint_raw.txt / C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\conditioning_joint_stderr.txt
+ 

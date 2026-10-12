@@ -1,0 +1,3 @@
+EMONConfig=0
+EMONStart=0
+D2_API intervals=31 cores=8 tsc_mhz_calibrated=2112.003049 event_group=THREAD,REF_TSC; raw=logs\D2_raw.csv; verdict=PASS

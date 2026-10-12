@@ -1,0 +1,2 @@
+DUMMY=TRUE; throughput=NOT_REPORTED
+LP=0; affinity_ok=1; iterations=100000000; expected_instructions=300000004; measured_INST_RETIRED_ANY=296029764; relative_error=0.0132341331568782; threshold=0.01; marker_status=0

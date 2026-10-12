@@ -1,0 +1,8 @@
+﻿DUMMY=TRUE; eight workers pinned to P LP 0,2,4,6,8,10,12,14; no OMEGA
+D2 limit: 0.98 <= delta REF_TSC/(calibrated f_TSC * monotonic QPC elapsed) <= 1.02 for each core and interval.
+Intervals failing on every P-core: 13 and 28 (zero-based); counts 29/31 pass and 2/31 fail per core.
+Interval 13 REF_TSC ratio: about 0.0090553; interval 28: about 0.086833.
+API timestamps monotonic in order: false across 62 endpoints; empirical affine fit from API timestamp to QPC slope=0.00503279270185526 QPC ticks/API tick; implied API rate=1,986,968,387.614 ticks/s; QPC offset=172,273,998,700.953 ticks.
+Max fit residual=1031.971884 ms; max QPC bracket=1.006 ms; conservative max residual+half-bracket=1032.474884 ms (>1 ms D1). API documentation does not specify a stable epoch/unit; observed discontinuity and nonmonotonic order prevent qualification.
+D2 overall=FAIL; source verdict from original capture said PASS due an implementation bug resetting all_ok each interval. Raw rows are authoritative; source was corrected before final build.
+See D2_raw.csv, D2_console.txt, D2_stderr.txt and api_timestamp_probe.csv.

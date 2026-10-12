@@ -1,0 +1,11 @@
+﻿HELPER_EXIT=0
+EMON_EXIT=UNAVAILABLE_IN_POWERSHELL; capture completed by 600 groups/footer/stderr check
+EMON_GROUPS=600
+EMON_EXPECTED_GROUPS=600
+EMON_FOOTER=True
+EMON_STDERR_BYTES=0
+HELPER_STDERR_BYTES=0
+RAW=logs/inst_cli_raw_r5.txt
+MARKERS=logs/inst_cli_markers_r5.csv
+MAP=logs/inst_cli_qpc_utc_map_r5.csv
+DUMMY=TRUE; expected=60000000004; N=20000000000; R=5

@@ -1,0 +1,10 @@
+﻿TCC_PREFLIGHT_EXIT=REUSED_EXISTING_VALID_LOG
+DUMMY_EXIT=0
+EMON_JOINT_EXIT=
+DUMMY_DURATION_SECONDS=180
+DUMMY_MAP=C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\conditioning_qpc_utc_map.csv
+EMON_CONFIG=C:\Projects\OMEGA\Ejercise\T0P\telemetry\reader\emon_joint_qualification.edp
+EMON_RAW=C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\conditioning_joint_raw.txt
+EMON_STDERR=C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\conditioning_joint_stderr.txt
+TCC_PREFLIGHT_RAW=C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\tcc_preflight_raw.txt
+DUMMY=TRUE; throughput not recorded

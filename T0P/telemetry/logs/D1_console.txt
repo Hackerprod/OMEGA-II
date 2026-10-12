@@ -1,0 +1,2 @@
+D1 N=248 per_core=31 min_duration_s=2 configured_mhz=2112.000000000 mean_relative_error=0.000001443589 max_relative_error=0.000001486423 threshold=0.001 result=PASS
+D1_RAW=logs\D1_raw.csv

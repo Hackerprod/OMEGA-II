@@ -1,0 +1,18 @@
+﻿DUMMY=TRUE; no throughput used
+EMON groups parsed=0; windows overlapping conditioning block=0
+conditioning QPC seconds=180.000507
+f_TSC calibrated from D1=2112.0030488599 MHz; configured=2112 MHz
+QPC-UTC map samples=11772; max linear residual=0.08845 ms; max bracket=0.0817 ms; civil millisecond rounding=0.5 ms; conservative endpoint uncertainty=0.6293 ms
+energy 0x606 values=; energy_unit_exponent=-1; u_E_J=NaN; 0x611 label=INTERVAL_DELTA
+TCC 0x1A2 uniform across P/E LP=True; TCC_target_C=100
+STATES=THREAD_REF_TSC=FAIL; L2_DEMAND_DATA_READ=FAIL; LLC_DEMAND_DATA_READ=FAIL; IA32_THERM_STATUS_19C=FAIL; MSR_PKG_ENERGY_STATUS_611=FAIL; IA32_PACKAGE_THERM_STATUS_1B1=FAIL
+POWER_BIN_MEAN_W=NaN; POWER_BIN_RANGE_FRACTION=NaN; POWER_PASS=False
+Frequency checks:
+P0: n=3 fmin=NaN fmax=NaN mean=NaN range=NaN PASS=False
+P1: n=3 fmin=NaN fmax=NaN mean=NaN range=NaN PASS=False
+P2: n=3 fmin=NaN fmax=NaN mean=NaN range=NaN PASS=False
+P3: n=3 fmin=NaN fmax=NaN mean=NaN range=NaN PASS=False
+P4: n=3 fmin=NaN fmax=NaN mean=NaN range=NaN PASS=False
+P5: n=3 fmin=NaN fmax=NaN mean=NaN range=NaN PASS=False
+P6: n=3 fmin=NaN fmax=NaN mean=NaN range=NaN PASS=False
+P7: n=3 fmin=NaN fmax=NaN mean=NaN range=NaN PASS=False

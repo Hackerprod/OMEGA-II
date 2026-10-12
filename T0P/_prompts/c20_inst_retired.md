@@ -1,0 +1,10 @@
+Responde en español, breve. Mismas reglas que c19 (solo T0P\telemetry\, copias _r5, sin tocar umbrales, sin OMEGA/ggml/Torch, sin git, sin Sol). NO termines hasta ejecutar o dar el bloqueo.
+
+Contexto: D1, D2 (ratio 0,994–0,995) y D3 pasan con el lector CLI conjunto. Falla solo INST_RETIRED: tu bucle de 3N+4 instrucciones duró 19,9 ms y solo cubrió 31,5 % de UNA ventana EMON de ~63 ms, así que la comparación de ventana completa es un defecto del DISEÑO de la prueba (región más corta que una ventana), no del lector.
+
+TAREA (una sola pasada): rediseña la prueba D2-INST_RETIRED sin cambiar el criterio (±1 %): 
+- Bucle conocido (3N+4, desensamblado ya guardado) en un P-core fijado, con N tal que la región dure >= 3 s (>= ~45 ventanas), repetido R=5 veces dentro de un mismo bloque de captura EMON separadas por pausas, cada una con marcas QPC de inicio y fin.
+- Para cada repetición calcula INST_RETIRED.ANY del LP fijado con ventanas COMPLETAMENTE contenidas en la región más el recuento de bordes: o bien (a) suma de ventanas contenidas contra rendimiento esperado = instrucciones exactas × (tiempo cubierto/duración total de región) con la incertidumbre de que el ritmo del bucle es constante (declárala), o bien (b) captura de la región completa más una captura BASE idéntica sin bucle (mismo LP, misma duración, misma configuración) y diferencia del conteo (instrucciones de fondo restadas). Usa (b) como criterio principal y (a) como diagnóstico; declara el método antes de ver el resultado y no lo cambies.
+- Reporta las R repeticiones completas (error % de cada una), el conteo de fondo del LP en la captura base, las instrucciones del hermano SMT si se miden aparte, y el estado: PASS si las R repeticiones están dentro de ±1 %, si no HOLD_INSTRUMENTATION con la causa cuantificada. Sin elegir la mejor.
+Actualiza QUALIFICATION_RESULTS.md, READER_SPEC.md (estado global del lector: QUALIFIED si D1–D3 e INST_RETIRED pasan), regenera SHA256SUMS_telemetry.txt (100 %), limpia temporales.
+Al final: error % de cada repetición, fondo, método, estado global.

@@ -1,0 +1,2 @@
+ Assembling: C:\Projects\OMEGA\Ejercise\T0P\telemetry\reader\known_loop.asm
+telemetry_reader.cpp

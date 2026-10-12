@@ -1,0 +1,1 @@
+DUMMY=TRUE; throughput=NOT_REPORTED; expected=300000004; sink=100000000; loop_qpc_start=203357670204; loop_qpc_end=203357868783; loop_s=0.019857900; main_affinity=PASS; other_P_workers=PASS; LPs=2,4,6,8,10,12,14; map=logs\inst_cli_qpc_utc_map_r4.csv

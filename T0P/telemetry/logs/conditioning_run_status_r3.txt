@@ -1,0 +1,10 @@
+﻿DUMMY_EXIT=0
+EMON_JOINT_EXIT=
+EMON_STATUS=COMPLETE_BY_3600_GROUPS_AND_TIMING_FOOTER
+EMON_GROUPS=3600
+DUMMY_DURATION_SECONDS=180
+DUMMY_MAP=C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\conditioning_qpc_utc_map_r3.csv
+EMON_CONFIG=C:\Projects\OMEGA\Ejercise\T0P\telemetry\reader\emon_joint_qualification.edp
+EMON_RAW=C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\conditioning_joint_raw_r3.txt
+EMON_STDERR=C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\conditioning_joint_stderr_r3.txt
+DUMMY=TRUE; throughput not recorded

@@ -1,0 +1,13 @@
+﻿TCC_PREFLIGHT_EXIT=REUSED_EXISTING_VALID_LOG
+DUMMY_EXIT=0
+EMON_JOINT_EXIT=UNAVAILABLE (PowerShell Process.ExitCode was null after completed output)
+EMON_STATUS=COMPLETE_BY_OUTPUT
+EMON_GROUPS=3600 data groups plus EMON timing footer
+DUMMY_DURATION_SECONDS=180.000507
+DUMMY_MAP=C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\conditioning_qpc_utc_map.csv
+EMON_CONFIG=C:\Projects\OMEGA\Ejercise\T0P\telemetry\reader\emon_joint_qualification.edp
+EMON_RAW=C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\conditioning_joint_raw.txt
+EMON_STDERR empty; 0 bytes
+TCC_PREFLIGHT_RAW=C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\tcc_preflight_raw.txt
+DUMMY=TRUE; throughput not recorded
+Parser analysis=conditioning_analysis_temporal_status.txt; all mandatory channels FAIL due max gap 1687.253 ms

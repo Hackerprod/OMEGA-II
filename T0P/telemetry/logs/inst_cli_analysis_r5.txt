@@ -1,0 +1,12 @@
+﻿Method principal fijado antes de medir: (b), suma de todas las ventanas EMON que intersectan cada región QPC, menos el ritmo BASE LP0 por segundo multiplicado por el span EMON seleccionado; BASE es la región vacía del mismo LP/configuración y duración media R.
+Diagnóstico (a): solo ventanas completamente contenidas; esperado exacto × span contenido/duración región. Supone ritmo de instrucciones constante; incertidumbre no acotada porque el bucle es una ráfaga/ritmo temporal no medido dentro de la ventana.
+QPC frequency=10000000; QPC-UTC fit max residual ms=0.00565; max bracket ms=0.0011; header timestamp rounding=0.5ms; conservative U_ms=0.5062
+Raw groups with timestamps=600; windows reconstructed=599; window duration median ms=63
+BASE: duration_s=4.0164185; overlap_windows=67; overlap_span_s=4.075; LP0_INST_RETIRED_count=1855169176; LP0_background_rate_inst_s=455256239.509202
+R repetitions within ±1%=0/5; state=HOLD_INSTRUMENTATION
+SMT sibling counts separately measured=NO
+REP1: duration_s=4.0059124; overlap_windows=66; contained=64; coverage_pct=98.105; b_net=58311294475; b_error_pct=-2.814509; a_error_pct=0.243662
+REP2: duration_s=4.0068479; overlap_windows=66; contained=64; coverage_pct=98.3567; b_net=58273921778; b_error_pct=-2.876797; a_error_pct=0.241766
+REP3: duration_s=4.0241107; overlap_windows=66; contained=64; coverage_pct=97.4625; b_net=58434669784; b_error_pct=-2.608884; a_error_pct=0.430862
+REP4: duration_s=4.0280486; overlap_windows=67; contained=65; coverage_pct=98.112; b_net=58506349259; b_error_pct=-2.489418; a_error_pct=0.452167
+REP5: duration_s=4.0171731; overlap_windows=66; contained=64; coverage_pct=99.1742; b_net=58387717571; b_error_pct=-2.687137; a_error_pct=0.402442

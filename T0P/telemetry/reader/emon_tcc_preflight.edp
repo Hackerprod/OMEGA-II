@@ -1,0 +1,4 @@
+-q -c -v -experimental -t0.050 -l2
+-C (
+MSR_EVENT:msr=0x1A2:type=STATIC:scope=THREAD
+)

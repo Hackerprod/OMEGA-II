@@ -1,0 +1,3 @@
+﻿Error: The -er-cpu-absolute-tsc switch is invalid.
+Emon options are incorrect; collection cannot continue.
+Please try again.

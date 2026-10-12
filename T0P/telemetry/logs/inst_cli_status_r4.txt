@@ -1,0 +1,10 @@
+HELPER_STATUS=OUTPUT_AND_AFFINITY_AND_SINK_PASS; process ExitCode unavailable in PowerShell
+EMON_STATUS=COMPLETE_BY_240_GROUPS_AND_TIMING_FOOTER; process ExitCode unavailable in PowerShell
+EMON_GROUPS=240
+TIMING_FOOTER=TRUE
+EMON_CAPTURE_COMPLETE=TRUE
+EXPECTED_CAPTURE_GROUPS=240
+RAW=logs/inst_cli_raw_r4.txt
+MAP=logs/inst_cli_qpc_utc_map_r4.csv
+HELPER_OUT=logs/inst_cli_helper_r4.txt
+DUMMY=TRUE; throughput not reported

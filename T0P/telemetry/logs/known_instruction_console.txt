@@ -1,0 +1,1 @@
+INST_RETIRED known=300000004 measured=294811093 relative_error=0.017296370 threshold=0.01 result=FAIL/HOLD raw=logs\known_instruction_result.txt sink=100000000

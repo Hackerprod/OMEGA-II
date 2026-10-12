@@ -1,0 +1,9 @@
+TCC preflight failed; see C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\tcc_preflight_raw.txt / 
+C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\tcc_preflight_stderr.txt
+En C:\Projects\OMEGA\Ejercise\T0P\telemetry\scripts\run_joint_conditioning.ps1: 24 Car cter: 96
++ ... eralPath $status;throw "TCC preflight failed; see $preOut / $preErr"}
++                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (TCC preflight f...ight_stderr.txt:String) [], RuntimeException
+    + FullyQualifiedErrorId : TCC preflight failed; see C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\tcc_preflight_ra 
+   w.txt / C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\tcc_preflight_stderr.txt
+ 

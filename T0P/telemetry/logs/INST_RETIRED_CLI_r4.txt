@@ -1,0 +1,8 @@
+DUMMY=TRUE; native known_loop.asm; one execution; EMON CLI joint group; threshold +/-1%; no MSR writes; no OMEGA/ggml/Torch.
+Expected instructions (3N+4): 300000004; N=100000000; sink=100000000.
+QPC loop duration: 19.857900 ms; EMON CLI alignment U approximately 0.503 ms; one sample window overlaps loop.
+Full EMON group=163: duration=63.000000 ms; QPC overlap=19.857900 ms; coverage fraction=0.315204762 (31.5205%).
+INST_RETIRED.ANY LP0 over complete overlapping EMON group (includes outside region): 306408787; raw-vs-expected error=+2.136261%.
+Outside-loop part of that group: 43.142100 ms. Adjacent/non-loop LP0 group count median=83328; max across remaining 239 groups=959523; median-rate estimate for outside section=57062.6 counts (diagnostic only).
+Coverage-proportional arithmetic count=96581508.8; error=-67.806164%, INVALID estimator because instructions are bursty within the sample window.
+Conclusion: loop is shorter than the CLI cadence (19.858 ms vs 63 ms group); no EMON window is fully contained in the marked region. QPC-bounded region lies in one full group, preserving a 31.52% temporal coverage factor, but the factor cannot isolate the loop count. Raw group exceeds known count by 2.14%; adjacent background is small but does not rule out within-window SEP/EMON or host interference. INST_RETIRED criterion not qualified: HOLD_INSTRUMENTATION.

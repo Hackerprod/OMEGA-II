@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<root><emon_config>
+  <emon_event>CPU_CLK_UNHALTED.THREAD</emon_event>
+  <emon_event>CPU_CLK_UNHALTED.REF_TSC</emon_event>
+  <emon_event>INST_RETIRED.ANY</emon_event>
+  <emon_event>L2_RQSTS.DEMAND_DATA_RD_MISS</emon_event>
+  <emon_event>L2_RQSTS.ALL_DEMAND_DATA_RD</emon_event>
+  <emon_event>OFFCORE_REQUESTS.L3_MISS_DEMAND_DATA_RD</emon_event>
+  <emon_event>OFFCORE_REQUESTS.DEMAND_DATA_RD</emon_event>
+  <emon_event>MSR_EVENT:msr=0x606:type=STATIC:scope=PACKAGE</emon_event>
+  <emon_event>MSR_EVENT:msr=0x611:type=FREERUN:scope=PACKAGE</emon_event>
+  <emon_event>MSR_EVENT:msr=0x19C:type=STATIC:scope=THREAD</emon_event>
+  <emon_event>MSR_EVENT:msr=0x1B1:type=STATIC:scope=PACKAGE</emon_event>
+  <emon_event>MSR_EVENT:msr=0x1A2:type=STATIC:scope=THREAD</emon_event>
+  <duration>0.05</duration><start_paused>0</start_paused>
+  <output_file>STDOUT</output_file><print_system_time>0</print_system_time>
+  <additional_options>-experimental</additional_options>
+  <read_counts_on_current_cpu>0</read_counts_on_current_cpu>
+</emon_config></root>

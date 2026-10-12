@@ -1,0 +1,7 @@
+REP1 expected=60000000004 sink=20000000000 qpc_start=208311125448 qpc_end=208351184572 duration_s=4.005912400
+REP2 expected=60000000004 sink=20000000000 qpc_start=208358753520 qpc_end=208398821999 duration_s=4.006847900
+REP3 expected=60000000004 sink=20000000000 qpc_start=208406416969 qpc_end=208446658076 duration_s=4.024110700
+REP4 expected=60000000004 sink=20000000000 qpc_start=208454234489 qpc_end=208494514975 duration_s=4.028048600
+REP5 expected=60000000004 sink=20000000000 qpc_start=208502043653 qpc_end=208542215384 duration_s=4.017173100
+BASE qpc_start=208549844352 qpc_end=208590008537 duration_s=4.016418500 target_mean_loop_s=4.016418500
+DUMMY=TRUE; throughput=NOT_REPORTED; expected=60000000004; reps=5; N=20000000000; main_LP=0; affinity=PASS; other_P_worker_LPs=2,4,6,8,10,12,14; worker_affinity=PASS; SMT_sibling_counts=NOT_MEASURED_SEPARATELY; BASE=empty fixed-LP region, target duration=mean of five REP durations; pauses_ms=750

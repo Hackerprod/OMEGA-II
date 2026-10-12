@@ -1,0 +1,22 @@
+﻿DUMMY=TRUE; no throughput used
+REGRESSION gap=1.687253ms uncertainty=0.6293ms upper=2.945853 ms expect=2.945853ms <=20ms PASS=True
+EMON raw groups=3600; accepted complete positive-duration groups=3600; rejected for missing timestamp/events or nonpositive duration=0
+windows overlapping conditioning block=2910; complete groups outside DUMMY block=690; no in-block row silently discarded
+maximum observed interval gap=1.621412 ms; before group=127 stamp=10/11/2026 19:19:15.308 end_qpc=195600690000; after group=128 stamp=10/11/2026 19:19:15.373 start_qpc=195600706214.12
+conditioning QPC seconds=180.0050039
+f_TSC calibrated from D1=2112.0030488599 MHz; configured=2112 MHz
+QPC-UTC map samples=10917; max linear residual=0.06955 ms; max bracket=0.1221 ms; civil millisecond rounding=0.5 ms; conservative endpoint uncertainty=0.6306 ms
+energy 0x606 values=658947; energy_unit_exponent=14; u_E_J=6.103515625E-05; 0x611 label=INTERVAL_DELTA
+TCC 0x1A2 uniform across P/E LP=True; TCC_target_C=100
+STATES=THREAD_REF_TSC=PASS; L2_DEMAND_DATA_READ=PASS; LLC_DEMAND_DATA_READ=PASS; IA32_THERM_STATUS_19C=PASS; MSR_PKG_ENERGY_STATUS_611=PASS; IA32_PACKAGE_THERM_STATUS_1B1=PASS
+POWER_BIN_W=79.9059252364523,80.4717474153063,80.0219375154099
+POWER_BIN_MEAN_W=80.1332033890562; POWER_BIN_RANGE_FRACTION=0.00706102033768557; POWER_PASS=True
+Frequency checks:
+P0: n=3 fmin=5089.39055906375 fmax=5089.40482465099 mean=5089.39890464021 range=2.80300041528239E-06 PASS=True
+P1: n=3 fmin=5089.83992716298 fmax=5089.8831874585 mean=5089.85729475669 range=8.49931403109113E-06 PASS=True
+P2: n=3 fmin=5089.58814537354 fmax=5089.60929080835 mean=5089.59843637606 range=4.15463716311772E-06 PASS=True
+P3: n=3 fmin=5089.62700685854 fmax=5089.63313689762 mean=5089.63032764497 range=1.20441735016846E-06 PASS=True
+P4: n=3 fmin=5089.57115421351 fmax=5089.59109577742 mean=5089.58427208358 range=3.91811253126526E-06 PASS=True
+P5: n=3 fmin=5089.69783071008 fmax=5089.71748567656 mean=5089.70573867464 range=3.86170978973325E-06 PASS=True
+P6: n=3 fmin=5089.61028385244 fmax=5089.62268954118 mean=5089.61670172253 range=2.43745049248635E-06 PASS=True
+P7: n=3 fmin=5089.71351066201 fmax=5089.71577173918 mean=5089.71428046097 range=4.44244420705371E-07 PASS=True
