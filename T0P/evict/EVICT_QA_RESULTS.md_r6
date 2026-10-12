@@ -1,0 +1,231 @@
+﻿# EVICT_QA_RESULTS — cualificación por bloques con márgenes
+
+## Resultado de la única repetición nueva
+
+**EVICTION_QUALIFIED.** Se ejecutó una sola repetición con EMON CLI oficial (`-collect-edp` y `emon_joint_qualification.edp`), salida conjunta completa: 3.600/3.600 grupos, exit 0. La captura, las marcas QPC/UTC, el mapa de reloj, la salida cruda, los resultados y el analizador reproducible están en `capture_blocks_r2/`.
+
+Método oficial de esta cualificación: para cada condición se mantuvo la carga de forma continua entre `[t_pad_ini,t_pad_fin]`; la región medida `[t_ini,t_fin]` queda dentro, con **m_ini,m_fin ≥ 0,200 s** de la misma condición. El harness fijó 0,200 s por lado para las condiciones P y 0,250 s para `arch_evict8`; márgenes mínimos medidos: **200,026 ms** (P) y **250,375/253,450 ms** (inicio/final arquitectónico). Los márgenes no forman parte de las muestras de rendimiento ni del denominador de cobertura. Ventana incluida si solapa la región y está completamente dentro del acolchado; cruce excluido y reportado, sin interpolar. Ninguna ventana cruzó el acolchado en esta ejecución. Esto difiere de llamar “bloque” a la propia región medida: la región es interior, y solo las ventanas EMON completas protegidas por la misma condición pueden cubrirla. El módulo común queda documentado para ratificación de Sol.
+
+La unión de ventanas completas da cobertura inferior **100,000 %** en todas las filas; U=**0,892900 ms** (residuo máximo 0,200300 ms + medio bracket 0,192600 ms + cuantización civil 0,500000 ms). Hueco superior máximo **3,519 ms**; duración de ventana máxima **78,660 ms**. Todas las condiciones tienen 41–59 ventanas y duración medida ≥2,5 s. Umbrales S-20 y físicos permanecen inmutables.
+
+El método de lectura en tiempo real queda **solo como diagnóstico**, nunca como sincronización oficial. El análisis previo de la tubería mostró alternancia de desfase +2/−60 ms, p95 64 ms y máximo 81 ms. En esta captura diagnóstica, la mayor demora detectada fue 143,628 ms; la etiqueta de mediana emitida por el harness no se calcula sobre una serie ordenada y no se usa. Los límites oficiales de esta repetición proceden de la región acolchada y del alineamiento offline EMON civil↔QPC; no del instante en que llega una línea a `stdout`.
+
+## Resultados por P-core y condición
+
+`ratio` es mediana de los 31 cocientes pareados; se repite en las filas de condición para facilitar auditoría. En `arch_evict8` no aplica ratio. Fracción LLC = suma de misses L3 / demandas de lectura para el par LP del P indicado y las ventanas listadas. `cold_clflush_diag`/`hot_clflush_diag` son diagnóstico.
+
+| P | Condición | Cobertura | Hueco ms | Ventanas | Ratio | Fracción LLC | Estado |
+|---:|---|---:|---:|---:|---:|---:|---|
+| 0 | cold_selected | 100% | 3.008 | 46 | 6.412808 | 0.935232 | EVICTION_QUALIFIED |
+| 0 | hot_selected | 100% | 3.256 | 43 | 6.412808 | 0.004528 | EVICTION_QUALIFIED |
+| 0 | cold_clflush_diag | 100% | 3.043 | 58 | 6.3882 | 0.933665 | EVICTION_QUALIFIED |
+| 0 | hot_clflush_diag | 100% | 3.41 | 42 | 6.3882 | 0.003593 | EVICTION_QUALIFIED |
+| 1 | cold_selected | 100% | 3.152 | 46 | 6.462507 | 0.936462 | EVICTION_QUALIFIED |
+| 1 | hot_selected | 100% | 3.519 | 43 | 6.462507 | 0.003515 | EVICTION_QUALIFIED |
+| 1 | cold_clflush_diag | 100% | 3.291 | 59 | 6.466499 | 0.937697 | EVICTION_QUALIFIED |
+| 1 | hot_clflush_diag | 100% | 2.937 | 42 | 6.466499 | 0.006961 | EVICTION_QUALIFIED |
+| 2 | cold_selected | 100% | 3.179 | 46 | 6.837959 | 0.936956 | EVICTION_QUALIFIED |
+| 2 | hot_selected | 100% | 3.186 | 43 | 6.837959 | 0.002633 | EVICTION_QUALIFIED |
+| 2 | cold_clflush_diag | 100% | 3.363 | 58 | 6.750848 | 0.928849 | EVICTION_QUALIFIED |
+| 2 | hot_clflush_diag | 100% | 2.89 | 42 | 6.750848 | 0.003751 | EVICTION_QUALIFIED |
+| 3 | cold_selected | 100% | 3.154 | 46 | 6.910052 | 0.941217 | EVICTION_QUALIFIED |
+| 3 | hot_selected | 100% | 3.191 | 41 | 6.910052 | 0.001964 | EVICTION_QUALIFIED |
+| 3 | cold_clflush_diag | 100% | 3.25 | 57 | 6.782818 | 0.92519 | EVICTION_QUALIFIED |
+| 3 | hot_clflush_diag | 100% | 3.278 | 43 | 6.782818 | 0.00636 | EVICTION_QUALIFIED |
+| 4 | cold_selected | 100% | 3.126 | 44 | 7.102952 | 0.923824 | EVICTION_QUALIFIED |
+| 4 | hot_selected | 100% | 3.122 | 42 | 7.102952 | 0.006039 | EVICTION_QUALIFIED |
+| 4 | cold_clflush_diag | 100% | 3.3 | 58 | 7.099247 | 0.909836 | EVICTION_QUALIFIED |
+| 4 | hot_clflush_diag | 100% | 3.352 | 42 | 7.099247 | 0.005689 | EVICTION_QUALIFIED |
+| 5 | cold_selected | 100% | 3.117 | 46 | 7.009334 | 0.94162 | EVICTION_QUALIFIED |
+| 5 | hot_selected | 100% | 3.205 | 42 | 7.009334 | 0.003764 | EVICTION_QUALIFIED |
+| 5 | cold_clflush_diag | 100% | 3.427 | 57 | 6.987736 | 0.923071 | EVICTION_QUALIFIED |
+| 5 | hot_clflush_diag | 100% | 2.989 | 42 | 6.987736 | 0.003229 | EVICTION_QUALIFIED |
+| 6 | cold_selected | 100% | 3.289 | 46 | 6.978457 | 0.959142 | EVICTION_QUALIFIED |
+| 6 | hot_selected | 100% | 3.232 | 42 | 6.978457 | 0.001933 | EVICTION_QUALIFIED |
+| 6 | cold_clflush_diag | 100% | 3.011 | 56 | 6.88008 | 0.948994 | EVICTION_QUALIFIED |
+| 6 | hot_clflush_diag | 100% | 3.415 | 42 | 6.88008 | 0.001688 | EVICTION_QUALIFIED |
+| 7 | cold_selected | 100% | 3.16 | 47 | 6.824909 | 0.963489 | EVICTION_QUALIFIED |
+| 7 | hot_selected | 100% | 3.203 | 43 | 6.824909 | 0.001708 | EVICTION_QUALIFIED |
+| 7 | cold_clflush_diag | 100% | 2.963 | 57 | 6.830523 | 0.946812 | EVICTION_QUALIFIED |
+| 7 | hot_clflush_diag | 100% | 2.988 | 42 | 6.830523 | 0.00164 | EVICTION_QUALIFIED |
+| 0 | arch_evict8 | 100% | 3.045 | 41 | N/A | 0.016253 | EVICTION_QUALIFIED |
+| 1 | arch_evict8 | 100% | 3.045 | 41 | N/A | 0.020048 | EVICTION_QUALIFIED |
+| 2 | arch_evict8 | 100% | 3.045 | 41 | N/A | 0.015314 | EVICTION_QUALIFIED |
+| 3 | arch_evict8 | 100% | 3.045 | 41 | N/A | 0.011115 | EVICTION_QUALIFIED |
+| 4 | arch_evict8 | 100% | 3.045 | 41 | N/A | 0.030019 | EVICTION_QUALIFIED |
+| 5 | arch_evict8 | 100% | 3.045 | 41 | N/A | 0.023948 | EVICTION_QUALIFIED |
+| 6 | arch_evict8 | 100% | 3.045 | 41 | N/A | 0.014253 | EVICTION_QUALIFIED |
+| 7 | arch_evict8 | 100% | 3.045 | 41 | N/A | 0.010838 | EVICTION_QUALIFIED |
+
+## QA y bloqueos
+
+La selección congelada fue CLFLUSHOPT por CPUID.07H:EBX[23]; CLFLUSH quedó diagnóstico. N=31 frío/caliente por cada P-core (LP 0,2,4,6,8,10,12,14). Ratios seleccionados: 6,412808–7,102952 (mínimo exigido 1,50). LLC fría seleccionada: 0,923824–0,963489 (mínimo 0,90); LLC caliente: 0,001708–0,006039 (máximo 0,10). La repetición arquitectónica ejecutó 8 shards × O=1024, 294.912 B por shard, ocho workers concurrentes; barrera y mapa de líneas pasaron. LLC por P en `arch_evict8`: 0,010838–0,030019; ratio N/A.
+
+Pruebas deterministas del módulo común: cruce de condición excluido/reportado, margen insuficiente, hueco real >20 ms, cobertura <95 %, duplicado y orden inválido: PASS. También timeout, EMON detenido, marca duplicada/fuera de orden y retardo sobre presupuesto del diagnóstico de sincronización: PASS como rechazos. Resultados: `T0P/telemetry/reader/sync/sync_qa_raw_r1.txt`; matriz calculada en `capture_blocks_r2/padded_block_analysis.csv`.
+
+No hay bloqueos de instrumentación ni de criterio físico en esta repetición. Estado global: **EVICTION_QUALIFIED**. No se relajó S-20 ni ningún umbral.
+
+## Revisión D8/D13 r3 — estado actual
+
+El resultado anterior es histórico y corresponde al control DUMMY por core; no cualifica la recarga concurrente de ocho shards arquitectónicos. El nuevo runner `evict_qualification_r3.exe` y el analizador R2 compilan, y sus pruebas sintéticas pasan. La ejecución requerida queda bloqueada antes de la asignación de memoria large-page:
+
+```text
+evict_qualification_r3.exe --qualification
+TOPOLOGY=PASS P_LP=0,2,4,6,8,10,12,14 workers=8 SMT_pairs=verified
+HOLD_EVICTION_NOT_QUALIFIED cause=large_page_allocation_failed_win32=1314
+```
+
+`SeLockMemoryPrivilege` aparece deshabilitado en el token. No se habilitó ni se cambió política de seguridad. Por ello no hay contadores ni latencias arquitectónicas nuevas, y el estado de D8 es `HOLD_EVICTION_NOT_QUALIFIED`. La revalidación final debe repetir el mismo comando con `--revalidation`, pero requiere resolver ese permiso sin modificar seguridad desde este proceso.
+
+El build del runner compiló y enlazó `evict.cpp` (exit 0). Hashes: fuente `3e6b714aeb76401018420d10918e8c91ee2b21f8c84646dff8ac8d86f2c77d2b`, objeto enlazado `2cfc3df0251115cc137995fac0c5c27c561e15cb2c85516e57acbc69d144d2a7`, ejecutable `51f095e47495a3ae57aa31def155b64f55350b78588f6a8e844f77393c46bba8`. La ejecución inicial se detuvo en 0,24 s tras verificar topología y calibrar TSC/QPC (2.112.002.476 Hz frente a QPC de 10 MHz); no asignó ningún shard ni inició captura EMON. La prueba de análisis de huecos terminó en menos de 1 s.
+
+La revalidación final se ejecutó aparte con el mismo binario: `evict_qualification_r3.exe --revalidation`; también terminó con exit 2 y `HOLD_EVICTION_NOT_QUALIFIED cause=large_page_allocation_failed_win32=1314`. Su salida completa está en `revalidation_block_r3.txt`.
+
+La comprobación de integración también queda abierta: el harness mantiene `flush_region()` local en `T0P/harness/residency_r11.cpp` y su `build_r11.cmd` no enlaza `evict.cpp`. No se editaron esos archivos por el límite explícito de escritura.
+
+El analizador R2 pasó: `ANALYZER_SELF_TEST=PASS`, incluyendo 1.000/2.500 ms = 40 %, hueco interno, hueco de extremo y contracción individual antes de la unión.
+
+En D13, el manifiesto histórico `_r1/_r2` conserva la expectativa SHA-256 `a754eb7347d544a57861970f099c493786916ce965c7c187e51c7fdd14a2b4a2`; el archivo actual de raíz, última modificación 2026-10-11 21:12:40.864, tiene `6abc88caac18cb38ce33b12786bcf53cb349f1af1f03fd699e7d0d3be611ef00` y es la versión más reciente disponible. La búsqueda de todos los `eviction_windows.csv` bajo T0P no encontró los bytes `a754…`; se preservaron el manifiesto histórico y una copia `_r3` del archivo actual. No se fabricó el contenido histórico que falta. El manifiesto nuevo refleja los archivos presentes, pero no recupera esa versión histórica.
+
+
+
+## D8 r4 — cualificación arquitectónica y revalidación (2026-10-12)
+
+**Estado: `HOLD_EVICTION_NOT_QUALIFIED`.** Se habilitó `SeLockMemoryPrivilege` al inicio de `main()` mediante `t0common::enable_large_page_privilege()`, antes de cualquier reserva. Ambas ejecuciones imprimieron `LARGE_PAGE_PRIVILEGE=AVAILABLE enabled=true` y `LARGE_PAGE_MINIMUM_BYTES=2097152`; no volvió a aparecer `large_page_allocation_failed_win32=1314`. Las ocho reservas large-page se asignaron y cada shard verificó 4.608/4.608 líneas. Topología/afinidad: ocho workers fijados y verificados en LP 0,2,4,6,8,10,12,14. No se cambió seguridad ni se necesitó `whoami /priv` porque 1314 no persistió.
+
+Se hizo una cualificación y una revalidación final, cada una con el runner r4 y EMON CLI conjunto (`emon_joint_qualification.edp`): 3.600 grupos, pie de captura válido, sin stderr; el runner registró latencias por worker/core y márgenes activos de la misma condición ≥0,200 s. Ventanas de 50 ms nominales; límites analizados con contracción individual R2, sin PASS automático. Umbrales sin cambios: ratio ≥1,50, LLC fría ≥0,90, LLC caliente ≤0,10, cobertura C_low ≥95 %, hueco ≤20 ms, ≥20 ventanas, ventana ≤100 ms y región ≥2,5 s.
+
+| P | LP | Ratio Q/R | LLC fría Q/R | LLC caliente Q/R | C_low fría/caliente Q | C_low fría/caliente R | Hueco frío/caliente Q (ms) | Hueco frío/caliente R (ms) | Ventanas fría/caliente Q/R | Estado frío/caliente Q/R |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| 0 | 0 | 16.900337/17.702357 | 0.996129/0.995687 | 0.151716/0.177318 | 97.0288/96.9672% | 96.6791/96.6274% | 2.482/2.565 | 2.625/2.759 | 42/43 · 42/42 | PASS/HOLD / PASS/HOLD |
+| 1 | 2 | 16.792308/17.524842 | 0.996687/0.997105 | 0.13706/0.13791 | 97.0289/96.9674% | 96.6792/96.627% | 2.482/2.565 | 2.625/2.759 | 42/43 · 42/42 | PASS/HOLD / PASS/HOLD |
+| 2 | 4 | 17.734783/17.546849 | 0.997323/0.9975 | 0.114223/0.114783 | 97.0288/96.9673% | 96.6792/96.624% | 2.482/2.565 | 2.625/2.759 | 42/43 · 42/42 | PASS/HOLD / PASS/HOLD |
+| 3 | 6 | 17.763801/17.569179 | 0.997167/0.997478 | 0.108117/0.109169 | 97.0289/96.9674% | 96.6793/96.6268% | 2.481/2.565 | 2.624/2.759 | 42/43 · 42/42 | PASS/HOLD / PASS/HOLD |
+| 4 | 8 | 18.01171/17.432496 | 0.996622/0.996867 | 0.11913/0.129476 | 97.0291/96.9678% | 96.6798/96.6271% | 2.481/2.565 | 2.624/2.759 | 42/43 · 42/42 | PASS/HOLD / PASS/HOLD |
+| 5 | 10 | 17.857334/17.494963 | 0.997221/0.996443 | 0.133332/0.127287 | 97.0293/96.9679% | 96.6798/96.6273% | 2.481/2.564 | 2.624/2.759 | 42/43 · 42/42 | PASS/HOLD / PASS/HOLD |
+| 6 | 12 | 17.638368/17.406332 | 0.997036/0.99706 | 0.058605/0.058109 | 97.0292/96.9677% | 96.6797/96.6272% | 2.481/2.565 | 2.624/2.759 | 42/43 · 42/42 | PASS/PASS / PASS/PASS |
+| 7 | 14 | 18.044015/17.727729 | 0.99654/0.996721 | 0.105501/0.109291 | 97.0294/96.968% | 96.6798/96.6274% | 2.481/2.564 | 2.624/2.759 | 42/43 · 42/42 | PASS/HOLD / PASS/HOLD |
+En ambas sesiones, el control de latencia fría/caliente pasó en los ocho cores: ratio Q 16,792308–18,044015 y R 17,406332–17,727729. LLC fría pasó en todos (Q 0,996129–0,997323; R 0,995687–0,997500). El único criterio físico fallido fue LLC caliente: Q falló en P0–P5 y P7 (0,105501–0,151716); R falló en P0–P5 y P7 (0,109169–0,177318). P6 pasó (Q 0,058605; R 0,058109). No se ajustó ningún umbral.
+
+Controles temporales: Q U=0,740600 ms; C_low=96,9672–97,0294 %; hueco máximo=2,565 ms; 42–43 ventanas; ventana máxima=77,312 ms. R U=0,872600 ms; C_low=96,6240–96,6798 %; hueco máximo=2,759 ms; 42 ventanas; ventana máxima=77,700 ms. Todos los márgenes medidos superaron 200 ms. Por tanto, el hold no procede de privilegio, geometría, cobertura, huecos, número/tamaño de ventanas ni ratio; procede exclusivamente del LLC caliente sobre 0,10 en siete cores.
+
+**Integración pendiente:** `T0P/harness/residency_r11.cpp` aún conserva `flush_region()` y `build_r11.cmd` no enlaza `evict.cpp`; resolverlo corresponde a la tarea del harness. Esta cualificación independiente del runner no acredita integración del harness.
+
+El hash histórico `a754eb7347d544a57861970f099c493786916ce965c7c187e51c7fdd14a2b4a2` de `eviction_windows.csv` no se encontró en ninguna copia del workspace; se conserva el registro y no se reconstruyó ese contenido. Los datos de ambas sesiones están en `capture_d8_r4/` y `capture_d8_revalidation_r4/`. El manifiesto `_r4` cubre todos los archivos presentes de `T0P/evict` salvo el propio manifiesto.
+
+
+### Latencias por core (ciclos; mediana/p95)
+
+| P | LP | Fría Q/R, mediana/p95 | Caliente Q/R, mediana/p95 | Muestras fría Q/R | Muestras caliente Q/R |
+|---:|---:|---:|---:|---:|---:|
+| 0 | 0 | 50194/58143 · 52576/63525 | 2970/3005 · 2970/3015 | 72513/69151 | 1692637/1707103 |
+| 1 | 2 | 50209/57937 · 52557/62578 | 2990/3017 · 2999/3025 | 73170/70765 | 1709559/1713126 |
+| 2 | 4 | 53027/64061 · 52623/62313 | 2990/3019 · 2999/3025 | 71677/72345 | 1721613/1731257 |
+| 3 | 6 | 53096/63398 · 52444/62301 | 2989/3016 · 2985/3011 | 72856/73280 | 1732954/1739311 |
+| 4 | 8 | 53837/63087 · 52036/63852 | 2989/3017 · 2985/3011 | 73397/74425 | 1724690/1733715 |
+| 5 | 10 | 53322/64419 · 52100/63838 | 2986/3013 · 2978/3007 | 73678/74932 | 1733310/1737570 |
+| 6 | 12 | 53603/63835 · 52776/63013 | 3039/3080 · 3032/3062 | 73356/74160 | 1706762/1715669 |
+| 7 | 14 | 54114/62774 · 52935/63334 | 2999/3035 · 2986/3025 | 72771/73161 | 1732843/1741779 |
+
+Los deltas EMON acumulados por P-core y condición (LLC/L2 misses y demandas) están en `padded_block_analysis.csv` dentro de cada captura; las muestras individuales de latencia están en `latencies.csv`. Q=qualification; R=final revalidation.
+
+## Diagnóstico cuantitativo D8 — R5 (criterios intactos)
+
+Estado D8: **HOLD_EVICTION_NOT_QUALIFIED**. Se conserva el resultado de c33: ratio frío/caliente 16,4–18,0 y LLC fría 0,996–0,997 pasan; LLC caliente 0,0581–0,1773 falla ≤0,10 en P0–P5 y P7, y P6 pasa. No se ajustó ningún umbral.
+
+### Contadores Q/R y controles
+
+Los conteos de Q/R de abajo suman ambos LP del P-core (worker LP par + su hermano SMT), igual que el cálculo de la cualificación. Los controles usan el mismo alcance. `num/den` es `OFFCORE_REQUESTS.L3_MISS_DEMAND_DATA_RD / OFFCORE_REQUESTS.DEMAND_DATA_RD`, conteos brutos, no porcentaje. Son sumas de deltas EMON de ventanas completas que solapan el bloque medido y caben en su padding; incluyen parte de los márgenes y no son deltas exclusivos de la región temporal. Q/R cold y hot, `L2_RQSTS.DEMAND_DATA_RD_MISS`, `L2_RQSTS.ALL_DEMAND_DATA_RD`, `INST_RETIRED.ANY`, ciclos THREAD/REF_TSC y los conteos por separado del LP worker y su hermano están en [D8_DIAG_COUNTS_r5.csv](D8_DIAG_COUNTS_r5.csv). Controles por core y LP están en [D8_CONTROL_COUNTS_r5.csv](D8_CONTROL_COUNTS_r5.csv); crudos: `capture_diag_weights2_r5/`, `capture_diag_nonweights2_r5/`, `capture_diag_idle2_r5/`.
+
+| P-core | Q hot num/den | R hot num/den | Solo pesos W num/den | Sin pesos NW num/den | Idle num/den |
+|---:|---:|---:|---:|---:|---:|
+| P0 | 471.943 / 3.110.709 | 516.912 / 2.915.168 | 310.883 / 7.827.359 | 221.963 / 23.075.168 | 183.241 / 734.319 |
+| P1 | 364.345 / 2.658.286 | 325.558 / 2.360.654 | 143.958 / 7.062.483 | 82.975 / 22.487.443 | 35.739 / 152.263 |
+| P2 | 262.707 / 2.299.946 | 245.416 / 2.138.083 | 179.536 / 4.964.299 | 57.525 / 23.661.127 | 276 / 54.331 |
+| P3 | 239.879 / 2.218.699 | 231.914 / 2.124.353 | 34.553 / 4.712.628 | 3.577 / 22.250.769 | 187 / 54.316 |
+| P4 | 291.764 / 2.449.128 | 297.565 / 2.298.221 | 123.861 / 5.117.193 | 46.362 / 25.032.044 | 307.711 / 1.698.317 |
+| P5 | 300.857 / 2.256.451 | 301.278 / 2.366.910 | 82.791 / 4.765.162 | 46.575 / 24.702.071 | 474.819 / 1.851.379 |
+| P6 | 222.481 / 3.796.251 | 218.617 / 3.762.212 | 22.917 / 4.591.261 | 960 / 23.914.330 | 935 / 57.940 |
+| P7 | 215.018 / 2.038.063 | 219.572 / 2.009.055 | 26.560 / 4.589.370 | 462 / 35.209.274 | 877 / 57.646 |
+
+Las tres capturas de control válidas (W, NW, idle) usaron el mismo EDP, ocho workers fijados a LP 0,2,…,14, bloque de 2,5 s, margen de 0,2 s y sondeo de fase compartida, con acumuladores por worker. Cada una tiene 3.600 grupos EMON y footer completo. W leyó en bucle 4.608 líneas por shard (294.912 B) y mantuvo el barrido durante el margen previo; NW ejecutó el cuerpo de `condition_nonweights` (leer X de 640 B, llenar Y de 4.096 B con 0,5 y fence) y el sondeo de fase, sin leer pesos; idle dejó los workers dormidos en los mismos LP. Las primeras capturas con barrera por repetición y el primer piloto W sin el margen caliente continuo se conservan como pilotos, pero no se usan en esta comparación.
+
+En Q hot el worker LP generó 0,811–1,512 M demandas OFFCORE/s (media 1,036 M/core/s), 1,175–2,223 por barrido `load_lines` (media 1,514). En R hot: 0,799–1,497 M/s (media 0,985 M/core/s), 1,152–2,192 por barrido (media 1,434). Como el único acceso de datos del worker en ese bucle es al shard de pesos, esas son las peticiones OFFCORE asociadas al trabajo de lectura de pesos más cualquier ejecución de sistema en el LP; EMON no etiqueta direcciones/PID. En el control W, el worker solo produjo 4,588–7,824 M peticiones por bloque, 1,835–3,130 M/s, con lectura exclusiva de pesos (más el fondo no filtrable). El numerador worker Q/R corresponde a 85.627–205.632 misses LLC/s, 0,124–0,303 por barrido. En el worker, L2 misses/all-demand-reads fue solo 0,0232–0,0465 %; OFFCORE demandas fueron 0,0257–0,0491 % de todas las lecturas L2. La fracción oficial, por tanto, condiciona al pequeño subconjunto OFFCORE; no mide el porcentaje de todas las lecturas calientes que falla en LLC.
+
+### Atribución y orden de medida
+
+- **No-pesos:** NW produjo 22,25–35,21 M demandas OFFCORE por bloque pareado, pero la fracción LLC fue 0,000013–0,00962. La actividad X/Y/sincronización aislada no reproduce el fallo caliente; aumenta el denominador y aporta misses absolutos mucho menores que Q/R hot.
+- **Pesos:** W produjo 4,59–7,83 M demandas y 22.917–310.883 misses por bloque; fracción 0,0050–0,0397. Acredita tráfico OFFCORE residual aun tras el preacondicionamiento, pero por sí sola esta captura no reproduce 0,10. Es el mismo tamaño y patrón de lectura, aunque usa asignaciones normales del runner diagnóstico, no los large pages de Q/R; por ello no resuelve la diferencia de mapeo físico.
+- **Fondo:** idle dio fracciones 0,0034–0,2565. En P0/P1/P4/P5 fue 0,181–0,256, con numeradores de 35.739–474.819 y denominadores de 152.263–1.851.379 por bloque; el fondo observado basta para superar 0,10 en esos cores y es del mismo orden que parte de Q/R. En P2/P3/P6/P7 quedó en 0,0034–0,0161 y no explica por sí solo los fallos Q/R de esos cores en esta captura. EMON no etiqueta las peticiones por PID ni por dirección, así que no permite asignar cada miss al worker, al SO o a interrupciones.
+- **Transitorio tras flush:** el runner ejecuta cold y luego hot dentro de la misma ejecución, pero hot no empieza inmediatamente en la región medida. `run_condition` crea los workers hot, los deja barrer ~10 ms y aplica ≥200 ms de la misma carga antes del inicio medido; continúan calientes durante ese margen y el bloque de 2,5 s. Por el orden del código, 0 % de las repeticiones medidas antecede al preacondicionamiento; la residencia efectiva de cada línea no se muestrea directamente. No hay X/Y dentro del bloque hot de D8, solo `load_lines` del shard. El control W confirmó además una captura hot tras 200 ms completos de esa misma lectura. El transitorio post-flush no explica los conteos medidos según el orden/código del runner.
+
+**Conclusión cuantitativa:** NW no origina la fracción alta. W demuestra que hay misses LLC en el tráfico de lectura de pesos, pero su fracción (≤0,0397) no alcanza la observada en Q/R (0,0581–0,1773); idle alcanza y supera el criterio en P0/P1/P4/P5, con gran variación entre cores. Así, fondo del sistema puede explicar una parte del FAIL, mientras que para P2/P3/P7 los controles aislados no identifican el origen de la diferencia; los contadores disponibles no permiten separar por dirección/PID si son accesos del shard grande o actividad de sistema no repetida. En el alcance pareado P-core+SMT, el denominador OFFCORE hot es 2,01–3,80 M frente a 7,09–7,85 mil millones de demandas de lectura L2 en 2,5 s: 0,0257–0,0491 %. Una población condicional pequeña y mezclada con fondo puede dominar el cociente OFFCORE aunque la tasa global de misses sobre todas las lecturas sea 0,0027–0,0073 %.
+
+Para que Sol decida sin cambiar 0,10: fijar por escrito el alcance común de numerador y denominador (LP del worker o pareja SMT completa; mismas ventanas completas dentro del padding y misma condición); y, si “caliente” significa referencias al shard, definir ambos conteos por ese mismo alcance de direcciones. La fracción OFFCORE/OFFCORE actual sigue siendo el observable si se conserva el subconjunto de solicitudes que llegaron a offcore. No se propone una relajación del criterio.
+
+
+# Reevaluacion posterior a los datos - D8 / S-22 (r6)
+
+Esta reevaluacion se hizo despues de adquirir `capture_d8_r4` (Q) y `capture_d8_revalidation_r4` (R), conforme a S-22. No se repitio ni altero ninguna captura; los derivados son archivos nuevos. El FAIL historico del cociente caliente `M3/D_offcore` queda registrado en las secciones anteriores y no se reescribe. La sesion oficial continua `NOT_AUTHORIZED`.
+
+## Analizador corregido y ventanas
+
+`analyze_d8_r6.ps1` escribe `D8_DERIVED_Q_r6.csv`, `D8_DERIVED_R_r6.csv`, `D8_DERIVED_QR_r6.csv`, `D8_TEMPORAL_QR_r6.csv` y `D8_NEGATIVE_TESTS_r6.csv`. La duracion de adquisicion usa el campo elapsed-TSC comun de cada grupo EMON (`CPU_CLK_UNHALTED.REF_TSC`, columna previa a los valores por LP) dividido por la f_TSC cualificada, nunca REF_TSC del worker. El mapa ajusta muestras numericas, alineando el final de grupo a QPC. Contrae cada ventana por U antes de unir (R2), excluye solapamientos con la otra condicion y suma contadores sobre las mismas ventanas. Gobierna exclusivamente el LP del worker; el hermano SMT se guarda en `SMT_D2`, `SMT_M2` y `SMT_M3` como diagnostico.
+
+f_TSC/QPC cualificada en Q y R. U del analizador: 0.7279 ms (Q), 0.8465 ms (R). Ventanas calientes por core: 43 (Q), 42 (R). El validador S-20 aprobo Q y R en modo temporal: exit 0, VALID, 16 muestras y 96/96 resultados de canal VALID en cada captura. Su cobertura minima fue 97.0070% (Q) y 96.7054% (R); hueco maximo 2.5391 ms (Q) y 2.7112 ms (R). Se usaron copias locales de marcas y mapa: `MAPn` se renumero como n y se seleccionaron las columnas QPC admitidas; las marcas QPC no cambiaron. No se modifico `T0P/validator/`.
+
+## Dieciseis controles calientes - LP worker, sin compensacion
+
+`D2=sum(delta L2_RQSTS.ALL_DEMAND_DATA_RD)`, `M2=sum(delta L2_RQSTS.DEMAND_DATA_RD_MISS)`, `M3=sum(delta OFFCORE_REQUESTS.L3_MISS_DEMAND_DATA_RD)`; `H2=M2/D2`, `H3|2=M3/D2`. PASS exige ambos <=0,10, D2>=10.000, M2<=D2, canales presentes, finitos y no negativos, cobertura R2 valida.
+
+| Captura | P | LP | H2 | H3 over 2 | D2 | Estado |
+|---|---:|---:|---:|---:|---:|---|
+| Q | 0 | 0 | 0.000388450 | 0.000066293 | 7,116,809,781 | PASS |
+| Q | 1 | 2 | 0.000305178 | 0.000047071 | 7,717,418,928 | PASS |
+| Q | 2 | 4 | 0.000267602 | 0.000033873 | 7,744,261,337 | PASS |
+| Q | 3 | 6 | 0.000256754 | 0.000030647 | 7,824,105,730 | PASS |
+| Q | 4 | 8 | 0.000282476 | 0.000037540 | 7,761,632,134 | PASS |
+| Q | 5 | 10 | 0.000258460 | 0.000038305 | 7,849,050,155 | PASS |
+| Q | 6 | 12 | 0.000465203 | 0.000028792 | 7,723,626,879 | PASS |
+| Q | 7 | 14 | 0.000234971 | 0.000027371 | 7,851,205,403 | PASS |
+| R | 0 | 0 | 0.000358678 | 0.000072918 | 7,086,126,011 | PASS |
+| R | 1 | 2 | 0.000274207 | 0.000042404 | 7,665,507,216 | PASS |
+| R | 2 | 4 | 0.000248124 | 0.000031714 | 7,731,964,176 | PASS |
+| R | 3 | 6 | 0.000247058 | 0.000029870 | 7,760,972,247 | PASS |
+| R | 4 | 8 | 0.000264347 | 0.000038211 | 7,783,037,750 | PASS |
+| R | 5 | 10 | 0.000255727 | 0.000036327 | 7,756,788,300 | PASS |
+| R | 6 | 12 | 0.000463429 | 0.000028425 | 7,687,144,975 | PASS |
+| R | 7 | 14 | 0.000232123 | 0.000028094 | 7,811,024,844 | PASS |
+
+Pasan 16/16 controles calientes: ocho P en Q y ocho P en R, sin promediar entre cores.
+
+## Resumen contra las cifras de Sol
+
+| Metrica | Derivado Q | Sol Q | Derivado R | Sol R |
+|---|---:|---:|---:|---:|
+| Maximo H2 | 0.000465203 | 0.000465203 | 0.000463429 | 0.000463429 |
+| Maximo H3|2 | 0.000066293 | 0.000066293 | 0.000072918 | 0.000072918 |
+| Minimo D2 caliente | 7,116,809,781 | 7,116,809,781 | 7,086,126,011 | 7,086,126,011 |
+| Minimo LLC fria (diagnostico M3/D_offcore) | 0.996142 | 0.996142 | 0.995698 | 0.995698 |
+| Cobertura R2 minima | 97.0067% | ~97.006% | 96.7071% | ~96.708% |
+| Hueco superior maximo | 2.5390 ms | ~2.542 ms | 2.7100 ms | ~2.710 ms |
+
+Las pequenas diferencias frente a Sol son inferiores a 0,002 pp de cobertura y 0,004 ms de hueco; proceden del ajuste temporal y de f_TSC/QPF registrados. Se mantienen cobertura >=95 %, hueco <=20 ms y LLC fria >=0,90. El cociente caliente antiguo M3/D_offcore sigue como diagnostico no gobernante y su FAIL historico se conserva. Ratios de latencia conservan PASS.
+
+## Contrapruebas deterministas sobre campos del derivado
+
+| Campo mutado | Resultado | Esperado |
+|---|---|---|
+| H2_GT_0.10 | FAIL | FAIL |
+| H3_GT_0.10 | FAIL | FAIL |
+| D2_LT_10000 | NOT_ESTIMABLE+HOLD | NOT_ESTIMABLE+HOLD |
+| CHANNEL_MISSING | HOLD | HOLD |
+| MIXED_LP | HOLD | HOLD |
+| MIXED_WINDOWS | HOLD | HOLD |
+| P7.H2 | FAIL | FAIL |
+
+Las mutaciones se aplicaron a una fila real del derivado: H2, H3|2, D2, lista de canales, LP gobernante e IDs de ventana. Para la media, se altero H2 de P7 en la serie real Q; la media de ocho cores queda en 0.012778140 (menor que 0,10), pero P7 supera 0,10 y el gate por core da FAIL.
+
+## Identidad y trazabilidad
+
+Los crudos de Q y R permanecen intactos. La huella SHA256 de cada entrada y derivado esta en `SHA256SUMS_evict.txt`; las salidas nuevas estan separadas de los crudos. La revalidacion final de una futura sesion oficial sigue siendo obligatoria.

@@ -1,0 +1,14 @@
+RESIDENCY_DERIVER_R14_QA PASS
+branch=pass state=RESIDENCIA_PASS PASS
+branch=no_knee state=L2_NOT_ESTABLISHED PASS
+branch=rho_fail state=RESIDENCIA_FAIL PASS
+branch=delta_hold state=NO_ADJUDICABLE_CONTROLS PASS
+branch=aa_hold state=NO_ADJUDICABLE_CONTROLS PASS
+branch=s20_hold state=NO_ADJUDICABLE_CONTROLS PASS
+branch=duplicate_event_id state=NO_ADJUDICABLE_CONTROLS HOLD PASS
+branch=missing_event_id state=NO_ADJUDICABLE_CONTROLS HOLD PASS
+branch=SMOKE_ONLY numeric_metrics_used=false PASS
+R=R(W,m,K) common A/B/C by K; T=sum(episode times)/R; c=(T16-T1)/15 PASS
+AA31=31 pairs per architectural m; delta_BC_by_m; exact plan/executed/derived union PASS
+L2 attribution requires temporal knee and valid L2/LLC evidence at same two consecutive W points PASS
+D13 derive writes derived artifacts exclusively; raw source IDs never replaced PASS

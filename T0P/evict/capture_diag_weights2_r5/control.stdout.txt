@@ -1,0 +1,1 @@
+CONTROL=weights workers=8 LP=0,2,4,6,8,10,12,14 shards=8 shard_bytes=294912 x_bytes=640 y_bytes=4096 sync=shared_phase_poll_local_sink qpc_pad_start=496038219256 qpc_start=496040219256 qpc_end=496065219256 qpc_pad_end=496067219256 measured_s=2.500 margins_s=0.200 sink=587520

@@ -1,0 +1,52 @@
+LARGE_PAGE_PRIVILEGE=AVAILABLE enable_large_page_privilege_called=true
+R_CALIBRATION_TRIAL variant=C candidate_R=1 elapsed_kernel_s=0.000662 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=1 elapsed_kernel_s=0.000182 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=1 elapsed_kernel_s=0.000591 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=2 elapsed_kernel_s=0.001173 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=2 elapsed_kernel_s=0.000494 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=2 elapsed_kernel_s=0.001290 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=4 elapsed_kernel_s=0.002353 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=4 elapsed_kernel_s=0.000977 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=4 elapsed_kernel_s=0.002425 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=8 elapsed_kernel_s=0.004842 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=8 elapsed_kernel_s=0.002028 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=8 elapsed_kernel_s=0.004789 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=16 elapsed_kernel_s=0.009406 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=16 elapsed_kernel_s=0.003945 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=16 elapsed_kernel_s=0.009543 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=32 elapsed_kernel_s=0.018974 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=32 elapsed_kernel_s=0.007902 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=32 elapsed_kernel_s=0.020004 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=64 elapsed_kernel_s=0.037409 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=64 elapsed_kernel_s=0.016013 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=64 elapsed_kernel_s=0.040317 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=128 elapsed_kernel_s=0.075774 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=128 elapsed_kernel_s=0.031357 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=128 elapsed_kernel_s=0.081427 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=256 elapsed_kernel_s=0.155089 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=256 elapsed_kernel_s=0.063921 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=256 elapsed_kernel_s=0.156907 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=512 elapsed_kernel_s=0.307493 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=512 elapsed_kernel_s=0.128659 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=512 elapsed_kernel_s=0.319736 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=1024 elapsed_kernel_s=0.623638 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=1024 elapsed_kernel_s=0.255256 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=1024 elapsed_kernel_s=0.634753 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=2048 elapsed_kernel_s=1.245643 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=2048 elapsed_kernel_s=0.513279 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=2048 elapsed_kernel_s=1.255400 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=C candidate_R=4096 elapsed_kernel_s=2.471556 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=A candidate_R=4096 elapsed_kernel_s=1.042842 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=4096 elapsed_kernel_s=2.536588 target_s=2.5 decision=REACHED
+R_CALIBRATION_TRIAL variant=C candidate_R=8192 elapsed_kernel_s=4.905899 target_s=2.5 decision=REACHED
+R_CALIBRATION_TRIAL variant=A candidate_R=8192 elapsed_kernel_s=2.088055 target_s=2.5 decision=DOUBLE
+R_CALIBRATION_TRIAL variant=B candidate_R=8192 elapsed_kernel_s=5.028503 target_s=2.5 decision=REACHED
+R_CALIBRATION_TRIAL variant=C candidate_R=16384 elapsed_kernel_s=9.870637 target_s=2.5 decision=REACHED
+R_CALIBRATION_TRIAL variant=A candidate_R=16384 elapsed_kernel_s=4.148711 target_s=2.5 decision=REACHED
+R_CALIBRATION_TRIAL variant=B candidate_R=16384 elapsed_kernel_s=10.132035 target_s=2.5 decision=REACHED
+MAC_CHECK real_work=512*O*m value=524288 PASS
+D9_AC_SHARED same_live_buffer=true address=1932984844288 sha256=d1ffaa79a9b53c2cc167a1e023b604b8c595294828bf8b6acbabd97aacd1d1e3 workers=8 PASS
+D8_EVICT primitive=omega_evict::evict_range_record only calls_weight_ranges=22496696 calls_activation_ranges=88751872 calls_total=111248568 episodes=manifested cache_lines=106992970368 flush=CLFLUSHOPT PASS
+R_RESIDENCY_R14 common_R=16384 W=288 O=1024 m=1 K=16 A_B_C=common calibration_target_s=2.5
+D9_EPISODES all_timestamps=true margins_each_side_min_s=0.200 same_condition=true N=3 PASS
+SMOKE_R14_CAPTURE PASS schedule_events=18 calibration=3 A_B_C=9 AA_pairs=3 aa_observations=6 outputs_bitwise=PASS label=SMOKE numeric_metrics_used=false EMON=continuous_required

@@ -1,0 +1,1 @@
+CONTROL=idle workers=8 LP=0,2,4,6,8,10,12,14 shards=8 shard_bytes=294912 x_bytes=640 y_bytes=4096 sync=shared_phase_poll_local_sink qpc_pad_start=500516327446 qpc_start=500518327446 qpc_end=500543327446 qpc_pad_end=500545327446 measured_s=2.500 margins_s=0.200 sink=0

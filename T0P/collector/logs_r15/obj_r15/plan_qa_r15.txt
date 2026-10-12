@@ -1,0 +1,8 @@
+RESIDENCY_PLAN_R15_QA PASS
+geometry architecture=W288/O1024 sweep_W1024/O3640 PASS
+counts conditions=420 architecture=60 sweep=360 calibration_units=140 AA_pairs=124 PASS
+events=13688 IDs_unique=true sequence=1..13688 serialized=true PASS
+union exact=plan=executed=derived PASS
+mutations=missing_rejected,duplicate_rejected HOLD_FAIL_CLOSED PASS
+MAC_formula=512*O*m; replicas=1..31; R=R(W,m,K), common A/B/C by K PASS
+plan_sha256=f86a5588a4fbec7c093daa295ee462c67e4c53928e080f6f66a8bd24f00bb5e4

@@ -24,10 +24,17 @@
   "m": [1,4,8,16],
   "test_buffers": {"dots": "qa_group_dot_int32"},
   "group_fixtures": ["uniform", "mixed_cancellation", "varied_scales", "sub127", "extremes"],
-  "sweep_fixture": "single_coordinate_sweep_first8_last8_rows_all_512_coordinates",
+  "sweep_fixture": "single_coordinate_sweep_run_full_for_all_O; O1024_compares_all_outputs_at_all_512_coordinates; other_15_O_compare_first8_last8_after_full_run",
+  "sweep_coverage": {
+    "governing_route": "omega_q4::run",
+    "O1024": {"mode": "all_outputs", "positions": 512, "m": [1,4,8,16]},
+    "other_O_count": 15,
+    "other_O_mode": "first8_last8",
+    "positions_per_O_and_m": 512
+  },
   "expected_records_per_O": 212,
   "expected_records": 3392,
   "coverage_key": ["fixture", "m", "O", "candidate", "buffer", "function", "alias"],
   "page_query_formula": "ceil(((address mod dwPageSize) + bytes) / dwPageSize)",
-  "requirements": ["all keys unique", "complete expected coverage", "logical byte size equals formula before page coverage", "queried_pages equals formula", "valid_pages equals queried_pages", "large_pages equals queried_pages", "QueryWorkingSetEx PASS", "LargePage true"]
+  "requirements": ["all keys unique", "complete expected coverage", "logical byte size equals formula before page coverage", "queried_pages equals formula", "valid_pages equals queried_pages", "large_pages equals queried_pages", "QueryWorkingSetEx PASS", "LargePage true", "coordinate sweep route is omega_q4::run", "O=1024 covers every output at every coordinate and m", "other 15 O cover first/last 8 outputs only after full run", "all 512 coordinate IDs appear exactly once per O and m"]
 }

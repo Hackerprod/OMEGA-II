@@ -1,0 +1,41 @@
+LARGE_PAGE_PRIVILEGE=AVAILABLE enabled=true
+LARGE_PAGE_MINIMUM_BYTES=2097152
+TOPOLOGY=PASS P_LP=0,2,4,6,8,10,12,14 workers=8 SMT_pairs=verified
+RUN_KIND=FINAL_REVALIDATION
+QPC_FREQ_HZ=10000000
+FTSC_QPC_HZ=2112002624.94
+FLUSH_SELECTION=CLFLUSHOPT
+WEIGHT_COVERAGE core=0 LP=0 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=1 LP=2 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=2 LP=4 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=3 LP=6 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=4 LP=8 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=5 LP=10 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=6 LP=12 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=7 LP=14 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+CACHE_LATENCY Pcore=0 LP=0 condition=cold_shards8 samples=69151 median_cycles=52576 p95_cycles=63525 sink=16180975119625085830
+CACHE_LATENCY Pcore=0 LP=0 condition=hot_shards8 samples=1707103 median_cycles=2970 p95_cycles=3015 sink=0
+COLD_HOT_RATIO Pcore=0 LP=0 cold_median_cycles=52576 hot_median_cycles=2970 ratio=17.7023569024 cold_samples=69151 hot_samples=1707103 status=PASS
+CACHE_LATENCY Pcore=1 LP=2 condition=cold_shards8 samples=70765 median_cycles=52557 p95_cycles=62578 sink=0
+CACHE_LATENCY Pcore=1 LP=2 condition=hot_shards8 samples=1713126 median_cycles=2999 p95_cycles=3025 sink=16180975119625085830
+COLD_HOT_RATIO Pcore=1 LP=2 cold_median_cycles=52557 hot_median_cycles=2999 ratio=17.5248416139 cold_samples=70765 hot_samples=1713126 status=PASS
+CACHE_LATENCY Pcore=2 LP=4 condition=cold_shards8 samples=72345 median_cycles=52623 p95_cycles=62313 sink=0
+CACHE_LATENCY Pcore=2 LP=4 condition=hot_shards8 samples=1731257 median_cycles=2999 p95_cycles=3025 sink=16180975119625085830
+COLD_HOT_RATIO Pcore=2 LP=4 cold_median_cycles=52623 hot_median_cycles=2999 ratio=17.5468489496 cold_samples=72345 hot_samples=1731257 status=PASS
+CACHE_LATENCY Pcore=3 LP=6 condition=cold_shards8 samples=73280 median_cycles=52444 p95_cycles=62301 sink=16180975119625085830
+CACHE_LATENCY Pcore=3 LP=6 condition=hot_shards8 samples=1739311 median_cycles=2985 p95_cycles=3011 sink=16180975119625085830
+COLD_HOT_RATIO Pcore=3 LP=6 cold_median_cycles=52444 hot_median_cycles=2985 ratio=17.5691792295 cold_samples=73280 hot_samples=1739311 status=PASS
+CACHE_LATENCY Pcore=4 LP=8 condition=cold_shards8 samples=74425 median_cycles=52036 p95_cycles=63852 sink=0
+CACHE_LATENCY Pcore=4 LP=8 condition=hot_shards8 samples=1733715 median_cycles=2985 p95_cycles=3011 sink=16180975119625085830
+COLD_HOT_RATIO Pcore=4 LP=8 cold_median_cycles=52036 hot_median_cycles=2985 ratio=17.4324958124 cold_samples=74425 hot_samples=1733715 status=PASS
+CACHE_LATENCY Pcore=5 LP=10 condition=cold_shards8 samples=74932 median_cycles=52100 p95_cycles=63838 sink=0
+CACHE_LATENCY Pcore=5 LP=10 condition=hot_shards8 samples=1737570 median_cycles=2978 p95_cycles=3007 sink=0
+COLD_HOT_RATIO Pcore=5 LP=10 cold_median_cycles=52100 hot_median_cycles=2978 ratio=17.4949630625 cold_samples=74932 hot_samples=1737570 status=PASS
+CACHE_LATENCY Pcore=6 LP=12 condition=cold_shards8 samples=74160 median_cycles=52776 p95_cycles=63013 sink=0
+CACHE_LATENCY Pcore=6 LP=12 condition=hot_shards8 samples=1715669 median_cycles=3032 p95_cycles=3062 sink=0
+COLD_HOT_RATIO Pcore=6 LP=12 cold_median_cycles=52776 hot_median_cycles=3032 ratio=17.4063324538 cold_samples=74160 hot_samples=1715669 status=PASS
+CACHE_LATENCY Pcore=7 LP=14 condition=cold_shards8 samples=73161 median_cycles=52935 p95_cycles=63334 sink=0
+CACHE_LATENCY Pcore=7 LP=14 condition=hot_shards8 samples=1741779 median_cycles=2986 p95_cycles=3025 sink=0
+COLD_HOT_RATIO Pcore=7 LP=14 cold_median_cycles=52935 hot_median_cycles=2986 ratio=17.7277294039 cold_samples=73161 hot_samples=1741779 status=PASS
+CONDITIONS shards=8 workers=8 bytes_per_shard=294912 total_bytes=2359296 margins_s=0.200 measured_s=2.500
+LATENCY_RATIO_CONTROL=PASS

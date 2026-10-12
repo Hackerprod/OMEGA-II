@@ -1,0 +1,22 @@
+Microsoft (R) COFF/PE Dumper Version 14.44.35229.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file C:\Projects\OMEGA\Ejercise\T0P\telemetry\reader\known_loop_cli_r6.obj
+
+File Type: COFF OBJECT
+
+known_retired_loop:
+  0000000000000000: 48 8B C1           mov         rax,rcx
+  0000000000000003: 48 33 D2           xor         rdx,rdx
+  0000000000000006: 48 83 C2 01        add         rdx,1
+  000000000000000A: 48 FF C8           dec         rax
+  000000000000000D: 75 F7              jne         0000000000000006
+  000000000000000F: 48 8B C2           mov         rax,rdx
+  0000000000000012: C3                 ret
+
+  Summary
+
+           0 .data
+          94 .debug$S
+          13 .text$mn

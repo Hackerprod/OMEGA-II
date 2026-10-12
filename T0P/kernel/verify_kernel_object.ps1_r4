@@ -1,0 +1,45 @@
+param([Parameter(Mandatory=$true)][string]$IntegratedObject)
+$ErrorActionPreference='Stop'
+$qaObject=Join-Path $PSScriptRoot 'obj\q4_kernel.obj'
+if(!(Test-Path -LiteralPath $qaObject)){throw "QA kernel object missing: $qaObject"}
+if(!(Test-Path -LiteralPath $IntegratedObject)){throw "Integrated kernel object missing: $IntegratedObject"}
+$candidateSource=Join-Path $PSScriptRoot 'q4_kernel.cpp'
+$candidateHash=(Get-FileHash -LiteralPath $candidateSource -Algorithm SHA256).Hash.ToLowerInvariant()
+if($candidateHash -ne '6d50162a1e400012a7d3bf4fcec0febccc266b584436876e19d33381a7500753'){throw "Candidate q4_kernel.cpp hash changed: $candidateHash"}
+$qaHash=(Get-FileHash -LiteralPath $qaObject -Algorithm SHA256).Hash.ToLowerInvariant()
+$integratedHash=(Get-FileHash -LiteralPath $IntegratedObject -Algorithm SHA256).Hash.ToLowerInvariant()
+"CANDIDATE_SOURCE_SHA256=$candidateHash"
+"QA_OBJECT_SHA256=$qaHash"
+"INTEGRATED_OBJECT_SHA256=$integratedHash"
+if($qaHash -eq $integratedHash){'OBJECT_IDENTITY=PASS';exit 0}
+$dumpbin='C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\dumpbin.exe'
+if(!(Test-Path -LiteralPath $dumpbin)){throw "dumpbin missing: $dumpbin"}
+function Get-KernelAssembly([string]$path){
+    $lines=@(& $dumpbin /disasm $path 2>$null)
+    if($LASTEXITCODE -ne 0){throw "dumpbin failed for $path with exit code $LASTEXITCODE"}
+    $starts=[Collections.Generic.List[int]]::new()
+    for($i=0;$i -lt $lines.Count;$i++){if($lines[$i] -match '^\?\S+' -and $lines[$i] -match '(@omega_q4@@|omega_q4::)'){$starts.Add($i)}}
+    $result=@{}
+    for($n=0;$n -lt $starts.Count;$n++){
+        $start=$starts[$n];$end=if($n+1 -lt $starts.Count){$starts[$n+1]}else{$lines.Count};$header=$lines[$start];$cut=$header.IndexOf(' (');$symbol=if($cut -ge 0){$header.Substring(0,$cut)}else{$header.Trim()}
+        $bytes=[Collections.Generic.List[string]]::new()
+        for($j=$start+1;$j -lt $end;$j++){if($lines[$j] -match '^\s*[0-9A-Fa-f]+:\s+((?:[0-9A-Fa-f]{2}\s+)+)'){$bytes.Add(($Matches[1] -replace '\s+','').ToUpperInvariant())}}
+        if(!$bytes.Count){continue}
+        if($result.ContainsKey($symbol)){throw "duplicate kernel disassembly symbol: $symbol"}
+        $payload=[Text.Encoding]::ASCII.GetBytes(($bytes -join ''))
+        $sha=[Security.Cryptography.SHA256]::Create();$result[$symbol]=([BitConverter]::ToString($sha.ComputeHash($payload))).Replace('-','').ToLowerInvariant();$sha.Dispose()
+    }
+    return $result
+}
+$qaAsm=Get-KernelAssembly $qaObject
+$integratedAsm=Get-KernelAssembly $IntegratedObject
+'OBJECT_IDENTITY=DIFFERENT'
+"QA_KERNEL_SYMBOLS=$($qaAsm.Count) INTEGRATED_KERNEL_SYMBOLS=$($integratedAsm.Count)"
+$same=($qaAsm.Count -gt 0 -and $qaAsm.Count -eq $integratedAsm.Count)
+foreach($name in $qaAsm.Keys){if(!$integratedAsm.ContainsKey($name) -or $qaAsm[$name] -cne $integratedAsm[$name]){$same=$false;"ASSEMBLY_MISMATCH symbol=$name"}}
+foreach($name in $integratedAsm.Keys){if(!$qaAsm.ContainsKey($name)){$same=$false;"ASSEMBLY_EXTRA symbol=$name"}}
+if(!$same){'KERNEL_FUNCTION_ASSEMBLY_EQUALITY=FAIL';exit 3}
+'KERNEL_FUNCTION_ASSEMBLY_EQUALITY=PASS'
+'NOTE=object hashes differ; every omega_q4 machine-code function body in dumpbin /disasm is byte-identical.'
+'OBJECT_IDENTITY=DIFFERENT'
+'ASSEMBLY_EQUALITY=PASS'

@@ -1,0 +1,20 @@
+#plan_sha256=f86a5588a4fbec7c093daa295ee462c67e4c53928e080f6f66a8bd24f00bb5e4
+sequence	phase	event_id	condition_id	variant	replica	observation	unit_id	pair_id	W_target_kib	O	m	K
+8	calibration	calibration|W288|O1024|m1|K16|C	architecture|C|m1|K16|W288|O1024	C	0		W288|O1024|m1|K16		288	1024	1	16
+103	calibration	calibration|W288|O1024|m1|K16|A	architecture|A|m1|K16|W288|O1024	A	0		W288|O1024|m1|K16		288	1024	1	16
+273	calibration	calibration|W288|O1024|m1|K16|B	architecture|B|m1|K16|W288|O1024	B	0		W288|O1024|m1|K16		288	1024	1	16
+736	residency	residency|architecture|B|m1|K16|W288|O1024|r1	architecture|B|m1|K16|W288|O1024	B	1				288	1024	1	16
+2301	residency	residency|architecture|C|m1|K16|W288|O1024|r1	architecture|C|m1|K16|W288|O1024	C	1				288	1024	1	16
+2476	residency	residency|architecture|A|m1|K16|W288|O1024|r2	architecture|A|m1|K16|W288|O1024	A	2				288	1024	1	16
+3532	residency	residency|architecture|C|m1|K16|W288|O1024|r3	architecture|C|m1|K16|W288|O1024	C	3				288	1024	1	16
+4738	residency	residency|architecture|B|m1|K16|W288|O1024|r3	architecture|B|m1|K16|W288|O1024	B	3				288	1024	1	16
+5018	residency	residency|architecture|B|m1|K16|W288|O1024|r2	architecture|B|m1|K16|W288|O1024	B	2				288	1024	1	16
+5526	residency	residency|architecture|A|m1|K16|W288|O1024|r1	architecture|A|m1|K16|W288|O1024	A	1				288	1024	1	16
+11977	residency	residency|architecture|A|m1|K16|W288|O1024|r3	architecture|A|m1|K16|W288|O1024	A	3				288	1024	1	16
+12480	residency	residency|architecture|C|m1|K16|W288|O1024|r2	architecture|C|m1|K16|W288|O1024	C	2				288	1024	1	16
+13469	aa	aa|AA|W288|O1024|m1|K16|r2|A1	architecture|A|m1|K16|W288|O1024	A	2	A1		AA|W288|O1024|m1|K16|r2	288	1024	1	16
+13470	aa	aa|AA|W288|O1024|m1|K16|r3|A1	architecture|A|m1|K16|W288|O1024	A	3	A1		AA|W288|O1024|m1|K16|r3	288	1024	1	16
+13493	aa	aa|AA|W288|O1024|m1|K16|r1|A1	architecture|A|m1|K16|W288|O1024	A	1	A1		AA|W288|O1024|m1|K16|r1	288	1024	1	16
+13556	aa	aa|AA|W288|O1024|m1|K16|r3|A2	architecture|A|m1|K16|W288|O1024	A	3	A2		AA|W288|O1024|m1|K16|r3	288	1024	1	16
+13559	aa	aa|AA|W288|O1024|m1|K16|r1|A2	architecture|A|m1|K16|W288|O1024	A	1	A2		AA|W288|O1024|m1|K16|r1	288	1024	1	16
+13607	aa	aa|AA|W288|O1024|m1|K16|r2|A2	architecture|A|m1|K16|W288|O1024	A	2	A2		AA|W288|O1024|m1|K16|r2	288	1024	1	16

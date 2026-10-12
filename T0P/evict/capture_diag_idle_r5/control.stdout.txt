@@ -1,0 +1,1 @@
+CONTROL=idle workers=8 LP=0,2,4,6,8,10,12,14 shards=8 shard_bytes=294912 x_bytes=640 y_bytes=4096 qpc_pad_start=492597252836 qpc_start=492599252836 qpc_end=492624252836 qpc_pad_end=492626252836 measured_s=2.500 margins_s=0.200 sink=0

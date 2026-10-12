@@ -1,0 +1,14 @@
+P_instr real disassembly QA
+executable=C:\Projects\OMEGA\Ejercise\T0P\harness\logs_r12\obj_r12\harness_r12.exe
+disassembly=C:\Projects\OMEGA\Ejercise\T0P\harness\logs_r12\obj_r12\pinstr_disassembly_r12.txt
+disassembly_sha256=6cadf8fbbc920c33164fa1d6c2f8ae047d795928e6cbc6767384d7a008c7b8e0
+modular_uint32_sink=True
+variant=pinstr_c10_u8 address=0x0000000140056220 vpdpbusd=80/80 accumulators=10/10 instructions_per_accumulator=8,8,8,8,8,8,8,8,8,8 dependency_chain=True shared_inputs=ymm0:ymm1 pass=True
+variant=pinstr_c12_u16 address=0x0000000140056590 vpdpbusd=192/192 accumulators=12/12 instructions_per_accumulator=16,16,16,16,16,16,16,16,16,16,16,16 dependency_chain=True shared_inputs=ymm0:ymm1 pass=True
+variant=pinstr_c12_u8 address=0x0000000140056B70 vpdpbusd=96/96 accumulators=12/12 instructions_per_accumulator=8,8,8,8,8,8,8,8,8,8,8,8 dependency_chain=True shared_inputs=ymm0:ymm1 pass=True
+variant=pinstr_c14_u16 address=0x0000000140056F60 vpdpbusd=224/224 accumulators=14/14 instructions_per_accumulator=16,16,16,16,16,16,16,16,16,16,16,16,16,16 dependency_chain=True shared_inputs=ymm0:ymm1 pass=True
+variant=pinstr_c14_u8 address=0x0000000140057620 vpdpbusd=112/112 accumulators=14/14 instructions_per_accumulator=8,8,8,8,8,8,8,8,8,8,8,8,8,8 dependency_chain=True shared_inputs=ymm0:ymm1 pass=True
+variant=pinstr_c1_u8 address=0x0000000140057AA0 vpdpbusd=8/8 accumulators=1/1 instructions_per_accumulator=8 dependency_chain=True shared_inputs=ymm1:ymm2 pass=True
+variant=pinstr_c2_u8 address=0x0000000140057B10 vpdpbusd=16/16 accumulators=2/2 instructions_per_accumulator=8,8 dependency_chain=True shared_inputs=ymm2:ymm3 pass=True
+variant=pinstr_c4_u8 address=0x0000000140057C60 vpdpbusd=32/32 accumulators=4/4 instructions_per_accumulator=8,8,8,8 dependency_chain=True shared_inputs=ymm0:ymm1 pass=True
+variant=pinstr_c8_u8 address=0x0000000140057E30 vpdpbusd=64/64 accumulators=8/8 instructions_per_accumulator=8,8,8,8,8,8,8,8 dependency_chain=True shared_inputs=ymm0:ymm1 pass=True

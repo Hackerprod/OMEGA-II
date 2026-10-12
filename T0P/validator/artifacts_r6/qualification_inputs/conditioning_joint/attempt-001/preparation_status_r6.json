@@ -1,0 +1,5 @@
+{
+  "note": "This configuration output was never consumed. A literal backslash-n followed the JSON object; attempt-002 is the valid D13 attempt.",
+  "reason_code": "CONFIG_SERIALIZATION_EXTRA_DATA",
+  "state": "DISCARDED"
+}

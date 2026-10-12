@@ -14,11 +14,12 @@ using LineSink = void(*)(std::uintptr_t, void*);
 
 // Selection is made once by CPUID.07H:EBX[23] and then frozen for this process.
 Choice selected_flush() noexcept;
+// Governing exported cache-eviction primitive. Integrators link this API and evict.cpp.
 void evict_range(const void* ptr, std::size_t bytes);
 // Comparative diagnostic only; never changes the process-wide CPUID choice.
 void evict_range_diagnostic(const void* ptr, std::size_t bytes, FlushKind kind);
 void evict_range_record(const void* ptr, std::size_t bytes, LineSink sink, void* context);
-// Only typed Q4 code/scale ranges are accepted. Eight workers use a start/completion barrier.
+// Eight-worker typed Q4 batching; delegates every contiguous span to the same range implementation.
 void evict_weights_regions(const std::vector<Region>& regions, unsigned workers = 8);
 void evict_weights_regions_diagnostic(const std::vector<Region>& regions, unsigned workers, FlushKind kind);
 void evict_weights_regions_record(const std::vector<Region>& regions, unsigned workers,

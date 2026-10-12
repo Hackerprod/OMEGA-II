@@ -1,0 +1,258 @@
+PAGE_POLICY O=912 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=912 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=912 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=912 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=1024 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=1024 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=1024 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=1024 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=1824 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=1824 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=1824 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=1824 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=2728 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=2728 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=2728 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=2728 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=3640 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=3640 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=3640 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=3640 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=4552 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=4552 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=4552 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=4552 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=5464 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=5464 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=5464 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=5464 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=6368 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=6368 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=6368 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=6368 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=7280 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=7280 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=7280 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=7280 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=9104 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=9104 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=9104 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=9104 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=10920 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=10920 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=10920 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=10920 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=14560 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=14560 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=14560 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=14560 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=21848 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=21848 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=21848 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=21848 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=29128 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=29128 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=29128 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=29128 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=43688 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=43688 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=43688 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=43688 m=16 checks=53 failures=0 status=PASS
+PAGE_POLICY O=58256 m=1 checks=53 failures=0 status=PASS
+PAGE_POLICY O=58256 m=4 checks=53 failures=0 status=PASS
+PAGE_POLICY O=58256 m=8 checks=53 failures=0 status=PASS
+PAGE_POLICY O=58256 m=16 checks=53 failures=0 status=PASS
+COORDINATE_SWEEP_COVERAGE O=912 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=912 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=912 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=912 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=1024 m=1 case=complete coordinates=512/512 compared_per_coordinate=1024 status=PASS
+COORDINATE_SWEEP_COVERAGE O=1024 m=4 case=complete coordinates=512/512 compared_per_coordinate=4096 status=PASS
+COORDINATE_SWEEP_COVERAGE O=1024 m=8 case=complete coordinates=512/512 compared_per_coordinate=8192 status=PASS
+COORDINATE_SWEEP_COVERAGE O=1024 m=16 case=complete coordinates=512/512 compared_per_coordinate=16384 status=PASS
+COORDINATE_SWEEP_COVERAGE O=1824 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=1824 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=1824 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=1824 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=2728 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=2728 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=2728 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=2728 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=3640 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=3640 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=3640 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=3640 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=4552 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=4552 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=4552 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=4552 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=5464 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=5464 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=5464 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=5464 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=6368 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=6368 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=6368 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=6368 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=7280 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=7280 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=7280 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=7280 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=9104 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=9104 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=9104 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=9104 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=10920 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=10920 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=10920 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=10920 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=14560 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=14560 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=14560 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=14560 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=21848 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=21848 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=21848 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=21848 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=29128 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=29128 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=29128 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=29128 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=43688 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=43688 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=43688 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=43688 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_COVERAGE O=58256 m=1 case=partial coordinates=512/512 compared_per_coordinate=16 status=PASS
+COORDINATE_SWEEP_COVERAGE O=58256 m=4 case=partial coordinates=512/512 compared_per_coordinate=64 status=PASS
+COORDINATE_SWEEP_COVERAGE O=58256 m=8 case=partial coordinates=512/512 compared_per_coordinate=128 status=PASS
+COORDINATE_SWEEP_COVERAGE O=58256 m=16 case=partial coordinates=512/512 compared_per_coordinate=256 status=PASS
+COORDINATE_SWEEP_DIFFERENTIATED O1024_complete=4/4 other_O_partial=60/60 duplicate_records=0 status=PASS
+QA_NUMERICAL O=912 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=912 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=912 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=912 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=1024 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=1024 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=1024 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=1024 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=1824 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=1824 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=1824 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=1824 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=2728 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=2728 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=2728 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=2728 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=3640 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=3640 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=3640 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=3640 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=4552 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=4552 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=4552 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=4552 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=5464 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=5464 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=5464 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=5464 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=6368 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=6368 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=6368 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=6368 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=7280 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=7280 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=7280 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=7280 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=9104 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=9104 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=9104 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=9104 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=10920 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=10920 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=10920 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=10920 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=14560 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=14560 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=14560 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=14560 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=21848 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=21848 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=21848 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=21848 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=29128 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=29128 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=29128 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=29128 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=43688 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=43688 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=43688 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=43688 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+QA_NUMERICAL O=58256 m=1 fixtures=10/10 failures=0 sweep_checks=8192 status=PASS
+QA_NUMERICAL O=58256 m=4 fixtures=10/10 failures=0 sweep_checks=32768 status=PASS
+QA_NUMERICAL O=58256 m=8 fixtures=10/10 failures=0 sweep_checks=65536 status=PASS
+QA_NUMERICAL O=58256 m=16 fixtures=10/10 failures=0 sweep_checks=131072 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=912 m=1 checks=1167360 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=912 m=4 checks=4669440 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=912 m=8 checks=9338880 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=912 m=16 checks=18677760 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=1024 m=1 checks=1310720 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=1024 m=4 checks=5242880 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=1024 m=8 checks=10485760 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=1024 m=16 checks=20971520 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=1824 m=1 checks=2334720 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=1824 m=4 checks=9338880 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=1824 m=8 checks=18677760 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=1824 m=16 checks=37355520 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=2728 m=1 checks=3491840 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=2728 m=4 checks=13967360 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=2728 m=8 checks=27934720 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=2728 m=16 checks=55869440 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=3640 m=1 checks=4659200 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=3640 m=4 checks=18636800 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=3640 m=8 checks=37273600 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=3640 m=16 checks=74547200 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=4552 m=1 checks=5826560 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=4552 m=4 checks=23306240 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=4552 m=8 checks=46612480 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=4552 m=16 checks=93224960 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=5464 m=1 checks=6993920 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=5464 m=4 checks=27975680 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=5464 m=8 checks=55951360 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=5464 m=16 checks=111902720 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=6368 m=1 checks=8151040 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=6368 m=4 checks=32604160 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=6368 m=8 checks=65208320 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=6368 m=16 checks=130416640 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=7280 m=1 checks=9318400 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=7280 m=4 checks=37273600 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=7280 m=8 checks=74547200 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=7280 m=16 checks=149094400 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=9104 m=1 checks=11653120 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=9104 m=4 checks=46612480 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=9104 m=8 checks=93224960 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=9104 m=16 checks=186449920 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=10920 m=1 checks=13977600 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=10920 m=4 checks=55910400 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=10920 m=8 checks=111820800 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=10920 m=16 checks=223641600 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=14560 m=1 checks=18636800 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=14560 m=4 checks=74547200 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=14560 m=8 checks=149094400 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=14560 m=16 checks=298188800 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=21848 m=1 checks=27965440 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=21848 m=4 checks=111861760 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=21848 m=8 checks=223723520 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=21848 m=16 checks=447447040 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=29128 m=1 checks=37283840 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=29128 m=4 checks=149135360 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=29128 m=8 checks=298270720 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=29128 m=16 checks=596541440 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=43688 m=1 checks=55920640 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=43688 m=4 checks=223682560 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=43688 m=8 checks=447365120 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=43688 m=16 checks=894730240 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=58256 m=1 checks=74567680 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=58256 m=4 checks=298270720 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=58256 m=8 checks=596541440 failures=0 status=PASS
+EXACT_GROUP_DOT_ISOLATION O=58256 m=16 checks=1193082880 failures=0 status=PASS
+KERNEL_QA_GATE=PASS

@@ -22,6 +22,7 @@ int O = t0common::O;
 constexpr int I = t0common::I, G = t0common::G;
 constexpr int output_sweep[] = {912,1024,1824,2728,3640,4552,5464,6368,7280,9104,10920,14560,21848,29128,43688,58256};
 std::size_t identity_checks = 0, identity_failures = 0;
+std::filesystem::path baseline_path;
 const Fixture all_fixtures[] = {Fixture::Uniform, Fixture::MixedCancellation, Fixture::VariedScales,
     Fixture::Sub127, Fixture::Extremes, Fixture::ZeroInput, Fixture::SingleCoordinate,
     Fixture::CancellationHigh, Fixture::CancellationExtreme, Fixture::ExactCancellation};
@@ -229,7 +230,7 @@ bool run_cells(const std::string& data_dir, bool& pages_pass) {
             const std::size_t m_index = m == 1 ? 0 : m == 4 ? 1 : m == 8 ? 2 : 3;
             const std::size_t prior_m = m_index == 0 ? 0 : m_index == 1 ? 1 : m_index == 2 ? 5 : 13;
             const std::size_t offset = (std::size_t(f) * 29 + prior_m) * O * sizeof(float);
-            std::ifstream baseline("logs/baseline_candidate_o1024.bin", std::ios::binary);
+            std::ifstream baseline(baseline_path, std::ios::binary);
             std::vector<float> frozen(output.size());
             if (!baseline || output.size() != std::size_t(m) * O) bit_identity = false;
             else { baseline.seekg(std::streamoff(offset)); baseline.read(reinterpret_cast<char*>(frozen.data()), std::streamsize(frozen.size() * sizeof(float))); bit_identity = baseline.good() && std::memcmp(frozen.data(), output.data(), frozen.size() * sizeof(float)) == 0; }
@@ -283,32 +284,51 @@ bool run_cells(const std::string& data_dir, bool& pages_pass) {
 
 bool single_coordinate_sweep(bool& pages_pass) {
     std::size_t checks = 0, failures = 0;
+    const bool full_observation = O == t0common::O;
     for (int m : {1, 4, 8, 16}) {
         Cell base = t0common::generate_single_coordinate(m, 0);
         expand_output_rows(base, O);
         omega_q4::PackedWeights w; omega_q4::prepare_weights(base, O, w);
         omega_q4::PackedActivations x;
         t0common::Buffer<float> y; y.resize(omega_q4::output_bytes(m, O) / sizeof(float));
-        const int lastTile = O / 8 - 1;
         for (int pos = 0; pos < I; ++pos) {
             Cell c = t0common::generate_single_coordinate(m, pos);
             omega_q4::prepare_activations(c, O, x);
-            omega_q4::qa_run_selected_tiles(w, x, 0, 0, y.data());
-            if (lastTile != 0) omega_q4::qa_run_selected_tiles(w, x, lastTile, lastTile, y.data());
+            omega_q4::run(w, x, O, y.data());
+            std::size_t coordinate_checks = 0, coordinate_failures = 0;
             for (int row = 0; row < m; ++row) {
-                for (int edge = 0; edge < 16; ++edge) {
-                    const int o = edge < 8 ? edge : O - 16 + edge;
+                const int first = 0, last = full_observation ? O : 8;
+                for (int edge = first; edge < last; ++edge) {
+                    const int o = edge;
                     const std::size_t src = mapped_source(o, O);
                     const int g = pos / 32;
                     const float product = c.ws[src * G + g] * c.xs[row * G + g];
                     const float expected = std::fma(float(c.wq[src * I + pos]), product, 0.0f);
-                    ++checks;
-                    if (y[std::size_t(row) * O + o] != expected) ++failures;
+                    ++coordinate_checks;
+                    if (y[std::size_t(row) * O + o] != expected) ++coordinate_failures;
+                }
+                if (!full_observation) {
+                    for (int o = O - 8; o < O; ++o) {
+                        const std::size_t src = mapped_source(o, O);
+                        const int g = pos / 32;
+                        const float product = c.ws[src * G + g] * c.xs[row * G + g];
+                        const float expected = std::fma(float(c.wq[src * I + pos]), product, 0.0f);
+                        ++coordinate_checks;
+                        if (y[std::size_t(row) * O + o] != expected) ++coordinate_failures;
+                    }
                 }
             }
+            checks += coordinate_checks;
+            failures += coordinate_failures;
+            std::cout << "SINGLE_SWEEP_COORD route=omega_q4.run O=" << O << " M=" << m
+                      << " position=" << pos << " compared=" << coordinate_checks
+                      << " failures=" << coordinate_failures << "\n";
         }
-        std::cout << "SINGLE_SWEEP route=omega_q4 O=" << O << " M=" << m << " positions=512 batches=512 sampled_output_rows=first8,last8 checks="
-                  << std::size_t(I) * m * 16 << " failures=" << failures << " exact_integer_outputs="
+        const std::size_t per_position = std::size_t(m) * (full_observation ? O : 16);
+        std::cout << "SINGLE_SWEEP route=omega_q4.run O=" << O << " M=" << m
+                  << " mode=" << (full_observation ? "all_outputs" : "first8_last8")
+                  << " positions=512 run_calls=512 compared=" << std::size_t(I) * per_position
+                  << " checks=" << std::size_t(I) * per_position << " failures=" << failures << " exact_integer_outputs="
                   << (failures == 0 ? "PASS" : "FAIL") << "\n";
         pages_pass &= query_pages("single_coordinate_sweep", m, "weights", "packed_q4_and_fp16_scales",
                                   "single_coordinate_sweep_" + std::to_string(m) + "_weights", w.bytes.data(), w.bytes.size(), w.bytes.is_large());
@@ -382,7 +402,17 @@ int main(int argc, char** argv) {
     try {
         if (!avx_vnni_available()) throw std::runtime_error("CPU/OS no anuncia AVX-VNNI-256; no se ejecutó la primitiva requerida");
         std::cout << "QA_START\n" << std::flush;
-        if (argc != 2) throw std::runtime_error("uso: qa_kernel.exe <ruta T0P/common/data>");
+        if (argc != 2 && argc != 3) throw std::runtime_error("uso: qa_kernel.exe <ruta T0P/common/data> [baseline-bin]");
+        if (argc == 3) baseline_path = std::filesystem::path(argv[2]);
+        else {
+            std::wstring exe(32768, L'\\0');
+            const DWORD n = GetModuleFileNameW(nullptr, exe.data(), DWORD(exe.size()));
+            if (!n || n >= exe.size()) throw std::runtime_error("no se pudo resolver la ruta del ejecutable para baseline");
+            exe.resize(n);
+            baseline_path = std::filesystem::path(exe).parent_path() / L"logs" / L"baseline_candidate_o1024.bin";
+        }
+        if (!std::filesystem::exists(baseline_path)) throw std::runtime_error("baseline O=1024 no encontrado: " + baseline_path.string());
+        std::cout << "BASELINE_PATH=" << baseline_path.string() << "\n";
         t0common::verifier_unit_tests();
         std::cout << "verifier_unit_tests=PASS\n" << std::flush;
         bool all = true, page = true;

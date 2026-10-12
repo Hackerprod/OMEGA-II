@@ -31,6 +31,11 @@ void flush_line(std::uintptr_t a, FlushKind k) {
   if(k==FlushKind::CLFLUSHOPT) _mm_clflushopt(reinterpret_cast<const void*>(a));
   else _mm_clflush(reinterpret_cast<const void*>(a));
 }
+void evict_range_impl(const void*p,std::size_t n,LineSink sink,void*ctx,FlushKind kind) {
+  auto a=first_line(p,n);auto count=line_count(p,n);
+  for(size_t i=0;i<count;++i){auto x=a+i*kLineBytes;flush_line(x,kind);if(sink)sink(x,ctx);}
+  _mm_sfence();_mm_mfence();
+}
 void validate(const std::vector<Region>& rs) {
   if(rs.empty()) throw std::invalid_argument("empty weight region list");
   for(const auto&r:rs) {
@@ -48,13 +53,14 @@ void parallel(const std::vector<Region>&rs,unsigned nw,LineSink sink,void*ctx,Fl
     GROUP_AFFINITY req{};req.Group=0;req.Mask=KAFFINITY(1)<<(w*2);GROUP_AFFINITY observed{};
     if(!SetThreadGroupAffinity(GetCurrentThread(),&req,nullptr)||!GetThreadGroupAffinity(GetCurrentThread(),&observed)||observed.Group!=0||observed.Mask!=req.Mask||GetCurrentProcessorNumber()!=w*2)affinity_ok=false;
     gate.wait(); if(!affinity_ok.load()){gate.wait();return;}
-    for(size_t g=w;g<offsets.back();g+=nw) {
-      auto it=std::upper_bound(offsets.begin(),offsets.end(),g)-offsets.begin()-1;
-      const auto&r=rs[it]; auto idx=g-offsets[it];
-      auto a=first_line(r.ptr,r.bytes)+idx*64;
-      flush_line(a,force); if(sink)sink(a,ctx);
+    const size_t begin=offsets.back()*w/nw,end=offsets.back()*(w+1)/nw;
+    for(size_t g=begin;g<end;) {
+      auto it=size_t(std::upper_bound(offsets.begin(),offsets.end(),g)-offsets.begin()-1);
+      const auto&r=rs[it];const auto idx=g-offsets[it];const auto run=(std::min)(end-g,offsets[it+1]-g);
+      const auto a=first_line(r.ptr,r.bytes)+idx*kLineBytes;
+      evict_range_impl(reinterpret_cast<const void*>(a),run*kLineBytes,sink,ctx,force);g+=run;
     }
-    _mm_sfence(); gate.wait();
+    gate.wait();
   });
   for(auto&t:ts)t.join(); if(!affinity_ok.load())throw std::runtime_error("worker affinity verification failed"); _mm_mfence();
 }
@@ -64,8 +70,7 @@ Choice selected_flush() noexcept {
   return c;
 }
 void evict_range_record(const void*p,std::size_t n,LineSink sink,void*ctx) {
-  auto a=first_line(p,n); auto count=line_count(p,n); auto k=selected_flush().kind;
-  for(size_t i=0;i<count;++i){auto x=a+i*64;flush_line(x,k);if(sink)sink(x,ctx);} _mm_sfence();_mm_mfence();
+  evict_range_impl(p,n,sink,ctx,selected_flush().kind);
 }
 void evict_range(const void*p,std::size_t n){evict_range_record(p,n,nullptr,nullptr);}
 void evict_range_diagnostic(const void*p,std::size_t n,FlushKind kind){auto a=first_line(p,n);auto count=line_count(p,n);for(size_t i=0;i<count;++i)flush_line(a+i*64,kind);_mm_sfence();_mm_mfence();}

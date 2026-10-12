@@ -1,0 +1,9 @@
+LP=0 group=0 result=200000000000 expected=200000000000 I0=600000000004 duration_s=40.604163400 affinity=PASS
+LP=2 group=0 result=200000000000 expected=200000000000 I0=600000000004 duration_s=40.022455300 affinity=PASS
+LP=4 group=0 result=200000000000 expected=200000000000 I0=600000000004 duration_s=39.447561700 affinity=PASS
+LP=6 group=0 result=200000000000 expected=200000000000 I0=600000000004 duration_s=39.363979100 affinity=PASS
+LP=8 group=0 result=200000000000 expected=200000000000 I0=600000000004 duration_s=39.601822100 affinity=PASS
+LP=10 group=0 result=200000000000 expected=200000000000 I0=600000000004 duration_s=39.473042000 affinity=PASS
+LP=12 group=0 result=200000000000 expected=200000000000 I0=600000000004 duration_s=39.341817100 affinity=PASS
+LP=14 group=0 result=200000000000 expected=200000000000 I0=600000000004 duration_s=39.334113000 affinity=PASS
+DUMMY_NATIVE=TRUE; N_loop fixed at 200000000000; no EMON invoked; no instruction-count measurement; report=C:\Projects\OMEGA\Ejercise\T0P\telemetry\capture_r1_r7\attempt-001\helper_report.csv; map=C:\Projects\OMEGA\Ejercise\T0P\telemetry\capture_r1_r7\attempt-001\helper_clock_map.csv; create_new=PASS; status=PASS

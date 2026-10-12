@@ -1,0 +1,117 @@
+{
+    "state":  "PASS",
+    "sha256":  "6cadf8fbbc920c33164fa1d6c2f8ae047d795928e6cbc6767384d7a008c7b8e0",
+    "source":  "dumpbin /DISASM harness_r12.exe",
+    "executable":  "harness_r12.exe",
+    "modular_uint32_sink":  true,
+    "variants":  [
+                     {
+                         "variant":  "pinstr_c10_u8",
+                         "address":  "0x0000000140056220",
+                         "vpdpbusd":  80,
+                         "expected":  80,
+                         "independent_accumulators":  10,
+                         "expected_accumulators":  10,
+                         "instructions_per_accumulator":  "8,8,8,8,8,8,8,8,8,8",
+                         "dependency_chain":  true,
+                         "shared_inputs":  "ymm0:ymm1",
+                         "pass":  true
+                     },
+                     {
+                         "variant":  "pinstr_c12_u16",
+                         "address":  "0x0000000140056590",
+                         "vpdpbusd":  192,
+                         "expected":  192,
+                         "independent_accumulators":  12,
+                         "expected_accumulators":  12,
+                         "instructions_per_accumulator":  "16,16,16,16,16,16,16,16,16,16,16,16",
+                         "dependency_chain":  true,
+                         "shared_inputs":  "ymm0:ymm1",
+                         "pass":  true
+                     },
+                     {
+                         "variant":  "pinstr_c12_u8",
+                         "address":  "0x0000000140056B70",
+                         "vpdpbusd":  96,
+                         "expected":  96,
+                         "independent_accumulators":  12,
+                         "expected_accumulators":  12,
+                         "instructions_per_accumulator":  "8,8,8,8,8,8,8,8,8,8,8,8",
+                         "dependency_chain":  true,
+                         "shared_inputs":  "ymm0:ymm1",
+                         "pass":  true
+                     },
+                     {
+                         "variant":  "pinstr_c14_u16",
+                         "address":  "0x0000000140056F60",
+                         "vpdpbusd":  224,
+                         "expected":  224,
+                         "independent_accumulators":  14,
+                         "expected_accumulators":  14,
+                         "instructions_per_accumulator":  "16,16,16,16,16,16,16,16,16,16,16,16,16,16",
+                         "dependency_chain":  true,
+                         "shared_inputs":  "ymm0:ymm1",
+                         "pass":  true
+                     },
+                     {
+                         "variant":  "pinstr_c14_u8",
+                         "address":  "0x0000000140057620",
+                         "vpdpbusd":  112,
+                         "expected":  112,
+                         "independent_accumulators":  14,
+                         "expected_accumulators":  14,
+                         "instructions_per_accumulator":  "8,8,8,8,8,8,8,8,8,8,8,8,8,8",
+                         "dependency_chain":  true,
+                         "shared_inputs":  "ymm0:ymm1",
+                         "pass":  true
+                     },
+                     {
+                         "variant":  "pinstr_c1_u8",
+                         "address":  "0x0000000140057AA0",
+                         "vpdpbusd":  8,
+                         "expected":  8,
+                         "independent_accumulators":  1,
+                         "expected_accumulators":  1,
+                         "instructions_per_accumulator":  "8",
+                         "dependency_chain":  true,
+                         "shared_inputs":  "ymm1:ymm2",
+                         "pass":  true
+                     },
+                     {
+                         "variant":  "pinstr_c2_u8",
+                         "address":  "0x0000000140057B10",
+                         "vpdpbusd":  16,
+                         "expected":  16,
+                         "independent_accumulators":  2,
+                         "expected_accumulators":  2,
+                         "instructions_per_accumulator":  "8,8",
+                         "dependency_chain":  true,
+                         "shared_inputs":  "ymm2:ymm3",
+                         "pass":  true
+                     },
+                     {
+                         "variant":  "pinstr_c4_u8",
+                         "address":  "0x0000000140057C60",
+                         "vpdpbusd":  32,
+                         "expected":  32,
+                         "independent_accumulators":  4,
+                         "expected_accumulators":  4,
+                         "instructions_per_accumulator":  "8,8,8,8",
+                         "dependency_chain":  true,
+                         "shared_inputs":  "ymm0:ymm1",
+                         "pass":  true
+                     },
+                     {
+                         "variant":  "pinstr_c8_u8",
+                         "address":  "0x0000000140057E30",
+                         "vpdpbusd":  64,
+                         "expected":  64,
+                         "independent_accumulators":  8,
+                         "expected_accumulators":  8,
+                         "instructions_per_accumulator":  "8,8,8,8,8,8,8,8",
+                         "dependency_chain":  true,
+                         "shared_inputs":  "ymm0:ymm1",
+                         "pass":  true
+                     }
+                 ]
+}

@@ -1,0 +1,1 @@
+KERNEL_GATE_SELF_TEST=PASS cases=dynamic_sizes,wrong_O,bytes1,missing_page,duplicate_page,incoherent_counters,O1024_complete,other_O_partial,selected_tiles_rejected,omitted_coordinate_rejected

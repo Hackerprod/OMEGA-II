@@ -16,12 +16,12 @@ El control por P usa un victim-buffer DUMMY de 8 MiB, recorrido dependiente con 
 
 La adquisición oficial de esta cualificación usa EMON CLI con `-collect-edp` y `T0P/telemetry/reader/emon_joint_qualification.edp` (3.600 grupos conjuntos, sin multiplexación). Para **cada condición independiente** se ejecuta la misma carga continuamente en `[t_pad_ini,t_pad_fin]`; la región de rendimiento y análisis es `[t_ini,t_fin]`, estrictamente interior. Se fijan márgenes mínimos `m_ini,m_fin ≥ 0,200 s`, es decir, dos veces la ventana EMON máxima observada de 0,100 s. En la repetición se programaron 0,250 s por lado y el menor margen efectivo fue 200,026 ms. Cada margen conserva la misma carga, operaciones y estado de caché de la condición; no se intercala otra condición ni flush/acondicionamiento ajeno.
 
-Esta definición **no equivale a llamar bloque a la propia región medida**. El acolchado es actividad de la misma condición que protege sus extremos; no cuenta como muestra de rendimiento ni entra en el denominador estadístico o temporal. Se consideran únicamente ventanas EMON completas que solapan `[t_ini,t_fin]` y están contenidas en `[t_pad_ini,t_pad_fin]` (con guarda U); las que cruzan el acolchado se excluyen y contabilizan. No se interpolan ni extrapolan contadores. La cobertura y los huecos se calculan sobre la unión de los segmentos completos recortados a la región, nunca sobre la duración de los márgenes.
+Esta definición **no equivale a llamar bloque a la propia región medida**. El acolchado es actividad de la misma condición que protege sus extremos; no cuenta como muestra de rendimiento ni entra en el denominador estadístico o temporal. Una ventana procede solo cuando `[s−U,e+U]⊆P`; las que cruzan el acolchado se excluyen y contabilizan. No se interpolan ni extrapolan contadores. Cada ventana se contrae primero a `[s+U,e−U]`, se intersecta con M y después se calcula la unión. Nunca se contrae solo la unión ni se usa la duración de los márgenes como denominador.
 
-`U` se obtiene ajustando QPC/FILETIME con muestreo de bracket: `U = residuo_máximo + bracket_máximo/2 + 0,5 ms` por cuantización del timestamp civil. Cada ventana termina en el QPC ajustado del timestamp EMON y empieza `THREAD/f_TSC` antes, con `f_TSC=2112,003049 MHz`. Para segmentos unidos `[a_i,b_i]` recortados a la región de duración `D`:
+`U` se obtiene ajustando QPC/FILETIME con muestreo de bracket: `U = residuo_máximo + bracket_máximo/2 + 0,5 ms` por cuantización del timestamp civil. Cada ventana termina en el QPC ajustado del timestamp EMON y su duración procede de `REF_TSC/f_TSC`, con `f_TSC` calibrado frente a QPC en esa captura. Para los segmentos contraídos y unidos `[a_i,b_i]` recortados a la región de duración `D`:
 
-- `coverage_lower = Σ max(0, (b_i−a_i)−2U) / D`.
-- Cota de hueco en el primer/último extremo: hueco observado `+ U`; entre segmentos: hueco observado `+ 2U`. El máximo debe ser ≤20 ms.
+- `coverage_lower = Σ (b_i−a_i) / D` después de contraer cada ventana y unir los solapes.
+- El máximo hueco es la mayor distancia en segundos entre los extremos de M y los segmentos contraídos, incluidos los huecos internos; debe ser ≤20 ms.
 - También se exige duración medida ≥2 s, ≥20 ventanas, cobertura ≥95 %, ventana individual ≤100 ms y `U≤1 ms`.
 
 Fracción LLC por P/condición: `Σ OFFCORE_REQUESTS.L3_MISS_DEMAND_DATA_RD / Σ OFFCORE_REQUESTS.DEMAND_DATA_RD`; L2 usa las entradas equivalentes `L2_RQSTS`. Se suman numerador y denominador sobre los mismos grupos y el mismo par LP; denominador cero es no estimable. Los márgenes nunca se agregan a estas sumas.
@@ -35,4 +35,16 @@ El API común `analyze_padded_block(PaddedBlock, windows, U, required_margin_ms=
 ## Umbrales y decisión
 
 No se cambian umbrales: ratio frío/caliente ≥1,50; LLC fría ≥0,90; LLC caliente ≤0,10; cobertura ≥95 %; hueco ≤20 ms; ≥20 ventanas; ventana ≤100 ms; región ≥2 s. `EVICTION_QUALIFIED` exige conjuntamente los controles físicos y temporales. En caso contrario se informa el `HOLD_*` correspondiente, sin selección posterior de resultados.
+
+## D8 r3: primitiva común y recorrido arquitectónico
+
+`evict.cpp` contiene una sola implementación de recorrido de líneas: `evict_range()` y `evict_range_record()` la exportan; el lote tipado divide trabajo entre ocho hilos y envía cada tramo contiguo a ese mismo helper. El cualificador r3 enlaza `evict_r3.obj` compilado desde ese fuente. Registra SHA-256 de fuente, objeto y ejecutable, y está preparado para verificar las 4.608 líneas de cada shard de geometría arquitectónica de 294.912 B antes de medir. Esa comprobación no llegó a ejecutarse en este entorno.
+
+El cualificador ejecuta ocho workers concurrentes fijados a LP 0,2,4,6,8,10,12,14, con ocho asignaciones large-page independientes. Frío aplica la primitiva gobernante y recarga el shard completo; caliente vuelve a leerlo sin flush. Mide bloques continuos de 2,5 s con márgenes activos de la misma condición de al menos 0,200 s por lado. Conserva ciclos de recarga por core y condición; el ratio gobernante por core es mediana(frío)/mediana(caliente). EMON suma misses/demandas LLC y los pares de eventos L2 del mismo alcance por P-core.
+
+El analizador trabaja en segundos para todos los límites. Una ventana procede solo si `[s−U,e+U]⊆P`; cada ventana se contrae a `[s+U,e−U]`, se recorta a M y solo entonces se unen los segmentos. `C_low=longitud(unión)/duración(M)`. El hueco superior incluye ambos extremos. Exige margen ≥0,200 s, U≤0,001 s, al menos 20 ventanas, ventana ≤0,100 s, región ≥2,5 s, C_low≥0,95, hueco≤0,020 s, ratio≥1,50, LLC fría≥0,90 y caliente≤0,10. Cualquier dato ausente o control falso da `HOLD_EVICTION_NOT_QUALIFIED`; no hay ramas PASS por defecto.
+
+Contrapruebas: `powershell -NoProfile -File analyze_padded_blocks.ps1 -SelfTest` rechaza huecos internos y extremos, prueba la contracción antes de unir y confirma que 1.000 ms de una región de 2,5 s es 40 %.
+
+La integración del harness sigue pendiente: `harness/residency_r11.cpp` conserva una función local `flush_region()` y `build_r11.cmd` recompila ese archivo sin enlazar `evict.cpp`. El alcance de escritura autorizado para D8 no incluye `T0P/harness`; por eso el runner/collector r3 sí usa la fuente común, pero aún no existe identidad de primitiva en el harness actual. Antes de atribuirle cobertura, el build integrado debe reemplazar esa ruta local por `omega_evict::evict_range()` y enlazar el mismo `evict.cpp`.
 

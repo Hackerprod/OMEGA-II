@@ -1,0 +1,1 @@
+QA_LINK_KERNEL_OBJECT=C:\Projects\OMEGA\Ejercise\T0P\harness\obj_r11\q4.obj 

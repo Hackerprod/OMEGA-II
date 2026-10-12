@@ -1,0 +1,7 @@
+Version Info: public V11.61  (Jul 22 2026 at 13:23:52) Intel(R) microarchitecture code named Raptorlake-DT M:183 S:1
+
+10/12/2026 06:25:23.786
+INST_RETIRED.ANY	10911303	18595	7150	7190	7215	4688371	7160	7182	7193	9454119	7161	32320381	7169	7165	7203	7215	7226	7144	7152	7166	8077	7172	7165	7164	11641	
+==========
+
+       0.005s real         0.000s user         0.015s system  

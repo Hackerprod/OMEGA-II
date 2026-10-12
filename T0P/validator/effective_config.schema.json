@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omega.invalid/s20-r2-effective-config.schema.json",
+  "title": "OMEGA S-20/R1 effective telemetry configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "profile", "mode", "qpf_hz", "qpf_source",
+    "f_tsc_qualified_hz", "f_tsc_qpc_hz", "f_tsc_configured_hz",
+    "f_tsc_qualification_qpf_hz", "emon_local_utc_offset_minutes",
+    "nominal_window_s", "logical_processor_count", "lp_map", "event_groups",
+    "event_map_source", "multiplexing", "periods_lost", "energy_event",
+    "energy_semantics", "energy_unit_joule", "tcc_target_c",
+    "thermal_history_clear_at_start"
+  ],
+  "properties": {
+    "schema_version": {"const": "S20-R2-v1"},
+    "profile": {"enum": ["s20", "r1"]},
+    "mode": {"enum": ["temporal", "full", "r1"]},
+    "qpf_hz": {"type": "number", "exclusiveMinimum": 0},
+    "qpf_source": {"type": "string", "minLength": 1},
+    "f_tsc_qualified_hz": {"type": "number", "exclusiveMinimum": 0},
+    "f_tsc_qpc_hz": {"type": "number", "exclusiveMinimum": 0},
+    "f_tsc_configured_hz": {"type": "number", "exclusiveMinimum": 0},
+    "f_tsc_qualification_qpf_hz": {"type": "number", "exclusiveMinimum": 0},
+    "emon_local_utc_offset_minutes": {"type": "integer", "minimum": -840, "maximum": 840},
+    "nominal_window_s": {"const": 0.05},
+    "logical_processor_count": {"const": 24},
+    "lp_map": {
+      "type": "array", "minItems": 8, "maxItems": 8,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["p_core", "core_id", "core_type", "worker_lp", "smt_siblings"],
+        "properties": {
+          "p_core": {"type": "integer", "minimum": 0, "maximum": 7},
+          "core_id": {"type": "integer", "minimum": 0},
+          "core_type": {"const": "P"},
+          "worker_lp": {"enum": [0, 2, 4, 6, 8, 10, 12, 14]},
+          "smt_siblings": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0, "maximum": 23}}
+        }
+      }
+    },
+    "event_groups": {"type": "array", "minItems": 1, "maxItems": 1, "items": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}},
+    "event_map_source": {"type": "string", "minLength": 1},
+    "multiplexing": {"const": false},
+    "periods_lost": {"const": 0},
+    "energy_event": {"const": "MSR_EVENT:msr=0x611:type=FREERUN:scope=PACKAGE"},
+    "energy_semantics": {"enum": ["INTERVAL_DELTA", "SNAPSHOT32"]},
+    "energy_unit_joule": {"type": "number", "exclusiveMinimum": 0},
+    "tcc_target_c": {"type": "number", "exclusiveMinimum": 0},
+    "thermal_history_clear_at_start": {"type": "boolean"},
+    "edp_path": {"type": "string", "minLength": 1},
+    "edp_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "collection_mode": {"const": "application_until_exit"},
+    "monitored_interval_count": {"const": 1},
+    "reset_count": {"const": 0},
+    "n_loop": {"const": 200000000000},
+    "clock_map_path": {"type": "string", "minLength": 1},
+    "expected_replicas": {"type": "integer", "minimum": 2},
+    "event_map_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "marks_clock_domain": {"enum": ["qpc_ticks", "qpc_seconds"]}
+  },
+  "allOf": [
+    {"if": {"properties": {"profile": {"const": "s20"}}, "required": ["profile"]}, "then": {"required": ["edp_path", "edp_sha256"]}},
+    {"if": {"properties": {"profile": {"const": "r1"}}, "required": ["profile"]}, "then": {"required": ["collection_mode", "monitored_interval_count", "reset_count", "n_loop"], "properties": {"mode": {"const": "r1"}, "event_groups": {"const": [["INST_RETIRED.ANY"]]}}}}
+  ]
+}

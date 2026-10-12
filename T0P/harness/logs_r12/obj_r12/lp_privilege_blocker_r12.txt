@@ -1,0 +1,4 @@
+﻿COMMAND: whoami /priv
+SeLockMemoryPrivilege                     Bloquear páginas en la memoria                                      Deshabilitado
+COMMAND: VirtualAlloc(2MiB, MEM_RESERVE|MEM_COMMIT|MEM_LARGE_PAGES, PAGE_READWRITE)
+VirtualAlloc_LARGE_PAGES=FAIL bytes=2097152 Win32=1314 message=El cliente no dispone de un privilegio requerido

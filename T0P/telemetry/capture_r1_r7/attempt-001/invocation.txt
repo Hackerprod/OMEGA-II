@@ -1,0 +1,7 @@
+EMON=C:\Program Files (x86)\Intel\oneAPI\vtune\2026.4\bin64\emon.exe
+ARGS=-t 0 -C INST_RETIRED.ANY -m -c -u -f emon_raw.txt C:\Projects\OMEGA\Ejercise\T0P\telemetry\reader\inst_cli_helper_r6.exe helper_report.csv helper_clock_map.csv
+EXIT=0
+INTERVALS=1
+EVENT_GROUPS=1
+WORKER_REGION_MIN_SECONDS=39.334113
+HELPER_AFFINITY_ALL_PASS=true

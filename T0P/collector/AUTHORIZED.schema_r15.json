@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "T0P_S18_A6_AUTHORIZED_R15_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "campaign", "session_id", "issued_at_utc", "judge",
+    "sol_decision_id", "scope", "master_seed", "plan_sha256",
+    "plan_order_sha256", "executable_sha256", "artifacts",
+    "usage_policy", "retry_policy"
+  ],
+  "properties": {
+    "schema": {"type": "string", "const": "T0P_S18_A6_AUTHORIZED_R15_V1"},
+    "campaign": {"type": "string", "const": "T0P-Q4-RESIDENCY"},
+    "session_id": {"type": "string", "minLength": 16, "maxLength": 128, "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]+$"},
+    "issued_at_utc": {"type": "string", "format": "date-time"},
+    "judge": {"type": "string", "minLength": 1},
+    "sol_decision_id": {"type": "string", "const": "MD/50"},
+    "scope": {"type": "string", "minLength": 1},
+    "master_seed": {"type": "string", "const": "4F4D454741543031"},
+    "plan_sha256": {"$ref": "#/$defs/hash"},
+    "plan_order_sha256": {"$ref": "#/$defs/hash"},
+    "executable_sha256": {"$ref": "#/$defs/hash"},
+    "artifacts": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "plan_file_sha256", "qualification_plan_sha256",
+        "references_ggml_manifest_sha256", "references_torch_manifest_sha256",
+        "ggml_libraries", "torch_libraries", "kernel_source_sha256",
+        "kernel_object_sha256", "integrated_sources_sha256",
+        "emon_executable_sha256", "emon_edp_sha256", "s20_validator_sha256",
+        "eviction_cpp_sha256", "eviction_hpp_sha256", "t0_md_sha256",
+        "roadmap_sha256", "collector_manifest_sha256", "harness_manifest_sha256",
+        "authorized_schema_sha256"
+      ],
+      "properties": {
+        "plan_file_sha256": {"$ref": "#/$defs/hash"},
+        "qualification_plan_sha256": {"$ref": "#/$defs/hash"},
+        "references_ggml_manifest_sha256": {"$ref": "#/$defs/hash"},
+        "references_torch_manifest_sha256": {"$ref": "#/$defs/hash"},
+        "ggml_libraries": {
+          "type": "object", "additionalProperties": false,
+          "required": ["ggml.dll", "ggml-cpu.dll", "ggml-base.dll"],
+          "properties": {
+            "ggml.dll": {"$ref": "#/$defs/hash"},
+            "ggml-cpu.dll": {"$ref": "#/$defs/hash"},
+            "ggml-base.dll": {"$ref": "#/$defs/hash"}
+          }
+        },
+        "torch_libraries": {
+          "type": "object", "additionalProperties": false,
+          "required": ["torch.dll", "torch_cpu.dll", "c10.dll"],
+          "properties": {
+            "torch.dll": {"$ref": "#/$defs/hash"},
+            "torch_cpu.dll": {"$ref": "#/$defs/hash"},
+            "c10.dll": {"$ref": "#/$defs/hash"}
+          }
+        },
+        "kernel_source_sha256": {"$ref": "#/$defs/hash"},
+        "kernel_object_sha256": {"$ref": "#/$defs/hash"},
+        "integrated_sources_sha256": {"$ref": "#/$defs/hash"},
+        "emon_executable_sha256": {"$ref": "#/$defs/hash"},
+        "emon_edp_sha256": {"$ref": "#/$defs/hash"},
+        "s20_validator_sha256": {"$ref": "#/$defs/hash"},
+        "eviction_cpp_sha256": {"$ref": "#/$defs/hash"},
+        "eviction_hpp_sha256": {"$ref": "#/$defs/hash"},
+        "t0_md_sha256": {"$ref": "#/$defs/hash"},
+        "roadmap_sha256": {"$ref": "#/$defs/hash"},
+        "collector_manifest_sha256": {"$ref": "#/$defs/hash"},
+        "harness_manifest_sha256": {"$ref": "#/$defs/hash"},
+        "authorized_schema_sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "usage_policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["session_count", "official", "emon_continuous", "N", "warmup", "LPs", "large_pages_required", "retry_global_max", "dry_accept_measurements", "synthetic_allowed_in_official"],
+      "properties": {
+        "session_count": {"type": "integer", "const": 1},
+        "official": {"type": "boolean", "const": true},
+        "emon_continuous": {"type": "boolean", "const": true},
+        "N": {"type": "integer", "const": 31},
+        "warmup": {"type": "integer", "const": 5},
+        "LPs": {"type": "array", "items": {"type": "integer"}, "const": [0, 2, 4, 6, 8, 10, 12, 14]},
+        "large_pages_required": {"type": "boolean", "const": true},
+        "retry_global_max": {"type": "integer", "const": 1},
+        "dry_accept_measurements": {"type": "boolean", "const": false},
+        "synthetic_allowed_in_official": {"type": "boolean", "const": false}
+      }
+    },
+    "retry_policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_technical_retries", "retryable_reasons", "scientific_failures_retryable", "same_plan_seed_order", "second_hold_is_final"],
+      "properties": {
+        "max_technical_retries": {"type": "integer", "const": 1},
+        "retryable_reasons": {"type": "array", "items": {"type": "string", "enum": ["DURATION_INSUFFICIENT", "FREQUENCY_UNSTABLE"]}, "const": ["DURATION_INSUFFICIENT", "FREQUENCY_UNSTABLE"]},
+        "scientific_failures_retryable": {"type": "boolean", "const": false},
+        "same_plan_seed_order": {"type": "boolean", "const": true},
+        "second_hold_is_final": {"type": "boolean", "const": true}
+      }
+    }
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

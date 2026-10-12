@@ -1,0 +1,10 @@
+R14_TRACE main_begin
+R14_TRACE schedule_read count=18
+R14_TRACE topology_ready
+R14_TRACE clocks_ready
+R14_TRACE workers_prepared ok=1
+R14_TRACE raw_files_opened
+R14_TRACE worker_threads_started
+R14_TRACE episode_begin event=calibration|W288|O1024|m1|K16|C variant=C episode=1
+R14_TRACE evict_weights_begin event=calibration|W288|O1024|m1|K16|C variant=C episode=1 app=-1 reason=episode_start
+R14_TRACE evict_weights_end event=calibration|W288|O1024|m1|K16|C lines=36864

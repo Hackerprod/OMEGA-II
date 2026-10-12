@@ -1,0 +1,2 @@
+exit_code=0
+command=C:\Program Files\Python313\python.exe -B T0P\validator\s20_validator.py validate --emon-raw T0P\evict\capture_d8_revalidation_r4\emon_stdout.txt --clock-map T0P\evict\D8_S20_CLOCK_MAP_R_r6.csv --block-marks T0P\evict\D8_S20_MARKS_R_r6.csv --config T0P\validator\artifacts_r6\qualification_inputs\capture_blocks_r2\attempt-002\effective_config.json --mode temporal

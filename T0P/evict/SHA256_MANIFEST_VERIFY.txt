@@ -1,0 +1,1 @@
+SHA256_MANIFEST status=PASS checked=93 entries=93 failures=0 excluded=SHA256SUMS_evict.txt,SHA256_MANIFEST_VERIFY.txt,__pycache__,temporary_extensions

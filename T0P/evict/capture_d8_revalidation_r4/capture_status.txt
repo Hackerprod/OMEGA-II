@@ -1,0 +1,12 @@
+MODE=revalidation
+EMON_EXIT=
+EMON_GROUPS=3600
+EMON_3600_AND_FOOTER=True
+WORKER_EXIT=
+CONFIG=C:\Projects\OMEGA\Ejercise\T0P\telemetry\reader\emon_joint_qualification.edp
+EDP_SHA256=a5883b0187e593973106452ede6c4c877a616b67493d4cd365c9c23057176174
+RAW=C:\Projects\OMEGA\Ejercise\T0P\evict\capture_d8_revalidation_r4\emon_stdout.txt
+CLOCK_MAP=C:\Projects\OMEGA\Ejercise\T0P\evict\capture_d8_revalidation_r4\clock_map.csv
+WORKER_RAW=C:\Projects\OMEGA\Ejercise\T0P\evict\capture_d8_revalidation_r4\harness.stdout.txt
+WORKER_STDERR=C:\Projects\OMEGA\Ejercise\T0P\evict\capture_d8_revalidation_r4\harness.stderr.txt
+IDENTITY=C:\Projects\OMEGA\Ejercise\T0P\evict\capture_d8_revalidation_r4\identity.txt

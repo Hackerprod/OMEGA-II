@@ -1,0 +1,1 @@
+{"campaign":"HOLD","label":"SMOKE","numeric_metrics_used":false,"plan_sha256":"39856a658f1ba7e70846870fc372c7f82042680d9d508f54805a4a433b78290c","raw_rows":1,"reason":"smoke measurements are excluded from scientific gates","residency":"NOT_STARTED","state":"SMOKE_ONLY","summary_rows":1}

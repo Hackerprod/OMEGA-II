@@ -1,0 +1,1 @@
+{"derived_file":"emon_capture_summary.json","derived_sha256":"93e6195c68ba4169d4b51ea664affc37dc77155d99677ebbe4347348a5a86e67","metadata":{"protocol":"D13-write-once-v1","role":"SMOKE EMON reader output"},"sources":{"emon_raw.txt":"78f199d6318bb3d6c9db60a5ec2eff450fc4a4effffe33dcccf7d94349d4f3f9"}}

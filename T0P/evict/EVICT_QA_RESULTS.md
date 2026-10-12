@@ -65,4 +65,26 @@ Pruebas deterministas del módulo común: cruce de condición excluido/reportado
 
 No hay bloqueos de instrumentación ni de criterio físico en esta repetición. Estado global: **EVICTION_QUALIFIED**. No se relajó S-20 ni ningún umbral.
 
+## Revisión D8/D13 r3 — estado actual
+
+El resultado anterior es histórico y corresponde al control DUMMY por core; no cualifica la recarga concurrente de ocho shards arquitectónicos. El nuevo runner `evict_qualification_r3.exe` y el analizador R2 compilan, y sus pruebas sintéticas pasan. La ejecución requerida queda bloqueada antes de la asignación de memoria large-page:
+
+```text
+evict_qualification_r3.exe --qualification
+TOPOLOGY=PASS P_LP=0,2,4,6,8,10,12,14 workers=8 SMT_pairs=verified
+HOLD_EVICTION_NOT_QUALIFIED cause=large_page_allocation_failed_win32=1314
+```
+
+`SeLockMemoryPrivilege` aparece deshabilitado en el token. No se habilitó ni se cambió política de seguridad. Por ello no hay contadores ni latencias arquitectónicas nuevas, y el estado de D8 es `HOLD_EVICTION_NOT_QUALIFIED`. La revalidación final debe repetir el mismo comando con `--revalidation`, pero requiere resolver ese permiso sin modificar seguridad desde este proceso.
+
+El build del runner compiló y enlazó `evict.cpp` (exit 0). Hashes: fuente `3e6b714aeb76401018420d10918e8c91ee2b21f8c84646dff8ac8d86f2c77d2b`, objeto enlazado `2cfc3df0251115cc137995fac0c5c27c561e15cb2c85516e57acbc69d144d2a7`, ejecutable `51f095e47495a3ae57aa31def155b64f55350b78588f6a8e844f77393c46bba8`. La ejecución inicial se detuvo en 0,24 s tras verificar topología y calibrar TSC/QPC (2.112.002.476 Hz frente a QPC de 10 MHz); no asignó ningún shard ni inició captura EMON. La prueba de análisis de huecos terminó en menos de 1 s.
+
+La revalidación final se ejecutó aparte con el mismo binario: `evict_qualification_r3.exe --revalidation`; también terminó con exit 2 y `HOLD_EVICTION_NOT_QUALIFIED cause=large_page_allocation_failed_win32=1314`. Su salida completa está en `revalidation_block_r3.txt`.
+
+La comprobación de integración también queda abierta: el harness mantiene `flush_region()` local en `T0P/harness/residency_r11.cpp` y su `build_r11.cmd` no enlaza `evict.cpp`. No se editaron esos archivos por el límite explícito de escritura.
+
+El analizador R2 pasó: `ANALYZER_SELF_TEST=PASS`, incluyendo 1.000/2.500 ms = 40 %, hueco interno, hueco de extremo y contracción individual antes de la unión.
+
+En D13, el manifiesto histórico `_r1/_r2` conserva la expectativa SHA-256 `a754eb7347d544a57861970f099c493786916ce965c7c187e51c7fdd14a2b4a2`; el archivo actual de raíz, última modificación 2026-10-11 21:12:40.864, tiene `6abc88caac18cb38ce33b12786bcf53cb349f1af1f03fd699e7d0d3be611ef00` y es la versión más reciente disponible. La búsqueda de todos los `eviction_windows.csv` bajo T0P no encontró los bytes `a754…`; se preservaron el manifiesto histórico y una copia `_r3` del archivo actual. No se fabricó el contenido histórico que falta. El manifiesto nuevo refleja los archivos presentes, pero no recupera esa versión histórica.
+
 

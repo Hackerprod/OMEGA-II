@@ -1,0 +1,76 @@
+{
+  "clock_uncertainty_s": 0.0005044500000204268,
+  "dummy_native": true,
+  "emon_collection": "NOT_RUN",
+  "i0": 600000000004,
+  "n_loop": 200000000000,
+  "qpf_map_hz": 9999999.9540971,
+  "qpf_report_hz": 10000000,
+  "state": "PASS",
+  "workers": [
+    {
+      "affinity": "PASS",
+      "duration_s": 40.0099956,
+      "lp": 0,
+      "lp_begin": 0,
+      "lp_end": 0,
+      "result": 200000000000
+    },
+    {
+      "affinity": "PASS",
+      "duration_s": 39.8391377,
+      "lp": 2,
+      "lp_begin": 2,
+      "lp_end": 2,
+      "result": 200000000000
+    },
+    {
+      "affinity": "PASS",
+      "duration_s": 39.4665976,
+      "lp": 4,
+      "lp_begin": 4,
+      "lp_end": 4,
+      "result": 200000000000
+    },
+    {
+      "affinity": "PASS",
+      "duration_s": 39.3696642,
+      "lp": 6,
+      "lp_begin": 6,
+      "lp_end": 6,
+      "result": 200000000000
+    },
+    {
+      "affinity": "PASS",
+      "duration_s": 39.5820163,
+      "lp": 8,
+      "lp_begin": 8,
+      "lp_end": 8,
+      "result": 200000000000
+    },
+    {
+      "affinity": "PASS",
+      "duration_s": 39.4575673,
+      "lp": 10,
+      "lp_begin": 10,
+      "lp_end": 10,
+      "result": 200000000000
+    },
+    {
+      "affinity": "PASS",
+      "duration_s": 39.3863988,
+      "lp": 12,
+      "lp_begin": 12,
+      "lp_end": 12,
+      "result": 200000000000
+    },
+    {
+      "affinity": "PASS",
+      "duration_s": 39.3456597,
+      "lp": 14,
+      "lp_begin": 14,
+      "lp_end": 14,
+      "result": 200000000000
+    }
+  ]
+}

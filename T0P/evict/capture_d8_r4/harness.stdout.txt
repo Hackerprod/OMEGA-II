@@ -1,0 +1,41 @@
+LARGE_PAGE_PRIVILEGE=AVAILABLE enabled=true
+LARGE_PAGE_MINIMUM_BYTES=2097152
+TOPOLOGY=PASS P_LP=0,2,4,6,8,10,12,14 workers=8 SMT_pairs=verified
+RUN_KIND=QUALIFICATION
+QPC_FREQ_HZ=10000000
+FTSC_QPC_HZ=2112002720
+FLUSH_SELECTION=CLFLUSHOPT
+WEIGHT_COVERAGE core=0 LP=0 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=1 LP=2 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=2 LP=4 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=3 LP=6 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=4 LP=8 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=5 LP=10 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=6 LP=12 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+WEIGHT_COVERAGE core=7 LP=14 bytes=294912 lines=4608 expected_lines=4608 status=PASS
+CACHE_LATENCY Pcore=0 LP=0 condition=cold_shards8 samples=72513 median_cycles=50194 p95_cycles=58143 sink=16180975119625085830
+CACHE_LATENCY Pcore=0 LP=0 condition=hot_shards8 samples=1692637 median_cycles=2970 p95_cycles=3005 sink=16180975119625085830
+COLD_HOT_RATIO Pcore=0 LP=0 cold_median_cycles=50194 hot_median_cycles=2970 ratio=16.9003367003 cold_samples=72513 hot_samples=1692637 status=PASS
+CACHE_LATENCY Pcore=1 LP=2 condition=cold_shards8 samples=73170 median_cycles=50209 p95_cycles=57937 sink=0
+CACHE_LATENCY Pcore=1 LP=2 condition=hot_shards8 samples=1709559 median_cycles=2990 p95_cycles=3017 sink=0
+COLD_HOT_RATIO Pcore=1 LP=2 cold_median_cycles=50209 hot_median_cycles=2990 ratio=16.7923076923 cold_samples=73170 hot_samples=1709559 status=PASS
+CACHE_LATENCY Pcore=2 LP=4 condition=cold_shards8 samples=71677 median_cycles=53027 p95_cycles=64061 sink=16180975119625085830
+CACHE_LATENCY Pcore=2 LP=4 condition=hot_shards8 samples=1721613 median_cycles=2990 p95_cycles=3019 sink=0
+COLD_HOT_RATIO Pcore=2 LP=4 cold_median_cycles=53027 hot_median_cycles=2990 ratio=17.7347826087 cold_samples=71677 hot_samples=1721613 status=PASS
+CACHE_LATENCY Pcore=3 LP=6 condition=cold_shards8 samples=72856 median_cycles=53096 p95_cycles=63398 sink=16180975119625085830
+CACHE_LATENCY Pcore=3 LP=6 condition=hot_shards8 samples=1732954 median_cycles=2989 p95_cycles=3016 sink=0
+COLD_HOT_RATIO Pcore=3 LP=6 cold_median_cycles=53096 hot_median_cycles=2989 ratio=17.7638006022 cold_samples=72856 hot_samples=1732954 status=PASS
+CACHE_LATENCY Pcore=4 LP=8 condition=cold_shards8 samples=73397 median_cycles=53837 p95_cycles=63087 sink=16180975119625085830
+CACHE_LATENCY Pcore=4 LP=8 condition=hot_shards8 samples=1724690 median_cycles=2989 p95_cycles=3017 sink=0
+COLD_HOT_RATIO Pcore=4 LP=8 cold_median_cycles=53837 hot_median_cycles=2989 ratio=18.0117096019 cold_samples=73397 hot_samples=1724690 status=PASS
+CACHE_LATENCY Pcore=5 LP=10 condition=cold_shards8 samples=73678 median_cycles=53322 p95_cycles=64419 sink=0
+CACHE_LATENCY Pcore=5 LP=10 condition=hot_shards8 samples=1733310 median_cycles=2986 p95_cycles=3013 sink=0
+COLD_HOT_RATIO Pcore=5 LP=10 cold_median_cycles=53322 hot_median_cycles=2986 ratio=17.8573342264 cold_samples=73678 hot_samples=1733310 status=PASS
+CACHE_LATENCY Pcore=6 LP=12 condition=cold_shards8 samples=73356 median_cycles=53603 p95_cycles=63835 sink=16180975119625085830
+CACHE_LATENCY Pcore=6 LP=12 condition=hot_shards8 samples=1706762 median_cycles=3039 p95_cycles=3080 sink=16180975119625085830
+COLD_HOT_RATIO Pcore=6 LP=12 cold_median_cycles=53603 hot_median_cycles=3039 ratio=17.6383678842 cold_samples=73356 hot_samples=1706762 status=PASS
+CACHE_LATENCY Pcore=7 LP=14 condition=cold_shards8 samples=72771 median_cycles=54114 p95_cycles=62774 sink=16180975119625085830
+CACHE_LATENCY Pcore=7 LP=14 condition=hot_shards8 samples=1732843 median_cycles=2999 p95_cycles=3035 sink=0
+COLD_HOT_RATIO Pcore=7 LP=14 cold_median_cycles=54114 hot_median_cycles=2999 ratio=18.0440146716 cold_samples=72771 hot_samples=1732843 status=PASS
+CONDITIONS shards=8 workers=8 bytes_per_shard=294912 total_bytes=2359296 margins_s=0.200 measured_s=2.500
+LATENCY_RATIO_CONTROL=PASS
