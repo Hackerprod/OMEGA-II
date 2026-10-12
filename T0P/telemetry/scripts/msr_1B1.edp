@@ -1,0 +1,5 @@
+-q -c -v -experimental -t0.1 -l1
+-C (
+MSR_EVENT:msr=0x1B1:type=STATIC:scope=PACKAGE
+;
+)

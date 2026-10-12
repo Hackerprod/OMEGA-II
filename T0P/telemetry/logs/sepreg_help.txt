@@ -1,0 +1,12 @@
+﻿
+Usage: C:\Program Files (x86)\Intel\oneAPI\vtune\2026.4\bin64\amplxe-sepreg.exe [ option ]
+
+where option is one of the following:
+
+  -c | --check-dependencies
+  -i | --install-driver
+  -s | --status
+  -u [pax]| --uninstall-driver [pax]
+
+  -v | --verbose may also be added to the above option for additional output
+

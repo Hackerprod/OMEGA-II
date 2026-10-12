@@ -1,52 +1,50 @@
-# Diseño del kernel Q4 OMEGA, ronda 3
+﻿# Diseño del kernel Q4 OMEGA: extensión geométrica S-19
 
-## Defectos de la ronda 1 y cambios
+## Contrato y geometrías
 
-La ronda 1 cargaba 16 bytes y ejecutaba seis instrucciones SIMD de extracción/orden por cada VPDPBUSD: el dot ocupaba 1/13 instrucciones en m=1 (7,69 %) y 4/19 en m>=4 (21,05 %). También mantenía un acumulador por tile de ocho filas (cuatro cadenas para cuatro activaciones) y no compartía los broadcasts entre tiles de filas en m=1.
+El operador conserva `d=512`, `I=512`, `G=16` grupos de 32, empaquetado Q4 de dos bloques K4 por vector de 32 bytes, activaciones INT8 preparadas y corrección exacta `Σ((q+8)x) − 8Σx = Σ(qx)`. El orden de acumulación es K4 ascendente y grupos 0…15; cada grupo convierte y escala en FP32 con el mismo producto y FMA. `run()` no asigna memoria, valida, despacha ni instrumenta.
 
-La ronda 2 fijó el layout de códigos y el bloqueo; la ronda 3 elimina el tile repetido de m=1 y amplía la reconstrucción exacta:
+`prepare_weights(cell,O,...)` y `prepare_activations(cell,O,...)` reciben O por shard. Se exigen múltiplos de 8 entre 8 y 58.256. Las API de tamaño son `weight_bytes(O)=288·O` y `output_bytes(m,O)=4·m·O`. Los planos de códigos/escalas mantienen exactamente el orden original; solo cambia su extensión. Las activaciones siguen ocupando `672·m` bytes y guardan qwords, escalas FP32, sumas INT32 y copia FP16.
 
-- Cada carga alineada de 32 bytes contiene ocho filas y dos K4 consecutivos. El nibble bajo forma las 32 lanes u8 del bloque K4 2*kp; el alto forma las 32 lanes del bloque 2*kp+1.
-- El decode usa exactamente vpand, vpsrlw 4 y vpand: tres operaciones para dos vectores y dos VPDPBUSD.
-- En m=1, ocho tiles de filas comparten cada par de broadcasts de activacion; cada tile mantiene una cadena de dot independiente. Hay ocho cadenas en vuelo y se recorren exactamente 128 tiles por shard (16 bloques de ocho), sin solapamientos.
-- En m=4/8/16, dos tiles de filas comparten cuatro activaciones preparadas. Cada tile y activación mantiene una cadena independiente: ocho cadenas en vuelo. El decode de cada tile se reutiliza en las cuatro activaciones.
-- Los acumuladores de dot están nombrados como escalares SIMD; el desensamblado no muestra cargas ni almacenamientos de spill en el cuerpo K4. El informe estático cuenta 0 spills.
+La API de ejecución es `run(weights, activations, O, output)`. El trabajo útil por llamada es exactamente `m·O·512` MAC.
 
-Cada shard produce 1024 filas distintas. El trabajo util es m*1024*512 MAC por shard. Las repeticiones de tiles no cuentan como MAC utiles ni reciben credito de rendimiento.
+| W objetivo (KiB) | O | Bytes reales por shard (288·O) |
+|---:|---:|---:|
+| 256 | 912 | 262.656 |
+| 288 | 1.024 | 294.912 |
+| 512 | 1.824 | 525.312 |
+| 768 | 2.728 | 785.664 |
+| 1.024 | 3.640 | 1.048.320 |
+| 1.280 | 4.552 | 1.310.976 |
+| 1.536 | 5.464 | 1.573.632 |
+| 1.792 | 6.368 | 1.833.984 |
+| 2.048 | 7.280 | 2.096.640 |
+| 2.560 | 9.104 | 2.621.952 |
+| 3.072 | 10.920 | 3.144.960 |
+| 4.096 | 14.560 | 4.193.280 |
+| 6.144 | 21.848 | 6.292.224 |
+| 8.192 | 29.128 | 8.388.864 |
+| 12.288 | 43.688 | 12.582.144 |
+| 16.384 | 58.256 | 16.777.728 |
 
-## Layout de pesos y preparación dinámica
+La regla aplicada es `O=8·round_half_up(W_KiB·1024/(8·288))`; todos los tamaños del barrido son múltiplos de ocho. Se compila un solo ejecutable y O se pasa en ejecución.
 
-PackedWeights conserva 262.144 bytes de códigos y 32.768 bytes de escalas FP16, 294.912 bytes en total. Los códigos se ordenan [tile_o8][grupo16][par_k4][fila_o8][K_in_pair4]. Cada byte almacena en el nibble bajo q+8 del primer K4 y en el alto q+8 del K4 siguiente. Para cada par, la línea de 32 bytes carga ocho filas por cuatro posiciones K. scale_offset mantiene las ocho escalas consecutivas por tile y grupo. Los buffers siguen siendo t0common::Buffer y admiten large pages.
+## Recorrido, colas y ausencia de MAC adicionales
 
-La preparación dinámica mantiene ocho DWORD de activación por grupo, FP32 de escalas, sum(x) INT32 y los bits FP16 originales. El kernel carga y transmite los DWORD de activación una sola vez por par K4 en m=1 y reutiliza esos broadcasts entre tiles de salida. Para m>=4, cada par de vectores de pesos se decodifica una vez y se usa con las cuatro activaciones. No hay extensión de activación repetida por fila de salida.
+Con `T=O/8` tiles de salida, el recorrido principal m=1 procesa solo bloques completos de ocho tiles (`ot+8≤T`); m≥4 procesa solo parejas completas (`ot+2≤T`). La cola m=1 recorre cada tile residual una sola vez; la cola m≥4 procesa el tile residual único con una rutina de un tile y cuatro activaciones. Ninguna cola comparte filas con el cuerpo principal, accede a un tile posterior ni inventa MAC. Cada salida se escribe una vez y el tamaño de salida es exactamente `4·m·O` bytes. Los casos sin cola no ejecutan rutinas residuales.
 
-La corrección sigue siendo exacta: Σ((q+8)*x) - 8*Σx = Σ(q*x). Las dos contribuciones K4 de cada par se suman en INT32; la magnitud máxima es menor que el límite INT32. qa_group_dots usa el mismo layout empaquetado y VPDPBUSD, y la QA compara cada dot de grupo contra el oráculo INT32.
+La QA prueba todos los grupos y todas las filas para las cinco familias de aislamiento, en todos los O y m. El barrido de coordenadas recorre las 512 posiciones K; para cada posición evalúa las 8 filas de la primera tile y las 8 de la última tile, para cada fila de lote. El aislamiento de grupo y la suite numérica recorren O completo, por lo que cubren exhaustivamente las colas y ambas fronteras.
 
-## Orden y semántica FP32
+## Identidad histórica y generación QA
 
-Dentro de cada grupo, los bloques K4 se acumulan en orden ascendente: nibble bajo y después nibble alto de cada par. Los grupos se procesan en orden 0..15. Después de completar el dot entero del grupo, vcvtph2ps convierte las ocho escalas de peso una vez por tile de filas; se multiplica por la escala FP32 de activación preparada y se hace un FMA por activación y tile. Toda conversión y escalado FP32 está fuera del bucle K4. No se reordena la acumulación FP32 entre grupos; se conserva S-12 y la semántica de cancelación exacta.
+En O=1.024 el cuerpo geométrico es el candidato congelado: no hay cola para m=1 ni m≥4, y cada bloque K4 conserva las mismas instrucciones y el orden de escala/FMA. La QA compara las 40 salidas binarias de los diez fixtures y m={1,4,8,16}, valor por valor, con el resultado producido por el código previo congelado; el control `BIT_IDENTITY` debe registrar 40/40 y cero diferencias.
 
-## Paralelismo y registros
+Para O≠1.024, la QA parte de los fixtures deterministas existentes. Extiende únicamente filas de pesos/escala mediante el índice fijo `source=(o·1664525 + 1013904223 + O + 0x4F4D4547) mod 1024`; así conserva las familias de valores y evita depender del estado de un generador externo. La referencia FP64 independiente calcula cada fila fuente mediante `t0common::reference64`; la adaptación de forma aplica `t0common::s12_compare` por salida. `common` no se modifica.
 
-El desensamblado de dumpbin /disasm obj\q4_kernel.obj confirma 8 cadenas m=1 y 8 cadenas para m=4/8/16. Cada cadena es un acumulador YMM independiente sobre las ocho filas de salida. La hipotesis de latencia/throughput es 5 ciclos y 0,5 ciclos por instruccion (2 VPDPBUSD por ciclo) para el P-core Golden Cove; uops.info mide esos valores en Alder Lake-P y muestra ejecucion en P0/P1. Raptor Cove es la evolucion P-core de Golden Cove; se usa la misma hipotesis teorica para Raptor Lake y no se afirma una medicion local. Con 8 cadenas, la latencia no serializa todo el trabajo como en la ronda 1. El techo ideal de 2/ciclo requeriria 10 cadenas si solo hubiera VPDPBUSD; ocho cadenas satisfacen el minimo exigido, no demuestran ni miden saturacion del techo.
+## Cobertura PAGE y controles
 
-Fuente de latencia y throughput: [uops.info, VPDPBUSD YMM, Alder Lake-P](https://uops.info/html-instr/VPDPBUSD_VEX_YMM_YMM_M256.html). La comparación con Raptor Cove es una hipótesis arquitectónica, no dato medido para este objeto.
+Para cada O y m, PAGE exige `n_W=288·O`, `n_X=672·m`, `n_Y=4·m·O`, y `n_dots_QA=64·m·O`, además de large pages y `queried_pages=valid_pages=large_pages=ceil(((address mod dwPageSize)+bytes)/dwPageSize)`. El parser incluye contrapruebas de tamaños incorrectos, bytes=1, ausencia, duplicación y contadores incoherentes. La QA incluye S-12 FP64, representación efectiva de códigos/escalas FP16, planos FP32 e INT32, mutaciones negativas independientes, finitud, cero/cancelación exacta, aislamiento por grupo y barrido de coordenadas.
 
-## Conteo estático del cuerpo K4
+## Inspección estática
 
-logs/STATIC_INSTRUCTION_COUNTS.md se genera desde el objeto actual con dumpbin /disasm. El contador elige el salto hacia atrás K4 más corto que contiene VPDPBUSD y decode; incluye loads/broadcasts y el salto, y marca como spills las cargas/almacenamientos SIMD dirigidos a slots de stack dentro del cuerpo. No es medición dinámica.
-
-| m | cadenas independientes | VPDPBUSD/total antes | VPDPBUSD/total ahora | decode/VPDPBUSD | conversiones | spills |
-|---:|---:|---:|---:|---:|---:|---:|
-| 1 | 8 | 1/13 = 7,69 % | 16/54 = 29,63 % | 24/16 = 1,50 | 0 | 0 |
-| 4 | 8 | 4/19 = 21,05 % | 32/68 = 47,06 % | 12/32 = 0,375 | 0 | 0 |
-| 8 | 8 | 4/19 = 21,05 % | 32/68 = 47,06 % | 12/32 = 0,375 | 0 | 0 |
-| 16 | 8 | 4/19 = 21,05 % | 32/68 = 47,06 % | 12/32 = 0,375 | 0 | 0 |
-
-El m=1 nuevo queda en 29,63% VPDPBUSD/total (16/54), 0,37 puntos porcentuales bajo el objetivo estatico de 30%; el cuerpo mejora de 3,75 a 3,375 instrucciones por dot util, procesa 8 tiles necesarios sin repeticion y mantiene decode/VPDPBUSD=1,50 y ocho cadenas. Esta es la alternativa elegida: el objetivo de razon de instrucciones falla por un margen pequeno, pero el trabajo por MAC util disminuye y desaparecen las 16 VPDPBUSD redundantes por bloque. Para m>=4 se conserva >=45% y decode <=0,4. "Cero spills" describe unicamente el cuerpo K4. Fuera de K4, m=1 tiene 8 cargas+8 almacenes vectoriales de pila por bloque de tiles y grupo (antes 10+10); m=4/8/16 tiene 14+14 (sin cambio), ademas de stores de inicializacion/cierre fuera del bucle. No son cero spills del operador.
-
-## Contrato y QA
-
-run es monohilo, puro, no asigna, valida, despacha por ISA ni instrumenta. La API publica de q4_kernel.hpp se conserva compatible con qualify; qa_reconstruct_activations amplia solo la observacion QA. La preparacion estatica de pesos y dinamica de activaciones esta separada. El contrato mantiene m={1,4,8,16}, large pages via t0common::Buffer, reconstruccion exacta desde el almacenamiento efectivo y contrapruebas negativas. La reconstruccion contrasta codigos, bits FP16, escala FP32 bit a bit contra FP16->FP32 y sumas INT32 exactas; cada plano FP32 e INT32 tiene una mutacion negativa independiente. La QA cubre S-12, finitud, entrada nula, cancelacion exacta, barrido de 512 coordenadas, EXACT_GROUP_DOT_ISOLATION y los 212 registros PAGE.
-
-No se hicieron mediciones de rendimiento ni cronometraje. Esta revisión es estática y teórica; no declara ventaja empírica frente a otra implementación.
+El conteo estático distingue los cuerpos K4 del recorrido principal m=1 y m≥4 y los cuerpos K4 de ambas colas. El objetivo del principal permanece m=1: 16/54 VPDPBUSD/total, decode 1,50; m≥4: 32/68, decode 0,375. `STATIC_INSTRUCTION_COUNTS.md` registra los recuentos del objeto recompilado, cadenas, spills dentro de K4 y accesos de pila fuera del cuerpo, junto con la comparación con el objeto congelado. No se realizaron mediciones de rendimiento ni cronometraje.

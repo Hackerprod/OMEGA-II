@@ -1,0 +1,6 @@
+﻿Command: emon -t 0.2 -l 1 -C CPU_CLK_UNHALTED.REF_TSC -per-cpu-absolute-tsc
+Result:
+Error: The -er-cpu-absolute-tsc switch is invalid.
+Emon options are incorrect; collection cannot continue.
+Please try again.
+Exit=41

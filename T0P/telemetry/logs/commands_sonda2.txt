@@ -1,0 +1,15 @@
+﻿Sonda 2: comandos y resultados de ayuda
+emon -h > logs\emon_help.txt  (exit 0; ayuda completa archivada)
+emon -collect-edp -h > logs\emon_collect_edp_help.txt  (no es ayuda: el valor por defecto alderlake_events.txt falta; mensaje exacto: The EDP event file C:\Program Files (x86)\Intel\oneAPI\vtune\2026.4\bin64\..\config\edp\alderlake_events.txt doesn't exist / Invalid path)
+emon -verbose > logs\emon_verbose_probe.txt  (no admitido; exit 156; salida archivada)
+emon -t 0.005 -l 600 -C CPU_CLK_UNHALTED.THREAD,CPU_CLK_UNHALTED.REF_TSC -c -f logs\emon_cadence_5ms.txt
+emon -t 0.010 -l 300 -C CPU_CLK_UNHALTED.THREAD,CPU_CLK_UNHALTED.REF_TSC -c -f logs\emon_cadence_10ms.txt
+emon -t 0.020 -l 150 -C CPU_CLK_UNHALTED.THREAD,CPU_CLK_UNHALTED.REF_TSC -c -f logs\emon_cadence_20ms.txt
+emon -t 0.050 -l 60 -C CPU_CLK_UNHALTED.THREAD,CPU_CLK_UNHALTED.REF_TSC -c -f logs\emon_cadence_50ms.txt
+emon -t 0.100 -l 30 -C CPU_CLK_UNHALTED.THREAD,CPU_CLK_UNHALTED.REF_TSC -c -f logs\emon_cadence_100ms.txt
+Repetición ajustada 10 ms: mismo grupo y -c; proceso EMON PriorityClass=AboveNormal, ProcessorAffinity=0xFFFF (LP P 0..15); logs\emon_cadence_10ms_high_p_affinity.txt. No cambió ninguna política del sistema.
+Opción -per-cpu-absolute-tsc probada; error exacto archivado en logs\emon_timestamp_tsc_probe.txt.
+EMON EDP custom: emon -collect-edp edp_file=<archivo .edp>; config: -q -c -v -experimental -t0.1 -l1; grupo: -C (, MSR_EVENT:msr=0xADDR:type=STATIC|FREERUN:scope=THREAD|PACKAGE, ;, ). Configuración de ejemplo local: C:\Program Files (x86)\Intel\oneAPI\vtune\2026.4\config\edp\graniterapids_server_events.txt.
+amplxe-sepreg.exe -h > logs\sepreg_help.txt  (exit 0; only dependency, driver install/uninstall and status commands; no MSR read command)
+sep.exe -h > logs\sep_help.txt  (ERROR: Syntax error; exit 40)
+SEP API local headers searched: no arbitrary MSR read call; SEPRead is for configured PMU data.

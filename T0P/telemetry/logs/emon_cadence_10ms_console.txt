@@ -1,0 +1,2 @@
+﻿Command: emon -t 0.010 -l 300 -C CPU_CLK_UNHALTED.THREAD,CPU_CLK_UNHALTED.REF_TSC -c -f C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\emon_cadence_10ms.txt
+EXIT=0

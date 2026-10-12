@@ -1,0 +1,9 @@
+BIT_IDENTITY_BASELINE schema=T0P_KERNEL_QA_OUTPUTS_S19
+source=T0P/kernel/q4_kernel.cpp_r3
+source_sha256=88d799d9f60bb0ece0db2ab3deb4fed6e4a09968ec9f2175c8fa11214afd499a
+geometry=O=1024,m=1,4,8,16
+fixture_order=uniform,mixed_cancellation,varied_scales,sub127,extremes,zero_input,single_coordinate,cancellation_high,cancellation_extreme,cancellation_exact_groups
+serialization=40 consecutive little-endian float32 output arrays; fixture-major, then m ascending
+raw=logs/baseline_candidate_o1024.bin
+comparison=byte-for-byte per output array from final qa_kernel.exe
+result=40/40 PASS, 0 differing float values

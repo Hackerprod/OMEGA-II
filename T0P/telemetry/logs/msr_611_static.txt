@@ -1,0 +1,192 @@
+﻿EMON Version .............. V11.61  
+Copyright(C) 1993 Intel Corporation. All rights reserved.
+Application Build Date: Jul 22 2026 at 13:23:52
+SEP Driver Version: 5.61  (public)
+PAX Driver Version: 1.0
+total_number_of_processors  ...... 24
+number_of_online_processors ...... 24
+number_of_processors (P-core)	...... 16
+number_of_online_processors (P-core)	...... 16
+number_of_processors (E-core)	...... 8
+number_of_online_processors (E-core)	...... 8
+cpu_family ................ Intel(R) microarchitecture code named Raptorlake-DT
+cpu_model ................. 183 (0xb7)
+cpu_stepping .............. 1 (0x1)
+
+Cache Info (P-core):
+L1 Data Cache ............. 48KB, 12-way, 64-byte line size
+                            2 HW threads share this cache, No SW Init Required
+L1 Code Cache ............. 32KB, 8-way, 64-byte line size
+                            2 HW threads share this cache, No SW Init Required
+L2 Unified Cache .......... 2MB, 16-way, 64-byte line size
+                            2 HW threads share this cache, No SW Init Required
+L3 Unified Cache .......... 30MB, 12-way, 64-byte line size
+                            No SW Init Required
+64-byte Prefetching
+
+Cache Info (E-core):
+L1 Data Cache ............. 32KB, 8-way, 64-byte line size
+                            No SW Init Required
+L1 Code Cache ............. 64KB, 8-way, 64-byte line size
+                            No SW Init Required
+L2 Unified Cache .......... 4MB, 16-way, 64-byte line size
+                            4 HW threads share this cache, No SW Init Required
+L3 Unified Cache .......... 30MB, 12-way, 64-byte line size
+                            No SW Init Required
+64-byte Prefetching
+
+Device Type ............... Intel(R) microarchitecture code named Raptorlake-DT
+EMON Database ............. alderlake
+Platform type ............. 151
+
+System Features:
+    (Number of Packages:    1)
+    (Cores Per Package:    24)
+    (Threads Per Package:  24)
+
+Processor Features (P-core):
+core architecture ......... Raptor Cove
+number_of_selectors ....... 8
+number_of_var_counters .... 8
+number_of_fixed_ctrs....... 4
+Fixed Counter Events:
+counter 0 ................. INST_RETIRED.ANY
+counter 1 ................. CPU_CLK_UNHALTED.THREAD
+counter 2 ................. CPU_CLK_UNHALTED.REF_TSC
+counter 3 ................. TOPDOWN.SLOTS
+number of devices ......... 1
+number_of_events .......... 319
+    (Thermal Throttling) (Enabled)
+    (Hyper-Threading) (Disabled)
+    (DCU IP Prefetching) (Enabled)
+    (DCU Streamer Prefetching) (Enabled)
+    (MLC AMP Prefetching) (Enabled)
+    (MLC Spatial Prefetching) (Enabled)
+    (MLC Streamer Prefetching) (Enabled)
+    (Cores Per Package:    16)
+    (Threads Per Package:  16)
+    (Threads Per Core:      1)
+
+Processor Features (E-core):
+core architecture ......... Gracemont
+number_of_selectors ....... 6
+number_of_var_counters .... 6
+number_of_fixed_ctrs....... 3
+Fixed Counter Events:
+counter 0 ................. INST_RETIRED.ANY
+counter 1 ................. CPU_CLK_UNHALTED.CORE
+counter 2 ................. CPU_CLK_UNHALTED.REF_TSC
+number of devices ......... 1
+number_of_events .......... 211
+    (Thermal Throttling) (Enabled)
+    (DCU IP Prefetching) (Enabled)
+    (DCU Streamer Prefetching) (Disabled)
+    (DCU Next Page Prefetching) (Enabled)
+    (MLC Streamer Prefetching) (Enabled)
+    (Cores Per Package:    8)
+    (Threads Per Package:  8)
+    (Threads Per Core:      1)
+
+Uncore Performance Monitoring Units:
+    cbo             : 10
+    ncu             : 2
+    imc             : 2
+
+GPU Information:
+    No GPU devices found
+
+EDP Configuration:
+EDP events file:C:\Projects\OMEGA\Ejercise\T0P\telemetry\scripts\msr_611.edp
+Hybrid Platform: Yes
+EDP p-core metric file:alderlake_goldencove.xml
+EDP p-core chart file:chart_format_alderlake_goldencove.txt
+EDP e-core metric file:alderlake_gracemont.xml
+EDP e-core chart file:chart_format_alderlake_gracemont.txt
+
+
+RAM Features:
+    (Package/Memory Controller/Channel)
+	(0/0/0) (Total Number of Ranks on this Channel: 2)
+		 (Dimm0 Info: Capacity = 16 GB, Data Width = 64, Form Factor = DIMM, Memory Type = DDR5, Memory Type Detail = Synchronous, Speed = 5200MHz, Configured Speed = 5200MHz)
+		 (Dimm1 Info: Capacity = 16 GB, Data Width = 64, Form Factor = DIMM, Memory Type = DDR5, Memory Type Detail = Synchronous, Speed = 5200MHz, Configured Speed = 5200MHz)
+	(0/0/1) (Total Number of Ranks on this Channel: 2)
+		 (Dimm0 Info: Empty)
+		 (Dimm1 Info: Empty)
+	(0/0/2) (Total Number of Ranks on this Channel: 2)
+		 (Dimm0 Info: Empty)
+		 (Dimm1 Info: Empty)
+	(0/0/3) (Total Number of Ranks on this Channel: 2)
+		 (Dimm0 Info: Empty)
+		 (Dimm1 Info: Empty)
+	(0/1/0) (Total Number of Ranks on this Channel: 2)
+		 (Dimm0 Info: Empty)
+		 (Dimm1 Info: Empty)
+	(0/1/1) (Total Number of Ranks on this Channel: 2)
+		 (Dimm0 Info: Empty)
+		 (Dimm1 Info: Empty)
+	(0/1/2) (Total Number of Ranks on this Channel: 2)
+		 (Dimm0 Info: Empty)
+		 (Dimm1 Info: Empty)
+	(0/1/3) (Total Number of Ranks on this Channel: 2)
+		 (Dimm0 Info: Empty)
+		 (Dimm1 Info: Empty)
+
+TSC Freq .................. 2112.00 MHz
+
+Processor Base Freq ....... 2100.00 MHz
+
+Processor Maximum Freq .... 5200.00 MHz
+
+Bus Reference Freq ........ 100.00 MHz
+
+MAX TURBO RATIO (limit)
+1C .......... 5200.00 MHz
+2C .......... 5200.00 MHz
+3C .......... 5100.00 MHz
+4C .......... 5100.00 MHz
+5C .......... 5100.00 MHz
+6C .......... 5100.00 MHz
+7C .......... 5100.00 MHz
+8C .......... 5100.00 MHz
+
+NUMA node(s):		  0
+
+		   OS Processor <-> Physical/Logical Mapping
+		   -----------------------------------------
+	OS Processor	Phys. Package	Core	Logical Processor	Core Type	Core Arch
+	0           	0            	0   	0                	P-core   	Raptor Cove	
+	1           	0            	0   	1                	P-core   	Raptor Cove	
+	2           	0            	4   	0                	P-core   	Raptor Cove	
+	3           	0            	4   	1                	P-core   	Raptor Cove	
+	4           	0            	8   	0                	P-core   	Raptor Cove	
+	5           	0            	8   	1                	P-core   	Raptor Cove	
+	6           	0            	12  	0                	P-core   	Raptor Cove	
+	7           	0            	12  	1                	P-core   	Raptor Cove	
+	8           	0            	16  	0                	P-core   	Raptor Cove	
+	9           	0            	16  	1                	P-core   	Raptor Cove	
+	10          	0            	20  	0                	P-core   	Raptor Cove	
+	11          	0            	20  	1                	P-core   	Raptor Cove	
+	12          	0            	24  	0                	P-core   	Raptor Cove	
+	13          	0            	24  	1                	P-core   	Raptor Cove	
+	14          	0            	28  	0                	P-core   	Raptor Cove	
+	15          	0            	28  	1                	P-core   	Raptor Cove	
+	16          	0            	32  	0                	E-core   	Gracemont	
+	17          	0            	33  	0                	E-core   	Gracemont	
+	18          	0            	34  	0                	E-core   	Gracemont	
+	19          	0            	35  	0                	E-core   	Gracemont	
+	20          	0            	36  	0                	E-core   	Gracemont	
+	21          	0            	37  	0                	E-core   	Gracemont	
+	22          	0            	38  	0                	E-core   	Gracemont	
+	23          	0            	39  	0                	E-core   	Gracemont	
+		   -----------------------------------------
+Version Info: public V11.61  (Jul 22 2026 at 13:23:52) Intel(R) microarchitecture code named Raptorlake-DT M:183 S:1
+
+10/11/2026 17:22:46.866
+INST_RETIRED.ANY	224,075,382	39,444	1,980,931	7,537	34,256	7,546	7,560	61,906	7,570	1,719,630	14,066	163,675	16,347,634	7,524	7,562	13,191	605,770	7,510	7,610	7,533	7,532	18,422	7,548	7,516	12,008	
+CPU_CLK_UNHALTED.THREAD	224,075,382	551,375	7,664,380	71,245	144,849	56,963	49,595	320,759	52,019	3,887,313	65,075	1,687,052	33,883,358	56,677	50,066	143,436	2,231,035	43,494	41,962	40,263	43,942	96,876	43,744	39,496	50,046	
+CPU_CLK_UNHALTED.REF_TSC	224,075,382	228,470	3,180,430	29,590	60,170	23,650	20,625	133,045	21,615	1,594,615	26,785	687,170	13,839,760	23,540	20,735	59,400	925,870	24,915	24,035	23,100	25,135	55,440	25,080	22,660	28,600	
+TOPDOWN.SLOTS	224,075,382	2,420,004	44,934,606	267,102	728,160	200,364	142,512	1,773,858	151,356	23,135,820	228,474	7,318,428	201,630,180	188,040	153,462	447,552	13,142,712	N/A	N/A	N/A	N/A	N/A	N/A	N/A	N/A	
+MSR_EVENT:msr=0x611:type=STATIC:scope=PACKAGE	224,075,382	3,225,450,727	
+==========
+
+       0.109s real         0.000s user         0.109s system  

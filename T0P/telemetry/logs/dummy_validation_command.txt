@@ -1,0 +1,1 @@
+﻿emon -t 0.050 -l 100 -C CPU_CLK_UNHALTED.THREAD,CPU_CLK_UNHALTED.REF_TSC -c -f C:\Projects\OMEGA\Ejercise\T0P\telemetry\logs\emon_dummy_50ms.txt

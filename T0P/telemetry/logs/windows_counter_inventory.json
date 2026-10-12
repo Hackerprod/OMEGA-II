@@ -1,0 +1,67 @@
+﻿[
+    {
+        "Name":  "Información del procesador",
+        "Description":  "El conjunto de contadores de rendimiento Información del procesador consta de contadores que miden diversos aspectos de la actividad del procesador. El procesador es la parte del equipo que realiza cálculos aritméticos y lógicos, inicia operaciones en los periféricos y ejecuta los subprocesos. Un equipo puede tener varios procesadores. En algunos equipos, los procesadores se organizan en nodos NUMA que comparten recursos de hardware, como la memoria física. El conjunto de contadores Información del procesador representa cada procesador como un par de números, donde el primer número es el del nodo NUMA y el segundo número es el índice basado en cero del procesador dentro de ese nodo NUMA. Si el equipo no usa nodos NUMA, el primer número es cero.",
+        "Counters":  [
+                         "\\Información del procesador(*)\\Frecuencia actual",
+                         "\\Información del procesador(*)\\Marcas de límite de rendimiento",
+                         "\\Información del procesador(*)\\% de límite de rendimiento",
+                         "\\Información del procesador(*)\\% de utilidad privilegiada",
+                         "\\Información del procesador(*)\\% de utilidad del procesador",
+                         "\\Información del procesador(*)\\% de rendimiento del procesador",
+                         "\\Información del procesador(*)\\Eventos de interrupción de inactividad/s",
+                         "\\Información del procesador(*)\\Tiempo de inactividad promedio",
+                         "\\Información del procesador(*)\\Interrupciones del reloj/s",
+                         "\\Información del procesador(*)\\Marcas de estado del procesador",
+                         "\\Información del procesador(*)\\% de frecuencia máxima",
+                         "\\Información del procesador(*)\\Frecuencia del procesador",
+                         "\\Información del procesador(*)\\Estado de detención",
+                         "\\Información del procesador(*)\\% de tiempo en prioridad",
+                         "\\Información del procesador(*)\\Transiciones C3/s",
+                         "\\Información del procesador(*)\\Transiciones C2/s",
+                         "\\Información del procesador(*)\\Transiciones C1/s",
+                         "\\Información del procesador(*)\\% de tiempo C3",
+                         "\\Información del procesador(*)\\% de tiempo C2",
+                         "\\Información del procesador(*)\\% de tiempo C1",
+                         "\\Información del procesador(*)\\% de tiempo de inactividad",
+                         "\\Información del procesador(*)\\Velocidad de DPC",
+                         "\\Información del procesador(*)\\DPC en cola/s",
+                         "\\Información del procesador(*)\\% de tiempo de interrupción",
+                         "\\Información del procesador(*)\\% de tiempo de DPC",
+                         "\\Información del procesador(*)\\Interrupciones/s",
+                         "\\Información del procesador(*)\\% de tiempo privilegiado",
+                         "\\Información del procesador(*)\\% de tiempo de usuario",
+                         "\\Información del procesador(*)\\% de tiempo de procesador"
+                     ]
+    },
+    {
+        "Name":  "Processor Performance",
+        "Description":  "Processor Performance Information",
+        "Counters":  [
+                         "\\Processor Performance(*)\\Processor Frequency",
+                         "\\Processor Performance(*)\\% of Maximum Frequency",
+                         "\\Processor Performance(*)\\Processor State Flags"
+                     ]
+    },
+    {
+        "Name":  "Procesador",
+        "Description":  "El objeto de rendimiento Procesador incluye los contadores que miden aspectos de la actividad de los procesadores. El procesador es la parte del equipo que realiza cálculos aritméticos y lógicos, inicia operaciones en periféricos y ejecuta los subprocesos de los procesos. Un equipo puede tener varios procesadores. El objeto Procesador representa cada procesador como una instancia del objeto.",
+        "Counters":  [
+                         "\\Procesador(*)\\% de tiempo de procesador",
+                         "\\Procesador(*)\\% de tiempo de usuario",
+                         "\\Procesador(*)\\% de tiempo privilegiado",
+                         "\\Procesador(*)\\Interrupciones/s",
+                         "\\Procesador(*)\\% de tiempo de DPC",
+                         "\\Procesador(*)\\% de tiempo de interrupción",
+                         "\\Procesador(*)\\DPC en cola/s",
+                         "\\Procesador(*)\\Velocidad de DPC",
+                         "\\Procesador(*)\\% de tiempo inactivo",
+                         "\\Procesador(*)\\% de tiempo en C1",
+                         "\\Procesador(*)\\% de tiempo en C2",
+                         "\\Procesador(*)\\% de tiempo en C3",
+                         "\\Procesador(*)\\Transiciones a C1/s",
+                         "\\Procesador(*)\\Transiciones a C2/s",
+                         "\\Procesador(*)\\Transiciones a C3/s"
+                     ]
+    }
+]

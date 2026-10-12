@@ -1,4 +1,8 @@
-STATIC m=1 vpdpbusd=16 loads=10 decode=24 conversions=0 fma=0 spills=0 other=4 total=54 fraction=0.296296
-STATIC m=4 vpdpbusd=32 loads=20 decode=12 conversions=0 fma=0 spills=0 other=4 total=68 fraction=0.470588
-STATIC m=8 vpdpbusd=32 loads=20 decode=12 conversions=0 fma=0 spills=0 other=4 total=68 fraction=0.470588
-STATIC m=16 vpdpbusd=32 loads=20 decode=12 conversions=0 fma=0 spills=0 other=4 total=68 fraction=0.470588
+principal_m1_before=VPDPBUSD:16,total:54,decode:24,chains:8,spills_K4:0+0,spills_outside_K4:8+16,stack_outside:8+16
+principal_m1_after=VPDPBUSD:16,total:54,decode:24,chains:8,spills_K4:0+0,spills_outside_K4:8+16,stack_outside:8+16
+principal_m4plus_before=VPDPBUSD:32,total:68,decode:12,chains:8,spills_K4:0+0,spills_outside_K4:15+22,stack_outside:15+22
+principal_m4plus_after=VPDPBUSD:32,total:68,decode:12,chains:8,spills_K4:0+0,spills_outside_K4:15+22,stack_outside:15+22
+tail_m1_before=not_present
+tail_m1_after=VPDPBUSD:8,total:58,decode:12,chains:1,spills_K4:2+3,spills_outside_K4:0+1,stack_outside:0+1
+tail_m4plus_before=not_present
+tail_m4plus_after=VPDPBUSD:8,total:24,decode:3,chains:4,spills_K4:0+0,spills_outside_K4:0+2,stack_outside:0+2

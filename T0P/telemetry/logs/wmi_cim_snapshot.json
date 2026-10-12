@@ -1,0 +1,25 @@
+﻿{
+    "CPU":  {
+                "Name":  "13th Gen Intel(R) Core(TM) i7-13700F",
+                "Manufacturer":  "GenuineIntel",
+                "ProcessorId":  "BFEBFBFF000B0671",
+                "Architecture":  9,
+                "NumberOfCores":  16,
+                "NumberOfLogicalProcessors":  24,
+                "MaxClockSpeed":  2100
+            },
+    "OS":  {
+               "Caption":  "Microsoft Windows 11 Enterprise LTSC",
+               "Version":  "10.0.26100",
+               "BuildNumber":  "26100"
+           },
+    "ACPIThermalZones":  [
+                             {
+                                 "InstanceName":  "ACPI\\ThermalZone\\TZ00_0",
+                                 "CurrentTemperature":  3010,
+                                 "Active":  true,
+                                 "Passive":  null
+                             }
+                         ],
+    "ActivePlan":  "GUID de plan de energía: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c  (Alto rendimiento)"
+}

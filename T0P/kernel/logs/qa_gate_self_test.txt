@@ -1,0 +1,2 @@
+command: python T0P\kernel\qa_kernel_gate.py --self-test
+KERNEL_GATE_SELF_TEST=PASS cases=dynamic_sizes,wrong_O,bytes1,missing,duplicate,incoherent_counters

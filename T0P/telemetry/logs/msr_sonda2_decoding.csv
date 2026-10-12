@@ -1,0 +1,8 @@
+﻿"Register","Name","RawDecimal","RawHex","Decoded"
+"0x606","MSR_RAPL_POWER_UNIT","658947","0x00000000000A0E03","bits 3:0=3 => 2^-3 W; bits 12:8=0x0E => 2^-14 J; bits 19:16=0xA => 2^-10 s"
+"0x611","MSR_PKG_ENERGY_STATUS","3225450727","0x00000000C04078E7","32-bit RAPL energy count; 3225450727 * 2^-14 J = 196865.89 J cumulative; wrap/history not observed"
+"0xCE","MSR_PLATFORM_INFO","2260840459867392","0x00080838F0811500","bits 15:8=0x15=21; non-turbo ratio 21 * 100 MHz = 2100 MHz; remaining fields not assigned here"
+"0x1A2","MSR_TEMPERATURE_TARGET","6558720","0x0000000000641400","bits 23:16=0x64=100 C TCC target; bits 29:24=0 target offset"
+"0x19C","IA32_THERM_STATUS","LP0=2286878720; LP1=2286878720; LP2-3=2286616576; LP4-5=2286682112; LP6-9=2286616576; LP10-11=2286682112; LP12-19=2286551040; LP20-23=2286485504","P LP range 0x884A0000-0x884F0000; E LP range 0x88490000-0x884A0000","bit31 valid=1; bits 22:16 P=74-79 => 21-26 C, E=73-74 => 26-27 C; status/log bits 0-15 all 0"
+"0x1B1","IA32_PACKAGE_THERM_STATUS","2286419968","0x0000000088480000","bits 22:16=0x48=72 C below TCC; 100-72=28 C estimate +/-1 C; status/log bits 0-11=0; bit31 not treated valid (reserved in SDM table)"
+"0x1B1","IA32_PACKAGE_THERM_STATUS previous report sample","2286157824","0x0000000088440000","bits 22:16=0x44=68 C below TCC; 100-68=32 C estimate +/-1 C; bit31 reserved per SDM table, not a valid flag for this package register"

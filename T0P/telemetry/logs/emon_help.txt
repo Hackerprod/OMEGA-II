@@ -1,0 +1,176 @@
+﻿Usage:
+	emon [general-options] -C "event-list" [application-command-line]
+
+	event-list:	events separated by ',' within the same group.  Greedy
+		scheduling algorithm employed.  User can specify where group
+		breaks are by using the ';' where they want the group to end.
+		Note that this feature is only available for Intel(R) Xeon(R)
+		E5 processors and later.
+
+General Options: Information
+	-h [-list-event-modifiers]	Display help information.
+		When -list-event-modifiers is used with -h, the
+		tool lists all the supported event modifiers
+	-1 [pmu type] [-experimental | -all]
+		[-platform-type <-platform_id>]
+		List the events that are available in the platform.
+		Can be filtered by adding a PMU type
+		(from -pmu-types command)
+		Add -experimental to additionally list all
+		experimental events
+		Add -all to list all events enabled on the platform
+		including th experimental and deprecated events
+		Add -platform-type <platform_id> to list events for
+		the specified target platform
+	-metric-list	Get a list of pre-defined metrics.
+		Add option -detailed to list events associated with the metric
+	-preset-list	Get a list of pre-defined preset types (presets).
+	-? | -H [pmu type] [-experimental | -all]
+		[-platform-type <-platform_id>]
+		Print detailed information about the events available
+		on the platform.
+		Can be filtered by adding a PMU type
+		(from -pmu-types command)
+		Add -experimental to additionally list all
+		experimental events
+		Add -all to list all events enabled on the platform
+		including the experimental and deprecated events
+		Add -platform-type <platform_id> to list events for
+		the specified target platform
+	-! <event name>	Print detailed information about <event name>.
+	--dry-run	Print the event sets that will be used during a
+		collection given the current list of events.  --dry-run used in
+		conjunction with the -m flag will print out register
+		programming info.
+	-M	Print the OS processor to logical/physical hardware processor
+		mapping.
+	-pmu-types [available]	Displays the PMU types
+		enabled on the platform
+		Displays only available PMUs when the optional switch
+		"available" is used
+	--pl | --platform-list	List supported platforms.
+	-v	Display version information about emon and the host
+		platform's processor(s).
+
+General Options: Collection
+	-l <loops>	The number of times each event set is monitored.
+		Default value is 1.  Event sets are interleaved. For example,
+		if 2 events sets A and B are specified.  and time equals 4 and
+		loops equal 2, event set A is monitored for 4 seconds, then
+		event set B is monitored for 4 seconds, then event set A is
+		monitored for t4 seconds, and finally event set B is monitored
+		for 4 seconds. Furthermore a value of 0 without app specified
+		makes Emon run infinite loops. A value of 0 with app specified
+		will automatically enable -w switch. This functionality will be
+		automatically disabled if -t switch is set to 0.
+	-L <time>	Range for random delay of the monitor interval.
+		Specified in milliseconds.  A random delay of 0 to <time>
+		is introduced between each sample.  When used, each monitor
+		interval is the value of the -t switch plus the random
+		delay between 0 and <time> milliseconds.  Defaults to 0.
+		This functionality will be automatically disabled if -t switch
+		is set to 0.
+	-s <delay>	One time delay in seconds before monitoring is started.
+	-p	Start emon in paused state.
+	-t <time>	Time (seconds) that an event set is monitored.
+		Default value is 3.  A value of 0 with application specified
+		allows monitoring to last until the application exits. A value
+		of 0 without application specified makes monitoring run forever.
+	-w	Limit loops. The number of loops is limited by the application's
+		execution time.
+		For example, if the total monitoring time specified by the time
+		and loop switches
+		is greater than the actual application execution time, the
+		collection is stopped after the application exits.
+	-osm <os-mode>	Collect data for operating system processes only.
+	-um <user-mode>	Collect data for user-mode processes only
+	-preset "<prest_name>"	 preset based collection
+
+	-metric "<metric1,metric2,...>"	 metric collection
+
+	-collect-edp [edp_file=<EDP_event_file>]	 Collect EDP event data.
+		EMON will collect event data using the default EDP event 
+		configuration.
+		Optionally, specify a custom EDP event file <EDP_event_file>
+
+	-process-edp <EDP_config_file>	 Process the EDP event data.
+		NOTE: The -process-edp option is no longer supported.
+		Please use the -process-pyedp option instead.
+
+	-process-pyedp <pyedp_config_file>	 Process the EDP event data.
+		EMON will process the EDP data collect based on the
+		configuration specified in the <pyedp_config_file>.
+
+		A template pyedp_config.txt file is included inside
+		<install_dir>/config/edp folder. This file can be used as is
+		 unless more customization is required.
+
+		This python based implementation replaces the Ruby based implementation.
+
+	-rdt-auto-rmid	RDT events will be collected in standalone mode
+		RMID for event selection will be automatically programmed
+		with unique values on each core.
+
+	--add-fixed-events	Add fixed events into all groups
+		Fixed events will be collected in all groups.
+
+General Options: Input/Output
+	-c	Print system time (i.e. date-time) for each time interval. It
+		is not available in Spreadsheet Friendly mode (-X option).
+	-per-cpu-absolute-tsc	Print absolute timestamp value on each core.
+	-d	Results are printed in formatted decimal. Formatted decimal
+		includes comma separators.
+		Formatted decimal is the default format.
+	-f <output file>	Emon output is written to <output file>.
+		The -f switch creates a new output file.
+	-F <output file>	Emon output is appended to <output file>.
+		If <output file> doesn't exist, it will be created.
+	-i <input file>	Emon command line arguments are provided by
+		<input file>.  Commented lines are indicated with a '#' at
+		the beginning.  All text following a '#' in an input file
+		is ignored.
+	-m	Print information about the register names and values used to
+		program the processor's event counters during the collection.
+		It is only available in the Standard output format - i.e. it
+		does not work in Quiet or Spreadsheet Friendly mode.
+	-n	Print wall clock, user, and system time for each time interval.
+		It is only available in the Standard and Quiet output modes.
+	-q	Quiet Format. The results are printed in a minimal format.
+	-u	Results are printed in unformatted decimal. Unformatted decimal
+		does not include
+		comma separators.
+	-x	Results are printed in hex with a leading '0x'.
+	-X	Spreadsheet Friendly Format. The results are printed in a tab
+		separated format.  Note that this only works for a single
+		group collection.
+	-V	Spreadsheet Topology Format. The results are printed in
+		a ';' delimiter separated format.  Note that this mode
+		enables multple group collection.
+General Options: Miscellaneous
+	-pause	Pause the current collection.
+	-resume	Resume the current collection.
+	-stop	Stop the current collection.
+General Options: Telemetry
+	--telemetry	Enable server platform telemetry sensors.
+		This option must be included before actions such as -1
+		(Requires root/Administrator access)
+Examples:
+	Collection with one group, 3 second interval (total runtime: 3 seconds):
+	emon -C "CPU_CLK_UNHALTED.REF_TSC"
+
+	Collection with one group, 0.5 second interval, 5 loops
+	(total runtime: 2.5 seconds):
+	emon -l5 -t0.5 -C "CPU_CLK_UNHALTED.REF_TSC"
+
+	Collection with one group of 2 events, 0.5 second interval, 5 loops
+	(total runtime: 2.5 seconds):
+	emon -l5 -t0.5 -C "CPU_CLK_UNHALTED.REF_TSC,INST_RETIRED.ANY"
+
+	Collection with two groups, 0.5 second interval, 5 loops
+	(total runtime: 5 seconds):
+	emon -l5 -t0.5 -C "CPU_CLK_UNHALTED.REF_TSC;INST_RETIRED.ANY"
+
+	Collection with one group, running <an_app>.  Data collection will
+	terminate when app exits:
+	emon -t0 -C "CPU_CLK_UNHALTED.REF_TSC,INST_RETIRED.ANY" <an_app>
+

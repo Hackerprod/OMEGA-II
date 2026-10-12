@@ -1,0 +1,32 @@
+﻿GUID de plan de energía: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c  (Alto rendimiento)
+  Alias de GUID: SCHEME_MIN
+  GUID de subgrupo: 54533251-82be-4824-96c1-47b60b740d00  (Administración de energía del procesador)
+    Alias de GUID: SUB_PROCESSOR
+    GUID de configuración de energía: 893dee8e-2bef-41e0-89c6-b55d0929964c  (Estado mínimo del procesador)
+      Alias de GUID: PROCTHROTTLEMIN
+      Mínima configuración posible: 0x00000000
+      Máxima configuración posible: 0x00000064
+      Incremento de configuración posible: 0x00000001
+      Unidades de configuración posibles: %
+    Índice de configuración de corriente alterna actual: 0x00000064
+    Índice de configuración de corriente continua actual: 0x00000005
+
+    GUID de configuración de energía: 943c8cb6-6f93-4227-ad87-e9a3feec08d1  (Umbral de sobreutilización de detención de núcleos de rendimiento de procesador)
+      Alias de GUID: CPOVERUTIL
+      Mínima configuración posible: 0x00000005
+      Máxima configuración posible: 0x00000064
+      Incremento de configuración posible: 0x00000001
+      Unidades de configuración posibles: %
+    Índice de configuración de corriente alterna actual: 0x0000003c
+    Índice de configuración de corriente continua actual: 0x0000003c
+
+    GUID de configuración de energía: bc5038f7-23e0-4960-96da-33abaf5935ec  (Estado máximo del procesador)
+      Alias de GUID: PROCTHROTTLEMAX
+      Mínima configuración posible: 0x00000000
+      Máxima configuración posible: 0x00000064
+      Incremento de configuración posible: 0x00000001
+      Unidades de configuración posibles: %
+    Índice de configuración de corriente alterna actual: 0x00000064
+    Índice de configuración de corriente continua actual: 0x00000064
+
+

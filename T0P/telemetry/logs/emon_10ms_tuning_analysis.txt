@@ -1,0 +1,1 @@
+﻿10ms tuned: requested=300 produced=261 dropped=39; wall span=5285.44ms; sum windows=4168.67ms; coverage pct=78.87; max hole=62ms; timestamp p50=1ms

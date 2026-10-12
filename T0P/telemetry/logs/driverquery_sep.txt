@@ -1,0 +1,8 @@
+﻿
+"sepdal","sepdal","sepdal","Kernel ","System","Running","OK","TRUE","FALSE","8,192","8,192","0","7/22/2026 1:24:08 
+PM","\??\C:\WINDOWS\System32\Drivers\sepdal.sys","4,096"
+"sepdrv5","sepdrv5","sepdrv5","Kernel ","System","Running","OK","TRUE","FALSE","8,192","176,128","0","7/22/2026 
+1:24:20 PM","\??\C:\WINDOWS\System32\Drivers\sepdrv5.sys","4,096"
+
+
+

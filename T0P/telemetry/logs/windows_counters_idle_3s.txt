@@ -1,0 +1,5 @@
+﻿Origen: Get-Counter / PDH, Windows 11 Enterprise LTSC 10.0.26100.
+Capture: 4 snapshots en 3 s (Get-Counter limita SampleInterval a >=1 s).
+Processor Performance\Processor Frequency y % of Maximum Frequency: contadores PPM/Perflib; no acreditados como lectura directa APERF/MPERF.
+Processor Information\% de rendimiento del procesador: mÃ©trica de rendimiento/utilidad normalizada del SO; no asumir identidad directa con APERF/MPERF.
+Processor State Flags: mapa de flags, no incluye garantÃ­as de PL1/PL2 ni de cada flag tÃ©rmico solicitado.

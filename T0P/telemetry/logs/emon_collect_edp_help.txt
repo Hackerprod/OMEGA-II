@@ -1,0 +1,2 @@
+﻿The EDP event file C:\Program Files (x86)\Intel\oneAPI\vtune\2026.4\bin64\..\config\edp\alderlake_events.txt doesn't exist
+Invalid path

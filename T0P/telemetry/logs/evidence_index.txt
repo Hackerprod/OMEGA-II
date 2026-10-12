@@ -1,0 +1,9 @@
+﻿Hora local de recolección: 2026-10-11T17:14:57.0626987-07:00
+whoami: see whoami_groups.txt; Windows token is elevated when Mandatory Label is High and Administrators is enabled.
+VTune/EMON: see emon_version_topology.txt; EMON -v reports public version, CPUID and P/E core mapping.
+Drivers: see sc_sepdrv5.txt, sc_sepdal.txt and driverquery_sep.txt.
+ETW/PMC: see wpr_profiles.txt, wpr_pmcsources.txt, xperf_where.json and pmcsources_where.json.
+Power plan: see powercfg_active.txt and powercfg_processor_settings.txt; commands are query-only.
+WMI power-plan/settings: see wmi_power_plan_settings.json.
+Thermal WMI: see wmi_cim_snapshot.json; ACPI thermal-zone readings are not CPU package/core sensors.
+Tools inventory: see intel_tools_inventory.json.

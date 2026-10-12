@@ -1,0 +1,40 @@
+﻿{
+    "ActivePlan":  {
+                       "ElementName":  "Alto rendimiento",
+                       "IsActive":  true,
+                       "InstanceID":  "Microsoft:PowerPlan\\{8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c}",
+                       "Description":  "Mejora el rendimiento, pero puede utilizar más energía."
+                   },
+    "ProcessorSettings":  [
+                              {
+                                  "Setting":  "MinProcessorState",
+                                  "PowerSource":  "AC",
+                                  "Index":  100
+                              },
+                              {
+                                  "Setting":  "MinProcessorState",
+                                  "PowerSource":  "DC",
+                                  "Index":  5
+                              },
+                              {
+                                  "Setting":  "CPOverUtil",
+                                  "PowerSource":  "AC",
+                                  "Index":  60
+                              },
+                              {
+                                  "Setting":  "CPOverUtil",
+                                  "PowerSource":  "DC",
+                                  "Index":  60
+                              },
+                              {
+                                  "Setting":  "MaxProcessorState",
+                                  "PowerSource":  "AC",
+                                  "Index":  100
+                              },
+                              {
+                                  "Setting":  "MaxProcessorState",
+                                  "PowerSource":  "DC",
+                                  "Index":  100
+                              }
+                          ]
+}

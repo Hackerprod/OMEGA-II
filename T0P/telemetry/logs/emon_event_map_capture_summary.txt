@@ -1,0 +1,5 @@
+﻿Command: emon -C CPU_CLK_UNHALTED.THREAD,CPU_CLK_UNHALTED.REF_TSC,L2_RQSTS.DEMAND_DATA_RD_MISS,L2_RQSTS.ALL_DEMAND_DATA_RD,OFFCORE_REQUESTS.L3_MISS_DEMAND_DATA_RD,OFFCORE_REQUESTS.DEMAND_DATA_RD -t 0.010 -l 300 powershell.exe Start-Sleep -Seconds 3
+Expected groups: 300; groups in output: 270; dropped by EMON: 30; exit code: 0
+This file is a raw system-wide read-only capture. EMON reports per-OS-LP counts; P-core events are N/A on E-core LPs.
+Time-discrepancy drops lack position timestamps; sample-count ratio is not temporal coverage and maximum gaps are not inferable.
+Counters are event deltas. EMON does not expose initial/final cumulative values or counter widths, so rollover is not observable.

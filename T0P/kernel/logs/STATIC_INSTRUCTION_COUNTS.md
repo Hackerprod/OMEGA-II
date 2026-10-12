@@ -1,24 +1,16 @@
-# Conteo estático de instrucciones
+# Conteo estático del kernel con O variable
 
-Fuente: dumpbin /disasm obj\q4_kernel.obj. Para cada especialización se cuenta el salto K4 más corto que incluye decode y VPDPBUSD, incluidas cargas/broadcasts y el salto. No es una medida dinámica.
+Fuente: `dumpbin /disasm obj\q4_kernel.obj`; compilación `/O2 /arch:AVX2 /fp:precise`. Conteos estáticos del cuerpo K4, sin cronometraje. El cuerpo principal se comparte para todas las O; cada cola se cuenta en su rutina residual. Las colas no existían antes de la extensión geométrica.
 
-| m | tile activaciones | VPDPBUSD | cargas/broadcasts | decode | conversiones | FMA | spills | otras | total | VPDPBUSD/total |
-|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 1 | 1 | 16 | 10 | 24 | 0 | 0 | 0 | 4 | 54 | 29.63% |
-| 4 | 4 | 32 | 20 | 12 | 0 | 0 | 0 | 4 | 68 | 47.06% |
-| 8 | 4 | 32 | 20 | 12 | 0 | 0 | 0 | 4 | 68 | 47.06% |
-| 16 | 4 | 32 | 20 | 12 | 0 | 0 | 0 | 4 | 68 | 47.06% |
+| Ruta | VPDPBUSD | instrucciones K4 | VPDPBUSD/total | decode/VPDPBUSD | cadenas | spills K4 (cargas+stores) | spills fuera K4 (cargas+stores) | pila fuera K4 (cargas+stores) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Principal m=1 antes (O=1024) | 16 | 54 | 0,296 | 1,50 | 8 | 0+0 | 8+16 | 8+16 |
+| Principal m=1 después | 16 | 54 | 0,296 | 1,50 | 8 | 0+0 | 8+16 | 8+16 |
+| Principal m≥4 antes | 32 | 68 | 0,471 | 0,375 | 8 | 0+0 | 15+22 | 15+22 |
+| Principal m≥4 después | 32 | 68 | 0,471 | 0,375 | 8 | 0+0 | 15+22 | 15+22 |
+| Cola m=1 antes | — | — | — | — | — | — | — | — |
+| Cola m=1 después | 8 | 58 | 0,138 | 1,50 | 1 | 2+3 | 0+1 | 0+1 |
+| Cola m≥4 antes | — | — | — | — | — | — | — | — |
+| Cola m≥4 después | 8 | 24 | 0,333 | 0,375 | 4 activaciones | 0+0 | 0+2 | 0+2 |
 
-## Comparacion estatica ronda 2 / ronda 3
-
-| m | VPDPBUSD/total antes | VPDPBUSD/total despues | decode/VPDPBUSD despues | cadenas antes/despues | spills K4 antes/despues | pila fuera K4 antes cargas+stores | pila fuera K4 despues cargas+stores por grupo |
-|---:|---:|---:|---:|---:|---:|---:|---:|
-| 1 | 18/60 = 30,00% | 16/54 = 29,63% | 24/16 = 1,50 | 9/8 | 0/0 | 10+10 | 8+8 (mas 8 stores de inicializacion) |
-| 4 | 32/68 = 47,06% | 32/68 = 47,06% | 12/32 = 0,375 | 8/8 | 0/0 | 14+14 | 14+14 (mas 8 stores y 1 load fuera del bucle) |
-| 8 | 32/68 = 47,06% | 32/68 = 47,06% | 12/32 = 0,375 | 8/8 | 0/0 | 14+14 | 14+14 (bloque interno m=4) |
-| 16 | 32/68 = 47,06% | 32/68 = 47,06% | 12/32 = 0,375 | 8/8 | 0/0 | 14+14 | 14+14 (bloque interno m=4) |
-
-El m=1 ronda 3 procesa 8 tiles utiles (16 dots VPDPBUSD), sin la novena cadena redundante. El desensamblado tiene 16 VPDPBUSD y 54 instrucciones K4 frente a 16 dots utiles y 60 instrucciones antes: 3,375 frente a 3,75 instrucciones por dot util; VPDPBUSD/total queda 0,37 puntos porcentuales bajo el objetivo estatico de 30%. Se eligio eliminar tiles repetidos porque reduce instrucciones por MAC util y conserva 8 cadenas y decode/VPDPBUSD=1,50. No es un resultado de rendimiento.
-
-Spills fuera de K4 por bloque de tiles y grupo: m=1, antes 10 cargas+10 almacenes, despues 8+8; m=4 (y m=8/16, procesados como tiles m=4) antes y despues 14+14. El objeto nuevo tiene ademas 8 stores de inicializacion m=1/m=4 y un load de cierre m=4 fuera del cuerpo de grupo. Son accesos logicos de pila, no bytes DRAM. K4 tiene cero spills; esto no implica cero spills del operador.
-El decoder reconoce saltos K4 por instrucciones de nibble y VPDPBUSD. Cuenta como spill solo cargas/almacenamientos SIMD a slots de stack dentro del cuerpo K4. Los porcentajes son conteos estaticos del objeto, no mediciones dinamicas.
+El cuerpo K4 principal no se degrada: m=1 conserva 16/54 y 1,50 decode/dot; m≥4 conserva 32/68 y 0,375. La cola m=1 maneja un tile residual; m≥4, un tile residual y cuatro activaciones. Los spills K4 son accesos SIMD a slots de pila dentro del cuerpo K4; fuera de K4 el conteo de spill coincide con las cargas y stores de pila listados. Se mantienen las 8 stores de inicialización y, para m≥4, la load de cierre fuera del bucle en ambos principales. Los conteos son estáticos del objeto, no mediciones de rendimiento.

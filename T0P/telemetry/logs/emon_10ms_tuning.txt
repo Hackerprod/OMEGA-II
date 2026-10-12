@@ -1,0 +1,2 @@
+﻿Priority=AboveNormal;Affinity=0xFFFF;PID=16624
+Exit=

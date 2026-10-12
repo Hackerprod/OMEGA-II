@@ -1,0 +1,10 @@
+﻿
+NOMBRE_SERVICIO: sepdrv5 
+        TIPO               : 1  KERNEL_DRIVER  
+        ESTADO             : 4  RUNNING 
+                                (STOPPABLE, NOT_PAUSABLE, IGNORES_SHUTDOWN)
+        C�D_SALIDA_WIN32   : 0  (0x0)
+        C�D_SALIDA_SERVICIO: 0  (0x0)
+        PUNTO_COMPROB.     : 0x0
+        INDICACI�N_INICIO  : 0x0
+

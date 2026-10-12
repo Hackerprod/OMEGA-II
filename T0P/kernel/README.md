@@ -1,20 +1,18 @@
-# T0P Q4 OMEGA
+﻿# T0P Q4 OMEGA
 
-Kernel AVX-VNNI-256 y QA no cronometrada para una matriz `1024×512`, con `m={1,4,8,16}`. El layout de ronda 2 empaqueta dos bloques K4 en los nibbles bajo/alto de una carga de 32 bytes.
+Kernel AVX-VNNI-256 de geometría variable y QA no cronometrada. Mantiene `d=512`, `m={1,4,8,16}` y admite un único O en ejecución para el barrido S-19, desde 912 hasta 58.256 filas (múltiplos de 8).
 
 ## Archivos
 
-- `q4_kernel.hpp/.cpp`: API de preparación estática Q4, preparación dinámica INT8 y kernel puro.
-- `qa_main.cpp`: comprobaciones S-12, representación efectiva, aislamiento de dots, barrido de coordenadas, ceros, finitud y páginas.
-- `qa_kernel_gate.py` y `PAGE_EXPECTED_KERNEL.json`: gate de cobertura de las asignaciones efectivas, con fórmula de página S-16.
-- `build.cmd`: compilación MSVC, `dumpbin /disasm` y ejecución de QA; no mide tiempo.
-- `KERNEL_DESIGN.md`: decisiones de layout, flujo y semántica.
-- `logs/STATIC_INSTRUCTION_COUNTS.md`: conteo estático de K4 y cargas/almacenamientos de pila fuera de K4, extraído de `dumpbin /disasm`.
+- `q4_kernel.hpp/.cpp`: API de tamaños dependientes de O, preparación Q4 y ejecución sin instrumentación.
+- `qa_main.cpp`: S-12 contra referencia independiente, identidad binaria en las 40 celdas históricas, representación efectiva, colas, coordenadas, ceros, grupos y páginas.
+- `qa_kernel_gate.py` y `PAGE_EXPECTED_KERNEL.json`: tamaños `288·O`, `672·m`, `4·m·O`, `64·m·O`, geometría de página y contrapruebas negativas.
+- `build.cmd`: compilación MSVC, `dumpbin /disasm` y ejecución de la QA completa; no mide tiempo.
+- `KERNEL_DESIGN.md`: contrato, tabla W/O/bytes, colas, semilla de expansión y cobertura.
+- `logs/STATIC_INSTRUCTION_COUNTS.md`: recuento estático del recorrido principal y las colas.
 
-Desde la raíz del proyecto: `cmd /c T0P\kernel\build.cmd`. La salida cruda queda bajo `T0P\kernel\logs\`; los objetos y el ejecutable permanecen en esta carpeta.
+Desde la raíz del proyecto: `cmd /c T0P\kernel\build.cmd`. Objetos bajo `obj\`, salidas y registros bajo `logs\`. QA completa: 16 O × 4 m, diez fixtures, 512 coordenadas y aislamiento exacto de 16 grupos.
 
-`qa_kernel.exe` requiere AVX-VNNI-256 anunciado por CPUID y regiones large-page disponibles para los buffers consultados. Termina con código distinto de cero si falla cualquier gate. La QA usa las 40 celdas actuales de `T0P\common\data` (20 celdas históricas y 20 addenda). No contiene temporización del operador.
+No contiene temporización del operador ni mediciones de rendimiento. El binario requiere AVX-VNNI-256 y large pages para las asignaciones verificadas.
 
-## Manifiesto
-
-`SHA256SUMS_kernel.txt` excluye `__pycache__/inspect_disasm.cpython-313.pyc`, entrada ausente del manifiesto previo: era cache de Python, no un artefacto reproducible. El manifiesto anterior se conserva como `SHA256SUMS_kernel.txt_r2`.
+`SHA256SUMS_kernel.txt` enumera los artefactos presentes y verifica cada SHA-256; se excluyen el propio manifiesto y el registro de verificación. No se incluye `__pycache__`.
