@@ -1,0 +1,21 @@
+PIPELINE_R11_SELF_TEST PASS
+plan=PASS conditions=420 architectural=60 sweep=360 sha_order=PASS O_formula=PASS
+deriver_case=competence_failure state=FALLO_COMPETENCIA PASS
+deriver_case=control_failure state=NO_ADJUDICABLE_CONTROLES PASS
+deriver_case=valid_residency_failure state=FALLO_RESIDENCIA_VALIDO PASS
+deriver_case=L2_not_established state=L2_NOT_ESTABLISHED PASS
+deriver_case=residency_pass state=RESIDENCIA_PASS PASS
+pipeline_real_smoke_label=SMOKE_ONLY numeric_metrics_used=false PASS
+strict_json_negatives=duplicate,NaN,invalid_UTF8,overflow REJECT PASS
+orchestrator_cut=authorization state=A6_HASH_OR_SCHEMA_FAIL residency_started=False PASS
+orchestrator_cut=preflight state=PREFLIGHT_HOLD residency_started=False PASS
+orchestrator_cut=qa state=QA_INVALID residency_started=False PASS
+orchestrator_cut=clock state=CLOCK_UNQUALIFIED residency_started=False PASS
+orchestrator_cut=eviction state=HOLD_EVICTION_NOT_QUALIFIED residency_started=False PASS
+orchestrator_cut=qualification_hold state=HOLD_INSTRUMENTATION residency_started=False PASS
+orchestrator_cut=qualification_fail state=FALLIDA_CUALIFICACION residency_started=False PASS
+orchestrator_cut=residency state=RESIDENCY_CONTROL_HOLD residency_started=True PASS
+orchestrator_cut=sweep state=SWEEP_INVALID residency_started=True PASS
+orchestrator_cut=final_check state=FINAL_EVICTION_OR_LLC_HOLD residency_started=True PASS
+orchestrator_full=PASS stages=9 derived=RESIDENCIA_PASS synthetic_only=true
+orchestrator_retry=one_global_same_plan_seed_order PASS second_invalid=HOLD scientific_failure=no_retry PASS

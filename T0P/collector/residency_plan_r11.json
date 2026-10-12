@@ -1,0 +1,4272 @@
+{
+  "schema": "T0P_S19_RESIDENCY_PLAN_R11_V1",
+  "campaign": "T0P-Q4-RESIDENCY",
+  "seed": "4F4D454741543031",
+  "ordering": "ascending SHA256(T0P-S19|seed|residency|condition_id), ASCII id tie-break",
+  "architecture": {
+    "I": 512,
+    "O": 1024,
+    "P_shards": 8,
+    "LPs": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14
+    ]
+  },
+  "W_target_kib": [
+    256,
+    288,
+    512,
+    768,
+    1024,
+    1280,
+    1536,
+    1792,
+    2048,
+    2560,
+    3072,
+    4096,
+    6144,
+    8192,
+    12288,
+    16384
+  ],
+  "m_values": [
+    1,
+    4,
+    8,
+    16
+  ],
+  "variants": [
+    "A",
+    "B",
+    "C"
+  ],
+  "K_architectural": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "K_sweep": [
+    1,
+    16
+  ],
+  "N": 31,
+  "warmup": 5,
+  "minimum_sample_seconds": 2.0,
+  "calibration_target_seconds": 2.5,
+  "R_policy": "one R per (W_target_kib,m), common to A/B/C and every K; calibrated before N=31",
+  "flush_and_conditioning_outside_kernel_only": true,
+  "conditions": [
+    {
+      "id": "sweep|A|m8|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "0195ba459a48ab2c35ece528ba96b12b02b46852f9ea55fb85ee4b42c5c61f77"
+    },
+    {
+      "id": "sweep|C|m1|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "01dacee9e357043a51d07ed342a27d3525e395dc10c2badff84c3c8f3fe3167a"
+    },
+    {
+      "id": "sweep|A|m1|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "02bc44e11c74484edcb3318125a3adb8a54f14554876f9363908717a0fbfdb68"
+    },
+    {
+      "id": "sweep|C|m8|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "0374940e6fae050da136fc88d3008625c99860fec59b6148399d94dffd476dad"
+    },
+    {
+      "id": "sweep|C|m4|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "0470b4cc5e5f0ceb57d48f86797666a0bdd30579d28b60a3006a4de89cf74db8"
+    },
+    {
+      "id": "sweep|C|m16|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "048789acf1a8f5f3dde05590db97473ac6b9b32d5cc033a9aa9afccf018cd896"
+    },
+    {
+      "id": "sweep|A|m4|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "071ea72d7f1d4c2b04f4888ebc01564dd0f47df65772bf91e5ea993231d2550a"
+    },
+    {
+      "id": "sweep|C|m1|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "07cf6f75cbe11330a6e3118fd60c2bc024805c4fb256fb95d1179ceb87f8e800"
+    },
+    {
+      "id": "sweep|A|m1|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "07d7ca4be4061c1fb76169e10ceb313727809cd78dc34920b2358baad2cacc6d"
+    },
+    {
+      "id": "sweep|A|m8|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "0809bb92fc37a232fe3914b768ca16c59ea0b9a85cd1c83e515d3371635d2a6e"
+    },
+    {
+      "id": "sweep|C|m4|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "08dfc6d6b0c59867ede67289d4cd4528ed5c4efdc3d6f601658c2fc34b79dc85"
+    },
+    {
+      "id": "arch|B|m8|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "095e4f6551888dcc76c6cf8f59b458b1161937bb27d70d137f5be5000702a86d"
+    },
+    {
+      "id": "sweep|A|m8|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "0a391828993430a93aa4a5aba5e89c88095b7109ae2bd23d7105c955466d2d8f"
+    },
+    {
+      "id": "sweep|C|m8|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "0b35444b147f2e61e73d155c60b74187107e5e57a0aa3456a71782c80642d3b0"
+    },
+    {
+      "id": "sweep|A|m16|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "0b6bcdaef6291caa10478bb38d0975a0d04642559c790863ba69baf32776ebd7"
+    },
+    {
+      "id": "arch|A|m1|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 1,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "0d3139914d55826741d0f3851db6c6c8fe1517de868b88c84cacd0685bca2549"
+    },
+    {
+      "id": "sweep|A|m4|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "0d3a75ccf22649ffef5101e668eef23b098328eff14f6dd6be57659d69a0fdd4"
+    },
+    {
+      "id": "sweep|C|m4|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "0db3ddf38d155444538ab40c17234767134ed2d11937f853d4c2e18b9bae0a55"
+    },
+    {
+      "id": "sweep|B|m4|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "0defea2315fa4efe80b5c5cde11c7bd0422e0a911422fe886f07c0d52cb7220c"
+    },
+    {
+      "id": "sweep|A|m1|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "0e2c7dbdf19eb625e127161201f12ebeb117e61922ead27884cee0c36e63422c"
+    },
+    {
+      "id": "sweep|C|m1|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "0e9727d637438dccaa075127c33dff481f657d529213d6a233dc7b503c1f1387"
+    },
+    {
+      "id": "sweep|B|m16|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "0f065d7ebbb8f4c0dc9f82f9c01cfa7f04af2671e5347d4b3ed48650e1d05486"
+    },
+    {
+      "id": "sweep|B|m16|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "1025995afbfcf905ee2c1fdf057f668176bccd7c015402b35c3b4238edde4a9b"
+    },
+    {
+      "id": "sweep|B|m1|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "10eb5d3918b40218ae66043e297fc7166ef1b8bb77724f3513859701da3a0824"
+    },
+    {
+      "id": "arch|A|m4|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "1129ca08eb7f2ceb3e5ddb8d08b014b54577378b0805622e9b2c9915a584000c"
+    },
+    {
+      "id": "sweep|C|m1|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "11a335f4baa60003ec5089e79b8740d0c527cadbe8c2a767b2d25b67c9c33fba"
+    },
+    {
+      "id": "sweep|B|m1|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "11bae680fc1eb102837b3ca9b83f104849fae595a2a5ee60dd62c891e54d8d68"
+    },
+    {
+      "id": "sweep|A|m16|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "122424cb15107b98aed86dd4de02232cbf6a08db992aa86931b30d09f05b344e"
+    },
+    {
+      "id": "sweep|C|m4|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "12242b9b337fa7e349194d34c36fc7bb7bcfaef3efb1cf4ec619a1560e206aa5"
+    },
+    {
+      "id": "sweep|B|m4|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "145e4704170f6dbdee0ca6e677e70559c96034164588b81746f2be0e7880af98"
+    },
+    {
+      "id": "sweep|B|m16|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "147a2a442da33c6cf14abad8a07577931a20787631cda88154d151e298403298"
+    },
+    {
+      "id": "sweep|A|m4|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "1532cdc47f3534cb568c191962dbbfe4f36703a5421c41121578ab001395023d"
+    },
+    {
+      "id": "sweep|A|m1|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "157c47790b0cb7ece8943ef0762ec494609bf022ce19d1a684ec3f063b310715"
+    },
+    {
+      "id": "arch|C|m4|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 4,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "15f24ed436a6d153b4044351b8262fced90b7f744a2b7b966dd6557be929cc4c"
+    },
+    {
+      "id": "sweep|C|m4|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "16298b45f60fc87972eb9b6cacca2d19bdbb193e26455e02ae9e165419f44364"
+    },
+    {
+      "id": "sweep|B|m4|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "162c0bfa46fafc5996d58837bb72a31b034cdb5a2efcfafc499473c038837dcf"
+    },
+    {
+      "id": "arch|B|m4|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 4,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "18191a93045c7c95f73090507452652a851ba4481c88be8456d532c1b6f4c90c"
+    },
+    {
+      "id": "sweep|B|m8|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "18a63730d4506df9bcc5a8ade59fed2f1063c00da763affe2f6161e1c98e5eab"
+    },
+    {
+      "id": "sweep|C|m1|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "198e992a4eb4ae2bfde52747175e0eb5172936a4f0aed5333273480b78b588a2"
+    },
+    {
+      "id": "sweep|B|m8|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "1b1e86a293e78395efbbfe7d78e78de454a492435d9a34a5d76c4343039d69f6"
+    },
+    {
+      "id": "sweep|A|m1|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "1cdb69277d424162ac3605868dcd0dfa36ae3a5eef310b97e75e6a3bab979227"
+    },
+    {
+      "id": "sweep|A|m16|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "1d59ed09840271f15fa684b2464ae66cbf13c170185187527cbc0c327dba9ae4"
+    },
+    {
+      "id": "sweep|B|m1|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "1de47baced84e789a27631ae8647da76952ec9783354f77a070fc3855782c127"
+    },
+    {
+      "id": "sweep|C|m16|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "1f01c27e70905a1ef40cd62d0e908ab08844df779d9200082da1f9e3b85d14cb"
+    },
+    {
+      "id": "sweep|B|m4|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "20a04aefa230ed5b79b5a24ccd6e06019e3b64b969f9ae40d37c4f4382ae95de"
+    },
+    {
+      "id": "sweep|B|m1|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "20abcd428a3b65e2bf7bc369866b350dca20610dccaa6bf9a73174121d64bf34"
+    },
+    {
+      "id": "sweep|C|m8|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "20b0b3938a8b06ae5cd34ca640a8376d6cb0687c87a615837431931931cc2b45"
+    },
+    {
+      "id": "sweep|A|m8|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "20c3bba25e3da0cf3c6d7cf9e516a90462e32ca5166a5b9d43cd2d3d62bed4e5"
+    },
+    {
+      "id": "sweep|B|m1|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "2101bc031b017f4b937aa7beb5e681358de301987331819b50cb60cef3bda525"
+    },
+    {
+      "id": "sweep|C|m16|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "210614d8b02da19db5a3419aafd4be7d77409b519a19de3db68be1fdabc24af7"
+    },
+    {
+      "id": "sweep|C|m4|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "215452ae6744e6c921ff4425aa61e979609b760f55b14f04cbb634afeed0b13f"
+    },
+    {
+      "id": "sweep|C|m8|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "21bb2773eff39afa638d60c96e606c350d81879b4719a8695968c841790226df"
+    },
+    {
+      "id": "arch|C|m1|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "2253c4c10d674605dc3249cdf7e136bffabfd9d53bb70289247ff4f359fe5d4f"
+    },
+    {
+      "id": "sweep|B|m1|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "2262caf2e8b3900a0c909272124f325d707a32a7eab322545be205febe91eac4"
+    },
+    {
+      "id": "sweep|C|m1|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "22ad087adffba87470eda565e36dd8375a544beb06c5527c133ee39755b71286"
+    },
+    {
+      "id": "sweep|B|m8|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "24a47060f6391202133c92d3c78317d22f1c1dc01aac601dd61374195800fd2b"
+    },
+    {
+      "id": "sweep|C|m8|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "24cbb6aecf7123ad8b51e0d6d13060c2118b278859bae22d1660c80f07577637"
+    },
+    {
+      "id": "sweep|B|m1|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "26de99ce034f09d7db2e54368e70e70de2243a9252b954bd7684899d06bd09aa"
+    },
+    {
+      "id": "sweep|A|m4|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "277104274aed338ff402b546f0758cbb77765cee18e9b75a23414dc60de0bb12"
+    },
+    {
+      "id": "sweep|C|m16|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "289f8d067abd3122d1df1b2263db9814731ce9af05281044524913dee2426f07"
+    },
+    {
+      "id": "sweep|A|m4|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "29b7db0bb611f36a855439cde950d8f0fa37204bd66e8302b99486200b62dd9f"
+    },
+    {
+      "id": "sweep|B|m1|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "29d7b3043568e8fad221cb8c615a4a22068187500ddd765f0fefad2131dbcf43"
+    },
+    {
+      "id": "sweep|B|m1|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "29fbe8f08709ed94cfbe8d430208c8486cdf5ee4e3691fd3d760ba3c07c60838"
+    },
+    {
+      "id": "sweep|A|m8|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "2a12e1d3d87218db28cfd9f74268a2c48f080d3d97ac5bfdf5a1f526effb5fd4"
+    },
+    {
+      "id": "arch|B|m1|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 1,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "2a42fdf893db7c426c21e8520f2209456ff43483e107977841e477970cedef09"
+    },
+    {
+      "id": "arch|A|m1|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 1,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "2a76e6ac43e58798ccb2decd52c5dc54ea877ccf34bdf249bf68abad8441f72b"
+    },
+    {
+      "id": "sweep|B|m16|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "2aa9a5b3020370c63771f35a0099ef3941b21020b1be217cf75181f604b9742e"
+    },
+    {
+      "id": "sweep|C|m4|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "2b689080385635628b38f04744d4b83711f1d8141811353cd62e4e4c183a2800"
+    },
+    {
+      "id": "sweep|C|m1|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "2ba7554c99e07300bf71d50c894074c31811175c745736f5178cfd272ddd28ec"
+    },
+    {
+      "id": "sweep|C|m4|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "2c0d1c724356d44c7ce3a3d9a7de6213272a43634275ce121bfd11fb266b7f66"
+    },
+    {
+      "id": "sweep|B|m1|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "2c40bcb7b4267cddcb775ce2d6eb272b9f3dd4defc6a8539efa1ec79b663fae3"
+    },
+    {
+      "id": "sweep|A|m4|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "2cc6dacbae7a31a7738223a89d51a4d57b38e6a7921fd291d237324113931296"
+    },
+    {
+      "id": "arch|C|m16|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 16,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "2ccf69a4df7b01f82320b6c7e1ed3654585811a763466dc41e1e5e48e9b76991"
+    },
+    {
+      "id": "sweep|A|m4|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "2d89832e0f7dfc24dccaf5e3628bb4c8a401c2d3281f2bb5b265b7769df5d3f7"
+    },
+    {
+      "id": "sweep|C|m16|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "2db9f613c91c9154229889ca0167af1758c6dd72d548f7559076e3ea649299b7"
+    },
+    {
+      "id": "sweep|B|m8|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "2e0ea31b0f178eb2dc439c6eab1905b75ba851efcf98cc53644c0aa81be85942"
+    },
+    {
+      "id": "sweep|C|m16|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "2f1703a387619609d74f3f0cefc462fc60ae45fe749fe598e72b444e1932d07a"
+    },
+    {
+      "id": "sweep|C|m16|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "2f57010040aee1ccb9a57cb958a4962719967a2db92bb35a0b5a1b7b15f33912"
+    },
+    {
+      "id": "sweep|A|m1|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "30288a40633f0763630d3bb5825aecef8e6af15177b214faaefc7e1c5f79513c"
+    },
+    {
+      "id": "sweep|C|m4|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "3097ddff1f2fb2b7d7c6d2dab6957400079bacc7293d44c6d429b4f5db6be1c0"
+    },
+    {
+      "id": "sweep|C|m1|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "30c73da8cc62587afb9d929fa3b30e2cfb7c830697d745ae3accf73fe89e7f13"
+    },
+    {
+      "id": "sweep|B|m4|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "315d1c7765768c431bbc9e18c62a3d89d881a6eb4901cc0500fd295b9be3b54e"
+    },
+    {
+      "id": "sweep|C|m16|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "319924ac753262241ebe55f04186990b7bafd2bd934e6cf12fa20eee521867fe"
+    },
+    {
+      "id": "sweep|C|m1|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "32d47af35335ba53f17123f840a68d0116d0b76ac04f234563deece3bd969bce"
+    },
+    {
+      "id": "sweep|A|m16|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "332335006f220e251eecb12874142e10a61d43c2808ccbc74a60ddeeef007345"
+    },
+    {
+      "id": "sweep|B|m16|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "338f793275b353773123912034d8b169962ecf206c40530750d28ed5b7c57f80"
+    },
+    {
+      "id": "sweep|B|m16|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "33b7cf5940f477aecdecf87c74bcfd1995b13d765ecfdee54575f57967ef5092"
+    },
+    {
+      "id": "sweep|B|m16|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "33ba7935c8d4388e8440d6b83bcc9b7e4c5fe07557e1e8e334edaf81040be6bd"
+    },
+    {
+      "id": "sweep|A|m8|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "33c655d6f433789b153553822a39d3864d8fc0d22bd4d1bf83a204249b23849e"
+    },
+    {
+      "id": "sweep|B|m8|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "3490a782dade33888425bdd43e2ab2107c9d64e40b9ceff0c6ddd8e56d2371c3"
+    },
+    {
+      "id": "sweep|B|m16|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "359bb4c5666dbc28ff320ef4615738c7f4987a270478c932763afb13f3d6ac4b"
+    },
+    {
+      "id": "sweep|B|m8|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "3633d42682389ba5a75cff69c5a28236699334b648d6dcd7f99a1d8af4bebdbf"
+    },
+    {
+      "id": "arch|A|m1|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 1,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "366c5318ccc29c2570bd509c0cbe8e684846e8441ea29baab2eeb97b95b9e1a4"
+    },
+    {
+      "id": "sweep|B|m8|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "36dea84717be27787a15d85756b8df54ec333e86f3ea5c8f13834fd0fed6d85a"
+    },
+    {
+      "id": "arch|B|m4|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "371139db995b309403a865fcdc0de40b40773d58fc81aabd367860ea211eb769"
+    },
+    {
+      "id": "sweep|B|m8|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "379e715f5aa605829b4b5e5ec22fe199e888a6a60a39510d8247e5a5fb40df8f"
+    },
+    {
+      "id": "sweep|A|m4|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "383ba011b39a36daa324d72163b3131925a1b45679cec13ad6ae73941235a1b4"
+    },
+    {
+      "id": "sweep|C|m4|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "38d75e69565a9da49da944684732a505976e72891a0b9a21d0407131bc863c7e"
+    },
+    {
+      "id": "sweep|C|m16|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "39a4aeb6bbc82dc98708d65ba146a92e3c01ea39693f4e231bd5271d22aa86fc"
+    },
+    {
+      "id": "sweep|B|m16|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "39a70789c5c8803b34a264f0e4f12e453d7cb5cc1fc0eb47383bb8c172b4875c"
+    },
+    {
+      "id": "sweep|B|m1|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "3a0eef41126562e7505cc0706fea3a00b9c1ceb62862406c615ba8f243c06576"
+    },
+    {
+      "id": "sweep|B|m4|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "3b2d4404f17f64f63a043255925b51fcd90773efba9edc0f8d422246f6a94ca1"
+    },
+    {
+      "id": "sweep|B|m16|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "3b81f45b24a6dae1b014558cd22c607a75eb25089dab3063f615a413dcdf9ad7"
+    },
+    {
+      "id": "sweep|A|m1|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "3d81bd6ca0ed2ef12026e18fdf99c7ab7282a4eb436c949490e626f43affcc38"
+    },
+    {
+      "id": "sweep|A|m1|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "3da2cdd56d2494c2fb5fe1c0332d0649a39989c4fa57fb8d9fc734f7ed8dfa5c"
+    },
+    {
+      "id": "sweep|C|m8|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "3e2ab2828d4e207908b44c436e3e059637770263463b3985f19d6c1fa95f8274"
+    },
+    {
+      "id": "arch|A|m4|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 4,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "3e68c355891dd81bc969c5b5bb11f95209c2e9bf7e67429585854679306e14b3"
+    },
+    {
+      "id": "sweep|B|m16|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "3f6871b2fd7a7ab698766c8f95c4452f58f8add8a9ea48c9b400ce76c5e661dc"
+    },
+    {
+      "id": "arch|C|m1|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "3f69143d60a8909f99247bbc946c920bad46ff1fd86485292749c25f2648502e"
+    },
+    {
+      "id": "sweep|C|m8|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "3f74831fb706f5ad9551d6f809cf65898631e5fb10261c28e0a242f5535fce88"
+    },
+    {
+      "id": "sweep|B|m4|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "3f823d5b4521b5aefa3f7dc98d552e9549811861627d88c1fa58f7b8fb460e6d"
+    },
+    {
+      "id": "sweep|B|m4|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "41c1b80c99ba107f9a0fe76c8c72aaa28f4620d5b339ba1ede65bb2941a1a185"
+    },
+    {
+      "id": "sweep|B|m16|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "42b9690d04ab3f580f283d7df156c8f33e3c6b1c90ee72123abfe8630ba80aef"
+    },
+    {
+      "id": "sweep|B|m1|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "4394a12a27aef54a5becb2c68b58a212936adcefb53707a2f3eef66b3aa87919"
+    },
+    {
+      "id": "sweep|A|m4|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "43e772184bb1a9438e90cf004127910493f52c8f63d02045254d5c0aceb79a98"
+    },
+    {
+      "id": "sweep|A|m4|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "4418718bc12ade328c459cc7ed59d47d307da281f475d31dce2f86df3b9ef5ef"
+    },
+    {
+      "id": "arch|C|m1|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 1,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "445634a5387de040573fe08e172ab3e10da9a3345461f88d246a64028162a2d6"
+    },
+    {
+      "id": "arch|B|m4|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 4,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "44a6058a9da8e7b6a409623c1166cbf191e9217fb5c76751bd9f8fe781366b23"
+    },
+    {
+      "id": "sweep|A|m8|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "44d5ac51c67d52e1906df82f0c02e7480c058561dc138ea281aa70e20d68f48f"
+    },
+    {
+      "id": "sweep|A|m8|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "44dc8343be54fabee231291b6602a0a14eae0a34feab6d88cfd58d1d6f0bae80"
+    },
+    {
+      "id": "sweep|B|m4|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "44e93ce848d20b4978b08210d475b557d54d47a92c3f54b16d1f9187a2688d29"
+    },
+    {
+      "id": "sweep|A|m1|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "4549eac168ec6b32f2d34be85e6b093ac0c0c0d6e108d28f87fa3b7d5219e2fb"
+    },
+    {
+      "id": "sweep|C|m4|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "45dee99a30f54745652b06965276bedd814a24f17531a2e5b9659acf4799405f"
+    },
+    {
+      "id": "sweep|C|m1|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "460584522cbc0674c6736a74baa155fc89b43e2be7227d3b45111589846d7172"
+    },
+    {
+      "id": "arch|C|m1|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 1,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "46ef24444ab8fb8aba64615398a0b0a1214943dc1d7e6dc80f460a96c3c50ab0"
+    },
+    {
+      "id": "sweep|A|m16|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "47b37384556c003d2c05f49785013160742cfc6cb7ec2edb453070c9b295597c"
+    },
+    {
+      "id": "sweep|A|m16|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "47fc1a6da16768842023e263e124147891ab5fb8c6022b157b550c434256501c"
+    },
+    {
+      "id": "sweep|C|m8|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "484aacaceea311df8c94c73d5e29887bfc819c97d9848c5d178ab49218234870"
+    },
+    {
+      "id": "sweep|C|m1|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "48eb687a56e401580fd1e3b97bac074f9e6b6666e8400d652d17db9cb0040f40"
+    },
+    {
+      "id": "sweep|B|m4|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "4a28b0498fd07adae4a2824cafe4be779fbf8e11c85e013bec0fb287335fec62"
+    },
+    {
+      "id": "sweep|B|m8|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "4bd19f9192a07e63ee6097d00a4963404fec89eed0213d874e9da6a55b86e84b"
+    },
+    {
+      "id": "arch|A|m16|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "4c9d3c21eaaaca8302c88cba0dfdb2b727e1b7665231a0faa8a1ec181ca74865"
+    },
+    {
+      "id": "sweep|C|m8|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "4d47b6413928d462a55ebe4a25df26da10c1feab8314ee9a1f930eb81eacb12a"
+    },
+    {
+      "id": "sweep|B|m16|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "4d594bd69d2f0fcf0f860f5d0fa32f72f0556a935db92cdbd171276df1645f8d"
+    },
+    {
+      "id": "sweep|C|m16|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "4dd0d04fb977a591d6f13e8001d007a42aa339a801cd5dad097586f2f88bd515"
+    },
+    {
+      "id": "arch|C|m4|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "4fe59cfdb5d063732e3cc95b4ee8885a3c8017076ec299fade11911026f8d075"
+    },
+    {
+      "id": "sweep|A|m4|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "502661c00910c8cceea2bb1c5891f4b7d9ace98857f46944cc0113781178aaf6"
+    },
+    {
+      "id": "sweep|A|m8|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "51233be9e78b94165e4bc1e896aec7b0fc6e6c745e8e65e5535b6397eba3028c"
+    },
+    {
+      "id": "sweep|C|m1|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "518807a01c0f9a586e45932b0ea502402169521d13ba68536bfcaf7223667fb8"
+    },
+    {
+      "id": "sweep|C|m16|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "52e0daca4dfd01a4d9ad6eb944f49780aedb16e39b5abba16eccf235848546d9"
+    },
+    {
+      "id": "sweep|B|m8|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "5332b5381296955009fcd518b4da450fe45aae456a019ad98b4f3e59aa91de20"
+    },
+    {
+      "id": "sweep|C|m4|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "53670b5d5a754d7f7cc4dd5f831959bea2ea58731db1e872ab6e87d45ed248df"
+    },
+    {
+      "id": "arch|B|m16|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 16,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "54192416dd42d6af8a90bac036050ed02044487d55aaaa2d39e666ba8dae20c5"
+    },
+    {
+      "id": "sweep|A|m1|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "544996d61aff4b05747706a5050e59244537f2ee478ee0d1b8224a9fe22e86bf"
+    },
+    {
+      "id": "arch|A|m8|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 8,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "54b2753eb522caecca9f607d3b3d8c0af0fb39882374cb901d8ed79a2fdc6a58"
+    },
+    {
+      "id": "sweep|C|m16|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "54bbeb6f5ad0dda5b7b6ab604735fd706d32fbcb8b81d84e64b96894204dfc76"
+    },
+    {
+      "id": "sweep|A|m8|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "54ddb61cf1fdfa1033230ae13b08458ce9afda6e831dc38f5b9d06ded912487b"
+    },
+    {
+      "id": "sweep|A|m8|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "55189bc0bd93e2e044a12a8d8541666cdfb11dc3176050da95722ac5b7bc21a2"
+    },
+    {
+      "id": "sweep|C|m8|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "5546ce9e80c373d84a8ac170c87d010f52df31b96d1f6afe75d976f57999f666"
+    },
+    {
+      "id": "sweep|A|m8|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "5567b92c125c178c034a4c9d84977025ec09fd5650417e59acea7d1ae32f3d36"
+    },
+    {
+      "id": "sweep|C|m1|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "579159290f4a00ec1f84005c6bc053443bf3e7a924d10181e42479667de1fb84"
+    },
+    {
+      "id": "sweep|A|m1|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "58580d8dbf4dbcc90846deae0e41030565d602940f550c264017da408797d6c5"
+    },
+    {
+      "id": "sweep|B|m8|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "58817dd7c59369e31d089407ff617ae422545c6c9e8afacaf34165dcff1e5360"
+    },
+    {
+      "id": "sweep|A|m16|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "588b0159ea54e41e1a01fe84eded987df358e6f450a7d77ef2d2aa18f498f609"
+    },
+    {
+      "id": "arch|C|m16|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "58ecf5a12eab7133cf44d899c88259344d2273f18a3a286a15e8689974b6575c"
+    },
+    {
+      "id": "sweep|B|m8|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "5a70c8a801a1b2d2ec6a0e9fd4f9eba67c17f8fc0c0a559b218aea8d7dbcfb38"
+    },
+    {
+      "id": "sweep|B|m1|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "5b75332c59592b51742c800d54b58629b9d9dc4a68763dba3181ceefaff4f9a6"
+    },
+    {
+      "id": "sweep|B|m4|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "5ca2802856104b5ea1d6733da2ac45a66f180efe826c645ac0be3aa52cf5c516"
+    },
+    {
+      "id": "sweep|B|m4|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "5fc7fce09d4f85166b45aeb4f07174acedcd4ec26206cde254680e7c87695c74"
+    },
+    {
+      "id": "sweep|A|m8|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "608af68760f58cfc3e62de522a2e0ddc82179c59785e71380e9ad03d19c4e8b9"
+    },
+    {
+      "id": "sweep|B|m4|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "60c5be8302c6582002cc3dc910434928dd2f1082cf9dfb751394409735e82dc0"
+    },
+    {
+      "id": "sweep|B|m4|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "62018a2a45c1d94a991773c26f879c3d59775c78b59629cfbf41e041c01b8c76"
+    },
+    {
+      "id": "sweep|B|m1|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "622d70c22d33fcbb66a385b292acdfe7ad0bf36678c75084d5f43507c8b8781c"
+    },
+    {
+      "id": "sweep|A|m8|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "6232ad245b0f0cd38fda58ede9ae1cb4cac65dea7de57a0b84123090abcb9f49"
+    },
+    {
+      "id": "sweep|B|m16|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "634c6063257a96eb4388243fbc12cf10bb076c94f611c027b8ef2e6dd30958a9"
+    },
+    {
+      "id": "sweep|A|m8|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "65f08574c97e4380036b804dbb436cdc8d310b0be64a51bdbac2546095b73e26"
+    },
+    {
+      "id": "sweep|C|m1|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "684e35bbc2beed98e5a304ec6925e76d1341254bffb91c38aa60721dc9b12351"
+    },
+    {
+      "id": "arch|C|m4|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "685f1f5d7addef2bc05657d2fef939b6fbc6df706b19db6748e30cb8afd75a62"
+    },
+    {
+      "id": "sweep|A|m16|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "68ae415ea9a79f2973707a1954a1bd4ec87cd34cda53604307f9292733c4d3b0"
+    },
+    {
+      "id": "sweep|A|m8|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "6a4b778dbefc790f2a4421a30600a44a752506561d110389ad8ea198f6dfeec0"
+    },
+    {
+      "id": "sweep|A|m4|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "6a93405c17107e0885aa2b9791c6301dccca58ec48c37aebfbc41294563df4bb"
+    },
+    {
+      "id": "sweep|C|m1|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "6acddb3f0ca18802b6784d37f9088b78405482ca4e1c92177a261ff1ea899b15"
+    },
+    {
+      "id": "arch|B|m4|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "6c1c912304d4c28bf083575a10b248e377fc17e6a17a04ace510e239a1e063a2"
+    },
+    {
+      "id": "sweep|A|m4|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "6cde593646042f3c3309e118f737ab6ab912edcce57dfc14ab588e4ba4c03a94"
+    },
+    {
+      "id": "sweep|A|m8|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "6f1560f65d107612fb375af54673d9a904750cecf2a349377fd593b7074f3be2"
+    },
+    {
+      "id": "sweep|C|m4|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "6f8cc5d493e1e5e0577c38c44c6ebe0da655c2313ad3d21457b2c89ec8254541"
+    },
+    {
+      "id": "sweep|A|m4|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "70130a1c5b18501b8b4607f17646c7400de65cbe62baf6aab7791badc99caaa3"
+    },
+    {
+      "id": "sweep|B|m4|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "70230bb5ec5e9f934d55060fedf6ba3dc456396fae3afe6f48ba4274e366ea5c"
+    },
+    {
+      "id": "sweep|C|m1|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "70f2a10864ca40594fbd120ab5b50d6325f398f0ca72891fe372af98e1c86dc0"
+    },
+    {
+      "id": "sweep|B|m16|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "7238d6f6073bf639614ad925b5afd983434ac55c3be0285b7bdb46fb14bcf724"
+    },
+    {
+      "id": "sweep|C|m16|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "72a6525364e83a8f8ec988496212ae544cb61d3285ab97a48e4993c79702c715"
+    },
+    {
+      "id": "sweep|B|m16|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "72bd2ab45e1bbb9f0cebad4066c1141f5335e58d98483a9d0b08cd973a44fde9"
+    },
+    {
+      "id": "arch|A|m4|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 4,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "72c0f159094891e5e9bb9fb5d7d1d5d9668a5614652aa1650425c62b55d80cc6"
+    },
+    {
+      "id": "sweep|B|m16|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "72fa42c6f285dddcb593c215fc078d26c91be5348d186a2b2afa9b81163a1e0e"
+    },
+    {
+      "id": "sweep|C|m8|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "73e65a956ab26ac3f09df163d0619eb103f51c2cc612a9d01578e8bf3eef3da7"
+    },
+    {
+      "id": "sweep|C|m8|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "744657ba2c53775ac9224403ab12bf54e15680fccf2b052518d27a55ae64ed1e"
+    },
+    {
+      "id": "arch|A|m16|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "74e759a07d08ea075a1b517cf6b861d3ee2e18ddbfef6baf297514160ddb93a1"
+    },
+    {
+      "id": "sweep|A|m8|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "755cb928ea13f70aa8ce56f9915de96e406743a0eaf683349c2e092554216f6d"
+    },
+    {
+      "id": "sweep|C|m1|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "75ec80f9332c10a7a5b0af00e21af14b243438b010efc5c50b61d9b7a2f331be"
+    },
+    {
+      "id": "sweep|C|m8|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "76577acad9afe7302edee4e69e5b3aa8dfc16581827938859f5e29c183250c27"
+    },
+    {
+      "id": "arch|C|m16|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "767d2e1d91839da5f4070e10cfee3f1bba70b131e04ff1e3ff9915ebb2adcc19"
+    },
+    {
+      "id": "arch|C|m8|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 8,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "780abea51ba68cc31c2873563837d4a9a2006a92ea93de0380bab8998a011800"
+    },
+    {
+      "id": "arch|C|m16|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 16,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "78ce7d637be7e6889370cb5c6aca65eefebea301d5cf57461e32d993cd63582d"
+    },
+    {
+      "id": "sweep|C|m4|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "79c0599527d37706af7dccedcb315abc86578918c21cb41f07ae3643f5751104"
+    },
+    {
+      "id": "sweep|A|m8|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "7ad01ea777551d8c5ec7e971f898a562040bb5c7b2d7a4495e06189e90c3160a"
+    },
+    {
+      "id": "sweep|C|m16|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "7b61fe4e09e1bbcaec4dba83216bef015e7b09b2180232ecdf92e1004be43ea4"
+    },
+    {
+      "id": "sweep|C|m4|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "7c214360672933d59619d6dd79c32826d6e28f8c7637da654137908482d4387e"
+    },
+    {
+      "id": "sweep|B|m8|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "7cb901a9d07d0fa3b8f85966fd5bd970280aa50506992289248c0539b594f921"
+    },
+    {
+      "id": "arch|B|m8|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "7d95216a0e9fc7b8cafcadf6f28ff98fd51796f009208f31f3e37ad25beb6c0c"
+    },
+    {
+      "id": "arch|B|m4|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 4,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "7da73a1446f5cd4e2b644e0e93c4b4923180747c06e9e510b635d92d35f295b6"
+    },
+    {
+      "id": "sweep|A|m8|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "7ddb8797db3a7de812c7f8df7fa8223ec656133c22590395e0d1c127bdbc19e6"
+    },
+    {
+      "id": "sweep|A|m1|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "7e6b288470694c27f8f5e37e88ef1b3c3c12d325f6a4ca9a89c5917519de727e"
+    },
+    {
+      "id": "sweep|A|m16|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "7ea194d3913377a370335903ccac4d31b5983a8d949cfaf16a8ee1c5cb16574a"
+    },
+    {
+      "id": "sweep|C|m4|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "7ea3e968095edbb7a2084631e5bd13028bb45e77bdaee052425672d52c54a5fa"
+    },
+    {
+      "id": "sweep|A|m16|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "7fc3d49197e677d8f78c923739897b25cb39364ab845f2326c14ded431559727"
+    },
+    {
+      "id": "sweep|C|m8|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "7fe6a75092275bb811038c6758b81a66116037d8a8a6874c797c84f27c42f979"
+    },
+    {
+      "id": "sweep|C|m16|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "8048a278bedb7b98a9f9678bc79eccc1be8ca7a86e1f4df050dea0a10854371f"
+    },
+    {
+      "id": "sweep|B|m4|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "81c7846e5469426c5f68de5937ee87855846e5f33077382262e91b419e5a0208"
+    },
+    {
+      "id": "sweep|C|m16|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "81fd9c23e47e5d4cc15fbc2051a7cf17fa21347320d7d3b3c9fdbca846832d5a"
+    },
+    {
+      "id": "sweep|A|m16|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "825407dbe90ac79568fa25642427ba90cd36ff4129d37094803b32772004852f"
+    },
+    {
+      "id": "sweep|B|m8|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "82aac1e5c3501fbe2a09f77908e07140fdf1facbef664d1a55d1036436943184"
+    },
+    {
+      "id": "sweep|B|m4|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "82d8c768cde47ca9b2096e96f41286803913b25d1a04e96b39b2b676336b0ea4"
+    },
+    {
+      "id": "sweep|B|m1|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "839ae4a6a2aa47d2777f9e3fd121efdd7ee193b249cbd264e7cf9b80a4afe338"
+    },
+    {
+      "id": "sweep|A|m1|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "8479d8b47813b6914054d32d72b360662bc324237cc06dd35571fda263a0a99d"
+    },
+    {
+      "id": "sweep|C|m4|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "86ced36bb9c35fd66f03e0f692a6b4df1eb5b179f07652356295da77a3811394"
+    },
+    {
+      "id": "sweep|C|m1|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "8734ac8fe19d171eb87ee61488b7a7092f1e55bd4abd7c230e66354219906583"
+    },
+    {
+      "id": "sweep|B|m8|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "876984db0f1f142f3fc3f8fd7360a8490505643dccbe7927fcd1aa1605c60bed"
+    },
+    {
+      "id": "arch|C|m1|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 1,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "889a26ee3bac8ca7267557a383a5750f9b5a0e650bbfaec7ac86bcb86d242776"
+    },
+    {
+      "id": "sweep|A|m16|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "892629671394f022a49357f8a7ea04211ab2e498b7b4f4c4ca1685bdf92280b9"
+    },
+    {
+      "id": "arch|B|m16|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "8988802f0cfde6682c504ed26e7de5d8b42c8054ffdf82b14a0d79939d7a36c5"
+    },
+    {
+      "id": "sweep|A|m16|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "89ba7fa4e5256043f14da9b2b8cb477ee63f19828e5fee661975cbd2c8c84b9c"
+    },
+    {
+      "id": "sweep|A|m8|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "89d940f7003b911a8da5870efd8216e2c372fb802fb017a7c90d325f0767e5d8"
+    },
+    {
+      "id": "sweep|A|m1|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "8a5658be4768cfe83175cb35fc8b95acefbb65362438f77a8dfc95153aaff10f"
+    },
+    {
+      "id": "sweep|B|m1|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "8ada5e0d2be6bd83bb56b73cfd092a3bd0d869a09728ee5412f86f064fdfebd8"
+    },
+    {
+      "id": "sweep|A|m1|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "8b1616ba877b32fb900c56d628176ebd6a7c73f59f1fe2ccad3c03756418b252"
+    },
+    {
+      "id": "sweep|C|m4|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "8c6535055995828e54a67c44ac7d48a3a8c340edf6251add2fc54c257665c2bb"
+    },
+    {
+      "id": "sweep|A|m4|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "8d37439e57ec258c387b018c1fa346125e8cc2d15bc5194c98111804cc220229"
+    },
+    {
+      "id": "sweep|A|m16|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "8df5242f07fc813bfc4157ba5ad3b776c1c045c8b25a28a80e27d8bd1b7b39ef"
+    },
+    {
+      "id": "sweep|C|m8|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "8f9de7edb99a10f8bfdb460df0ccd465af176723b3a606b7390adab7fa57cd8a"
+    },
+    {
+      "id": "sweep|B|m1|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "9001a12f78daa6d4ad884aa04e43eb5a25d834d936916634432f0a1dba6a0007"
+    },
+    {
+      "id": "sweep|C|m8|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "921e7c52f5cb22c8ceaa0b9e6b9732c009f7d93a5049cb3880df1c7a4faaba0b"
+    },
+    {
+      "id": "arch|A|m16|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 16,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "924a039be578afaa9cedca1d10fbf48ec767fbc21884df181bde7d04e473c9f1"
+    },
+    {
+      "id": "sweep|A|m8|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "9354e8547fe1b733c98fb9de0a8f5cc98fddc941f39ce12823a6ad795a086580"
+    },
+    {
+      "id": "sweep|B|m4|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "937049d411000fee9605b558692f84cb92afcfa8f20d5e74de6f6330fed1d589"
+    },
+    {
+      "id": "sweep|B|m16|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "93d58a1270bd889333ef886989899599239a7c49feb7529f043c5ea3b8985f0d"
+    },
+    {
+      "id": "sweep|C|m1|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "94b0c94f295f1b081ae4ba825bbd3e811ac3d812c1fe3310853bed483de2cf16"
+    },
+    {
+      "id": "arch|B|m1|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 1,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "94d6730efff001092b28fe4cc490d80d228f56f197b5584b1ad65d2a78500b12"
+    },
+    {
+      "id": "sweep|B|m4|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "9520d878fad6d92b427296d7f6d9c12442875393969ce7fd0748c3fd540ef487"
+    },
+    {
+      "id": "sweep|C|m16|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "9562efeeead4378fa29f378216e74d4c7a424bff201c06e9c33686030fbebe74"
+    },
+    {
+      "id": "sweep|A|m4|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "974a2d472cdcc7d55d25734e8c6eda2035c685de8d4e8aa054e8bdf1ae7025db"
+    },
+    {
+      "id": "sweep|B|m16|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "980296051757f0f2f0bf02a82460a43f38edea36abdb3e6a3dc23c814c6ef918"
+    },
+    {
+      "id": "sweep|A|m1|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "98cdf969f718dc07d860ded4bf81ab84fb7264dda9a67e42db0a129c81e2bbe5"
+    },
+    {
+      "id": "sweep|C|m8|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "999c1451e17d00d69e1889e363e930f814ca3b533f123d59e8831f4d25389d70"
+    },
+    {
+      "id": "sweep|C|m4|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "9aaefffc6f66ce72fc1e879aa621d1fe11ca022acfc43a3e688745d0865a7193"
+    },
+    {
+      "id": "sweep|B|m8|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "9b8fd20b1b8d3e2f53b898af535dc2a82696d01999df9adc081aa5470be049ef"
+    },
+    {
+      "id": "sweep|C|m1|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "9c07398da69f46717401e0ffc8acce614b4680dc5a734842581ccf1777ad57b9"
+    },
+    {
+      "id": "sweep|C|m8|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "9c15047a4ff0c33d0e2aa37e0a8e496382f048f2c694ab7f02a6880ed41df5b8"
+    },
+    {
+      "id": "sweep|B|m1|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "9c56388bce422da93f64990d21faf19cb1b257bcd9062e20f9df6ba139965c9d"
+    },
+    {
+      "id": "sweep|C|m16|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "9c67c318c9799c7ce463ed573149d0382dd59036f0a791306dddfcf4e3363057"
+    },
+    {
+      "id": "sweep|A|m16|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "9d1128ce032a29bafd4a580e9d5e62ff80dbdf28ea529737068537cf37aaf0a8"
+    },
+    {
+      "id": "sweep|B|m8|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "9e63627722f69fa40cc9fdd583e445a00f26f32d5288ab3085de4c90e52be8db"
+    },
+    {
+      "id": "sweep|A|m8|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "9f65884a089d34114f2ac933770973aedc1b0b52c211bbb9f94be7c2cd6e296c"
+    },
+    {
+      "id": "sweep|C|m16|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "9fef86c8425b8e0581bb84884a91dc4a77091cf0f648e968c8141c3ddc3a6976"
+    },
+    {
+      "id": "sweep|C|m8|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "9ff8d7368841b7af4c2da36162b3ed223a3e0dc135d3f7b51e4244a7af1cb31b"
+    },
+    {
+      "id": "arch|B|m1|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "a25130f4e9426bcd67555b9d39bc674f491b848ec4e567e062b67aafbd3a82bc"
+    },
+    {
+      "id": "sweep|B|m1|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "a3b03f9f7795dfa8abfa228aa02b030a1072891769374e722c509df0639d34fb"
+    },
+    {
+      "id": "sweep|B|m8|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "a3c61260bedaf5c9d9da0d3ec9323827cbb4b2e7d42427603786e69da2ba0c2f"
+    },
+    {
+      "id": "sweep|A|m1|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "a3d89f69d533b8f44665c69e33569129cd6395598f100f066fd67b099465dc00"
+    },
+    {
+      "id": "sweep|B|m4|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "a40c835e0cc7e145eb3a1a6ef4fe1263aebea7d56dcf4ad484a9f314a6418623"
+    },
+    {
+      "id": "sweep|C|m1|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "a4411d42d5ada5e37cdb90d2709dbbb07f5157e9ae5329d7318bdf838f12ef8d"
+    },
+    {
+      "id": "sweep|A|m16|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "a4df7ec00378d4a7a561805001549b46967f6fabbde6f396f7c882940389ee81"
+    },
+    {
+      "id": "sweep|B|m8|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "a53627ab2642d352f7b40eb89c4678f2677719414a99e60433d1c54f9ef09414"
+    },
+    {
+      "id": "sweep|C|m1|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "a8d42feb055e45a96e54717336ff0ef99e03f46acb5a7199a48ba55f88fc0fc8"
+    },
+    {
+      "id": "sweep|B|m8|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "a9fed8673791c25359c8579a99eb3fb2e83b2c0c2ede7ea77a97a097ddf1b43e"
+    },
+    {
+      "id": "sweep|A|m8|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "aa7d30e53a9cca65275960e2bc77192013c49ec709a29e955ff7d9abd3f48f3c"
+    },
+    {
+      "id": "arch|B|m8|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 8,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "aa8f0ad917bf6bbf2e491cbd20fd419ce13824e07fbe98afd461a36b264b01e1"
+    },
+    {
+      "id": "arch|B|m8|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 8,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "ac70e644d762227693fe1bfc93fbe9c5655ac724e458c9221179f17d152f10d9"
+    },
+    {
+      "id": "sweep|A|m16|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "ad4b8edf5a0dd026e03114fb2e50671c60d5c466532794fb16e25b153ffd05a2"
+    },
+    {
+      "id": "sweep|C|m4|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "adbb0eebe782c2efaca8578a17c8c0b4d658e4c6eaf1095a87f30b94c8b2c92e"
+    },
+    {
+      "id": "sweep|A|m16|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "ae8a7d646225310fd498306d3ca99593dd5754a6ea65a97028e02b2b8eb9fafa"
+    },
+    {
+      "id": "sweep|A|m1|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "aeaef7a83661c405830834130325e875a3bed6fe619819912d20e8ac9d5eacb8"
+    },
+    {
+      "id": "sweep|C|m16|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "afa3af28d55d9899d8515a91740e4bebc8613df6ae967f2d7b7fd81261b52c32"
+    },
+    {
+      "id": "sweep|C|m8|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "afc988a8c11d98f0a664a5148d0d36f900355ff94ac1401da56b4e525a996f72"
+    },
+    {
+      "id": "sweep|A|m8|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "afd74a081f313b03feab47d8026eb22e5910ffdcf68208573e23a693a5dae9ed"
+    },
+    {
+      "id": "arch|A|m1|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "b04d6bc772eb011b4aef90ea8e7b712dd6256d320b4943dda89bb4c4aac72a42"
+    },
+    {
+      "id": "sweep|B|m1|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "b1a588e521ba6f493ea3ac2cabbdbf94d6e455db930ef2482f7f11bf79bd4708"
+    },
+    {
+      "id": "sweep|A|m4|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "b1dc811bee432a183afe2d35105965deac1e6f83e21a2e12afad003bbd53a1a8"
+    },
+    {
+      "id": "sweep|C|m1|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "b293ff157b74af386bb7f802216acd1c8e897e58e5ef1f1b2c86da9a28de4bf5"
+    },
+    {
+      "id": "sweep|A|m1|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "b3094c17006f4940e33cd8dd178b98b00a205fab1248d6e0c622e6b4dad1ee68"
+    },
+    {
+      "id": "sweep|C|m4|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "b33573e3fdb286ab73fa40ea4002c8b8f1023c47514abed39c7e753dd1ade005"
+    },
+    {
+      "id": "sweep|B|m16|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "b403f08fa3181eb6ff7e416739065dce579a47a6d5fcebeeb5715aa060309236"
+    },
+    {
+      "id": "sweep|C|m1|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "b453d4980c01a60b4dfb8213efd5cbe5311be5d283a4d05b01be71345234e52c"
+    },
+    {
+      "id": "sweep|B|m8|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "b45c8f6ca84806e3163dea1bef1ec7455f4445b7e3339c852abc4381f1a35a28"
+    },
+    {
+      "id": "sweep|C|m8|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "b4d16c02de6ea19993c0ead550bbdd8349ff9e09d174a253d5b556911771121a"
+    },
+    {
+      "id": "sweep|A|m1|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "b4eca62085c31a88d099c827385bb1df9ebc7d4f02f9fe7d7c71ef97a9e859bf"
+    },
+    {
+      "id": "sweep|A|m1|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "b58063f11795c306f294945d42695da8eac6d0fd25f61d9f4c564c350b2de561"
+    },
+    {
+      "id": "sweep|A|m8|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "b60dd633fabc0b8e06ec8a3c61451417b2fc5b8f14e76455cf598414e745e6a3"
+    },
+    {
+      "id": "sweep|B|m16|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "b72ef27a5a497de08e91c09171e39876b6230c6c2c1156479ac8ec92a4a26185"
+    },
+    {
+      "id": "sweep|C|m1|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "b76df27405196d5d69aa378b25472cf912a592dfd6b9f37c07e090afc95aad87"
+    },
+    {
+      "id": "arch|B|m1|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "b77e191621d26e8d7ecd1bd504f401bd5ce059367949d8d35402e9b96b176735"
+    },
+    {
+      "id": "arch|C|m8|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "b857707627d64270cfec18c7bdd503c7fed68e14bdb6656935d69e07157c94fe"
+    },
+    {
+      "id": "sweep|A|m4|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "b8d09bb624850354b7a527c84fe3643ae5771ba5929ebb0a346b957b38bc3b30"
+    },
+    {
+      "id": "sweep|A|m16|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "b90687f0745ef75982b7eaeaff9ea92783a17e64fefb7c7d225f09e7f9eb5aa8"
+    },
+    {
+      "id": "sweep|B|m1|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "b92909eebd34738dedd3835fefc32e66c20afc235c63de7589c213f87945e3b9"
+    },
+    {
+      "id": "arch|A|m8|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 8,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "ba09c50e4ed7a9628cfcb36ec76b460c57b1e1f77d4d2203b558c0e8b774fbb6"
+    },
+    {
+      "id": "sweep|B|m16|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "bb409bfa4351fa28cc1401682d718dd5471c718c8b00362d38959f43cd9204de"
+    },
+    {
+      "id": "sweep|A|m1|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "bb703ff1856f4424cb56a3cf210d247c2bc315b477b10c165d78a0a389459b37"
+    },
+    {
+      "id": "sweep|A|m1|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "bc5f0d76b4c94f106fff0161afed35de015d7605b112401a6a4fcbf44584b34f"
+    },
+    {
+      "id": "sweep|A|m8|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "bcdec84434573fd9df6dab28a354c9c52010950f64da53f25b8946274ec93e1a"
+    },
+    {
+      "id": "sweep|A|m16|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "be4651252c662a97ff2522b608722f16a5356efb0fb32edd1d81366d8c0096f3"
+    },
+    {
+      "id": "sweep|B|m8|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "be982e0c870246cf2a5a23a4a07b76f29b850f1c71be7c23e28f6d1fc335f40c"
+    },
+    {
+      "id": "sweep|B|m4|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "bed39afbde98478fca00faa41dccf0bb452edb3bc9a5241dbc67cd3db07d0bcf"
+    },
+    {
+      "id": "sweep|A|m1|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "bfe0bc545fd98b53fce115f0e04a80384974a95794212536713981533af140c6"
+    },
+    {
+      "id": "sweep|C|m4|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "c08d8eb64f3909f8b45e0fb012bb89c91715f2bad24e9d747f250a8bf68bee85"
+    },
+    {
+      "id": "sweep|A|m4|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "c10068af6345e0e2bd54d66d5514f834e6476b272424ee14eed67b8712a24936"
+    },
+    {
+      "id": "sweep|A|m8|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "c10f8371b67ac18e9ab9c2556a97ec617d2a535705493656f832d8e5321799e1"
+    },
+    {
+      "id": "sweep|B|m16|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "c186c9923977b756ae5997d41157c3354264789eb1e6ec58d1725a517bcab8e1"
+    },
+    {
+      "id": "sweep|A|m4|K16|W768|O2728",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "c2685d8482bf8e8bac7ded1c783b250981779df6d15cee2e1722cc97c866da86"
+    },
+    {
+      "id": "sweep|A|m16|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "c2ae791a34ad1227c068e00caa0415ca2c5f06bed8925dc28e08402152d8fa17"
+    },
+    {
+      "id": "sweep|C|m8|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "c2bb8c9a3dd3e777c8ba11b7ef78e7beca44af7c0d6e8d1a6dfc9408ba344344"
+    },
+    {
+      "id": "sweep|A|m1|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "c33a4c6933b7561070355be61e59792a55ab9d079537d83ac3445d0f7807d755"
+    },
+    {
+      "id": "sweep|C|m4|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "c3571e6312edd7f6217b28989535507a4ec44b7e5d9aa428eb71e45472ecc6d9"
+    },
+    {
+      "id": "sweep|A|m1|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "c412cec450163bcbc513c56dd82edc40b74a58c1d3e64147b77e4d0d38638289"
+    },
+    {
+      "id": "sweep|B|m1|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "c4a0b8976c650ab40d3c2eb40022f96dfdf11a73e8ee5319a3275a16bc37d397"
+    },
+    {
+      "id": "sweep|C|m16|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "c5a25f930d6b5092e4be1949f1d0c59d2fe00c60a40a8179c0e267e62336025e"
+    },
+    {
+      "id": "sweep|C|m16|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "c634d0046174c1dd049533a7b794d1c44eff02c1137b481f8f416051bed69f43"
+    },
+    {
+      "id": "sweep|C|m4|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "c636442a50836a178c4f2ac287cc5a515ceeb595578bff20f2a941863b8c7e81"
+    },
+    {
+      "id": "sweep|B|m8|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "c6820b61e6e212893024628356422860969649da96bf7a1d6d7b1154045485ab"
+    },
+    {
+      "id": "sweep|C|m8|K1|W8192|O29128",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "c6fd2cc898a8f96235288a17a2a1f9c771cf9bc9e90ee312740f7afa34c5f452"
+    },
+    {
+      "id": "sweep|B|m1|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "c700aa038bbaf65baa82d426a4ac7573feada0f70dae1edf4387766f7ceebdb5"
+    },
+    {
+      "id": "sweep|B|m1|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "c803a422f67a8fd110ff2d3f88f5571635c19ea13cc9c32d0acc4ff449a79ff9"
+    },
+    {
+      "id": "sweep|C|m1|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "c8c352ae93d4367f19296da6f8cb26bfe263cb71576d516042b09513c2be9225"
+    },
+    {
+      "id": "sweep|C|m16|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "c94b4fad5b3781b34b5a740d2f6fe628932dfb3cb7bc1a7f57ef41561845397a"
+    },
+    {
+      "id": "sweep|B|m16|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "cb8cf4f616c93b86d0b0877a533dd88f8d3e1a351f98ceb97e6a1a2290f0cf6b"
+    },
+    {
+      "id": "arch|A|m8|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "cbce7bf7f6b936aef221653a617fdb99931bc3fc131d8f1652e18bb1c07acf88"
+    },
+    {
+      "id": "sweep|C|m4|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "cc0645147cd970b3745f7a7cc96af700d59aaaf02b5738dd27c3ef804cb6fbee"
+    },
+    {
+      "id": "sweep|B|m1|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "cc3b8a2031f888680a613e2efda96de7a533fe876cea4bc7a01ccd6903d4e019"
+    },
+    {
+      "id": "sweep|A|m16|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "ccc7b4e06cf53743f80b96c04bd49b49ad7b35e775321ae9a2c7982eba748eed"
+    },
+    {
+      "id": "arch|B|m16|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 16,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "cd7e3a7aef834a70e429402f362ac518163089275ce31b50093188fdf6cc6a6a"
+    },
+    {
+      "id": "arch|C|m4|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 4,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "cdd3a2bd860293b78d1e6d77a10b7be797f073bfc7c31cac46f07f064c21b179"
+    },
+    {
+      "id": "sweep|B|m4|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "ce5d979baf7f3f91d9d13bdbdd7c2904b2e841eab1ed5a9b562002216c60a212"
+    },
+    {
+      "id": "sweep|B|m4|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "ce774f55da88c4602881fdee1522ee3735c86ad75f77dd980af101f39bfd9d05"
+    },
+    {
+      "id": "sweep|A|m4|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "ceccb4a7651509911313d063c4f278a6a7c4bb5c92ee08113e786ea3b7a32529"
+    },
+    {
+      "id": "sweep|A|m4|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "cf0d2879011d6b58d9abf40a66eaa21af674e2fa8998a42de93dd97370e5b33b"
+    },
+    {
+      "id": "sweep|A|m16|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "cfa051e0cfe2f2665650464ef61cd5604392b6fd33660fe9c5e006006152e023"
+    },
+    {
+      "id": "sweep|A|m4|K16|W16384|O58256",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "cfbf9058f51eb5f53d27f2e5ae73b764f00da68d30abae65fc8c04feb07a2efc"
+    },
+    {
+      "id": "arch|C|m4|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 4,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "cfd7a09468c3f3637772668241753f40655299b5360c6042242d0f9130d5dece"
+    },
+    {
+      "id": "sweep|A|m16|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "cff78e97011f5b36df0780b77b456491fbc8ec1cf22403d262634855dde0b7b5"
+    },
+    {
+      "id": "arch|A|m16|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 16,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "d04fe72e3532463443b999db581f7d9bc6f50a5ef6f5500126fa03acc910faeb"
+    },
+    {
+      "id": "sweep|C|m8|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "d13ed5f9f48c94ca82142d91f412c09a09fcdc033db31e356914d01300c45003"
+    },
+    {
+      "id": "sweep|B|m16|K16|W1536|O5464",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "d1713f2314fd72ffe9a6c09de9a9ee5cce0916349b7432e863da0e2564f38340"
+    },
+    {
+      "id": "sweep|A|m1|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "d2775bafd53696489d5a7c2fb9d69f9c0f6e330aae713d4393a69aad487e00d5"
+    },
+    {
+      "id": "arch|C|m8|K4|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 8,
+      "K": 4,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "d2bbb2b2ba9cb2f63661599f1941454ed0f86b88448d46af3481f4fc519a9f69"
+    },
+    {
+      "id": "sweep|B|m4|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "d36dff326837180cd7bbec5c785c51eeea6491a7103ff0a8fc8d3267683bc984"
+    },
+    {
+      "id": "sweep|C|m1|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "d3810eb05ca080dae366945422dc04f80058625dca7f1a243cb23dbe6ada485d"
+    },
+    {
+      "id": "arch|A|m8|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "d45e0e7595b888d403fd3afa14beeb0f5f528a296436d1424dcbf06a95542224"
+    },
+    {
+      "id": "sweep|B|m16|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "d46505777cd1ca158b691dac8a85832b4a0c70c52b917d9913641311bb135b3b"
+    },
+    {
+      "id": "sweep|C|m1|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "d469c6eeefd657d49e674791c7e3dee4dd7bec80476f0484a63b131509a201c1"
+    },
+    {
+      "id": "arch|C|m8|K16|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "d47651360dc04e33eee181068a70df30adf16e4dd4a49287530b8ed0bfa68bc2"
+    },
+    {
+      "id": "sweep|C|m8|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "d5b5bcb0cbcad844bd98f28c6839220d61e40af319ece7f26a649d770deb48fa"
+    },
+    {
+      "id": "sweep|A|m16|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "d5de34f7775f605067ea652d56a7c980edb8c3d59e93dd7158ca2430625c6691"
+    },
+    {
+      "id": "sweep|A|m4|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "d7229f103180dea70bf261b5c776de660d261b0a2a3aa0d2f3d6eec55ca180ae"
+    },
+    {
+      "id": "sweep|B|m16|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "d739f362465453b7150cc22f9f6702543010b94d1148610de3d9434c4c92e9bd"
+    },
+    {
+      "id": "sweep|C|m16|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "d86daf84ba5c72fd35e375d39fbb3330a6914d31061c8ebd662456d43fc49ce3"
+    },
+    {
+      "id": "sweep|B|m16|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "d8e274d7c077a4016247657acfc6a11326cac9a1529508511c3beb65344ce191"
+    },
+    {
+      "id": "sweep|C|m4|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "d8e63bc639b4e2bce22645ddaa77c16c7653e4eba8752bc8ec98ea816b6b2149"
+    },
+    {
+      "id": "arch|A|m4|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 4,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "d99c316753d784cfbd21a979a4b78a9925f26672a5c87cbcee78e3bfe16c25e2"
+    },
+    {
+      "id": "arch|B|m8|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 8,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "d9c6affb3f21ee01d2f70052e79af6893dd5ba231a6fd6a87a47be38aa5463ec"
+    },
+    {
+      "id": "sweep|A|m4|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "dc547f8cb7f79e33db19df31d3efb678797379ab30283c3bb1ecd0a4121b7021"
+    },
+    {
+      "id": "arch|B|m16|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "dc8f75d44ae6c3af9a326c243be55f0d7a13f5380527399c239d9aa55289758c"
+    },
+    {
+      "id": "sweep|A|m1|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "dd65244985c1909347097e8abedd62b82a341b2b43f6deeae43df2b359a2e519"
+    },
+    {
+      "id": "sweep|C|m1|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "de0cdcea9be77b48450792182f53b850680ad5109618017d2d2f58ae281894db"
+    },
+    {
+      "id": "sweep|C|m8|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "df64cbc06c5dec98642113436e6957d8735dc13ab640c64889f91bed6ae424af"
+    },
+    {
+      "id": "sweep|A|m16|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "dfe05d9d186a5213ff8e210d6288910fc698d45213bb8017e52fa8e35f20529d"
+    },
+    {
+      "id": "sweep|A|m4|K1|W768|O2728",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 768,
+      "O": 2728,
+      "order_key": "dfe67114c87e988c1954cc399a73cd0ed3885ab91bd441a15e7060c1df4e4ad4"
+    },
+    {
+      "id": "sweep|B|m16|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "e005ac1318a99487c666702926f21fbad84279d0e74de44da99216a88dc0a2b0"
+    },
+    {
+      "id": "sweep|C|m16|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "e0d7f8bcde83743aa952f38946cbc9b1b3d357022b9dee70da4284491e88c581"
+    },
+    {
+      "id": "sweep|C|m16|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "e107af521f3973381a0203dea6ba424b0cb87b9d6e106cfb3dacf622cd6c9dc7"
+    },
+    {
+      "id": "sweep|C|m8|K1|W1536|O5464",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1536,
+      "O": 5464,
+      "order_key": "e13b4a1b0b2ccdc8b504628369c1d16dafaa5f61dead55fed7a59c996899c19f"
+    },
+    {
+      "id": "sweep|B|m1|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "e2cd6aef2ad5ac705bc8d94fdfd941de08ba29bc449a71d9d806fb0375bcd4f0"
+    },
+    {
+      "id": "sweep|B|m4|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "e30608ef35a981f52e360c456373a1cfadd84cf4228eff64f92f87b1381be7e4"
+    },
+    {
+      "id": "sweep|B|m8|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "e438818a7cb8f4c931eac70708d35f7175dcd388efc99a276b739ac70781f82a"
+    },
+    {
+      "id": "sweep|A|m16|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "e4c93d412f3640c7075d69dad6230263f9e48b0564430d26cbf0f75938cf5bbd"
+    },
+    {
+      "id": "sweep|C|m1|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "e57c685bba160004c7b14e47d2a49076f304bf4cb4c2b69b2dfe46491e0e5399"
+    },
+    {
+      "id": "sweep|B|m8|K1|W3072|O10920",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "e597df5dbb03fafb846a601aaf44a850662250bde7449f5b581d0dc33cc195ac"
+    },
+    {
+      "id": "sweep|C|m16|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "e70ea16eda5364eec23eab43d8a2f1d6a5f57f9457344e340205fe28fd753509"
+    },
+    {
+      "id": "sweep|B|m4|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "e7cd4f5e4f8414a9ba966fdc3b926eec45a0167c74490d2e45e643f3a2185cb4"
+    },
+    {
+      "id": "arch|B|m1|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 1,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "e86421cae31c8da92743e9f495f056725b5430fe7528bd02a759772af54da83d"
+    },
+    {
+      "id": "sweep|C|m4|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "e87135c6e8ec44b94dab2504240faafaff632ced74614435e9f0b455291ec915"
+    },
+    {
+      "id": "sweep|C|m16|K16|W256|O912",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "e8900c12d4b3cdb3fd02d92c9e9738c1ce9f7e7ab3905298b32bae9d27da6e78"
+    },
+    {
+      "id": "arch|A|m4|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "e95072499b39bc6cc1504307d70c9707d5017a70f2060a52e579831236c2eb99"
+    },
+    {
+      "id": "sweep|B|m8|K16|W288|O1024",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "e983433e50b20801b710a9fc2a8a72fcecee476cad101f99b031709579d87067"
+    },
+    {
+      "id": "sweep|B|m8|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "e98ecbc4a68d53f440d73de334b64bfe9857512fc2300f5cb9d2acadb4eb898d"
+    },
+    {
+      "id": "sweep|A|m1|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "eb193abd79d75d39a1365403b919ed8dd2a1629356a964cee30b8def349723ff"
+    },
+    {
+      "id": "sweep|C|m4|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "edcfc879f63acbfa2b7272cc1eb6b4767ba115468292f4a742dd1bc51cdc31d7"
+    },
+    {
+      "id": "arch|A|m8|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 8,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "edd243304847e1c14ed27bab2de7247c89f724d4ee45facc41e62587c665145b"
+    },
+    {
+      "id": "sweep|B|m1|K1|W16384|O58256",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 16384,
+      "O": 58256,
+      "order_key": "ee4b11ebeaad5e2e261de4778c1ca649eeb9db6c6b2c433c28773a2c8a7898fc"
+    },
+    {
+      "id": "sweep|C|m8|K1|W1792|O6368",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "ef14236c2416c770876aa023a73f7a20148a32b31edd1d08afe72c316a3b1ccc"
+    },
+    {
+      "id": "sweep|C|m8|K1|W2560|O9104",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "f05770d915180a257d7c235653757311614669ad8b026dfe62ecd922b8a8be91"
+    },
+    {
+      "id": "arch|A|m16|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 16,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "f06241d919f8cf3fcc38e8df44f1472c7aa7f0f8f1568a4b7b9fb8728309c547"
+    },
+    {
+      "id": "sweep|C|m4|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "f0df7f20a501f888425450536aae636870fdf92ad9fad8d7693bbaa425752a11"
+    },
+    {
+      "id": "sweep|B|m4|K1|W1280|O4552",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "f156f715ce7efae3e1768822c333d91089e82ed657c4bfe003ed7f72b025b7e9"
+    },
+    {
+      "id": "sweep|A|m4|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "f2000c6e311dfa7d890a1c3bb4eea731575643ba953de9f87a326b9838e653bf"
+    },
+    {
+      "id": "sweep|A|m16|K16|W1792|O6368",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 1792,
+      "O": 6368,
+      "order_key": "f20c426f07d0d3116ed2323f0654b6197a3f629ae1803b97f766a37b76b2bd62"
+    },
+    {
+      "id": "arch|A|m1|K1|W1024|O1024",
+      "kind": "architectural",
+      "variant": "A",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "f30182ceb894fc02f3166a90c0c7e52e239e47fbd767d9c6e105f164755ba1c0"
+    },
+    {
+      "id": "sweep|B|m4|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "f33d0bfb1cd754496593f87d614ecc591ad0d9e662ec7fc44f62f0dcccd554fa"
+    },
+    {
+      "id": "sweep|A|m4|K1|W256|O912",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 256,
+      "O": 912,
+      "order_key": "f35de7de3a8879fe5a006310916687abdb38be19d735735c8582b5c51b730922"
+    },
+    {
+      "id": "sweep|B|m4|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "f37abbfd49bcad2943fb28de2a088e8bd765827614aaab48a4056cdc636568c8"
+    },
+    {
+      "id": "sweep|A|m16|K16|W8192|O29128",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 8192,
+      "O": 29128,
+      "order_key": "f46ff7221eb2c6fadff9656ed7b30d9661f3c0fb6144577b27414b0936c3adc9"
+    },
+    {
+      "id": "sweep|A|m4|K1|W4096|O14560",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "f49bf2bcb6c536034a39de0c6d22c9afd38e6b8dd5cb9fd23bd827564e9bfce0"
+    },
+    {
+      "id": "sweep|B|m1|K1|W512|O1824",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "f6dd549d2e4b32fe9fb3b397898e5fd7f73b6c2cb46da404957f270c4b8ca79b"
+    },
+    {
+      "id": "sweep|C|m16|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "f704e311e37dfdcd81c71ad21e26b31ea2e2cc472f1f6df35db97dc96bc7420e"
+    },
+    {
+      "id": "sweep|B|m1|K16|W2560|O9104",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 2560,
+      "O": 9104,
+      "order_key": "f7c62e0aa02b0b9a63230042320861038ab5638b40ec27fdd8a730633262eb27"
+    },
+    {
+      "id": "sweep|A|m8|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "f9196a4b3982dd0c174ea5c8bd0d5e2b2deb71d539a02fb1cafa5bbad987cc7e"
+    },
+    {
+      "id": "sweep|B|m8|K16|W512|O1824",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 512,
+      "O": 1824,
+      "order_key": "faacd364266b6fe02b3ffd7494619734af2d9a548e94c2e230142e04535de214"
+    },
+    {
+      "id": "arch|C|m16|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 16,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "fb149016fe912aa41f85d76bfb701befb70984ee2150955aca301148e1bc8f40"
+    },
+    {
+      "id": "sweep|B|m16|K1|W12288|O43688",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 16,
+      "K": 1,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "fb58730c11973c9d1fc3af3c377c4a2691af0c3ea6610256c9976dedb646ce73"
+    },
+    {
+      "id": "sweep|C|m16|K16|W3072|O10920",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 3072,
+      "O": 10920,
+      "order_key": "fc069e51f3e3604285b85dc2f57b110603b8c54d3d87d9256655dbbfeca3ad4a"
+    },
+    {
+      "id": "sweep|A|m16|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 16,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "fc726ff5e8b7acf4164970b529a1ceb0b8584d443e3308ff03b7bdf3c8e0e270"
+    },
+    {
+      "id": "sweep|A|m8|K16|W6144|O21848",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "fc808dee21046b9146e2bcfe128489ced19bb58f638360943c5cf518a3940e74"
+    },
+    {
+      "id": "arch|B|m16|K8|W1024|O1024",
+      "kind": "architectural",
+      "variant": "B",
+      "m": 16,
+      "K": 8,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "fc968ddf0b6f39e92c211dfe7d2056d2481bb795fdf507951a28e8c43254ed08"
+    },
+    {
+      "id": "sweep|B|m8|K1|W288|O1024",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 1,
+      "W_target_kib": 288,
+      "O": 1024,
+      "order_key": "fd1ac9d3c0c136e75b1edd0132026d1fc131fe0b458060002c0a196553b210d3"
+    },
+    {
+      "id": "sweep|A|m4|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "fd9f9f65e1e315a6bc1d17692b8af0f9236c88ee9a31dd66a793245d2817ee0e"
+    },
+    {
+      "id": "sweep|A|m1|K16|W12288|O43688",
+      "kind": "sweep",
+      "variant": "A",
+      "m": 1,
+      "K": 16,
+      "W_target_kib": 12288,
+      "O": 43688,
+      "order_key": "fe23a70579b65bcab3536a1a53e47377759e6ea20d815b3311b08403ae5407ae"
+    },
+    {
+      "id": "arch|C|m8|K2|W1024|O1024",
+      "kind": "architectural",
+      "variant": "C",
+      "m": 8,
+      "K": 2,
+      "W_target_kib": 1024,
+      "O": 1024,
+      "order_key": "fe30e40049d98f1c92db03567974dc70d8e291565eab02bf65ec62c82ce2d8dc"
+    },
+    {
+      "id": "sweep|B|m8|K16|W4096|O14560",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 4096,
+      "O": 14560,
+      "order_key": "fe65318293cddd6d345283198c8287fd5d105994e1d3e9b2337641e0992577f1"
+    },
+    {
+      "id": "sweep|C|m4|K16|W2048|O7280",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 4,
+      "K": 16,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "fec5544492d8a37f65caf7318e658442e36879e3c718431a6a858438ec317ac9"
+    },
+    {
+      "id": "sweep|C|m8|K16|W1280|O4552",
+      "kind": "sweep",
+      "variant": "C",
+      "m": 8,
+      "K": 16,
+      "W_target_kib": 1280,
+      "O": 4552,
+      "order_key": "ff3412790d1b49da2cd1891c0fb6f833b6e0c496b6125354f9a5c890c6dff956"
+    },
+    {
+      "id": "sweep|B|m1|K1|W2048|O7280",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 1,
+      "K": 1,
+      "W_target_kib": 2048,
+      "O": 7280,
+      "order_key": "ff6716b9e8fd55b709d7e7c30d94b5e7613f097566e4222213f23afba39a8060"
+    },
+    {
+      "id": "sweep|B|m4|K1|W6144|O21848",
+      "kind": "sweep",
+      "variant": "B",
+      "m": 4,
+      "K": 1,
+      "W_target_kib": 6144,
+      "O": 21848,
+      "order_key": "ff982387de16c4b874a4437208f48aaea81dc8b55770c385f4ab66c07e53660c"
+    }
+  ],
+  "condition_count": 420,
+  "plan_order_sha256": "4115dabf58c3a5677d23910b60dc68cf7c0ac66bbbd0bd71fcd0304d9ba6008e",
+  "sha256": "f6a24a329af80458f46a78d1ac7217654691b8e77c3e9d4209858b414df25097"
+}

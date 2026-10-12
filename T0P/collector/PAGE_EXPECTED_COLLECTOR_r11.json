@@ -1,0 +1,43 @@
+{
+  "schema": "T0P_COLLECTOR_PAGE_CONTRACT_R11_V1",
+  "consumer": "official_run_r11.py and harness_r11 residency capture",
+  "mode": "synthetic QA and SMOKE_ONLY until strict AUTHORIZED.json A6 passes",
+  "page_query_step": {
+    "source": "GetSystemInfo.dwPageSize at runtime",
+    "unit": "bytes",
+    "required": true,
+    "formula": "ceil(((address mod page_size)+logical_bytes)/page_size)",
+    "require_valid_pages_equals_queried": true,
+    "require_large_pages_equals_queried": true,
+    "no_fallback": true
+  },
+  "required_regions": ["weights_codes", "weights_scales", "X", "Y", "prepared_activations", "corrective_sums", "scratch", "output"],
+  "geometry": {"physical_P_cores": 8, "logical_processors_per_P_core": [0, 2, 4, 6, 8, 10, 12, 14], "workers_8P": 8, "I": 512, "O_arch": 1024, "m": [1, 4, 8, 16]},
+  "qualification": {"G_ggml_min": 0.90, "G_Torch_min": 1.20, "H_KQ_MAC_per_ns_per_worker_min": 33.1, "D_prime_hot_min": 2.0, "P_instr_delta12_14_max": 0.03, "N": 31, "warmup": 5, "sample_seconds_min": 2.0, "calibration_seconds_target_min": 2.5},
+  "residency": {
+    "condition_count": 420,
+    "architectural_conditions": 60,
+    "W_sweep_conditions": 360,
+    "required_variants": ["A", "B", "C"],
+    "W_target_kib": [256, 288, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 4096, 6144, 8192, 12288, 16384],
+    "O_formula": "8*round_half_up(W_target_kib*1024/(8*288))",
+    "K_architectural": [1, 2, 4, 8, 16],
+    "K_sweep": [1, 16],
+    "R_common_by": ["W_target_kib", "m"],
+    "rho_max": 0.50,
+    "rho_strong": 0.25,
+    "delta_BC_max": 0.15,
+    "matrix_speedup_min_max_S8_S16": 1.50,
+    "matrix_speedup_strong": 2.0,
+    "R_noise_P95_max": 0.05,
+    "knee_elevation_min": 0.15,
+    "knee_consecutive_points_min": 2,
+    "knee_plateau_initial_points": 3,
+    "L2_miss_fraction_increase_min_pp": 0.20,
+    "LLC_miss_fraction_max": 0.10,
+    "TSC_QPC_error_max": 0.001,
+    "instrumentation_overhead_max": 0.01
+  },
+  "telemetry": {"nominal_interval_seconds": 0.05, "window_seconds_max": 0.1, "windows_per_core_condition_min": 20, "coverage_min": 0.95, "gap_seconds_max": 0.02, "alignment_uncertainty_ms_max": 1.0, "frequency_excursion_fraction_max": 0.03, "energy_unit_joules": 0.00006103515625},
+  "states": {"valid_scientific_failure": "FALLIDA_CUALIFICACION", "campaign_line": "CLOSED_Q4_256_THIS_I7", "residency": "NOT_STARTED", "invalid_instrument": "HOLD_INSTRUMENTATION", "invalid_implementation": "INVALID_IMPLEMENTATION", "retry_technical_global_max": 1}
+}

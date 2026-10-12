@@ -1,0 +1,24 @@
+LARGE_PAGE_PRIVILEGE=AVAILABLE
+RESIDENCY_CAPTURE condition=sweep|A|m1|K1|W256|O912 variant=A O=912 m=1 K=1 N=3 R=1 median_T_X_us=33.9352 pages=PASS numeric=PASS
+RESIDENCY_CAPTURE condition=sweep|A|m1|K1|W256|O912 variant=B O=912 m=1 K=1 N=3 R=1 median_T_X_us=35.7652 pages=PASS numeric=PASS
+RESIDENCY_CAPTURE condition=sweep|A|m1|K1|W256|O912 variant=C O=912 m=1 K=1 N=3 R=1 median_T_X_us=33.7847 pages=PASS numeric=PASS
+RESIDENCY_OUTPUT_EQUIVALENCE condition=sweep|A|m1|K1|W256|O912 A=B=C PASS workers=8 N=3 bitwise=PASS
+RESIDENCY_CAPTURE condition=arch|A|m1|K1|W1024|O1024 variant=A O=1024 m=1 K=1 N=3 R=1 median_T_X_us=38.6327 pages=PASS numeric=PASS
+RESIDENCY_CAPTURE condition=arch|A|m1|K1|W1024|O1024 variant=B O=1024 m=1 K=1 N=3 R=1 median_T_X_us=54.8174 pages=PASS numeric=PASS
+RESIDENCY_CAPTURE condition=arch|A|m1|K1|W1024|O1024 variant=C O=1024 m=1 K=1 N=3 R=1 median_T_X_us=40.19 pages=PASS numeric=PASS
+RESIDENCY_OUTPUT_EQUIVALENCE condition=arch|A|m1|K1|W1024|O1024 A=B=C PASS workers=8 N=3 bitwise=PASS
+RESIDENCY_CAPTURE condition=arch|A|m4|K4|W1024|O1024 variant=A O=1024 m=4 K=4 N=3 R=1 median_T_X_us=93.3786 pages=PASS numeric=PASS
+RESIDENCY_CAPTURE condition=arch|A|m4|K4|W1024|O1024 variant=B O=1024 m=4 K=4 N=3 R=1 median_T_X_us=161.047 pages=PASS numeric=PASS
+RESIDENCY_CAPTURE condition=arch|A|m4|K4|W1024|O1024 variant=C O=1024 m=4 K=4 N=3 R=1 median_T_X_us=166.634 pages=PASS numeric=PASS
+RESIDENCY_OUTPUT_EQUIVALENCE condition=arch|A|m4|K4|W1024|O1024 A=B=C PASS workers=8 N=3 bitwise=PASS
+RESIDENCY_CAPTURE condition=arch|A|m8|K16|W1024|O1024 variant=A O=1024 m=8 K=16 N=3 R=1 median_T_X_us=430.207 pages=PASS numeric=PASS
+RESIDENCY_CAPTURE condition=arch|A|m8|K16|W1024|O1024 variant=B O=1024 m=8 K=16 N=3 R=1 median_T_X_us=785.185 pages=PASS numeric=PASS
+RESIDENCY_CAPTURE condition=arch|A|m8|K16|W1024|O1024 variant=C O=1024 m=8 K=16 N=3 R=1 median_T_X_us=769.717 pages=PASS numeric=PASS
+RESIDENCY_OUTPUT_EQUIVALENCE condition=arch|A|m8|K16|W1024|O1024 A=B=C PASS workers=8 N=3 bitwise=PASS
+RESIDENCY_CAPTURE condition=sweep|A|m1|K1|W16384|O58256 variant=A O=58256 m=1 K=1 N=3 R=1 median_T_X_us=1985.17 pages=PASS numeric=PASS
+RESIDENCY_CAPTURE condition=sweep|A|m1|K1|W16384|O58256 variant=B O=58256 m=1 K=1 N=3 R=1 median_T_X_us=1962.6 pages=PASS numeric=PASS
+RESIDENCY_CAPTURE condition=sweep|A|m1|K1|W16384|O58256 variant=C O=58256 m=1 K=1 N=3 R=1 median_T_X_us=1954.16 pages=PASS numeric=PASS
+RESIDENCY_OUTPUT_EQUIVALENCE condition=sweep|A|m1|K1|W16384|O58256 A=B=C PASS workers=8 N=3 bitwise=PASS
+TIMER_OVERHEAD cycles=26 median_pair_us=0.0123106377 shortest_app_us=12.8163208 overhead_pct=0.000960543816 status=PASS
+CLOCK_QUALIFICATION tsc_hz=2.11199457e+09 qpc_calibration_relative_error=5.72353572e-07 core_sync_uncertainty_s=1e-07 invariant_TSC=PASS affinity_migration=PASS
+RESIDENCY_CAPTURE_DONE conditions=5 variants=15 N=3 flush=CLFLUSHOPT status=PASS label=SMOKE_ONLY

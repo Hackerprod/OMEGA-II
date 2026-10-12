@@ -1,0 +1,15 @@
+{
+  "campaign": "T0P-Q4-RESIDENCY",
+  "mode": "OFFICIAL",
+  "measurements_started": false,
+  "stages": [
+    {
+      "stage": 1,
+      "name": "authorization_hashes",
+      "status": "HOLD",
+      "reason": "AUTHORIZED.json_missing"
+    }
+  ],
+  "state": "HOLD_AUTHORIZATION",
+  "reason": "missing:C:\\Projects\\OMEGA\\Ejercise\\T0P\\collector\\AUTHORIZED.json"
+}

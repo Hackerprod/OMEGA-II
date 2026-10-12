@@ -1,0 +1,14 @@
+{
+  "label": "SMOKE_ONLY",
+  "state": "PASS",
+  "numeric_metrics_used": false,
+  "harness_command": "C:\\Projects\\OMEGA\\Ejercise\\T0P\\harness\\harness_r11.exe --residency-smoke C:\\Projects\\OMEGA\\Ejercise\\T0P\\harness\\logs_r11\\residency_smoke_20261012_010722 C:\\Projects\\OMEGA\\Ejercise\\T0P\\collector\\test_r11\\residency_smoke_conditions_r11.csv 3",
+  "harness_exit": 0,
+  "raw_rows": 360,
+  "expected_raw_rows": 360,
+  "shape_pass": true,
+  "emon_state": "COMPLETE",
+  "emon_error": "",
+  "harness_capture": "C:\\Projects\\OMEGA\\Ejercise\\T0P\\harness\\logs_r11\\residency_smoke_20261012_010722",
+  "collector_capture": "C:\\Projects\\OMEGA\\Ejercise\\T0P\\collector\\logs_r11\\residency_smoke_20261012_010722"
+}

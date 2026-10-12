@@ -1,0 +1,1 @@
+C:\Projects\OMEGA\Ejercise\T0P\harness\harness_r11.exe --residency-smoke C:\Projects\OMEGA\Ejercise\T0P\harness\logs_r11\residency_smoke_20261012_013452 C:\Projects\OMEGA\Ejercise\T0P\collector\test_r11\residency_smoke_conditions_r11.csv 3

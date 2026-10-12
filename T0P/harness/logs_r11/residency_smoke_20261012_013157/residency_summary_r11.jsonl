@@ -1,0 +1,15 @@
+{"label":"SMOKE_ONLY","condition":"sweep|A|m1|K1|W256|O912","variant":"A","O":912,"m":1,"K":1,"N":3,"R":1,"median_T_X_us":34.8599,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"sweep|A|m1|K1|W256|O912","variant":"B","O":912,"m":1,"K":1,"N":3,"R":1,"median_T_X_us":33.868,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"sweep|A|m1|K1|W256|O912","variant":"C","O":912,"m":1,"K":1,"N":3,"R":1,"median_T_X_us":33.1791,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"arch|A|m1|K1|W1024|O1024","variant":"A","O":1024,"m":1,"K":1,"N":3,"R":1,"median_T_X_us":35.832,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"arch|A|m1|K1|W1024|O1024","variant":"B","O":1024,"m":1,"K":1,"N":3,"R":1,"median_T_X_us":37.4201,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"arch|A|m1|K1|W1024|O1024","variant":"C","O":1024,"m":1,"K":1,"N":3,"R":1,"median_T_X_us":38.6691,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"arch|A|m4|K4|W1024|O1024","variant":"A","O":1024,"m":4,"K":4,"N":3,"R":1,"median_T_X_us":117.581,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"arch|A|m4|K4|W1024|O1024","variant":"B","O":1024,"m":4,"K":4,"N":3,"R":1,"median_T_X_us":154.12,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"arch|A|m4|K4|W1024|O1024","variant":"C","O":1024,"m":4,"K":4,"N":3,"R":1,"median_T_X_us":159.69,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"arch|A|m8|K16|W1024|O1024","variant":"A","O":1024,"m":8,"K":16,"N":3,"R":1,"median_T_X_us":428.689,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"arch|A|m8|K16|W1024|O1024","variant":"B","O":1024,"m":8,"K":16,"N":3,"R":1,"median_T_X_us":973.131,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"arch|A|m8|K16|W1024|O1024","variant":"C","O":1024,"m":8,"K":16,"N":3,"R":1,"median_T_X_us":848.629,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"sweep|A|m1|K1|W16384|O58256","variant":"A","O":58256,"m":1,"K":1,"N":3,"R":1,"median_T_X_us":1989.13,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"sweep|A|m1|K1|W16384|O58256","variant":"B","O":58256,"m":1,"K":1,"N":3,"R":1,"median_T_X_us":2014.13,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}
+{"label":"SMOKE_ONLY","condition":"sweep|A|m1|K1|W16384|O58256","variant":"C","O":58256,"m":1,"K":1,"N":3,"R":1,"median_T_X_us":2030.27,"flush_method":"CLFLUSHOPT","status":"SMOKE_ONLY"}

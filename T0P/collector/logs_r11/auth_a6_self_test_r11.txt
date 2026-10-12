@@ -1,0 +1,11 @@
+A6_R11_SELF_TEST PASS
+auth_fixture=VALID dry_accept=READY_TO_RUN measurements_started=false PASS
+auth_negative=version REJECT PASS
+auth_negative=type REJECT PASS
+auth_negative=hash_mismatch REJECT PASS
+auth_negative=extra_field REJECT PASS
+auth_negative=missing_field REJECT PASS
+auth_negative=flags REJECT PASS
+auth_negative=nested_boolean_type REJECT PASS
+auth_negative=duplicate_key REJECT PASS
+auth_negative=test_fixture_as_official REJECT PASS

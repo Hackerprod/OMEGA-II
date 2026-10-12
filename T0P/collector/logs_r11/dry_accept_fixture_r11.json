@@ -1,0 +1,7 @@
+{
+  "label": "TEST_FIXTURE_ONLY",
+  "state": "READY_TO_RUN",
+  "measurements_started": false,
+  "official_authorization": false,
+  "fixture": "C:\\Projects\\OMEGA\\Ejercise\\T0P\\collector\\test_r11\\authorized_fixture_valid.json"
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "T0P_S18_A6_AUTHORIZED_V1",
+  "campaign": "T0P-Q4-RESIDENCY",
+  "session_id": "fixture-r11-dry-accept-0001",
+  "issued_at_utc": "2026-10-12T12:00:00Z",
+  "judge": "TEST FIXTURE ONLY",
+  "sol_decision_id": "MD/46",
+  "scope": "S-19 Â§Â§3â€“6; A6 parser dry-accept fixture",
+  "master_seed": "4F4D454741543031",
+  "plan_sha256": "f6a24a329af80458f46a78d1ac7217654691b8e77c3e9d4209858b414df25097",
+  "artifacts": {
+    "executable_sha256": "46390ce9a92a500c96f5f917c191ddca2ea81cbb58a6a22dcae2d2fef278e9f3",
+    "sources_sha256": "16321be1a52aa19d0ce6c35992a630933612dec865167469b0d7fe8c1e9be9b3",
+    "protocol_sha256": "a65aee80a0e155928e05105fab3da4e7c7dad166cd650a0f97864d3769262330",
+    "manifest_sha256": "7e9b96773c47741604080d77d5a04ebeb42cb3eee25c863fd901527d4816f3e7",
+    "harness_manifest_sha256": "71d4cb0fddf0a89314c9f14b3b1970d6afd221aaf61f4877e73abcd9f4648e7f",
+    "plan_sha256": "f6a24a329af80458f46a78d1ac7217654691b8e77c3e9d4209858b414df25097",
+    "plan_order_sha256": "4115dabf58c3a5677d23910b60dc68cf7c0ac66bbbd0bd71fcd0304d9ba6008e",
+    "seed_sha256": "ee8c9edd9aa40abb570cf090ccadcf850cd2c3b5087889a6d50575d88c3a7c06",
+    "contracts_sha256": "df4359fd308867258b0ebea642361c7057adac6298b1ea8bb0248f965bc032c4",
+    "libraries_sha256": {
+      "c10.dll": "5132443efbbe4d147eb44c30ccbfc2eb48de4e8e937306cb7dce694c7eb08a1a",
+      "ggml-base.dll": "8ac75aca8cd5a716bbbec7a171fea55f0a115315a8afb0dc499c37338a29bbc4",
+      "ggml-cpu.dll": "cfce3924a4de5ef82317089937edc1a4ae494515af1f1d9ee8ef05f6e921ba23",
+      "ggml.dll": "5f9ec66a214ba0a1497166e97215437d465783251eb614c7ac50cc545aca061d",
+      "torch.dll": "f3a300a6e607ae23674ca90f2fd567bc47df517e9ff3343403f7a7dfa1e69ab6",
+      "torch_cpu.dll": "db2e314d0e15bc5753232eb6edb905a84e233953400a499fd7181a0edff5e1e6"
+    }
+  },
+  "usage_policy": {
+    "session_count": 1,
+    "technical_retry": "one_global_technical_retry_same_plan_seed_order",
+    "flags": {
+      "official": true,
+      "emon_continuous": true,
+      "N": 31,
+      "warmup": 5,
+      "residency_R_common_by_W_m": true,
+      "dry_accept_measurements": false
+    }
+  }
+}
