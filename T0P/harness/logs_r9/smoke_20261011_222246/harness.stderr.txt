@@ -1,0 +1,9 @@
+CALIBRATION worker=2 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL
+CALIBRATION worker=5 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL
+CALIBRATION worker=6 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL
+CALIBRATION worker=0 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL
+CALIBRATION worker=3 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL
+CALIBRATION worker=1 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL
+CALIBRATION worker=4 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL
+CALIBRATION worker=7 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL
+HARNESS_ERROR common-R calibration setup failed

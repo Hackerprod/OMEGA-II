@@ -1,0 +1,3 @@
+{"provider":"omega_q4","N":3,"median_us":69.6183,"IQR_us":51.7886,"MAD_us":42.7624,"min_us":8.80352,"max_us":112.381,"qpc_crosscheck":PASS,"telemetry":"INVALID_TELEMETRY","label":"SMOKE"}
+{"provider":"ggml_flat","N":3,"median_us":21.0837,"IQR_us":1.5145,"MAD_us":1.47856,"min_us":19.6051,"max_us":22.6341,"qpc_crosscheck":PASS,"telemetry":"INVALID_TELEMETRY","label":"SMOKE"}
+{"provider":"torch_out","N":3,"median_us":22.8327,"IQR_us":1.58554,"MAD_us":0.387695,"min_us":20.0493,"max_us":23.2204,"qpc_crosscheck":PASS,"telemetry":"INVALID_TELEMETRY","label":"SMOKE"}

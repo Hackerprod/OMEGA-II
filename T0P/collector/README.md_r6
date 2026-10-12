@@ -1,0 +1,25 @@
+# T0P collector — parte 1: cualificación
+
+El binario `collector.exe` contiene serializador/digest SHA-256 de plan, parser JSON estricto y máquina de estados con proveedores sintéticos. `--self-test` ejecuta únicamente pruebas `SYNTHETIC_DRY_RUN`; no inicia workers, kernels, cronómetros de rendimiento ni telemetría real. `--official` falla cerrado antes de cualquier adquisición mientras no haya `AUTHORIZED.json` válido y revisión completa.
+
+El plan preregistrado usa la semilla `4F4D454741543031`. Cada clave de orden se calcula con SHA-256 de `T0P-S19|semilla|fase|celda|replica|condicion`; los empates usan ID ASCII. Se serializa JSON canónico sin espacios. El campo `sha256` resume el objeto canónico sin ese campo. La generación debe preceder a la calibración. `--plan-check` valida JSON, claves duplicadas, gramática, UTF-8, semilla, checksum, byte por byte y orden determinista.
+
+## Uso
+
+```cmd
+build.cmd
+collector.exe --self-test
+collector.exe --plan-generate plan.json
+collector.exe --plan-check plan.json
+collector.exe --official
+```
+
+El modo oficial permanece cerrado. La QA sintética aplica G_ggml ≥ 0,90, G_Torch ≥ 1,20, H-KQ ≥ 33,1 MAC/ns por worker, D′ ≥ 2,00 y plateau; un fallo científico válido cierra la campaña y fija `RESIDENCY=NOT_STARTED`. Plateau no cualificado produce `INVALID_IMPLEMENTATION`; fallos de instrumento/telemetría/expulsión producen HOLD y solo admiten el reintento técnico global fijado. Ninguna salida sintética se presenta como rendimiento de CPU.
+
+La selección se hace entre referencias elegibles por menor mediana de tiempo normalizado; el ratio G se calcula después y no retroalimenta la selección. La prueba congelada elige 8 µs frente a 10 µs aunque OMEGA tarde 10 µs (G=0,80, FAIL). El scrub de resúmenes solo nulifica campos temporales/de rendimiento y conserva `error_over_B`.
+
+`PAGE_EXPECTED_COLLECTOR.json` es el contrato inicial de páginas para el gate derivado. Se exige la fórmula S-16 con `dwPageSize` real, cobertura completa por dirección/longitud, `Valid=1` y `LargePage=1`. La lista de regiones cubre pesos, activaciones, sumas, scratch y salidas.
+
+## Límites de esta entrega
+
+Esta entrega construye la preregistración, decisiones y QA sintética, pero no implementa el lector conjunto EMON/QPC, la enumeración de topología/afinidad, la política de páginas grandes, la validación física de expulsión/reloj ni los adaptadores de competencia. Por ello no se declara cualificación real ni se permite pasar a residencia. Los criterios de adquisición congelados son S-18/S-19/S-20 en `T0.md` y `MD/45.md`–`MD/47.md`; una fase posterior debe integrar las puertas físicas sin cambiar los límites.

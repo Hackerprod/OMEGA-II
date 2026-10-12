@@ -1,0 +1,448 @@
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=0 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.283 a=0.983890 f_wall_mhz=5004.343
+PCORE=1 f_active_mhz=5084.790 a=0.983875 f_wall_mhz=5002.795
+PCORE=2 f_active_mhz=5087.297 a=0.983889 f_wall_mhz=5005.334
+PCORE=3 f_active_mhz=5087.981 a=0.983893 f_wall_mhz=5006.032
+PCORE=4 f_active_mhz=5086.152 a=0.983884 f_wall_mhz=5004.186
+PCORE=5 f_active_mhz=5087.052 a=0.983897 f_wall_mhz=5005.132
+PCORE=6 f_active_mhz=5088.990 a=0.983873 f_wall_mhz=5006.921
+PCORE=7 f_active_mhz=5089.154 a=0.983880 f_wall_mhz=5007.118
+P_pkg_w=188.950 u_E_j=6.103515625e-05 dE_counts=24879316 TCC_margin_c=29 thermal_current=False thermal_history=False L2=0.020878926818402123 LLC=0.27361416907247443 EMON_groups=133
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=1 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.287 a=0.985136 f_wall_mhz=5010.682
+PCORE=1 f_active_mhz=5084.631 a=0.985135 f_wall_mhz=5009.048
+PCORE=2 f_active_mhz=5087.297 a=0.985133 f_wall_mhz=5011.665
+PCORE=3 f_active_mhz=5087.901 a=0.985142 f_wall_mhz=5012.304
+PCORE=4 f_active_mhz=5086.136 a=0.985146 f_wall_mhz=5010.587
+PCORE=5 f_active_mhz=5087.355 a=0.985155 f_wall_mhz=5011.834
+PCORE=6 f_active_mhz=5088.867 a=0.985124 f_wall_mhz=5013.165
+PCORE=7 f_active_mhz=5089.122 a=0.985154 f_wall_mhz=5013.568
+P_pkg_w=189.000 u_E_j=6.103515625e-05 dE_counts=24922960 TCC_margin_c=26 thermal_current=False thermal_history=False L2=0.0204244230290625 LLC=0.26903991221683127 EMON_groups=134
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=2 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.778 a=0.987448 f_wall_mhz=5022.928
+PCORE=1 f_active_mhz=5085.077 a=0.987456 f_wall_mhz=5021.290
+PCORE=2 f_active_mhz=5087.749 a=0.987442 f_wall_mhz=5023.857
+PCORE=3 f_active_mhz=5088.001 a=0.987445 f_wall_mhz=5024.119
+PCORE=4 f_active_mhz=5086.208 a=0.987470 f_wall_mhz=5022.477
+PCORE=5 f_active_mhz=5087.135 a=0.987451 f_wall_mhz=5023.296
+PCORE=6 f_active_mhz=5088.934 a=0.987413 f_wall_mhz=5024.881
+PCORE=7 f_active_mhz=5089.108 a=0.987430 f_wall_mhz=5025.136
+P_pkg_w=188.786 u_E_j=6.103515625e-05 dE_counts=24941093 TCC_margin_c=27 thermal_current=False thermal_history=False L2=0.019553589250348478 LLC=0.25996080139088185 EMON_groups=133
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=3 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.257 a=0.991195 f_wall_mhz=5041.475
+PCORE=1 f_active_mhz=5085.255 a=0.991186 f_wall_mhz=5040.432
+PCORE=2 f_active_mhz=5087.623 a=0.991205 f_wall_mhz=5042.877
+PCORE=3 f_active_mhz=5088.306 a=0.991206 f_wall_mhz=5043.561
+PCORE=4 f_active_mhz=5086.052 a=0.991210 f_wall_mhz=5041.346
+PCORE=5 f_active_mhz=5087.359 a=0.991221 f_wall_mhz=5042.697
+PCORE=6 f_active_mhz=5088.938 a=0.991191 f_wall_mhz=5044.109
+PCORE=7 f_active_mhz=5089.067 a=0.991245 f_wall_mhz=5044.513
+P_pkg_w=188.405 u_E_j=6.103515625e-05 dE_counts=24999093 TCC_margin_c=27 thermal_current=False thermal_history=False L2=0.020414121700124084 LLC=0.2760827869264174 EMON_groups=134
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=4 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.439 a=0.990879 f_wall_mhz=5040.046
+PCORE=1 f_active_mhz=5084.902 a=0.990867 f_wall_mhz=5038.463
+PCORE=2 f_active_mhz=5087.457 a=0.990876 f_wall_mhz=5041.040
+PCORE=3 f_active_mhz=5088.070 a=0.990886 f_wall_mhz=5041.695
+PCORE=4 f_active_mhz=5086.100 a=0.990881 f_wall_mhz=5039.718
+PCORE=5 f_active_mhz=5087.495 a=0.990891 f_wall_mhz=5041.153
+PCORE=6 f_active_mhz=5088.954 a=0.990868 f_wall_mhz=5042.482
+PCORE=7 f_active_mhz=5089.050 a=0.990878 f_wall_mhz=5042.626
+P_pkg_w=188.872 u_E_j=6.103515625e-05 dE_counts=25066102 TCC_margin_c=25 thermal_current=False thermal_history=False L2=0.019364334943877282 LLC=0.27647623861381154 EMON_groups=134
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=5 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.547 a=0.986778 f_wall_mhz=5019.293
+PCORE=1 f_active_mhz=5084.901 a=0.986773 f_wall_mhz=5017.643
+PCORE=2 f_active_mhz=5087.476 a=0.986783 f_wall_mhz=5020.234
+PCORE=3 f_active_mhz=5088.281 a=0.986789 f_wall_mhz=5021.057
+PCORE=4 f_active_mhz=5086.331 a=0.986791 f_wall_mhz=5019.143
+PCORE=5 f_active_mhz=5087.524 a=0.986809 f_wall_mhz=5020.413
+PCORE=6 f_active_mhz=5088.779 a=0.986767 f_wall_mhz=5021.438
+PCORE=7 f_active_mhz=5089.096 a=0.986780 f_wall_mhz=5021.817
+P_pkg_w=189.882 u_E_j=6.103515625e-05 dE_counts=25083646 TCC_margin_c=25 thermal_current=False thermal_history=False L2=0.01939648859732788 LLC=0.26810953607653054 EMON_groups=134
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=6 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.390 a=0.988275 f_wall_mhz=5026.750
+PCORE=1 f_active_mhz=5084.738 a=0.988277 f_wall_mhz=5025.129
+PCORE=2 f_active_mhz=5087.499 a=0.988281 f_wall_mhz=5027.879
+PCORE=3 f_active_mhz=5088.128 a=0.988292 f_wall_mhz=5028.555
+PCORE=4 f_active_mhz=5086.075 a=0.988285 f_wall_mhz=5026.493
+PCORE=5 f_active_mhz=5087.511 a=0.988402 f_wall_mhz=5028.508
+PCORE=6 f_active_mhz=5088.871 a=0.988262 f_wall_mhz=5029.138
+PCORE=7 f_active_mhz=5089.188 a=0.988275 f_wall_mhz=5029.518
+P_pkg_w=189.336 u_E_j=6.103515625e-05 dE_counts=25046913 TCC_margin_c=25 thermal_current=False thermal_history=False L2=0.020484396485179954 LLC=0.2844898037225063 EMON_groups=133
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=7 status=VALID reasons=
+PCORE=0 f_active_mhz=5085.624 a=0.987131 f_wall_mhz=5020.176
+PCORE=1 f_active_mhz=5084.745 a=0.987127 f_wall_mhz=5019.289
+PCORE=2 f_active_mhz=5087.241 a=0.987143 f_wall_mhz=5021.835
+PCORE=3 f_active_mhz=5088.197 a=0.987152 f_wall_mhz=5022.824
+PCORE=4 f_active_mhz=5086.165 a=0.987139 f_wall_mhz=5020.753
+PCORE=5 f_active_mhz=5087.296 a=0.987201 f_wall_mhz=5022.182
+PCORE=6 f_active_mhz=5088.780 a=0.987124 f_wall_mhz=5023.258
+PCORE=7 f_active_mhz=5089.167 a=0.987272 f_wall_mhz=5024.394
+P_pkg_w=191.368 u_E_j=6.103515625e-05 dE_counts=25288720 TCC_margin_c=24 thermal_current=False thermal_history=False L2=0.022757548257841164 LLC=0.28460809741176507 EMON_groups=132
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=8 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.209 a=0.987835 f_wall_mhz=5024.333
+PCORE=1 f_active_mhz=5085.287 a=0.987829 f_wall_mhz=5023.395
+PCORE=2 f_active_mhz=5087.370 a=0.989736 f_wall_mhz=5035.153
+PCORE=3 f_active_mhz=5088.292 a=0.987848 f_wall_mhz=5026.458
+PCORE=4 f_active_mhz=5086.136 a=0.987857 f_wall_mhz=5024.377
+PCORE=5 f_active_mhz=5087.451 a=0.987896 f_wall_mhz=5025.874
+PCORE=6 f_active_mhz=5088.971 a=0.987819 f_wall_mhz=5026.982
+PCORE=7 f_active_mhz=5089.059 a=0.987873 f_wall_mhz=5027.341
+P_pkg_w=190.445 u_E_j=6.103515625e-05 dE_counts=25185109 TCC_margin_c=25 thermal_current=False thermal_history=False L2=0.020390183301047454 LLC=0.2801549941286965 EMON_groups=134
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=9 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.741 a=0.987319 f_wall_mhz=5022.235
+PCORE=1 f_active_mhz=5085.264 a=0.987320 f_wall_mhz=5020.785
+PCORE=2 f_active_mhz=5087.507 a=0.987321 f_wall_mhz=5023.002
+PCORE=3 f_active_mhz=5088.122 a=0.987323 f_wall_mhz=5023.618
+PCORE=4 f_active_mhz=5086.534 a=0.987319 f_wall_mhz=5022.030
+PCORE=5 f_active_mhz=5087.822 a=0.987362 f_wall_mhz=5023.522
+PCORE=6 f_active_mhz=5088.914 a=0.987304 f_wall_mhz=5024.307
+PCORE=7 f_active_mhz=5089.302 a=0.987308 f_wall_mhz=5024.707
+P_pkg_w=188.930 u_E_j=6.103515625e-05 dE_counts=24971177 TCC_margin_c=26 thermal_current=False thermal_history=False L2=0.019974874877535298 LLC=0.28181016936928527 EMON_groups=133
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=10 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.966 a=0.986307 f_wall_mhz=5017.309
+PCORE=1 f_active_mhz=5085.398 a=0.986314 f_wall_mhz=5015.802
+PCORE=2 f_active_mhz=5087.738 a=0.986320 f_wall_mhz=5018.140
+PCORE=3 f_active_mhz=5088.140 a=0.986319 f_wall_mhz=5018.527
+PCORE=4 f_active_mhz=5086.357 a=0.986319 f_wall_mhz=5016.771
+PCORE=5 f_active_mhz=5087.711 a=0.986353 f_wall_mhz=5018.277
+PCORE=6 f_active_mhz=5088.988 a=0.986302 f_wall_mhz=5019.280
+PCORE=7 f_active_mhz=5089.036 a=0.986322 f_wall_mhz=5019.426
+P_pkg_w=188.964 u_E_j=6.103515625e-05 dE_counts=24948301 TCC_margin_c=25 thermal_current=False thermal_history=False L2=0.01882348161843596 LLC=0.2595232824614469 EMON_groups=131
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=11 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.804 a=0.985310 f_wall_mhz=5012.080
+PCORE=1 f_active_mhz=5085.365 a=0.985353 f_wall_mhz=5010.881
+PCORE=2 f_active_mhz=5087.658 a=0.985319 f_wall_mhz=5012.968
+PCORE=3 f_active_mhz=5088.179 a=0.985333 f_wall_mhz=5013.552
+PCORE=4 f_active_mhz=5086.301 a=0.985326 f_wall_mhz=5011.663
+PCORE=5 f_active_mhz=5087.732 a=0.985366 f_wall_mhz=5013.278
+PCORE=6 f_active_mhz=5088.703 a=0.985337 f_wall_mhz=5014.086
+PCORE=7 f_active_mhz=5089.080 a=0.985311 f_wall_mhz=5014.328
+P_pkg_w=190.081 u_E_j=6.103515625e-05 dE_counts=25073087 TCC_margin_c=23 thermal_current=False thermal_history=False L2=0.01990138803939483 LLC=0.2770885393018349 EMON_groups=133
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=12 status=VALID reasons=
+PCORE=0 f_active_mhz=5086.283 a=0.984172 f_wall_mhz=5005.775
+PCORE=1 f_active_mhz=5085.586 a=0.984173 f_wall_mhz=5005.096
+PCORE=2 f_active_mhz=5087.410 a=0.984162 f_wall_mhz=5006.836
+PCORE=3 f_active_mhz=5088.147 a=0.984166 f_wall_mhz=5007.583
+PCORE=4 f_active_mhz=5086.152 a=0.984177 f_wall_mhz=5005.674
+PCORE=5 f_active_mhz=5087.321 a=0.984214 f_wall_mhz=5007.012
+PCORE=6 f_active_mhz=5088.938 a=0.984183 f_wall_mhz=5008.445
+PCORE=7 f_active_mhz=5089.114 a=0.984223 f_wall_mhz=5008.825
+P_pkg_w=191.187 u_E_j=6.103515625e-05 dE_counts=25192195 TCC_margin_c=23 thermal_current=False thermal_history=False L2=0.020206199728279493 LLC=0.26952762263005914 EMON_groups=132
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=13 status=VALID reasons=
+PCORE=0 f_active_mhz=5085.321 a=0.988599 f_wall_mhz=5027.344
+PCORE=1 f_active_mhz=5084.989 a=0.988593 f_wall_mhz=5026.987
+PCORE=2 f_active_mhz=5087.605 a=0.988578 f_wall_mhz=5029.495
+PCORE=3 f_active_mhz=5087.947 a=0.988573 f_wall_mhz=5029.807
+PCORE=4 f_active_mhz=5086.116 a=0.988598 f_wall_mhz=5028.122
+PCORE=5 f_active_mhz=5087.259 a=0.988630 f_wall_mhz=5029.419
+PCORE=6 f_active_mhz=5088.937 a=0.988608 f_wall_mhz=5030.965
+PCORE=7 f_active_mhz=5088.943 a=0.988611 f_wall_mhz=5030.987
+P_pkg_w=190.241 u_E_j=6.103515625e-05 dE_counts=25173715 TCC_margin_c=24 thermal_current=False thermal_history=False L2=0.021985277553888148 LLC=0.24609381792131646 EMON_groups=134
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=14 status=VALID reasons=
+PCORE=0 f_active_mhz=5084.548 a=0.989898 f_wall_mhz=5033.184
+PCORE=1 f_active_mhz=5085.227 a=0.989901 f_wall_mhz=5033.873
+PCORE=2 f_active_mhz=5087.520 a=0.989883 f_wall_mhz=5036.049
+PCORE=3 f_active_mhz=5088.041 a=0.989883 f_wall_mhz=5036.568
+PCORE=4 f_active_mhz=5086.469 a=0.989882 f_wall_mhz=5035.002
+PCORE=5 f_active_mhz=5087.081 a=0.989880 f_wall_mhz=5035.598
+PCORE=6 f_active_mhz=5088.904 a=0.989904 f_wall_mhz=5037.527
+PCORE=7 f_active_mhz=5089.186 a=0.989878 f_wall_mhz=5037.674
+P_pkg_w=190.379 u_E_j=6.103515625e-05 dE_counts=25229699 TCC_margin_c=23 thermal_current=False thermal_history=False L2=0.0212187000608942 LLC=0.21409509811412608 EMON_groups=133
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=15 status=VALID reasons=
+PCORE=0 f_active_mhz=5084.493 a=0.986373 f_wall_mhz=5015.206
+PCORE=1 f_active_mhz=5085.145 a=0.986271 f_wall_mhz=5015.332
+PCORE=2 f_active_mhz=5087.287 a=0.986299 f_wall_mhz=5017.585
+PCORE=3 f_active_mhz=5088.052 a=0.986301 f_wall_mhz=5018.353
+PCORE=4 f_active_mhz=5086.124 a=0.986330 f_wall_mhz=5016.595
+PCORE=5 f_active_mhz=5086.779 a=0.986333 f_wall_mhz=5017.255
+PCORE=6 f_active_mhz=5088.862 a=0.986343 f_wall_mhz=5019.365
+PCORE=7 f_active_mhz=5088.973 a=0.986307 f_wall_mhz=5019.289
+P_pkg_w=191.654 u_E_j=6.103515625e-05 dE_counts=25305967 TCC_margin_c=23 thermal_current=False thermal_history=False L2=0.025856367928226456 LLC=0.22980370621283905 EMON_groups=133
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=16 status=VALID reasons=
+PCORE=0 f_active_mhz=5083.911 a=0.987674 f_wall_mhz=5021.244
+PCORE=1 f_active_mhz=5085.290 a=0.987665 f_wall_mhz=5022.562
+PCORE=2 f_active_mhz=5087.375 a=0.987662 f_wall_mhz=5024.609
+PCORE=3 f_active_mhz=5087.559 a=0.987664 f_wall_mhz=5024.799
+PCORE=4 f_active_mhz=5085.965 a=0.987661 f_wall_mhz=5023.210
+PCORE=5 f_active_mhz=5086.690 a=0.987663 f_wall_mhz=5023.937
+PCORE=6 f_active_mhz=5088.719 a=0.987673 f_wall_mhz=5025.992
+PCORE=7 f_active_mhz=5089.029 a=0.987669 f_wall_mhz=5026.278
+P_pkg_w=196.281 u_E_j=6.103515625e-05 dE_counts=25954009 TCC_margin_c=22 thermal_current=False thermal_history=False L2=0.03755037925920318 LLC=0.1896594809618586 EMON_groups=134
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=17 status=VALID reasons=
+PCORE=0 f_active_mhz=5083.650 a=0.985393 f_wall_mhz=5009.395
+PCORE=1 f_active_mhz=5085.364 a=0.985384 f_wall_mhz=5011.037
+PCORE=2 f_active_mhz=5087.280 a=0.985389 f_wall_mhz=5012.947
+PCORE=3 f_active_mhz=5087.613 a=0.985391 f_wall_mhz=5013.290
+PCORE=4 f_active_mhz=5085.762 a=0.985383 f_wall_mhz=5011.421
+PCORE=5 f_active_mhz=5086.825 a=0.985389 f_wall_mhz=5012.504
+PCORE=6 f_active_mhz=5088.842 a=0.985394 f_wall_mhz=5014.515
+PCORE=7 f_active_mhz=5089.083 a=0.985408 f_wall_mhz=5014.821
+P_pkg_w=195.872 u_E_j=6.103515625e-05 dE_counts=25828403 TCC_margin_c=22 thermal_current=False thermal_history=False L2=0.032619772933651536 LLC=0.19039434335242536 EMON_groups=134
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=18 status=VALID reasons=
+PCORE=0 f_active_mhz=5083.982 a=0.992314 f_wall_mhz=5044.905
+PCORE=1 f_active_mhz=5084.843 a=0.992322 f_wall_mhz=5045.799
+PCORE=2 f_active_mhz=5087.041 a=0.992313 f_wall_mhz=5047.934
+PCORE=3 f_active_mhz=5087.586 a=0.992315 f_wall_mhz=5048.486
+PCORE=4 f_active_mhz=5086.015 a=0.992657 f_wall_mhz=5048.669
+PCORE=5 f_active_mhz=5086.508 a=0.992360 f_wall_mhz=5047.647
+PCORE=6 f_active_mhz=5088.575 a=0.992325 f_wall_mhz=5049.521
+PCORE=7 f_active_mhz=5089.043 a=0.992311 f_wall_mhz=5049.916
+P_pkg_w=196.383 u_E_j=6.103515625e-05 dE_counts=26094020 TCC_margin_c=22 thermal_current=False thermal_history=False L2=0.03507221289813708 LLC=0.20239492725622873 EMON_groups=134
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=19 status=VALID reasons=
+PCORE=0 f_active_mhz=5083.763 a=0.986900 f_wall_mhz=5017.168
+PCORE=1 f_active_mhz=5085.000 a=0.986572 f_wall_mhz=5016.719
+PCORE=2 f_active_mhz=5087.332 a=0.986556 f_wall_mhz=5018.938
+PCORE=3 f_active_mhz=5087.782 a=0.986561 f_wall_mhz=5019.408
+PCORE=4 f_active_mhz=5085.911 a=0.986581 f_wall_mhz=5017.663
+PCORE=5 f_active_mhz=5086.733 a=0.986631 f_wall_mhz=5018.729
+PCORE=6 f_active_mhz=5088.651 a=0.986567 f_wall_mhz=5020.293
+PCORE=7 f_active_mhz=5088.965 a=0.986597 f_wall_mhz=5020.758
+P_pkg_w=195.878 u_E_j=6.103515625e-05 dE_counts=25878824 TCC_margin_c=22 thermal_current=False thermal_history=False L2=0.03494155634073786 LLC=0.1940752632408376 EMON_groups=133
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=20 status=VALID reasons=
+PCORE=0 f_active_mhz=5084.135 a=0.987818 f_wall_mhz=5022.199
+PCORE=1 f_active_mhz=5085.072 a=0.987810 f_wall_mhz=5023.083
+PCORE=2 f_active_mhz=5087.216 a=0.987805 f_wall_mhz=5025.175
+PCORE=3 f_active_mhz=5087.625 a=0.987809 f_wall_mhz=5025.600
+PCORE=4 f_active_mhz=5085.365 a=0.987810 f_wall_mhz=5023.376
+PCORE=5 f_active_mhz=5086.528 a=0.988251 f_wall_mhz=5026.767
+PCORE=6 f_active_mhz=5088.586 a=0.987817 f_wall_mhz=5026.589
+PCORE=7 f_active_mhz=5089.157 a=0.987830 f_wall_mhz=5027.223
+P_pkg_w=194.956 u_E_j=6.103515625e-05 dE_counts=25772058 TCC_margin_c=23 thermal_current=False thermal_history=False L2=0.03339622014383791 LLC=0.23192699405380499 EMON_groups=131
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=21 status=VALID reasons=
+PCORE=0 f_active_mhz=5084.215 a=0.980817 f_wall_mhz=4986.683
+PCORE=1 f_active_mhz=5085.079 a=0.980858 f_wall_mhz=4987.739
+PCORE=2 f_active_mhz=5087.244 a=0.980814 f_wall_mhz=4989.638
+PCORE=3 f_active_mhz=5087.702 a=0.980807 f_wall_mhz=4990.054
+PCORE=4 f_active_mhz=5085.710 a=0.980847 f_wall_mhz=4988.301
+PCORE=5 f_active_mhz=5086.704 a=0.980872 f_wall_mhz=4989.407
+PCORE=6 f_active_mhz=5088.704 a=0.980818 f_wall_mhz=4991.091
+PCORE=7 f_active_mhz=5088.976 a=0.980849 f_wall_mhz=4991.515
+P_pkg_w=195.405 u_E_j=6.103515625e-05 dE_counts=25661948 TCC_margin_c=22 thermal_current=False thermal_history=False L2=0.029950061595641907 LLC=0.25799313933873375 EMON_groups=134
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=22 status=VALID reasons=
+PCORE=0 f_active_mhz=5084.400 a=0.987211 f_wall_mhz=5019.376
+PCORE=1 f_active_mhz=5085.195 a=0.987187 f_wall_mhz=5020.037
+PCORE=2 f_active_mhz=5087.465 a=0.987218 f_wall_mhz=5022.440
+PCORE=3 f_active_mhz=5087.868 a=0.987208 f_wall_mhz=5022.783
+PCORE=4 f_active_mhz=5085.690 a=0.987247 f_wall_mhz=5020.830
+PCORE=5 f_active_mhz=5086.752 a=0.987228 f_wall_mhz=5021.784
+PCORE=6 f_active_mhz=5089.012 a=0.987215 f_wall_mhz=5023.947
+PCORE=7 f_active_mhz=5089.190 a=0.987204 f_wall_mhz=5024.071
+P_pkg_w=193.112 u_E_j=6.103515625e-05 dE_counts=25515749 TCC_margin_c=22 thermal_current=False thermal_history=False L2=0.03015313524175022 LLC=0.21723487203741873 EMON_groups=134
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=23 status=VALID reasons=
+PCORE=0 f_active_mhz=5084.559 a=0.983452 f_wall_mhz=5000.418
+PCORE=1 f_active_mhz=5085.598 a=0.983420 f_wall_mhz=5001.279
+PCORE=2 f_active_mhz=5087.429 a=0.983474 f_wall_mhz=5003.356
+PCORE=3 f_active_mhz=5087.876 a=0.983453 f_wall_mhz=5003.688
+PCORE=4 f_active_mhz=5085.840 a=0.983476 f_wall_mhz=5001.803
+PCORE=5 f_active_mhz=5086.776 a=0.983478 f_wall_mhz=5002.730
+PCORE=6 f_active_mhz=5089.000 a=0.983461 f_wall_mhz=5004.831
+PCORE=7 f_active_mhz=5089.091 a=0.983449 f_wall_mhz=5004.861
+P_pkg_w=192.137 u_E_j=6.103515625e-05 dE_counts=25295098 TCC_margin_c=23 thermal_current=False thermal_history=False L2=0.02534423473721438 LLC=0.22467013588678866 EMON_groups=132
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=24 status=VALID reasons=
+PCORE=0 f_active_mhz=5085.120 a=0.679022 f_wall_mhz=3452.911
+PCORE=1 f_active_mhz=5085.563 a=0.679035 f_wall_mhz=3453.278
+PCORE=2 f_active_mhz=5087.611 a=0.679029 f_wall_mhz=3454.634
+PCORE=3 f_active_mhz=5088.062 a=0.679026 f_wall_mhz=3454.928
+PCORE=4 f_active_mhz=5085.674 a=0.679023 f_wall_mhz=3453.291
+PCORE=5 f_active_mhz=5086.835 a=0.679108 f_wall_mhz=3454.510
+PCORE=6 f_active_mhz=5088.741 a=0.679033 f_wall_mhz=3455.425
+PCORE=7 f_active_mhz=5089.185 a=0.679024 f_wall_mhz=3455.678
+P_pkg_w=193.607 u_E_j=6.103515625e-05 dE_counts=17594502 TCC_margin_c=23 thermal_current=False thermal_history=False L2=0.025517913615685874 LLC=0.24535007050485622 EMON_groups=92
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=25 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=26 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=27 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=28 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=29 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_repack cell=smoke_uniform_m1 replica=30 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=0 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=1 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=2 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=3 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=4 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=5 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=6 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=7 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=8 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=9 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=10 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=11 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=12 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=13 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=14 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=15 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=16 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=17 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=18 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=19 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=20 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=21 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=22 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=23 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=24 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=25 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=26 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=27 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=28 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=29 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=torch_mm cell=smoke_uniform_m1 replica=30 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=0 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=1 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=2 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=3 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=4 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=5 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=6 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=7 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=8 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=9 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=10 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=11 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=12 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=13 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=14 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=15 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=16 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=17 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=18 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=19 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=20 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=21 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=22 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=23 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=24 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=25 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=26 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=27 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=28 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=29 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=ggml_flat cell=smoke_uniform_m1 replica=30 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=0 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=1 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=2 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=3 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=4 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=5 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=6 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=7 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=8 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=9 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=10 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=11 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=12 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=13 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=14 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=15 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=16 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=17 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=18 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=19 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=20 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=21 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=22 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=23 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=24 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=25 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=26 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=27 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=28 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=29 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE
+BLOCK provider=omega cell=smoke_uniform_m1 replica=30 status=INVALID_TELEMETRY reasons=DERIVATION_ERROR:no hay grupos EMON completos dentro del bloque
+METRICS_UNAVAILABLE

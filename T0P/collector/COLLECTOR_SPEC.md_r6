@@ -1,0 +1,25 @@
+# Especificación del colector — cualificación T0P
+
+Estado: implementación parcial, `SYNTHETIC_QA=PASS` cuando el log acompaña al binario; `OFFICIAL=HOLD_INSTRUMENTATION`. Este módulo cubre pre-registro determinista, parser de plan y clasificación de decisiones. No llama OMEGA/ggml/Torch ni mide rendimiento.
+
+## Pre-registro
+
+Semilla maestra: `4F4D454741543031`. La malla cubre las tres fases (selección ggml, selección Torch, competencia), celdas P0–P7 y 8P, m={1,4,8,16}, fronteras prepared/dynamic, N=31 y condiciones de cada referencia/OMEGA. Para cada evento el orden es SHA256(`T0P-S19|semilla|fase|celda|replica|condicion`), desempate ASCII por ID. JSON canónico ordena propiedades y elimina whitespace. `sha256` es el digest SHA-256 del objeto canónico sin el miembro `sha256`. El plan se escribe separado de calibración y se valida antes de consumo.
+
+## Estados
+
+* Instrumento, telemetría o expulsión inválidos: `HOLD_INSTRUMENTATION`; se permite un solo reintento técnico global. Segundo intento inválido cierra HOLD.
+* Defecto de implementación/validación: `INVALID_IMPLEMENTATION`.
+* Con instrumentos válidos, incumplir G_ggml≥0,90, G_Torch≥1,20, H-KQ≥33,1 MAC/ns/worker o D′≥2,00: `FALLIDA_CUALIFICACION`, `CAMPAIGN_LINE=CLOSED_Q4_256_THIS_I7`, `RESIDENCY=NOT_STARTED`.
+* Plateau no cualificado: `P_instr=UNQUALIFIED`, clasificado como `INVALID_IMPLEMENTATION`; no se convierte en fallo de rendimiento.
+* PASS de cualificación habilita una decisión externa posterior; este ejecutable no inicia residencia.
+
+Estadística requerida para las futuras observaciones: N=31, warmup=5; mediana, IQR (h=(N−1)q, interpolación lineal), MAD sin reescalar, mínimo y máximo. Las celdas y fronteras no se compensan. La selección de vara usa mediana de tiempo normalizado elegible, independientemente de OMEGA; competencia se decide después con G. Muestras ≥2,0 s, calibración objetivo ≥2,5 s y R común por unidad comparativa.
+
+## Preflight físico pendiente
+
+La integración debe leer topología mediante `GetLogicalProcessorInformationEx`, demostrar 8 P físicos con SMT y 16 E, fijar LP P 0,2,…,14 y verificar afinidad; comprobar privilegio y regiones `MEM_LARGE_PAGES` con `QueryWorkingSetEx`; validar hashes congelados de binarios/fuentes/DLL; calificar lector EMON conjunto (incluido 0x606, TSC/QPC y márgenes temporales/térmicos); registrar HVCI/seguridad y plan energético sin modificarlos; verificar espacio, conectividad EMON y expulsión antes de competencia. Acondicionamiento fijo 180 s DUMMY en 8P; criterios en S-20. Toda falla instrumental corta a HOLD.
+
+## Pruebas
+
+`--self-test` genera dos planes byte-idénticos, altera un byte y exige rechazo, y prueba gramática, duplicados, números no válidos, Unicode sustituto inválido y datos finales. Ejecuta escenarios sintéticos de gates y verifica estado y ausencia de residencia. El error de MD/45 de selección se cubre con refs 8 µs y 10 µs y OMEGA 10 µs: se mantiene la rápida y G=0,80 falla. El resumen conserva `error_over_B`. El parser usa descenso recursivo, no regex.

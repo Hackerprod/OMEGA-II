@@ -1,0 +1,1 @@
+HOLD_INSTRUMENTATION: --official rechazado; falta AUTHORIZED.json válido (sin mediciones iniciadas).

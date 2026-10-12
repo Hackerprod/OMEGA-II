@@ -1,0 +1,1 @@
+HARNESS_OFFICIAL REJECT reason=AUTHORIZED.json_missing path=C:\Projects\OMEGA\Ejercise\T0P\collector\AUTHORIZED.json measurements_started=false exit=20

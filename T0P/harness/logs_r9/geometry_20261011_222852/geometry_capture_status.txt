@@ -1,0 +1,1 @@
+telemetry=NOT_CAPTURED mode=geometry_numeric_and_page_smoke official=false

@@ -1,0 +1,9 @@
+CALIBRATION worker=3 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL failures=1023 max_error_over_B=0.896699 M=1 O=1024 first_mismatch=0 y=0 ref=1233.79 first_scale_w=251:53 first_code=53 x_scale=254:58 x_code=72
+CALIBRATION worker=7 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL failures=1023 max_error_over_B=0.896699 M=1 O=1024 first_mismatch=0 y=0 ref=1233.79 first_scale_w=251:53 first_code=53 x_scale=254:58 x_code=72
+CALIBRATION worker=0 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL failures=1023 max_error_over_B=0.896699 M=1 O=1024 first_mismatch=0 y=0 ref=1233.79 first_scale_w=251:53 first_code=53 x_scale=254:58 x_code=72
+CALIBRATION worker=2 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL failures=1023 max_error_over_B=0.896699 M=1 O=1024 first_mismatch=0 y=0 ref=1233.79 first_scale_w=251:53 first_code=53 x_scale=254:58 x_code=72
+CALIBRATION worker=1 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL failures=1023 max_error_over_B=0.896699 M=1 O=1024 first_mismatch=0 y=0 ref=1233.79 first_scale_w=251:53 first_code=53 x_scale=254:58 x_code=72
+CALIBRATION worker=6 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL failures=1023 max_error_over_B=0.896699 M=1 O=1024 first_mismatch=0 y=0 ref=1233.79 first_scale_w=251:53 first_code=53 x_scale=254:58 x_code=72
+CALIBRATION worker=4 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL failures=1023 max_error_over_B=0.896699 M=1 O=1024 first_mismatch=0 y=0 ref=1233.79 first_scale_w=251:53 first_code=53 x_scale=254:58 x_code=72
+CALIBRATION worker=5 provider=ggml_repack setup=ggml_repack calibration ggml repack S12 FAIL failures=1023 max_error_over_B=0.896699 M=1 O=1024 first_mismatch=0 y=0 ref=1233.79 first_scale_w=251:53 first_code=53 x_scale=254:58 x_code=72
+HARNESS_ERROR common-R calibration setup failed

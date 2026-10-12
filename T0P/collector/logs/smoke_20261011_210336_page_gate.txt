@@ -1,0 +1,1 @@
+schema=T0P_COLLECTOR_PAGE_CONTRACT_V1 page_size=4096 provider_PAGE_rows=275 negative_uncommitted_page=REJECTED negative_large_page_missing=REJECTED status=PASS_SMOKE

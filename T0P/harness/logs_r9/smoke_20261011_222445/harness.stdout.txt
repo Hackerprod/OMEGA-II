@@ -1,0 +1,8 @@
+NEGATIVE label=SMOKE case=broken_affinity rejected=PASS
+NEGATIVE label=SMOKE case=page_outside_large_pages rejected=PASS
+NEGATIVE label=SMOKE case=official_sample_under_2s rejected=PASS
+NEGATIVE label=SMOKE case=numerical_mismatch rejected=PASS
+NEGATIVE label=SMOKE case=invalid_telemetry rejected=PASS
+NEGATIVE label=SMOKE case=slow_worker_barrier rejected=PASS
+LARGE_PAGE_PRIVILEGE=AVAILABLE
+PLAN_DISPATCH sha256=39856a658f1ba7e70846870fc372c7f82042680d9d508f54805a4a433b78290c events=29016 selected=4 order=ggml_repack@2,torch_mm@10,ggml_flat@26,omega@186 verified_before_calibration=true

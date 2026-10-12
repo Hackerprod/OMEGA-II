@@ -1,0 +1,1 @@
+Auth-runner attempt was stopped before any EMON launch; corrected PATH order in run_official_r9.ps1; retry official_20261011_232549 rejected missing authorization with exit 20.

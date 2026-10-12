@@ -1,0 +1,1 @@
+Initial outer runner exit 1: strict validator incorrectly required plan_index >= 1. After allowing the valid zero-based index, direct validation passed: raw rows=1008; summary rows=42; every geometry status/numerical/page=PASS.

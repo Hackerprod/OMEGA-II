@@ -1,0 +1,13 @@
+NEGATIVE label=SMOKE case=broken_affinity rejected=PASS
+NEGATIVE label=SMOKE case=page_outside_large_pages rejected=PASS
+NEGATIVE label=SMOKE case=official_sample_under_2s rejected=PASS
+NEGATIVE label=SMOKE case=numerical_mismatch rejected=PASS
+NEGATIVE label=SMOKE case=invalid_telemetry rejected=PASS
+NEGATIVE label=SMOKE case=slow_worker_barrier rejected=PASS
+LARGE_PAGE_PRIVILEGE=AVAILABLE
+PLAN_DISPATCH sha256=39856a658f1ba7e70846870fc372c7f82042680d9d508f54805a4a433b78290c events=29016 selected=4 order=ggml_repack@2,torch_mm@10,ggml_flat@26,omega@186 verified_before_calibration=true
+CALIBRATION unit=smoke_uniform_m1 providers=4 workers=8 R_common=718244 target_s=2.5 minimum_s=2.0 fastest_iter_s=287297 plan_sha256=39856a658f1ba7e70846870fc372c7f82042680d9d508f54805a4a433b78290c
+SMOKE provider=ggml_repack worker_count=8 LP=0,2,4,6,8,10,12,14 N=3 R_common=718244 median_us=8.35466e+06 qpc_crosscheck=PASS telemetry=PENDING_BLOCK_ANALYSIS
+SMOKE provider=torch_mm worker_count=8 LP=0,2,4,6,8,10,12,14 N=3 R_common=718244 median_us=1.12582e+07 qpc_crosscheck=PASS telemetry=PENDING_BLOCK_ANALYSIS
+SMOKE provider=ggml_flat worker_count=8 LP=0,2,4,6,8,10,12,14 N=3 R_common=718244 median_us=1.16546e+07 qpc_crosscheck=PASS telemetry=PENDING_BLOCK_ANALYSIS
+SMOKE provider=omega worker_count=8 LP=0,2,4,6,8,10,12,14 N=3 R_common=718244 median_us=2.55663e+06 qpc_crosscheck=PASS telemetry=PENDING_BLOCK_ANALYSIS

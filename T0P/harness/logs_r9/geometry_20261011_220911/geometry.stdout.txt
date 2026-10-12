@@ -1,0 +1,33 @@
+LARGE_PAGE_PRIVILEGE=AVAILABLE
+GEOMETRY_DISPATCH cell=O912_m1 plan_events=29016 order=torch_mm@10,torch_matmul@18,ggml_flat@26,torch_mv@34,torch_linear@58,omega@186
+CALIBRATION unit=O912_m1 providers=6 workers=8 R_common=799037 target_s=2.5 minimum_s=2.0 fastest_iter_s=319615 plan_sha256=39856a658f1ba7e70846870fc372c7f82042680d9d508f54805a4a433b78290c
+GEOMETRY_RESULT provider=torch_mm O=912 m=1 N=3 R_common=799037 min_us=1.02591e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_matmul O=912 m=1 N=3 R_common=799037 min_us=1.03004e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=ggml_flat O=912 m=1 N=3 R_common=799037 min_us=1.16877e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_mv O=912 m=1 N=3 R_common=799037 min_us=1.00897e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_linear O=912 m=1 N=3 R_common=799037 min_us=1.06358e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=omega O=912 m=1 N=3 R_common=799037 min_us=2.56991e+06 numerical=PASS pages=PASS status=PASS
+GEOMETRY_DISPATCH cell=O912_m16 plan_events=29016 order=torch_mm@8,torch_matmul@16,ggml_flat@24,torch_mv@32,torch_linear@56,omega@184
+CALIBRATION unit=O912_m16 providers=6 workers=8 R_common=69857 target_s=2.5 minimum_s=2.0 fastest_iter_s=27942.8 plan_sha256=39856a658f1ba7e70846870fc372c7f82042680d9d508f54805a4a433b78290c
+GEOMETRY_RESULT provider=torch_mm O=912 m=16 N=3 R_common=69857 min_us=1.02259e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_matmul O=912 m=16 N=3 R_common=69857 min_us=1.02218e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=ggml_flat O=912 m=16 N=3 R_common=69857 min_us=1.16197e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_mv O=912 m=16 N=3 R_common=69857 min_us=1.38276e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_linear O=912 m=16 N=3 R_common=69857 min_us=1.02779e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=omega O=912 m=16 N=3 R_common=69857 min_us=2.54533e+06 numerical=PASS pages=PASS status=PASS
+GEOMETRY_DISPATCH cell=O1024_m1 plan_events=29016 order=torch_mm@10,torch_matmul@18,ggml_flat@26,torch_mv@34,torch_linear@58,omega@186
+CALIBRATION unit=O1024_m1 providers=6 workers=8 R_common=714496 target_s=2.5 minimum_s=2.0 fastest_iter_s=285798 plan_sha256=39856a658f1ba7e70846870fc372c7f82042680d9d508f54805a4a433b78290c
+GEOMETRY_RESULT provider=torch_mm O=1024 m=1 N=3 R_common=714496 min_us=1.10837e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_matmul O=1024 m=1 N=3 R_common=714496 min_us=1.12256e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=ggml_flat O=1024 m=1 N=3 R_common=714496 min_us=1.17647e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_mv O=1024 m=1 N=3 R_common=714496 min_us=1.10907e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_linear O=1024 m=1 N=3 R_common=714496 min_us=1.22055e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=omega O=1024 m=1 N=3 R_common=714496 min_us=2.53454e+06 numerical=PASS pages=PASS status=PASS
+GEOMETRY_DISPATCH cell=O1024_m16 plan_events=29016 order=torch_mm@8,torch_matmul@16,ggml_flat@24,torch_mv@32,torch_linear@56,omega@184
+CALIBRATION unit=O1024_m16 providers=6 workers=8 R_common=62121 target_s=2.5 minimum_s=2.0 fastest_iter_s=24848.2 plan_sha256=39856a658f1ba7e70846870fc372c7f82042680d9d508f54805a4a433b78290c
+GEOMETRY_RESULT provider=torch_mm O=1024 m=16 N=3 R_common=62121 min_us=1.02648e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_matmul O=1024 m=16 N=3 R_common=62121 min_us=1.02741e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=ggml_flat O=1024 m=16 N=3 R_common=62121 min_us=1.16183e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_mv O=1024 m=16 N=3 R_common=62121 min_us=1.55745e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=torch_linear O=1024 m=16 N=3 R_common=62121 min_us=1.03106e+07 numerical=PASS pages=PASS status=PASS
+GEOMETRY_RESULT provider=omega O=1024 m=16 N=3 R_common=62121 min_us=2.54231e+06 numerical=PASS pages=PASS stat

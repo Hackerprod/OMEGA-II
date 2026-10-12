@@ -1,0 +1,2 @@
+EMON_EXIT=
+HARNESS_EXIT=0; pre/post schema PASS; legacy analyzer stopped before T0P\evict write; postprocessing captured under logs_r9

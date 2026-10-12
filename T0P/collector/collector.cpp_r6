@@ -1,0 +1,96 @@
+#define NOMINMAX
+#include <windows.h>
+#include <bcrypt.h>
+#include <algorithm>
+#include <array>
+#include <cctype>
+#include <cmath>
+#include <cstdint>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <set>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <tuple>
+#include <vector>
+
+namespace fsx {
+std::string read(const std::string& p) { std::ifstream f(p, std::ios::binary); if(!f) throw std::runtime_error("no se puede leer: "+p); return {std::istreambuf_iterator<char>(f),{}}; }
+void write(const std::string& p,const std::string& s) { std::ofstream f(p,std::ios::binary|std::ios::trunc); if(!f||!(f.write(s.data(),(std::streamsize)s.size()))) throw std::runtime_error("no se puede escribir: "+p); }
+}
+static std::string sha256(const std::string& s) {
+    BCRYPT_ALG_HANDLE a=nullptr; BCRYPT_HASH_HANDLE h=nullptr; DWORD objn=0,got=0; std::vector<UCHAR> obj(4096); std::array<UCHAR,32> digest{};
+    if(BCryptOpenAlgorithmProvider(&a,BCRYPT_SHA256_ALGORITHM,nullptr,0)<0) throw std::runtime_error("BCryptOpenAlgorithmProvider(SHA256)");
+    if(BCryptGetProperty(a,BCRYPT_OBJECT_LENGTH,(PUCHAR)&objn,sizeof(objn),&got,0)<0) { BCryptCloseAlgorithmProvider(a,0); throw std::runtime_error("BCryptGetProperty"); }
+    obj.resize(objn);
+    if(BCryptCreateHash(a,&h,obj.data(),objn,nullptr,0,0)<0 || BCryptHashData(h,(PUCHAR)s.data(),(ULONG)s.size(),0)<0 || BCryptFinishHash(h,digest.data(),(ULONG)digest.size(),0)<0) { if(h) BCryptDestroyHash(h); BCryptCloseAlgorithmProvider(a,0); throw std::runtime_error("SHA256"); }
+    BCryptDestroyHash(h); BCryptCloseAlgorithmProvider(a,0); std::ostringstream o; o<<std::hex<<std::setfill('0'); for(auto c:digest)o<<std::setw(2)<<(unsigned)c; return o.str();
+}
+
+// Recursive-descent JSON parser: RFC 8259 number/string grammar, UTF-8 validation,
+// duplicate-key rejection, and no trailing data. Used before any plan is consumed.
+struct J { enum K{Null,Bool,Num,Str,Arr,Obj} k=Null; std::string s; std::vector<J>a; std::map<std::string,J>o; };
+class Parser {
+    const std::string& x; size_t p=0;
+    void ws(){while(p<x.size()&&(x[p]==' '||x[p]=='\n'||x[p]=='\r'||x[p]=='\t'))++p;}
+    static void utf8(const std::string& s){for(size_t i=0;i<s.size();){unsigned char c=(unsigned char)s[i]; size_t n=c<0x80?1:(c>=0xC2&&c<=0xDF?2:(c>=0xE0&&c<=0xEF?3:(c>=0xF0&&c<=0xF4?4:0))); if(!n||i+n>s.size())throw std::runtime_error("UTF-8 JSON inválido"); for(size_t j=1;j<n;j++)if(((unsigned char)s[i+j]&0xC0)!=0x80)throw std::runtime_error("UTF-8 JSON inválido"); if(n==3&&((c==0xE0&&(unsigned char)s[i+1]<0xA0)||(c==0xED&&(unsigned char)s[i+1]>=0xA0)))throw std::runtime_error("UTF-8 JSON inválido"); if(n==4&&((c==0xF0&&(unsigned char)s[i+1]<0x90)||(c==0xF4&&(unsigned char)s[i+1]>=0x90)))throw std::runtime_error("UTF-8 JSON inválido"); i+=n;}}
+    unsigned hex4(){if(p+4>x.size())throw std::runtime_error("escape JSON truncado");unsigned v=0;for(int i=0;i<4;i++){char c=x[p++];v<<=4;if(c>='0'&&c<='9')v|=c-'0';else if(c>='a'&&c<='f')v|=c-'a'+10;else if(c>='A'&&c<='F')v|=c-'A'+10;else throw std::runtime_error("escape JSON inválido");}return v;}
+    std::string str(){if(x[p++]!='"')throw std::runtime_error("string JSON esperada");std::string r;while(p<x.size()){unsigned char c=x[p++];if(c=='"'){utf8(r);return r;}if(c<0x20)throw std::runtime_error("control en string JSON");if(c!='\\'){r.push_back((char)c);continue;}if(p==x.size())throw std::runtime_error("escape JSON truncado");char e=x[p++];switch(e){case '"':case '\\':case '/':r.push_back(e);break;case 'b':r.push_back('\b');break;case 'f':r.push_back('\f');break;case 'n':r.push_back('\n');break;case 'r':r.push_back('\r');break;case 't':r.push_back('\t');break;case 'u':{unsigned u=hex4();if(u>=0xD800&&u<=0xDBFF){if(p+2>x.size()||x[p++]!='\\'||x[p++]!='u')throw std::runtime_error("surrogate JSON inválido");unsigned l=hex4();if(l<0xDC00||l>0xDFFF)throw std::runtime_error("surrogate JSON inválido");u=0x10000+((u-0xD800)<<10)+(l-0xDC00);}else if(u>=0xDC00&&u<=0xDFFF)throw std::runtime_error("surrogate JSON inválido");if(u<0x80)r.push_back((char)u);else if(u<0x800){r.push_back((char)(0xC0|(u>>6)));r.push_back((char)(0x80|(u&63)));}else if(u<0x10000){r.push_back((char)(0xE0|(u>>12)));r.push_back((char)(0x80|((u>>6)&63)));r.push_back((char)(0x80|(u&63)));}else{r.push_back((char)(0xF0|(u>>18)));r.push_back((char)(0x80|((u>>12)&63)));r.push_back((char)(0x80|((u>>6)&63)));r.push_back((char)(0x80|(u&63)));}break;}default:throw std::runtime_error("escape JSON inválido");}}throw std::runtime_error("string JSON sin cierre");}
+    J val(){ws();if(p>=x.size())throw std::runtime_error("JSON truncado");J v;char c=x[p];if(c=='"'){v.k=J::Str;v.s=str();return v;}if(c=='{'){v.k=J::Obj;++p;ws();if(p<x.size()&&x[p]=='}'){++p;return v;}for(;;){ws();if(p>=x.size()||x[p]!='"')throw std::runtime_error("clave JSON esperada");auto k=str();ws();if(p>=x.size()||x[p++]!=':')throw std::runtime_error(": esperado");if(v.o.count(k))throw std::runtime_error("clave JSON duplicada: "+k);v.o.emplace(k,val());ws();if(p>=x.size())throw std::runtime_error("objeto JSON truncado");char q=x[p++];if(q=='}')break;if(q!=',')throw std::runtime_error("coma JSON esperada");}return v;}if(c=='['){v.k=J::Arr;++p;ws();if(p<x.size()&&x[p]==']'){++p;return v;}for(;;){v.a.push_back(val());ws();if(p>=x.size())throw std::runtime_error("array JSON truncado");char q=x[p++];if(q==']')break;if(q!=',')throw std::runtime_error("coma JSON esperada");}return v;}if(x.compare(p,4,"true")==0){p+=4;v.k=J::Bool;v.s="true";return v;}if(x.compare(p,5,"false")==0){p+=5;v.k=J::Bool;v.s="false";return v;}if(x.compare(p,4,"null")==0){p+=4;return v;}size_t b=p;if(x[p]=='-')++p;if(p>=x.size())throw std::runtime_error("número JSON inválido");if(x[p]=='0')++p;else{if(x[p]<'1'||x[p]>'9')throw std::runtime_error("número JSON inválido");while(p<x.size()&&isdigit((unsigned char)x[p]))++p;}if(p<x.size()&&x[p]=='.'){++p;size_t q=p;while(p<x.size()&&isdigit((unsigned char)x[p]))++p;if(q==p)throw std::runtime_error("fracción JSON inválida");}if(p<x.size()&&(x[p]=='e'||x[p]=='E')){++p;if(p<x.size()&&(x[p]=='+'||x[p]=='-'))++p;size_t q=p;while(p<x.size()&&isdigit((unsigned char)x[p]))++p;if(q==p)throw std::runtime_error("exponente JSON inválido");}v.k=J::Num;v.s=x.substr(b,p-b);return v;}
+public: explicit Parser(const std::string&s):x(s){} J parse(){J v=val();ws();if(p!=x.size())throw std::runtime_error("bytes tras JSON");return v;}
+};
+
+static const std::string seed="4F4D454741543031";
+static std::string quote(const std::string&s){std::string r="\"";for(unsigned char c:s){if(c=='"'||c=='\\'){r+='\\';r+=(char)c;}else if(c<0x20){std::ostringstream o;o<<"\\u"<<std::hex<<std::setw(4)<<std::setfill('0')<<(unsigned)c;r+=o.str();}else r+=(char)c;}return r+'"';}
+static std::string body(){
+    const std::vector<std::string> phases={"reference_selection_ggml","reference_selection_torch","competency"};
+    const std::vector<std::string> cells={"P0","P1","P2","P3","P4","P5","P6","P7","8P"};
+    const std::vector<std::string> ms={"1","4","8","16"}, bounds={"prepared","dynamic"};
+    const std::vector<std::string> cond={"omega","ggml_flat","ggml_repack","torch_mm","torch_matmul","torch_linear","torch_mv"};
+    struct E{std::string id,key;};std::vector<E> ev;
+    for(auto&ph:phases)for(auto&ce:cells)for(auto&m:ms)for(auto&bo:bounds)for(int rep=1;rep<=31;rep++)for(auto&co:cond){if((ph=="reference_selection_ggml"&&co.rfind("ggml_",0)!=0)||(ph=="reference_selection_torch"&&co.rfind("torch_",0)!=0))continue;std::string id=ph+"|"+ce+"|m"+m+"|"+bo+"|r"+std::to_string(rep)+"|"+co;std::string key="T0P-S19|"+seed+"|"+ph+"|"+ce+"|"+std::to_string(rep)+"|"+co;ev.push_back({id,sha256(key)});}
+    std::sort(ev.begin(),ev.end(),[](const E&a,const E&b){return a.key==b.key?a.id<b.id:a.key<b.key;});
+    std::ostringstream o;o<<"{\"schema\":\"T0P_S19_PLAN_V1\",\"seed\":"<<quote(seed)<<",\"events\":[";
+    for(size_t i=0;i<ev.size();++i){if(i)o<<',';o<<"{\"id\":"<<quote(ev[i].id)<<",\"order_key\":"<<quote(ev[i].key)<<"}";}o<<"]}";return o.str();
+}
+static std::string plan(){auto b=body();auto h=sha256(b);auto at=b.size()-1;b.insert(at,",\"sha256\":\""+h+"\"");return b;}
+static bool verifyPlan(const std::string& bytes,std::string& why){try{auto j=Parser(bytes).parse();if(j.k!=J::Obj||j.o.size()!=4)throw std::runtime_error("esquema/propiedades incorrectos");if(j.o.at("schema").s!="T0P_S19_PLAN_V1"||j.o.at("seed").s!=seed)throw std::runtime_error("schema o semilla incorrectos");if(j.o.at("events").k!=J::Arr||j.o.at("sha256").k!=J::Str)throw std::runtime_error("tipos incorrectos");if(bytes!=plan())throw std::runtime_error("hash, orden o bytes canónicos no coinciden");why="PASS";return true;}catch(const std::exception&e){why=e.what();return false;}}
+
+struct Signals { bool instrument=true,telemetry=true,eviction=true,ggml=true,torch=true,hkq=true,dprime=true,plateau=true,implementation=true; };
+struct Result {std::string state="QUALIFIED_FOR_RESIDENCY";std::string campaign="OPEN";std::string residency="NOT_STARTED";std::string reason="all gates pass";int tries=0;};
+struct Reference { std::string id; double median_ns=0; bool eligible=false; };
+static const Reference& best_qualified(const std::vector<Reference>& refs) {
+    const Reference* best=nullptr;
+    for(const auto& r:refs) if(r.eligible && r.median_ns>0 && (best==nullptr || r.median_ns<best->median_ns || (r.median_ns==best->median_ns && r.id<best->id))) best=&r;
+    if(!best) throw std::runtime_error("sin referencia elegible");
+    return *best;
+}
+static double performance_ratio(double omega_ns,double ref_ns) { if(!(omega_ns>0&&ref_ns>0)) throw std::runtime_error("tiempo no positivo"); return ref_ns/omega_ns; }
+static std::string scrub_dry_metrics(const std::string& raw) {
+    std::istringstream in(raw); std::ostringstream out; std::string tok; bool first=true;
+    while(in>>tok){auto eq=tok.find('=');auto key=tok.substr(0,eq);bool timing=(key=="time_ns"||key=="duration_ns"||key=="throughput"||key=="G_ggml"||key=="G_Torch"||key=="D_prime_hot"||key=="P_instr");if(timing)tok=key+"=null";if(!first)out<<' ';out<<tok;first=false;}
+    return out.str();
+}
+static Result decide(const std::vector<Signals>& tries){Result r;for(size_t i=0;i<tries.size()&&i<2;i++){r.tries=(int)i+1;const auto&s=tries[i];if(!s.instrument||!s.telemetry||!s.eviction){if(i==0&&tries.size()>1)continue;r.state="HOLD_INSTRUMENTATION";r.campaign="CLOSED_Q4_256_THIS_I7";r.reason=!s.instrument?"instrument down":(!s.telemetry?"telemetry invalid":"eviction not qualified");return r;}if(!s.implementation||!s.plateau){r.state="INVALID_IMPLEMENTATION";r.campaign="CLOSED_Q4_256_THIS_I7";r.reason="P_instr plateau unqualified";return r;}if(!s.ggml||!s.torch||!s.hkq||!s.dprime){r.state="FALLIDA_CUALIFICACION";r.campaign="CLOSED_Q4_256_THIS_I7";r.reason=!s.ggml?"G_ggml<0.90":(!s.torch?"G_Torch<1.20":(!s.hkq?"H-KQ<33.1":"Dprime<2.00"));return r;}r.reason="all gates pass; residency not started";return r;}r.state="HOLD_INSTRUMENTATION";r.campaign="CLOSED_Q4_256_THIS_I7";r.reason="no valid attempt";return r;}
+static Signals pass(){return {};}
+static int selftest(const std::string& root){
+    auto p1=plan(),p2=plan();if(p1!=p2)throw std::runtime_error("plan determinism");std::string why;if(!verifyPlan(p1,why))throw std::runtime_error("plan own validation: "+why);auto mut=p1;mut[mut.size()/2]^=1;if(verifyPlan(mut,why))throw std::runtime_error("plan mutation accepted");
+    const std::string bad[]={"{\"a\":1,\"a\":2}","{\"a\":01}","{\"a\":NaN}","{\"a\":\"\\uD800\"}","{} trailing"};for(auto&s:bad){bool rejected=false;try{Parser(s).parse();}catch(...){rejected=true;}if(!rejected)throw std::runtime_error("parser negativo aceptado: "+s);}
+    struct Case{const char*name;Signals s;bool retry;};std::vector<Case> cases;
+    auto a=pass();cases.push_back({"all_pass",a,false});a=pass();a.ggml=false;cases.push_back({"G_ggml_below_0.90",a,false});a=pass();a.torch=false;cases.push_back({"G_Torch_below_1.20",a,false});a=pass();a.hkq=false;cases.push_back({"H-KQ_below_33.1",a,false});a=pass();a.dprime=false;cases.push_back({"Dprime_below_2.00",a,false});a=pass();a.plateau=false;cases.push_back({"plateau_unstable",a,false});a=pass();a.telemetry=false;cases.push_back({"telemetry_invalid",a,true});a=pass();a.eviction=false;cases.push_back({"eviction_unqualified",a,true});a=pass();a.instrument=false;cases.push_back({"instrument_down",a,true});
+    int n=0;std::ostringstream log;
+    for(auto&c:cases){auto r=decide(c.retry?std::vector<Signals>{c.s,c.s}:std::vector<Signals>{c.s});bool ok=c.name==std::string("all_pass")?(r.state=="QUALIFIED_FOR_RESIDENCY"&&r.residency=="NOT_STARTED"):c.retry?(r.state=="HOLD_INSTRUMENTATION"&&r.tries==2&&r.residency=="NOT_STARTED"):(std::string(c.name)=="plateau_unstable"?(r.state=="INVALID_IMPLEMENTATION"&&r.residency=="NOT_STARTED"):(r.state=="FALLIDA_CUALIFICACION"&&r.campaign=="CLOSED_Q4_256_THIS_I7"&&r.residency=="NOT_STARTED"));if(!ok)throw std::runtime_error(std::string("fallo caso ")+c.name+": "+r.state);log<<"case="<<c.name<<" provider=SYNTHETIC_DRY_RUN state="<<r.state<<" campaign="<<r.campaign<<" residency="<<r.residency<<" tries="<<r.tries<<" reason="<<r.reason<<" continue_residency=NO PASS\n";++n;}
+    auto r=decide({Signals{false,false,true,true,true,true,true,true,true},Signals{false,false,true,true,true,true,true,true,true}});if(r.state!="HOLD_INSTRUMENTATION"||r.tries!=2||r.residency!="NOT_STARTED")throw std::runtime_error("segundo intento inválido no cerró HOLD");log<<"case=second_attempt_invalid provider=SYNTHETIC_DRY_RUN state="<<r.state<<" campaign="<<r.campaign<<" residency="<<r.residency<<" tries=2 continue_residency=NO PASS\n";
+    std::vector<Reference> refs={{"slow",10,true},{"fast",8,true},{"ineligible",4,false}};const auto& fast=best_qualified(refs);double g=performance_ratio(10,fast.median_ns);if(fast.id!="fast"||std::abs(g-0.8)>1e-12)throw std::runtime_error("selector eligió por ratio/confluyó unidades");bool noErrorB=scrub_dry_metrics("error_over_B=0.125 max_error_over_B=0.125 time_ns=100 G_ggml=0.8").find("error_over_B=0.125")!=std::string::npos;if(!noErrorB)throw std::runtime_error("scrub borró error_over_B");
+    auto d=root+"\\logs";CreateDirectoryA(d.c_str(),nullptr);fsx::write(root+"\\plan.json",p1);fsx::write(root+"\\qa_synthetic.log",log.str()+"parser_duplicate_key=REJECT PASS\nparser_bad_number=REJECT PASS\nparser_nan=REJECT PASS\nparser_bad_surrogate=REJECT PASS\nparser_trailing_data=REJECT PASS\nplan_two_generations_identical=PASS\nplan_one_byte_mutation=REJECT PASS\nselector_8us_vs_10us_omega10us=FAST_REFERENCE_SELECTED_G=0.80_FAIL PASS\nscrub_preserves_error_over_B=PASS\nall_adverse_cases_residency=NOT_STARTED PASS\n");
+    std::cout<<"SYNTHETIC_QA PASS cases="<<(n+1)<<" plan_events="<<Parser(p1).parse().o.at("events").a.size()<<" strict_json=PASS one_byte_mutation=REJECT\n";return 0;
+}
+static int official(const std::string& root){
+    const auto auth=root+"\\AUTHORIZED.json";if(GetFileAttributesA(auth.c_str())==INVALID_FILE_ATTRIBUTES){std::cerr<<"HOLD_INSTRUMENTATION: --official rechazado; falta AUTHORIZED.json válido (sin mediciones iniciadas).\n";return 20;}
+    try{auto a=Parser(fsx::read(auth)).parse();(void)a;}catch(const std::exception&e){std::cerr<<"HOLD_INSTRUMENTATION: AUTHORIZED.json inválido: "<<e.what()<<"\n";return 20;}
+    std::cerr<<"HOLD_INSTRUMENTATION: --official deshabilitado; integración/revisión del recolector no autorizan adquirir datos.\n";return 20;
+}
+int main(int argc,char**argv){try{char b[MAX_PATH];GetModuleFileNameA(nullptr,b,MAX_PATH);std::string root=b;auto q=root.find_last_of("\\/");root=root.substr(0,q);if(argc<2){std::cerr<<"uso: collector.exe --self-test | --plan-generate ruta | --plan-check ruta | --official\n";return 2;}std::string cmd=argv[1];if(cmd=="--self-test")return selftest(root);if(cmd=="--plan-generate"){if(argc!=3)throw std::runtime_error("falta ruta");auto p=plan();fsx::write(argv[2],p);std::cout<<"PLAN_PREREGISTERED sha256="<<sha256(body())<<" bytes="<<p.size()<<" (antes de calibrar)\n";return 0;}if(cmd=="--plan-check"){if(argc!=3)throw std::runtime_error("falta ruta");std::string why;bool ok=verifyPlan(fsx::read(argv[2]),why);std::cout<<"PLAN_CHECK "<<(ok?"PASS":"REJECT")<<" reason="<<why<<"\n";return ok?0:3;}if(cmd=="--official")return official(root);throw std::runtime_error("opción desconocida: "+cmd);}catch(const std::exception&e){std::cerr<<"ERROR: "<<e.what()<<"\n";return 2;}}

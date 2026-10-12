@@ -1,0 +1,10 @@
+NEGATIVE label=SMOKE case=broken_affinity rejected=PASS
+NEGATIVE label=SMOKE case=page_outside_large_pages rejected=PASS
+NEGATIVE label=SMOKE case=official_sample_under_2s rejected=PASS
+NEGATIVE label=SMOKE case=numerical_mismatch rejected=PASS
+NEGATIVE label=SMOKE case=invalid_telemetry rejected=PASS
+NEGATIVE label=SMOKE case=slow_worker_barrier rejected=PASS
+LARGE_PAGE_PRIVILEGE=AVAILABLE
+SMOKE provider=omega_q4 worker_count=8 LP=0,2,4,6,8,10,12,14 N=3 R=1 median_us=2.50001e+06 qpc_crosscheck=PASS telemetry=PENDING_BLOCK_ANALYSIS
+SMOKE provider=ggml_flat worker_count=8 LP=0,2,4,6,8,10,12,14 N=3 R=1 median_us=2.50002e+06 qpc_crosscheck=PASS telemetry=PENDING_BLOCK_ANALYSIS
+SMOKE provider=torch_out worker_count=8 LP=0,2,4,6,8,10,12,14 N=3 R=1 median_us=2.50001e+06 qpc_crosscheck=PASS telemetry=PENDING_BLOCK_ANALYSIS

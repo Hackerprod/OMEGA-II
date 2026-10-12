@@ -1,0 +1,27 @@
+@echo off
+setlocal
+set "HERE=%~dp0"
+set "VS=C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools"
+if not exist "%HERE%logs" mkdir "%HERE%logs"
+set "TEMP=%HERE%logs\tmp"
+set "TMP=%TEMP%"
+if not exist "%TEMP%" mkdir "%TEMP%"
+call "%VS%\VC\Auxiliary\Build\vcvars64.bat" 10.0.26100.0 -vcvars_ver=14.44.35207 >nul
+if errorlevel 1 exit /b 1
+cl /nologo /O2 /std:c++17 /EHsc /MD /DNDEBUG /fp:strict /D_WIN32_WINNT=0x0A00 "%HERE%collector.cpp" bcrypt.lib /Fe:"%HERE%collector.exe" > "%HERE%logs\build.log" 2>&1
+if errorlevel 1 goto :fail
+"%HERE%collector.exe" --self-test > "%HERE%logs\qa_synthetic.log" 2>&1
+if errorlevel 1 goto :fail
+"%HERE%collector.exe" --plan-check "%HERE%plan.json" > "%HERE%logs\plan_check.log" 2>&1
+if errorlevel 1 goto :fail
+"%HERE%collector.exe" --official > "%HERE%logs\official_fail_closed.log" 2>&1
+if not errorlevel 1 goto :fail
+if exist "%TEMP%\*" del /s /q "%TEMP%\*" >nul 2>&1
+if exist "%TEMP%" rmdir "%TEMP%" >nul 2>&1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%HERE%hashes.ps1"
+if errorlevel 1 goto :fail
+echo BUILD_QA_AND_FAIL_CLOSED PASS
+exit /b 0
+:fail
+type "%HERE%logs\build.log"
+exit /b 1
