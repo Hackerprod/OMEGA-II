@@ -1,0 +1,6 @@
+RESIDENCY_PLAN_R16_QA PASS
+qualification_units=72 selection=11718 comparison=6696 winner_slots=OMEGA,ggml_winner,Torch_winner PASS
+residency conditions=420 calibration_units=140 W_replica_blocks=496 AA_pairs=124 PASS
+segments=qualification:6 residency:31 indivisible_unit_boundaries=PASS
+events=32102 order_sha256=e86d816fa5b4a078a0326e0ab4ec5a86d280ae4486740255cd93401b4c3b879d plan_sha256=c1c9fc459dff8b672087c8a93ef0531ad74ea33ffaa076663171726fde3f4852
+mutations=duplicate=REJECTED,missing=REJECTED,reordered=REJECTED,AA_pair_separated=REJECTED multiplicity_order_AA_adjacency=PASS

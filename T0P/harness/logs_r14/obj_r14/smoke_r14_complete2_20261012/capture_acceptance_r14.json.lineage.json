@@ -1,1 +1,0 @@
-{"derived_file":"capture_acceptance_r14.json","derived_sha256":"5da7a7f16278c05f86cf119b4fcc8e3798b679785add7e23dd0a04a69e835ba6","metadata":{"decision":"reject malformed D8 manifest","role":"attempt acceptance review"},"sources":{"eviction_manifest_r14.jsonl":"09bdbb85def31399e9596bd0b971259c0a8a2a3de3048d1c4756108c53247df9"}}
