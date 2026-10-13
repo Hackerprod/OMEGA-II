@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "T0P_AUTHORIZED_R17_V1",
+  "title": "T0P R17 official session authorization binding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "session_id", "acquisition_phases", "bindings", "retry_policy"],
+  "properties": {
+    "schema_version": {"const": "T0P_AUTHORIZED_R17_V1"},
+    "session_id": {"type": "string", "pattern": "^[A-Za-z0-9._-]{1,64}$"},
+    "acquisition_phases": {
+      "const": ["preflight", "qa_instruments_expulsion", "qualification", "residency", "final_controls", "derivation_verdict"]
+    },
+    "bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["integrated_executable_sha256", "loaded_libraries_root", "loaded_libraries_sha256", "plan_sha256", "segmentation_sha256", "qualification_units_sha256", "s25_replica_orders_sha256", "governing_validator_sha256"],
+      "properties": {
+        "integrated_executable_sha256": {"$ref": "#/$defs/sha256"},
+        "loaded_libraries_root": {"const": "C:\\Projects\\OMEGA\\.venv_cuda\\Lib\\site-packages\\torch\\lib"},
+        "loaded_libraries_sha256": {
+          "type": "object", "additionalProperties": false,
+          "required": ["torch.dll", "torch_cpu.dll", "c10.dll"],
+          "properties": {
+            "torch.dll": {"$ref": "#/$defs/sha256"},
+            "torch_cpu.dll": {"$ref": "#/$defs/sha256"},
+            "c10.dll": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "plan_sha256": {"$ref": "#/$defs/sha256"},
+        "segmentation_sha256": {"$ref": "#/$defs/sha256"},
+        "qualification_units_sha256": {"$ref": "#/$defs/sha256"},
+        "s25_replica_orders_sha256": {"$ref": "#/$defs/sha256"},
+        "governing_validator_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "retry_policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["retryable_reasons", "global_technical_retry_budget", "planned_replica_pause_consumes_budget"],
+      "properties": {
+        "retryable_reasons": {"const": ["DURATION_INSUFFICIENT", "FREQUENCY_UNSTABLE", "TELEMETRY_TRANSIENT_LOSS", "EMON_TRANSIENT_LOSS"]},
+        "global_technical_retry_budget": {"const": 1},
+        "planned_replica_pause_consumes_budget": {"const": false}
+      }
+    }
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

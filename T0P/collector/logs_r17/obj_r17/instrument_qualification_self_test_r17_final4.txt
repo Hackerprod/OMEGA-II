@@ -1,0 +1,6 @@
+S25B_INSTRUMENT_QUALIFICATION_R17_QA PASS
+positive_N1=PASS
+R_mismatch=HOLD
+region_59_9s=HOLD
+frequency_excursion_3_1pct=HOLD
+D2_9999=HOLD

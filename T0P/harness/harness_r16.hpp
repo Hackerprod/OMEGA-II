@@ -9,7 +9,7 @@
 
 namespace harness {
 int run_residency_smoke_r16(const std::string& output_dir, const std::string& plan_path,
-                            const std::string& schedule_path);
+                            const std::string& schedule_path, bool reader_qualified);
 int verify_full_plan_smoke_slice_r16(const std::string& plan_path,
                                      const std::string& schedule_path);
 int run_kernel_qa_r16();

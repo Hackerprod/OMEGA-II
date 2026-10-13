@@ -963,8 +963,8 @@ def self_test(out: Path):
     lines.append(f"S20_mutation actual_field=EMON_windows retained=1/100 input_label=VALID rejected=true reason={coverage_reason} PASS")
 
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text("QUALIFIER_R15_SYNTHETIC_QA PASS\n"+"\n".join(lines)+"\n", encoding="utf-8", newline="\n")
-    print(f"QUALIFIER_R15_SYNTHETIC_QA PASS cases=8 D3_D6=PASS S20_mutations=2 D13=PASS evidence={out}")
+    out.write_text("QUALIFIER_R16_SYNTHETIC_QA PASS\n"+"\n".join(lines)+"\n", encoding="utf-8", newline="\n")
+    print(f"QUALIFIER_R16_SYNTHETIC_QA PASS cases=8 D3_D6=PASS S20_mutations=2 D13=PASS evidence={out}")
 
 
 def qualify(raw_path: Path, summary_path: Path, plan_path: Path, attempt_number: int = 1):
@@ -992,7 +992,7 @@ def main(argv=None):
     parser.add_argument("--attempt", type=int, choices=(1, 2), default=1)
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--self-test-output", type=Path,
-                        default=Path(__file__).resolve().parent/"logs_r16"/"obj_r16"/"qualify_r16_qa.txt")
+                        default=Path(__file__).resolve().parent/"logs_r16"/"obj_r16"/f"qualify_r16_qa_{time.time_ns()}.txt")
     ns = parser.parse_args(argv)
     try:
         if ns.self_test:

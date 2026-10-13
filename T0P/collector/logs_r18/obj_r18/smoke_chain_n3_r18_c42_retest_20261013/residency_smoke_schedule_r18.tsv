@@ -1,0 +1,267 @@
+#plan_sha256=b397c17102f7bf06b748c18f641aa82f98a1bd514bc785dc87472aa28bb7524d
+#diagnostic=SMOKE_ONLY; complete W288 blocks for replicas 1..3; segments R01,R02,R03
+sequence	event_id	phase	block_id	atomic_group_id	segment_id
+18430	calibration|W288|O1024|m16|K1|A	calibration	cal|W288|O1024|m16|K1	cal|W288|O1024|m16|K1	
+18431	calibration|W288|O1024|m16|K1|B	calibration	cal|W288|O1024|m16|K1	cal|W288|O1024|m16|K1	
+18432	calibration|W288|O1024|m16|K1|C	calibration	cal|W288|O1024|m16|K1	cal|W288|O1024|m16|K1	
+18445	calibration|W288|O1024|m16|K4|A	calibration	cal|W288|O1024|m16|K4	cal|W288|O1024|m16|K4	
+18446	calibration|W288|O1024|m16|K4|B	calibration	cal|W288|O1024|m16|K4	cal|W288|O1024|m16|K4	
+18447	calibration|W288|O1024|m16|K4|C	calibration	cal|W288|O1024|m16|K4	cal|W288|O1024|m16|K4	
+18451	calibration|W288|O1024|m8|K8|A	calibration	cal|W288|O1024|m8|K8	cal|W288|O1024|m8|K8	
+18452	calibration|W288|O1024|m8|K8|B	calibration	cal|W288|O1024|m8|K8	cal|W288|O1024|m8|K8	
+18453	calibration|W288|O1024|m8|K8|C	calibration	cal|W288|O1024|m8|K8	cal|W288|O1024|m8|K8	
+18466	calibration|W288|O1024|m4|K1|A	calibration	cal|W288|O1024|m4|K1	cal|W288|O1024|m4|K1	
+18467	calibration|W288|O1024|m4|K1|B	calibration	cal|W288|O1024|m4|K1	cal|W288|O1024|m4|K1	
+18468	calibration|W288|O1024|m4|K1|C	calibration	cal|W288|O1024|m4|K1	cal|W288|O1024|m4|K1	
+18472	calibration|W288|O1024|m16|K16|A	calibration	cal|W288|O1024|m16|K16	cal|W288|O1024|m16|K16	
+18473	calibration|W288|O1024|m16|K16|B	calibration	cal|W288|O1024|m16|K16	cal|W288|O1024|m16|K16	
+18474	calibration|W288|O1024|m16|K16|C	calibration	cal|W288|O1024|m16|K16	cal|W288|O1024|m16|K16	
+18514	calibration|W288|O1024|m1|K1|A	calibration	cal|W288|O1024|m1|K1	cal|W288|O1024|m1|K1	
+18515	calibration|W288|O1024|m1|K1|B	calibration	cal|W288|O1024|m1|K1	cal|W288|O1024|m1|K1	
+18516	calibration|W288|O1024|m1|K1|C	calibration	cal|W288|O1024|m1|K1	cal|W288|O1024|m1|K1	
+18520	calibration|W288|O1024|m1|K4|A	calibration	cal|W288|O1024|m1|K4	cal|W288|O1024|m1|K4	
+18521	calibration|W288|O1024|m1|K4|B	calibration	cal|W288|O1024|m1|K4	cal|W288|O1024|m1|K4	
+18522	calibration|W288|O1024|m1|K4|C	calibration	cal|W288|O1024|m1|K4	cal|W288|O1024|m1|K4	
+18547	calibration|W288|O1024|m8|K2|A	calibration	cal|W288|O1024|m8|K2	cal|W288|O1024|m8|K2	
+18548	calibration|W288|O1024|m8|K2|B	calibration	cal|W288|O1024|m8|K2	cal|W288|O1024|m8|K2	
+18549	calibration|W288|O1024|m8|K2|C	calibration	cal|W288|O1024|m8|K2	cal|W288|O1024|m8|K2	
+18550	calibration|W288|O1024|m8|K16|A	calibration	cal|W288|O1024|m8|K16	cal|W288|O1024|m8|K16	
+18551	calibration|W288|O1024|m8|K16|B	calibration	cal|W288|O1024|m8|K16	cal|W288|O1024|m8|K16	
+18552	calibration|W288|O1024|m8|K16|C	calibration	cal|W288|O1024|m8|K16	cal|W288|O1024|m8|K16	
+18595	calibration|W288|O1024|m4|K2|A	calibration	cal|W288|O1024|m4|K2	cal|W288|O1024|m4|K2	
+18596	calibration|W288|O1024|m4|K2|B	calibration	cal|W288|O1024|m4|K2	cal|W288|O1024|m4|K2	
+18597	calibration|W288|O1024|m4|K2|C	calibration	cal|W288|O1024|m4|K2	cal|W288|O1024|m4|K2	
+18604	calibration|W288|O1024|m1|K2|A	calibration	cal|W288|O1024|m1|K2	cal|W288|O1024|m1|K2	
+18605	calibration|W288|O1024|m1|K2|B	calibration	cal|W288|O1024|m1|K2	cal|W288|O1024|m1|K2	
+18606	calibration|W288|O1024|m1|K2|C	calibration	cal|W288|O1024|m1|K2	cal|W288|O1024|m1|K2	
+18625	calibration|W288|O1024|m1|K8|A	calibration	cal|W288|O1024|m1|K8	cal|W288|O1024|m1|K8	
+18626	calibration|W288|O1024|m1|K8|B	calibration	cal|W288|O1024|m1|K8	cal|W288|O1024|m1|K8	
+18627	calibration|W288|O1024|m1|K8|C	calibration	cal|W288|O1024|m1|K8	cal|W288|O1024|m1|K8	
+18631	calibration|W288|O1024|m8|K1|A	calibration	cal|W288|O1024|m8|K1	cal|W288|O1024|m8|K1	
+18632	calibration|W288|O1024|m8|K1|B	calibration	cal|W288|O1024|m8|K1	cal|W288|O1024|m8|K1	
+18633	calibration|W288|O1024|m8|K1|C	calibration	cal|W288|O1024|m8|K1	cal|W288|O1024|m8|K1	
+18637	calibration|W288|O1024|m4|K4|A	calibration	cal|W288|O1024|m4|K4	cal|W288|O1024|m4|K4	
+18638	calibration|W288|O1024|m4|K4|B	calibration	cal|W288|O1024|m4|K4	cal|W288|O1024|m4|K4	
+18639	calibration|W288|O1024|m4|K4|C	calibration	cal|W288|O1024|m4|K4	cal|W288|O1024|m4|K4	
+18649	calibration|W288|O1024|m4|K8|A	calibration	cal|W288|O1024|m4|K8	cal|W288|O1024|m4|K8	
+18650	calibration|W288|O1024|m4|K8|B	calibration	cal|W288|O1024|m4|K8	cal|W288|O1024|m4|K8	
+18651	calibration|W288|O1024|m4|K8|C	calibration	cal|W288|O1024|m4|K8	cal|W288|O1024|m4|K8	
+18667	calibration|W288|O1024|m1|K16|A	calibration	cal|W288|O1024|m1|K16	cal|W288|O1024|m1|K16	
+18668	calibration|W288|O1024|m1|K16|B	calibration	cal|W288|O1024|m1|K16	cal|W288|O1024|m1|K16	
+18669	calibration|W288|O1024|m1|K16|C	calibration	cal|W288|O1024|m1|K16	cal|W288|O1024|m1|K16	
+18697	calibration|W288|O1024|m8|K4|A	calibration	cal|W288|O1024|m8|K4	cal|W288|O1024|m8|K4	
+18698	calibration|W288|O1024|m8|K4|B	calibration	cal|W288|O1024|m8|K4	cal|W288|O1024|m8|K4	
+18699	calibration|W288|O1024|m8|K4|C	calibration	cal|W288|O1024|m8|K4	cal|W288|O1024|m8|K4	
+18778	calibration|W288|O1024|m4|K16|A	calibration	cal|W288|O1024|m4|K16	cal|W288|O1024|m4|K16	
+18779	calibration|W288|O1024|m4|K16|B	calibration	cal|W288|O1024|m4|K16	cal|W288|O1024|m4|K16	
+18780	calibration|W288|O1024|m4|K16|C	calibration	cal|W288|O1024|m4|K16	cal|W288|O1024|m4|K16	
+18790	calibration|W288|O1024|m16|K8|A	calibration	cal|W288|O1024|m16|K8	cal|W288|O1024|m16|K8	
+18791	calibration|W288|O1024|m16|K8|B	calibration	cal|W288|O1024|m16|K8	cal|W288|O1024|m16|K8	
+18792	calibration|W288|O1024|m16|K8|C	calibration	cal|W288|O1024|m16|K8	cal|W288|O1024|m16|K8	
+18811	calibration|W288|O1024|m16|K2|A	calibration	cal|W288|O1024|m16|K2	cal|W288|O1024|m16|K2	
+18812	calibration|W288|O1024|m16|K2|B	calibration	cal|W288|O1024|m16|K2	cal|W288|O1024|m16|K2	
+18813	calibration|W288|O1024|m16|K2|C	calibration	cal|W288|O1024|m16|K2	cal|W288|O1024|m16|K2	
+19075	aa|AA|W288|O1024|m16|K16|r1|A2	aa	W288|O1024|r1	aa|AA|W288|O1024|m16|K16|r1	R01
+19076	aa|AA|W288|O1024|m16|K16|r1|A1	aa	W288|O1024|r1	aa|AA|W288|O1024|m16|K16|r1	R01
+19077	residency|architecture|A|m1|K8|W288|O1024|r1	residency	W288|O1024|r1	m1|K8	R01
+19078	residency|architecture|B|m1|K8|W288|O1024|r1	residency	W288|O1024|r1	m1|K8	R01
+19079	residency|architecture|C|m1|K8|W288|O1024|r1	residency	W288|O1024|r1	m1|K8	R01
+19080	residency|architecture|A|m1|K1|W288|O1024|r1	residency	W288|O1024|r1	m1|K1	R01
+19081	residency|architecture|B|m1|K1|W288|O1024|r1	residency	W288|O1024|r1	m1|K1	R01
+19082	residency|architecture|C|m1|K1|W288|O1024|r1	residency	W288|O1024|r1	m1|K1	R01
+19083	residency|architecture|A|m16|K4|W288|O1024|r1	residency	W288|O1024|r1	m16|K4	R01
+19084	residency|architecture|B|m16|K4|W288|O1024|r1	residency	W288|O1024|r1	m16|K4	R01
+19085	residency|architecture|C|m16|K4|W288|O1024|r1	residency	W288|O1024|r1	m16|K4	R01
+19086	residency|architecture|A|m8|K1|W288|O1024|r1	residency	W288|O1024|r1	m8|K1	R01
+19087	residency|architecture|B|m8|K1|W288|O1024|r1	residency	W288|O1024|r1	m8|K1	R01
+19088	residency|architecture|C|m8|K1|W288|O1024|r1	residency	W288|O1024|r1	m8|K1	R01
+19089	aa|AA|W288|O1024|m8|K16|r1|A2	aa	W288|O1024|r1	aa|AA|W288|O1024|m8|K16|r1	R01
+19090	aa|AA|W288|O1024|m8|K16|r1|A1	aa	W288|O1024|r1	aa|AA|W288|O1024|m8|K16|r1	R01
+19091	residency|architecture|A|m16|K16|W288|O1024|r1	residency	W288|O1024|r1	m16|K16	R01
+19092	residency|architecture|B|m16|K16|W288|O1024|r1	residency	W288|O1024|r1	m16|K16	R01
+19093	residency|architecture|C|m16|K16|W288|O1024|r1	residency	W288|O1024|r1	m16|K16	R01
+19094	residency|architecture|A|m4|K1|W288|O1024|r1	residency	W288|O1024|r1	m4|K1	R01
+19095	residency|architecture|B|m4|K1|W288|O1024|r1	residency	W288|O1024|r1	m4|K1	R01
+19096	residency|architecture|C|m4|K1|W288|O1024|r1	residency	W288|O1024|r1	m4|K1	R01
+19097	residency|architecture|A|m4|K4|W288|O1024|r1	residency	W288|O1024|r1	m4|K4	R01
+19098	residency|architecture|B|m4|K4|W288|O1024|r1	residency	W288|O1024|r1	m4|K4	R01
+19099	residency|architecture|C|m4|K4|W288|O1024|r1	residency	W288|O1024|r1	m4|K4	R01
+19100	aa|AA|W288|O1024|m4|K16|r1|A2	aa	W288|O1024|r1	aa|AA|W288|O1024|m4|K16|r1	R01
+19101	aa|AA|W288|O1024|m4|K16|r1|A1	aa	W288|O1024|r1	aa|AA|W288|O1024|m4|K16|r1	R01
+19102	aa|AA|W288|O1024|m1|K16|r1|A1	aa	W288|O1024|r1	aa|AA|W288|O1024|m1|K16|r1	R01
+19103	aa|AA|W288|O1024|m1|K16|r1|A2	aa	W288|O1024|r1	aa|AA|W288|O1024|m1|K16|r1	R01
+19104	residency|architecture|A|m16|K2|W288|O1024|r1	residency	W288|O1024|r1	m16|K2	R01
+19105	residency|architecture|B|m16|K2|W288|O1024|r1	residency	W288|O1024|r1	m16|K2	R01
+19106	residency|architecture|C|m16|K2|W288|O1024|r1	residency	W288|O1024|r1	m16|K2	R01
+19107	residency|architecture|A|m8|K16|W288|O1024|r1	residency	W288|O1024|r1	m8|K16	R01
+19108	residency|architecture|B|m8|K16|W288|O1024|r1	residency	W288|O1024|r1	m8|K16	R01
+19109	residency|architecture|C|m8|K16|W288|O1024|r1	residency	W288|O1024|r1	m8|K16	R01
+19110	residency|architecture|A|m1|K2|W288|O1024|r1	residency	W288|O1024|r1	m1|K2	R01
+19111	residency|architecture|B|m1|K2|W288|O1024|r1	residency	W288|O1024|r1	m1|K2	R01
+19112	residency|architecture|C|m1|K2|W288|O1024|r1	residency	W288|O1024|r1	m1|K2	R01
+19113	residency|architecture|A|m8|K8|W288|O1024|r1	residency	W288|O1024|r1	m8|K8	R01
+19114	residency|architecture|B|m8|K8|W288|O1024|r1	residency	W288|O1024|r1	m8|K8	R01
+19115	residency|architecture|C|m8|K8|W288|O1024|r1	residency	W288|O1024|r1	m8|K8	R01
+19116	residency|architecture|A|m4|K2|W288|O1024|r1	residency	W288|O1024|r1	m4|K2	R01
+19117	residency|architecture|B|m4|K2|W288|O1024|r1	residency	W288|O1024|r1	m4|K2	R01
+19118	residency|architecture|C|m4|K2|W288|O1024|r1	residency	W288|O1024|r1	m4|K2	R01
+19119	residency|architecture|A|m16|K1|W288|O1024|r1	residency	W288|O1024|r1	m16|K1	R01
+19120	residency|architecture|B|m16|K1|W288|O1024|r1	residency	W288|O1024|r1	m16|K1	R01
+19121	residency|architecture|C|m16|K1|W288|O1024|r1	residency	W288|O1024|r1	m16|K1	R01
+19122	residency|architecture|A|m16|K8|W288|O1024|r1	residency	W288|O1024|r1	m16|K8	R01
+19123	residency|architecture|B|m16|K8|W288|O1024|r1	residency	W288|O1024|r1	m16|K8	R01
+19124	residency|architecture|C|m16|K8|W288|O1024|r1	residency	W288|O1024|r1	m16|K8	R01
+19125	residency|architecture|A|m1|K16|W288|O1024|r1	residency	W288|O1024|r1	m1|K16	R01
+19126	residency|architecture|B|m1|K16|W288|O1024|r1	residency	W288|O1024|r1	m1|K16	R01
+19127	residency|architecture|C|m1|K16|W288|O1024|r1	residency	W288|O1024|r1	m1|K16	R01
+19128	residency|architecture|A|m1|K4|W288|O1024|r1	residency	W288|O1024|r1	m1|K4	R01
+19129	residency|architecture|B|m1|K4|W288|O1024|r1	residency	W288|O1024|r1	m1|K4	R01
+19130	residency|architecture|C|m1|K4|W288|O1024|r1	residency	W288|O1024|r1	m1|K4	R01
+19131	residency|architecture|A|m8|K4|W288|O1024|r1	residency	W288|O1024|r1	m8|K4	R01
+19132	residency|architecture|B|m8|K4|W288|O1024|r1	residency	W288|O1024|r1	m8|K4	R01
+19133	residency|architecture|C|m8|K4|W288|O1024|r1	residency	W288|O1024|r1	m8|K4	R01
+19134	residency|architecture|A|m8|K2|W288|O1024|r1	residency	W288|O1024|r1	m8|K2	R01
+19135	residency|architecture|B|m8|K2|W288|O1024|r1	residency	W288|O1024|r1	m8|K2	R01
+19136	residency|architecture|C|m8|K2|W288|O1024|r1	residency	W288|O1024|r1	m8|K2	R01
+19137	residency|architecture|A|m4|K8|W288|O1024|r1	residency	W288|O1024|r1	m4|K8	R01
+19138	residency|architecture|B|m4|K8|W288|O1024|r1	residency	W288|O1024|r1	m4|K8	R01
+19139	residency|architecture|C|m4|K8|W288|O1024|r1	residency	W288|O1024|r1	m4|K8	R01
+19140	residency|architecture|A|m4|K16|W288|O1024|r1	residency	W288|O1024|r1	m4|K16	R01
+19141	residency|architecture|B|m4|K16|W288|O1024|r1	residency	W288|O1024|r1	m4|K16	R01
+19142	residency|architecture|C|m4|K16|W288|O1024|r1	residency	W288|O1024|r1	m4|K16	R01
+19599	residency|architecture|A|m1|K8|W288|O1024|r2	residency	W288|O1024|r2	m1|K8	R02
+19600	residency|architecture|B|m1|K8|W288|O1024|r2	residency	W288|O1024|r2	m1|K8	R02
+19601	residency|architecture|C|m1|K8|W288|O1024|r2	residency	W288|O1024|r2	m1|K8	R02
+19602	residency|architecture|A|m16|K2|W288|O1024|r2	residency	W288|O1024|r2	m16|K2	R02
+19603	residency|architecture|B|m16|K2|W288|O1024|r2	residency	W288|O1024|r2	m16|K2	R02
+19604	residency|architecture|C|m16|K2|W288|O1024|r2	residency	W288|O1024|r2	m16|K2	R02
+19605	residency|architecture|A|m8|K1|W288|O1024|r2	residency	W288|O1024|r2	m8|K1	R02
+19606	residency|architecture|B|m8|K1|W288|O1024|r2	residency	W288|O1024|r2	m8|K1	R02
+19607	residency|architecture|C|m8|K1|W288|O1024|r2	residency	W288|O1024|r2	m8|K1	R02
+19608	residency|architecture|A|m4|K16|W288|O1024|r2	residency	W288|O1024|r2	m4|K16	R02
+19609	residency|architecture|B|m4|K16|W288|O1024|r2	residency	W288|O1024|r2	m4|K16	R02
+19610	residency|architecture|C|m4|K16|W288|O1024|r2	residency	W288|O1024|r2	m4|K16	R02
+19611	residency|architecture|A|m16|K4|W288|O1024|r2	residency	W288|O1024|r2	m16|K4	R02
+19612	residency|architecture|B|m16|K4|W288|O1024|r2	residency	W288|O1024|r2	m16|K4	R02
+19613	residency|architecture|C|m16|K4|W288|O1024|r2	residency	W288|O1024|r2	m16|K4	R02
+19614	aa|AA|W288|O1024|m8|K16|r2|A2	aa	W288|O1024|r2	aa|AA|W288|O1024|m8|K16|r2	R02
+19615	aa|AA|W288|O1024|m8|K16|r2|A1	aa	W288|O1024|r2	aa|AA|W288|O1024|m8|K16|r2	R02
+19616	residency|architecture|A|m16|K1|W288|O1024|r2	residency	W288|O1024|r2	m16|K1	R02
+19617	residency|architecture|B|m16|K1|W288|O1024|r2	residency	W288|O1024|r2	m16|K1	R02
+19618	residency|architecture|C|m16|K1|W288|O1024|r2	residency	W288|O1024|r2	m16|K1	R02
+19619	residency|architecture|A|m4|K8|W288|O1024|r2	residency	W288|O1024|r2	m4|K8	R02
+19620	residency|architecture|B|m4|K8|W288|O1024|r2	residency	W288|O1024|r2	m4|K8	R02
+19621	residency|architecture|C|m4|K8|W288|O1024|r2	residency	W288|O1024|r2	m4|K8	R02
+19622	aa|AA|W288|O1024|m4|K16|r2|A2	aa	W288|O1024|r2	aa|AA|W288|O1024|m4|K16|r2	R02
+19623	aa|AA|W288|O1024|m4|K16|r2|A1	aa	W288|O1024|r2	aa|AA|W288|O1024|m4|K16|r2	R02
+19624	residency|architecture|A|m1|K4|W288|O1024|r2	residency	W288|O1024|r2	m1|K4	R02
+19625	residency|architecture|B|m1|K4|W288|O1024|r2	residency	W288|O1024|r2	m1|K4	R02
+19626	residency|architecture|C|m1|K4|W288|O1024|r2	residency	W288|O1024|r2	m1|K4	R02
+19627	residency|architecture|A|m16|K8|W288|O1024|r2	residency	W288|O1024|r2	m16|K8	R02
+19628	residency|architecture|B|m16|K8|W288|O1024|r2	residency	W288|O1024|r2	m16|K8	R02
+19629	residency|architecture|C|m16|K8|W288|O1024|r2	residency	W288|O1024|r2	m16|K8	R02
+19630	residency|architecture|A|m8|K2|W288|O1024|r2	residency	W288|O1024|r2	m8|K2	R02
+19631	residency|architecture|B|m8|K2|W288|O1024|r2	residency	W288|O1024|r2	m8|K2	R02
+19632	residency|architecture|C|m8|K2|W288|O1024|r2	residency	W288|O1024|r2	m8|K2	R02
+19633	residency|architecture|A|m1|K2|W288|O1024|r2	residency	W288|O1024|r2	m1|K2	R02
+19634	residency|architecture|B|m1|K2|W288|O1024|r2	residency	W288|O1024|r2	m1|K2	R02
+19635	residency|architecture|C|m1|K2|W288|O1024|r2	residency	W288|O1024|r2	m1|K2	R02
+19636	residency|architecture|A|m4|K4|W288|O1024|r2	residency	W288|O1024|r2	m4|K4	R02
+19637	residency|architecture|B|m4|K4|W288|O1024|r2	residency	W288|O1024|r2	m4|K4	R02
+19638	residency|architecture|C|m4|K4|W288|O1024|r2	residency	W288|O1024|r2	m4|K4	R02
+19639	aa|AA|W288|O1024|m1|K16|r2|A2	aa	W288|O1024|r2	aa|AA|W288|O1024|m1|K16|r2	R02
+19640	aa|AA|W288|O1024|m1|K16|r2|A1	aa	W288|O1024|r2	aa|AA|W288|O1024|m1|K16|r2	R02
+19641	residency|architecture|A|m16|K16|W288|O1024|r2	residency	W288|O1024|r2	m16|K16	R02
+19642	residency|architecture|B|m16|K16|W288|O1024|r2	residency	W288|O1024|r2	m16|K16	R02
+19643	residency|architecture|C|m16|K16|W288|O1024|r2	residency	W288|O1024|r2	m16|K16	R02
+19644	residency|architecture|A|m4|K1|W288|O1024|r2	residency	W288|O1024|r2	m4|K1	R02
+19645	residency|architecture|B|m4|K1|W288|O1024|r2	residency	W288|O1024|r2	m4|K1	R02
+19646	residency|architecture|C|m4|K1|W288|O1024|r2	residency	W288|O1024|r2	m4|K1	R02
+19647	residency|architecture|A|m8|K4|W288|O1024|r2	residency	W288|O1024|r2	m8|K4	R02
+19648	residency|architecture|B|m8|K4|W288|O1024|r2	residency	W288|O1024|r2	m8|K4	R02
+19649	residency|architecture|C|m8|K4|W288|O1024|r2	residency	W288|O1024|r2	m8|K4	R02
+19650	residency|architecture|A|m4|K2|W288|O1024|r2	residency	W288|O1024|r2	m4|K2	R02
+19651	residency|architecture|B|m4|K2|W288|O1024|r2	residency	W288|O1024|r2	m4|K2	R02
+19652	residency|architecture|C|m4|K2|W288|O1024|r2	residency	W288|O1024|r2	m4|K2	R02
+19653	residency|architecture|A|m8|K8|W288|O1024|r2	residency	W288|O1024|r2	m8|K8	R02
+19654	residency|architecture|B|m8|K8|W288|O1024|r2	residency	W288|O1024|r2	m8|K8	R02
+19655	residency|architecture|C|m8|K8|W288|O1024|r2	residency	W288|O1024|r2	m8|K8	R02
+19656	aa|AA|W288|O1024|m16|K16|r2|A1	aa	W288|O1024|r2	aa|AA|W288|O1024|m16|K16|r2	R02
+19657	aa|AA|W288|O1024|m16|K16|r2|A2	aa	W288|O1024|r2	aa|AA|W288|O1024|m16|K16|r2	R02
+19658	residency|architecture|A|m1|K1|W288|O1024|r2	residency	W288|O1024|r2	m1|K1	R02
+19659	residency|architecture|B|m1|K1|W288|O1024|r2	residency	W288|O1024|r2	m1|K1	R02
+19660	residency|architecture|C|m1|K1|W288|O1024|r2	residency	W288|O1024|r2	m1|K1	R02
+19661	residency|architecture|A|m1|K16|W288|O1024|r2	residency	W288|O1024|r2	m1|K16	R02
+19662	residency|architecture|B|m1|K16|W288|O1024|r2	residency	W288|O1024|r2	m1|K16	R02
+19663	residency|architecture|C|m1|K16|W288|O1024|r2	residency	W288|O1024|r2	m1|K16	R02
+19664	residency|architecture|A|m8|K16|W288|O1024|r2	residency	W288|O1024|r2	m8|K16	R02
+19665	residency|architecture|B|m8|K16|W288|O1024|r2	residency	W288|O1024|r2	m8|K16	R02
+19666	residency|architecture|C|m8|K16|W288|O1024|r2	residency	W288|O1024|r2	m8|K16	R02
+19691	residency|architecture|A|m4|K2|W288|O1024|r3	residency	W288|O1024|r3	m4|K2	R03
+19692	residency|architecture|B|m4|K2|W288|O1024|r3	residency	W288|O1024|r3	m4|K2	R03
+19693	residency|architecture|C|m4|K2|W288|O1024|r3	residency	W288|O1024|r3	m4|K2	R03
+19694	residency|architecture|A|m1|K8|W288|O1024|r3	residency	W288|O1024|r3	m1|K8	R03
+19695	residency|architecture|B|m1|K8|W288|O1024|r3	residency	W288|O1024|r3	m1|K8	R03
+19696	residency|architecture|C|m1|K8|W288|O1024|r3	residency	W288|O1024|r3	m1|K8	R03
+19697	residency|architecture|A|m1|K1|W288|O1024|r3	residency	W288|O1024|r3	m1|K1	R03
+19698	residency|architecture|B|m1|K1|W288|O1024|r3	residency	W288|O1024|r3	m1|K1	R03
+19699	residency|architecture|C|m1|K1|W288|O1024|r3	residency	W288|O1024|r3	m1|K1	R03
+19700	aa|AA|W288|O1024|m8|K16|r3|A2	aa	W288|O1024|r3	aa|AA|W288|O1024|m8|K16|r3	R03
+19701	aa|AA|W288|O1024|m8|K16|r3|A1	aa	W288|O1024|r3	aa|AA|W288|O1024|m8|K16|r3	R03
+19702	residency|architecture|A|m16|K1|W288|O1024|r3	residency	W288|O1024|r3	m16|K1	R03
+19703	residency|architecture|B|m16|K1|W288|O1024|r3	residency	W288|O1024|r3	m16|K1	R03
+19704	residency|architecture|C|m16|K1|W288|O1024|r3	residency	W288|O1024|r3	m16|K1	R03
+19705	residency|architecture|A|m4|K8|W288|O1024|r3	residency	W288|O1024|r3	m4|K8	R03
+19706	residency|architecture|B|m4|K8|W288|O1024|r3	residency	W288|O1024|r3	m4|K8	R03
+19707	residency|architecture|C|m4|K8|W288|O1024|r3	residency	W288|O1024|r3	m4|K8	R03
+19708	residency|architecture|A|m16|K2|W288|O1024|r3	residency	W288|O1024|r3	m16|K2	R03
+19709	residency|architecture|B|m16|K2|W288|O1024|r3	residency	W288|O1024|r3	m16|K2	R03
+19710	residency|architecture|C|m16|K2|W288|O1024|r3	residency	W288|O1024|r3	m16|K2	R03
+19711	residency|architecture|A|m8|K4|W288|O1024|r3	residency	W288|O1024|r3	m8|K4	R03
+19712	residency|architecture|B|m8|K4|W288|O1024|r3	residency	W288|O1024|r3	m8|K4	R03
+19713	residency|architecture|C|m8|K4|W288|O1024|r3	residency	W288|O1024|r3	m8|K4	R03
+19714	aa|AA|W288|O1024|m4|K16|r3|A2	aa	W288|O1024|r3	aa|AA|W288|O1024|m4|K16|r3	R03
+19715	aa|AA|W288|O1024|m4|K16|r3|A1	aa	W288|O1024|r3	aa|AA|W288|O1024|m4|K16|r3	R03
+19716	residency|architecture|A|m16|K8|W288|O1024|r3	residency	W288|O1024|r3	m16|K8	R03
+19717	residency|architecture|B|m16|K8|W288|O1024|r3	residency	W288|O1024|r3	m16|K8	R03
+19718	residency|architecture|C|m16|K8|W288|O1024|r3	residency	W288|O1024|r3	m16|K8	R03
+19719	residency|architecture|A|m4|K4|W288|O1024|r3	residency	W288|O1024|r3	m4|K4	R03
+19720	residency|architecture|B|m4|K4|W288|O1024|r3	residency	W288|O1024|r3	m4|K4	R03
+19721	residency|architecture|C|m4|K4|W288|O1024|r3	residency	W288|O1024|r3	m4|K4	R03
+19722	residency|architecture|A|m8|K16|W288|O1024|r3	residency	W288|O1024|r3	m8|K16	R03
+19723	residency|architecture|B|m8|K16|W288|O1024|r3	residency	W288|O1024|r3	m8|K16	R03
+19724	residency|architecture|C|m8|K16|W288|O1024|r3	residency	W288|O1024|r3	m8|K16	R03
+19725	residency|architecture|A|m8|K8|W288|O1024|r3	residency	W288|O1024|r3	m8|K8	R03
+19726	residency|architecture|B|m8|K8|W288|O1024|r3	residency	W288|O1024|r3	m8|K8	R03
+19727	residency|architecture|C|m8|K8|W288|O1024|r3	residency	W288|O1024|r3	m8|K8	R03
+19728	residency|architecture|A|m1|K4|W288|O1024|r3	residency	W288|O1024|r3	m1|K4	R03
+19729	residency|architecture|B|m1|K4|W288|O1024|r3	residency	W288|O1024|r3	m1|K4	R03
+19730	residency|architecture|C|m1|K4|W288|O1024|r3	residency	W288|O1024|r3	m1|K4	R03
+19731	aa|AA|W288|O1024|m1|K16|r3|A1	aa	W288|O1024|r3	aa|AA|W288|O1024|m1|K16|r3	R03
+19732	aa|AA|W288|O1024|m1|K16|r3|A2	aa	W288|O1024|r3	aa|AA|W288|O1024|m1|K16|r3	R03
+19733	residency|architecture|A|m1|K2|W288|O1024|r3	residency	W288|O1024|r3	m1|K2	R03
+19734	residency|architecture|B|m1|K2|W288|O1024|r3	residency	W288|O1024|r3	m1|K2	R03
+19735	residency|architecture|C|m1|K2|W288|O1024|r3	residency	W288|O1024|r3	m1|K2	R03
+19736	residency|architecture|A|m4|K1|W288|O1024|r3	residency	W288|O1024|r3	m4|K1	R03
+19737	residency|architecture|B|m4|K1|W288|O1024|r3	residency	W288|O1024|r3	m4|K1	R03
+19738	residency|architecture|C|m4|K1|W288|O1024|r3	residency	W288|O1024|r3	m4|K1	R03
+19739	residency|architecture|A|m16|K4|W288|O1024|r3	residency	W288|O1024|r3	m16|K4	R03
+19740	residency|architecture|B|m16|K4|W288|O1024|r3	residency	W288|O1024|r3	m16|K4	R03
+19741	residency|architecture|C|m16|K4|W288|O1024|r3	residency	W288|O1024|r3	m16|K4	R03
+19742	aa|AA|W288|O1024|m16|K16|r3|A2	aa	W288|O1024|r3	aa|AA|W288|O1024|m16|K16|r3	R03
+19743	aa|AA|W288|O1024|m16|K16|r3|A1	aa	W288|O1024|r3	aa|AA|W288|O1024|m16|K16|r3	R03
+19744	residency|architecture|A|m1|K16|W288|O1024|r3	residency	W288|O1024|r3	m1|K16	R03
+19745	residency|architecture|B|m1|K16|W288|O1024|r3	residency	W288|O1024|r3	m1|K16	R03
+19746	residency|architecture|C|m1|K16|W288|O1024|r3	residency	W288|O1024|r3	m1|K16	R03
+19747	residency|architecture|A|m4|K16|W288|O1024|r3	residency	W288|O1024|r3	m4|K16	R03
+19748	residency|architecture|B|m4|K16|W288|O1024|r3	residency	W288|O1024|r3	m4|K16	R03
+19749	residency|architecture|C|m4|K16|W288|O1024|r3	residency	W288|O1024|r3	m4|K16	R03
+19750	residency|architecture|A|m8|K2|W288|O1024|r3	residency	W288|O1024|r3	m8|K2	R03
+19751	residency|architecture|B|m8|K2|W288|O1024|r3	residency	W288|O1024|r3	m8|K2	R03
+19752	residency|architecture|C|m8|K2|W288|O1024|r3	residency	W288|O1024|r3	m8|K2	R03
+19753	residency|architecture|A|m8|K1|W288|O1024|r3	residency	W288|O1024|r3	m8|K1	R03
+19754	residency|architecture|B|m8|K1|W288|O1024|r3	residency	W288|O1024|r3	m8|K1	R03
+19755	residency|architecture|C|m8|K1|W288|O1024|r3	residency	W288|O1024|r3	m8|K1	R03
+19756	residency|architecture|A|m16|K16|W288|O1024|r3	residency	W288|O1024|r3	m16|K16	R03
+19757	residency|architecture|B|m16|K16|W288|O1024|r3	residency	W288|O1024|r3	m16|K16	R03
+19758	residency|architecture|C|m16|K16|W288|O1024|r3	residency	W288|O1024|r3	m16|K16	R03

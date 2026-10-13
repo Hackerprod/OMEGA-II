@@ -1,0 +1,54 @@
+KERNEL_QA_R16 PASS path=omega_q4::run coordinate_cases=2048 O1024_m=1,4,8,16 positions=0..511 sweep_O_values=15 sweep_run_cases=60 rows_verified=ALL S12=PASS elapsed_s=87.172 numeric_metrics_used=false
+PROVIDER_DISPATCH_R16 PASS family=OMEGA m=1 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=OMEGA m=1 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=OMEGA m=4 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=OMEGA m=4 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=OMEGA m=8 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=OMEGA m=8 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=OMEGA m=16 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=OMEGA m=16 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_flat m=1 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_flat m=1 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_flat m=4 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_flat m=4 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_flat m=8 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_flat m=8 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_flat m=16 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_flat m=16 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_repack m=1 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_repack m=1 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_repack m=4 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_repack m=4 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_repack m=8 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_repack m=8 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_repack m=16 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=ggml_repack m=16 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_mm m=1 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_mm m=1 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_mm m=4 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_mm m=4 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_mm m=8 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_mm m=8 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_mm m=16 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_mm m=16 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_matmul m=1 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_matmul m=1 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_matmul m=4 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_matmul m=4 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_matmul m=8 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_matmul m=8 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_matmul m=16 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_matmul m=16 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_linear m=1 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_linear m=1 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_linear m=4 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_linear m=4 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_linear m=8 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_linear m=8 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_linear m=16 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_linear m=16 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_mv m=1 frontier=prepared workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_DISPATCH_R16 PASS family=Torch_mv m=1 frontier=dynamic workers=8 LP_map=topology_r16 buffers=large_pages effective_dispatch=8/8
+PROVIDER_QA_R16 PASS configurations=50 worker_dispatches=400 large_page_regions=1408 privilege=AVAILABLE providers=OMEGA,ggml_flat,ggml_repack,Torch_mm,matmul,linear,mv frontiers=prepared,dynamic
+EXPULSION_QA_R16 PASS primitive=omega_evict::evict_range weights_only_probe=true callback=none
+ACQUIRE_R16 phase=qa_instruments_expulsion state=PASS plan_sha256=3532411a6e641efa1382bb59791cb424f9dc6b696cdbdb460cca480bfa1b9757 topology_map_sha256=07bdddbecb69616304f25e247287239ea800be7dff8936671c4f08e88b702a59 previous_evidence=VERIFIED

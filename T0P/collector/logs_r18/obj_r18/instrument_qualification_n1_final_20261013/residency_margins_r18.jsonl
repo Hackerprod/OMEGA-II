@@ -1,0 +1,6 @@
+{"label":"SMOKE","event_id":"residency|architecture|A|m1|K1|W288|O1024|r1","side":"pre","qpc_start":1365151274272,"qpc_end":1365153274684,"seconds":0.200041,"episodes":2227,"same_condition":true,"continuous_load":true}
+{"label":"SMOKE","event_id":"residency|architecture|B|m1|K1|W288|O1024|r1","side":"pre","qpc_start":1365153275035,"qpc_end":1365155275452,"seconds":0.200042,"episodes":1934,"same_condition":true,"continuous_load":true}
+{"label":"SMOKE","event_id":"residency|architecture|C|m1|K1|W288|O1024|r1","side":"pre","qpc_start":1365155275703,"qpc_end":1365157275809,"seconds":0.200011,"episodes":2219,"same_condition":true,"continuous_load":true}
+{"label":"SMOKE","event_id":"residency|architecture|A|m1|K1|W288|O1024|r1","side":"post","qpc_start":1367550873198,"qpc_end":1367552873229,"seconds":0.200003,"episodes":2263,"same_condition":true,"continuous_load":true}
+{"label":"SMOKE","event_id":"residency|architecture|B|m1|K1|W288|O1024|r1","side":"post","qpc_start":1367552873587,"qpc_end":1367554874917,"seconds":0.200133,"episodes":1929,"same_condition":true,"continuous_load":true}
+{"label":"SMOKE","event_id":"residency|architecture|C|m1|K1|W288|O1024|r1","side":"post","qpc_start":1367554875118,"qpc_end":1367556889334,"seconds":0.201422,"episodes":2228,"same_condition":true,"continuous_load":true}

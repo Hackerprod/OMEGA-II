@@ -1,0 +1,54 @@
+#plan_sha256=f384596a19e15f834bd42e1e487d98699cb9bbc88abb54d006dab50f49a1afe9
+#diagnostic=INSTRUMENT_QUALIFICATION_R17;mode=FULL_36_BLOCKS
+#condition_order=source_plan_order;replica_major;within_block_seeded_order_frozen
+#calibration=R(W288,m,K)_common_A_B_C;target_region_s=75;minimum_region_s=60
+#conditioning_seconds=180;no_fill=true;retry_until_pass=false
+sequence	event_id	phase	block_id	atomic_group_id	segment_id
+18430	calibration|W288|O1024|m16|K1|A	calibration	cal|W288|O1024|m16|K1	cal|W288|O1024|m16|K1	
+18431	calibration|W288|O1024|m16|K1|B	calibration	cal|W288|O1024|m16|K1	cal|W288|O1024|m16|K1	
+18432	calibration|W288|O1024|m16|K1|C	calibration	cal|W288|O1024|m16|K1	cal|W288|O1024|m16|K1	
+18472	calibration|W288|O1024|m16|K16|A	calibration	cal|W288|O1024|m16|K16	cal|W288|O1024|m16|K16	
+18473	calibration|W288|O1024|m16|K16|B	calibration	cal|W288|O1024|m16|K16	cal|W288|O1024|m16|K16	
+18474	calibration|W288|O1024|m16|K16|C	calibration	cal|W288|O1024|m16|K16	cal|W288|O1024|m16|K16	
+18514	calibration|W288|O1024|m1|K1|A	calibration	cal|W288|O1024|m1|K1	cal|W288|O1024|m1|K1	
+18515	calibration|W288|O1024|m1|K1|B	calibration	cal|W288|O1024|m1|K1	cal|W288|O1024|m1|K1	
+18516	calibration|W288|O1024|m1|K1|C	calibration	cal|W288|O1024|m1|K1	cal|W288|O1024|m1|K1	
+18667	calibration|W288|O1024|m1|K16|A	calibration	cal|W288|O1024|m1|K16	cal|W288|O1024|m1|K16	
+18668	calibration|W288|O1024|m1|K16|B	calibration	cal|W288|O1024|m1|K16	cal|W288|O1024|m1|K16	
+18669	calibration|W288|O1024|m1|K16|C	calibration	cal|W288|O1024|m1|K16	cal|W288|O1024|m1|K16	
+19080	residency|architecture|A|m1|K1|W288|O1024|r1	residency	W288|O1024|r1	m1|K1	R01
+19081	residency|architecture|B|m1|K1|W288|O1024|r1	residency	W288|O1024|r1	m1|K1	R01
+19082	residency|architecture|C|m1|K1|W288|O1024|r1	residency	W288|O1024|r1	m1|K1	R01
+19091	residency|architecture|A|m16|K16|W288|O1024|r1	residency	W288|O1024|r1	m16|K16	R01
+19092	residency|architecture|B|m16|K16|W288|O1024|r1	residency	W288|O1024|r1	m16|K16	R01
+19093	residency|architecture|C|m16|K16|W288|O1024|r1	residency	W288|O1024|r1	m16|K16	R01
+19119	residency|architecture|A|m16|K1|W288|O1024|r1	residency	W288|O1024|r1	m16|K1	R01
+19120	residency|architecture|B|m16|K1|W288|O1024|r1	residency	W288|O1024|r1	m16|K1	R01
+19121	residency|architecture|C|m16|K1|W288|O1024|r1	residency	W288|O1024|r1	m16|K1	R01
+19125	residency|architecture|A|m1|K16|W288|O1024|r1	residency	W288|O1024|r1	m1|K16	R01
+19126	residency|architecture|B|m1|K16|W288|O1024|r1	residency	W288|O1024|r1	m1|K16	R01
+19127	residency|architecture|C|m1|K16|W288|O1024|r1	residency	W288|O1024|r1	m1|K16	R01
+19616	residency|architecture|A|m16|K1|W288|O1024|r2	residency	W288|O1024|r2	m16|K1	R02
+19617	residency|architecture|B|m16|K1|W288|O1024|r2	residency	W288|O1024|r2	m16|K1	R02
+19618	residency|architecture|C|m16|K1|W288|O1024|r2	residency	W288|O1024|r2	m16|K1	R02
+19641	residency|architecture|A|m16|K16|W288|O1024|r2	residency	W288|O1024|r2	m16|K16	R02
+19642	residency|architecture|B|m16|K16|W288|O1024|r2	residency	W288|O1024|r2	m16|K16	R02
+19643	residency|architecture|C|m16|K16|W288|O1024|r2	residency	W288|O1024|r2	m16|K16	R02
+19658	residency|architecture|A|m1|K1|W288|O1024|r2	residency	W288|O1024|r2	m1|K1	R02
+19659	residency|architecture|B|m1|K1|W288|O1024|r2	residency	W288|O1024|r2	m1|K1	R02
+19660	residency|architecture|C|m1|K1|W288|O1024|r2	residency	W288|O1024|r2	m1|K1	R02
+19661	residency|architecture|A|m1|K16|W288|O1024|r2	residency	W288|O1024|r2	m1|K16	R02
+19662	residency|architecture|B|m1|K16|W288|O1024|r2	residency	W288|O1024|r2	m1|K16	R02
+19663	residency|architecture|C|m1|K16|W288|O1024|r2	residency	W288|O1024|r2	m1|K16	R02
+19697	residency|architecture|A|m1|K1|W288|O1024|r3	residency	W288|O1024|r3	m1|K1	R03
+19698	residency|architecture|B|m1|K1|W288|O1024|r3	residency	W288|O1024|r3	m1|K1	R03
+19699	residency|architecture|C|m1|K1|W288|O1024|r3	residency	W288|O1024|r3	m1|K1	R03
+19702	residency|architecture|A|m16|K1|W288|O1024|r3	residency	W288|O1024|r3	m16|K1	R03
+19703	residency|architecture|B|m16|K1|W288|O1024|r3	residency	W288|O1024|r3	m16|K1	R03
+19704	residency|architecture|C|m16|K1|W288|O1024|r3	residency	W288|O1024|r3	m16|K1	R03
+19744	residency|architecture|A|m1|K16|W288|O1024|r3	residency	W288|O1024|r3	m1|K16	R03
+19745	residency|architecture|B|m1|K16|W288|O1024|r3	residency	W288|O1024|r3	m1|K16	R03
+19746	residency|architecture|C|m1|K16|W288|O1024|r3	residency	W288|O1024|r3	m1|K16	R03
+19756	residency|architecture|A|m16|K16|W288|O1024|r3	residency	W288|O1024|r3	m16|K16	R03
+19757	residency|architecture|B|m16|K16|W288|O1024|r3	residency	W288|O1024|r3	m16|K16	R03
+19758	residency|architecture|C|m16|K16|W288|O1024|r3	residency	W288|O1024|r3	m16|K16	R03

@@ -1,0 +1,1 @@
+{"binary_buffer_push_and_file_persistence_after_pad":true,"hash_json_print_file_io_allocation_validation_inside_pad":false,"pad_bracket":"qpc_pad_start..qpc_pad_end","preallocated_capacity_checked_before_pad":true,"probe_raw_flush_after_final_endpoint_and_worker_stop":true,"state":"PASS","worker_stamp_copy":"after_measured_dispatch_before_post_margin"}

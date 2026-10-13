@@ -1,0 +1,17 @@
+OFFICIAL_RUN_R17_SYNTHETIC_QA PASS
+D1_positive=PASS calls=preflight,QA+instrumentos+expulsion,qualification,residency,D8,derivation
+D1_injection=PASS FALLIDA_CUALIFICACION -> automatic_cut STOP; residency_adapter_calls=0
+D1_injection=PASS QA/instrument HOLD -> qualification/residency adapter calls=0
+D1_injection=PASS qualification HOLD -> residency adapter calls=0
+D1_smoke=PASS minimum qualification diagnostic cut -> one complete residency slice; no final controls
+D8_negative=H2_over_0_10 HOLD PASS
+D8_negative=H3_over_0_10 HOLD PASS
+D8_negative=denominator_under_10000 HOLD PASS
+D8_negative=missing_LP HOLD PASS
+D8_negative=capture_window_mismatch HOLD PASS
+D8_negative=numerator_denominator_window_mismatch HOLD PASS
+D8_negative=cold_ratio_below_1_50 HOLD PASS
+D8_negative=cold_LLC_miss_below_0_90 HOLD PASS
+OP1_positive=PASS cold_M3/OFFCORE=0.996 (cold LLC misses >= 0.90)
+OP1_negative=HOLD cold_M3/OFFCORE=0.001 (cold LLC hit >= 0.90) rejected
+D8_Q_R=PASS different capture IDs accepted; IDs equal only within each capture/scope

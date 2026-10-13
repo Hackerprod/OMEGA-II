@@ -1,49 +1,40 @@
-# Especificación del collector R16
+# COLLECTOR_SPEC_r16
 
-## Alcance e identidades
+## Cadena de adquisición
 
-R16 queda aislado en archivos con sufijo `_r16` y `logs_r16/obj_r16`. El plan S-19 contiene 420 condiciones (60 de arquitectura y 360 de barrido), 140 unidades de calibración del R común, 124 pares A/A y 13,688 eventos únicos y ordenados. El SHA-256 del plan y el hash de su lista ordenada de IDs se ligan a la autorización A6.
+`official_run_r16.py` es el gate secuencial. Su adaptador explícito lanza el ejecutable real `harness_r16.exe`; en pruebas, un doble sustituye solamente la ejecución del proceso. La máquina decide y sella cada fase antes de invocar la siguiente:
 
-La entrada integrada es `harness_r16.exe`. La opción `--official --session-id ID` delega al único parser AUTH y a la máquina de nueve fases de `official_run_r16.py`. Una sesión real exige un intento D13 write-once bajo `official_sessions_r16/<session_id>/attempt_01` y permite `attempt_02` solo tras un HOLD técnico tipado que admita el único reintento global. El gate no devuelve un PASS por defecto ni abre una captura oficial. Si falta AUTH, devuelve HOLD antes de medir.
+1. `preflight`: identidad del plan, recursos, topología, páginas grandes, reloj y lector disponible.
+2. `qa_instruments_expulsion`: QA de kernel, proveedores, instrumentos y expulsión antes de medir.
+3. `qualification`: BW_DRAM y P_instr, luego selección/comparación y corte automático en el modo oficial.
+4. `residency`: solo tras cualificación apta; consume el schedule sellado en orden.
+5. `final_controls`: revalidación D8 posterior a la residencia.
+6. `derivation_verdict`: veredicto solo después de controles válidos.
 
-Cada fuente real debe verificarse mediante el almacén D13 antes de usarla. Los crudos esperados incluyen preflight, lector, cualificación de referencias/ciencia y S-20, QA, residencia/eventos/episodios, márgenes/cierre y capturas D8. Los resultados pasan por las mismas funciones de fase que el rehearsal sintético; el veredicto se escribe como salida derivada con hashes de fuentes y ejecutable. El harness también ofrece `--synthetic-self-test`, `--qa-r16` y el smoke N=3 separado.
+Un `FALLIDA_CUALIFICACION` o `HOLD` corta la cadena antes de la adquisición siguiente. El fallo temprano no requiere episodios ni resultados de fases futuras. En SMOKE, la cualificación mínima diagnóstica no habilita resultados científicos, y los controles/derivación oficiales permanecen bloqueados.
 
-## Máquina de nueve fases
+## Plan y verificaciones
 
-Cada proveedor debe devolver `status` y `label` explícitos. Excepciones, proveedor ausente, resultado mal formado o estado desconocido fallan cerrados.
+`residency_plan_r16.py` congela el plan íntegro (32.102 eventos), hashes de contenido y orden, condiciones y mapa de IDs. La selección usa 31 muestras entre candidatas elegibles y la comparación contiene solo OMEGA, la ganadora ggml y la ganadora Torch; los conteos son 11.718 + 6.696 eventos. La ganadora ocupa una posición de familia congelada. Los cortes de segmento respetan unidades indivisibles de §4 y cada segmento revalida identidad, topología, páginas, reloj y lector, con 180 s de acondicionamiento.
 
-| # | Fase | Comprobaciones principales |
-|---|---|---|
-| 1 | Preflight | Hash y geometría exactos del plan (13,688 eventos), topología LP y recursos requeridos. |
-| 2 | Instrumentación/lector | Canales S-20, cobertura, gaps, frecuencia, REF_TSC y temperatura en los ocho P workers. |
-| 3 | Kernel/referencias | Identidad de eventos de competencia y selección independiente de referencias ggml/Torch. |
-| 4 | Cualificación científica | G_ggml, G_Torch, H-KQ, D′ y plateau con réplicas calificadas N=31; corte automático. |
-| 5 | QA | Ejecución real de `omega_q4::run`, coordenadas y barrido verificados con S-12. |
-| 6 | Residencia A/B/C | Unión exacta de eventos y A/B/C con R común por condición. |
-| 7 | Márgenes/cierre | Carga continua y margen pre/post de la misma condición ≥0.200 s; plan completo. |
-| 8 | Revalidación D8 | Capturas Q/R, IDs de ventana comunes, ocho LP, denominador ≥10,000, H2 y H3/D2 ≤0.10 por LP. |
-| 9 | Derivación/veredicto | Datos válidos S-20, unión exacta, derivación y veredicto explícito. |
+La verificación rechaza IDs duplicados o ausentes, reordenamiento, multiplicidad incorrecta, A/B/C separados y pares A/A separados. Residence se ordena por bloques completos `(W, réplica)` y contiene sus marginales, K y variantes; W=288 incorpora A/A. El schedule de smoke es una selección etiquetada del plan, no una sustitución de la adquisición oficial completa.
 
-`HOLD_INSTRUMENTATION` detiene la adjudicación y no cierra la línea científica. Un gate científico fallido con instrumentos válidos devuelve `FALLIDA_CUALIFICACION`, marca `CLOSED_Q4_256_THIS_I7` y corta antes de residencia. Una residencia fallida válida produce `FALLO_RESIDENCIA_VALIDO`. También se distinguen `RESIDENCIA_PASS`, `L2_NOT_ESTABLISHED` y `NO_ADJUDICABLE_CONTROLES`.
+`qualify_r16.py` comprueba elegibilidad, selección, frontera y plateau. Los contrastes instrumentales son 12/U8 frente a 14/U8, 12/U16 frente a 12/U8 y 14/U16 frente a 14/U8, con tolerancia de 3 %. El caso sintético `0,98; 1,00; 1,02; 1,00` debe producir `HOLD_INSTRUMENTAL`. Plateau inválido nunca habilita cualificación.
 
-El rehearsal sintético etiqueta los fixtures y ejecuta la ruta positiva completa, inyección en cada fase, corte automático de cualificación, las cuatro clases de veredicto, negativos D8 y reglas de reintento. Ningún fixture puede autorizar medidas oficiales.
+## D13, EMON y verificaciones D8
 
-## Restricción del lector S-23
+`telemetry_r16.py` crea cada intento write-once bajo `logs_r16/obj_r16`, copia las entradas selladas y calcula `-l` desde el schedule y presupuesto temporal, no desde un valor fijo. El runner comprueba antes de EMON C: ≥4 GiB libres y el límite estimado <1 GiB; comprueba ambos de forma continua. EMON empieza tras QA, termina con `emon -stop` después del último bloque/margen y se liga a marcas QPC del padre. Si una captura truncada afecta eventos medidos, se invalida. El footer EMON solo se usa como diagnóstico.
 
-`QUALIFIED_FOR_REQUIRED_CHANNELS_WITH_DECLARED_LIMITATION` requiere el conjunto completo de ocho LP P `0,2,4,6,8,10,12,14` y todos los canales obligatorios. El fallo histórico `INST_RETIRED.ANY` es diagnóstico en todos los LP; LP0 permanece entre los workers. REF_TSC fuera de [0.98,1.02], frecuencia inválida o canal obligatorio ausente causa `HOLD_INSTRUMENTATION`. No hay fallback de siete P. Con instrumentos válidos y gate científico fallido, LP0 no se excluye ni rescata el resultado.
+`verify_residency_smoke_r16.py` verifica hash de entradas/crudos, orden/multiplicidad, workers, buffers, regiones, márgenes y proceso. En D8, numerador y denominador deben compartir ventana dentro de cada captura y alcance; Q y R pueden tener IDs de ventana distintos. Las puertas frío/caliente, ratio y reglas S-22 se validan desde las capturas; los flags de entrada no cuentan como revalidación. El caso sintético de Q/R con ventanas distintas debe aceptarse.
 
-## Autorización A6 (D14)
+## Pruebas y estado
 
-`AUTHORIZED.schema_r16.json` implementa el esquema estricto S-18 A6. Hay un único parser estricto en Python, usado por la entrada C++ mediante delegación al mismo orquestador. Rechaza claves duplicadas, BOM, JSON mal formado o no finito, campos ausentes, tipos incorrectos, claves desconocidas y valores que no coinciden con el esquema/política. A6 liga sesión, plan y orden, hash del ejecutable integrado, referencias, kernel, lector, validador, primitiva de expulsión, EMON/EDP, documentos y manifiestos R16.
+- `python -B T0P\\collector\\residency_plan_r16.py self-test`
+- `python -B T0P\\collector\\qualify_r16.py --self-test`
+- `python -B T0P\\collector\\official_run_r16.py --self-test`
+- `python -B T0P\\collector\\verify_residency_smoke_r16.py --self-test`
+- `python -B T0P\\collector\\telemetry_r16.py self-test`
 
-`--official` sin AUTH válido falla cerrado con `measurements_started=false`. Las mutaciones del parser usan hashes ficticios marcados `TEST_ONLY`, solo en fixtures bajo `logs_r16/obj_r16/authorized_fixtures_r16`, eliminadas al terminar; el gate oficial siempre calcula y compara hashes de archivos reales. No se crea `collector/AUTHORIZED.json` real. En el entorno de esta tarea faltan `torch.dll`, `torch_cpu.dll` y `c10.dll` bajo `.venv_cuda/Lib/site-packages/torch/lib`, por lo que la integridad de referencias Torch falla cerrada antes de crear AUTH real.
+Las pruebas de gate verifican que no se adquiere residencia tras `FALLIDA_CUALIFICACION`/HOLD. Las pruebas del plan mutan duplicados, faltantes, orden y pares separados. Los datos del smoke son diagnósticos y nunca alimentan veredicto científico.
 
-El ledger permite un reintento técnico global solo ante `DURATION_INSUFFICIENT` o `FREQUENCY_UNSTABLE`, preserva sesión/plan/semilla/orden, no reintenta fallos científicos y hace final el segundo HOLD.
-
-## Cadena SMOKE e instrumentación
-
-El runner N=3 captura EMON continuamente alrededor del harness, crea un intento D13 nuevo, verifica hashes, ejecuta el único validador S-20 y llama al derivador. La etiqueta siempre es `SMOKE`; los números no se usan para adjudicación. El QA `--qa-r16` ejecuta el kernel en 512 posiciones para m=1,4,8,16 con O=1024 y 60 barridos, comprobando cada salida contra S-12.
-
-Evidencia del smoke R16 del 2026-10-12: el harness pasó, pero S-20 produjo `INVALID/FREQ_WINDOW_EXCURSION` (120 muestras, 144,000 grupos EMON). La derivación quedó `SMOKE_ONLY`, `numeric_metrics_used=false`, unión incompleta por N=3. Estos son resultados de diagnóstico, no un veredicto de residencia.
-
-La ruta de páginas grandes requiere `SeLockMemoryPrivilege` en el token del proceso. Si Windows devuelve `ERROR_NOT_ALL_ASSIGNED` o las regiones no son grandes, la adquisición informa el error real y no marca la medición como válida. El collector no cambia políticas del sistema.
+El validador completo desde crudos S-20/D10, derivador D11, QA integrada D12 y autorización D14 quedan pendientes según su frontera de entrega. No se crea `AUTHORIZED.json` real ni se inicia sesión oficial. La prueba acotada de 36 bloques y la estimación requieren autorización y recursos posteriores.

@@ -6,7 +6,9 @@ import argparse
 import datetime as dt
 import hashlib
 import json
+import math
 import sys
+import time
 from pathlib import Path
 from typing import Any
 
@@ -18,13 +20,23 @@ if str(VALIDATOR_DIR) not in sys.path:
 from artifact_store import SessionAttemptStore  # type: ignore
 import s20_validator  # type: ignore
 
-DEFAULT_EVIDENCE = Path(__file__).resolve().parent / "logs_r16" / "obj_r16" / "telemetry_r16_qa.txt"
+DEFAULT_EVIDENCE = Path(__file__).resolve().parent / "logs_r16" / "obj_r16" / f"telemetry_r16_qa_{time.time_ns()}.txt"
 RAW_CAPTURE_FILES = (
     "residency_plan_r16.json", "residency_smoke_schedule_r16.tsv", "events.edp", "emon_raw.txt", "emon_stderr.txt",
-    "harness_stdout.txt", "harness_stderr.txt", "clock_map.csv", "block_marks_r16.csv",
+    "official_run_stdout_r16.txt", "official_run_stderr_r16.txt",
+    "phase_preflight_r16.json", "phase_preflight_stdout_r16.txt", "phase_preflight_stderr_r16.txt",
+    "phase_qa_instruments_expulsion_r16.json", "phase_qa_instruments_expulsion_stdout_r16.txt", "phase_qa_instruments_expulsion_stderr_r16.txt",
+    "phase_qualification_r16.json", "phase_qualification_stdout_r16.txt", "phase_qualification_stderr_r16.txt",
+    "phase_residency_r16.json", "phase_residency_stdout_r16.txt", "phase_residency_stderr_r16.txt",
+    "acquisition_chain_r16.json",
+    "capture_budget_r16.json", "disassembly_qa_r16.json", "harness_disassembly_r16.txt", "pinstr_symbol_map_r16.txt",
+    "aux_qualification_raw_r16.jsonl", "aux_qualification_summary_r16.jsonl",
+    "clock_map.csv", "block_marks_r16.csv",
     "residency_events_r16.jsonl", "residency_episodes_r16.jsonl",
     "residency_calibration_trials_r16.jsonl", "residency_margins_r16.jsonl",
     "residency_margin_episodes_r16.jsonl", "eviction_manifest_r16.jsonl", "preflight_r16.json",
+    "segment_conditioning_r16.jsonl", "capture_timing_r16.json",
+    "residency_load_marks_r16.jsonl", "effective_config_source.json",
 )
 
 
@@ -32,7 +44,40 @@ def _json_bytes(value: dict[str, Any]) -> bytes:
     return (json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False) + "\n").encode("utf-8")
 
 
-def prepare(attempt: Path, plan_path: Path, schedule_path: Path, edp_source: Path) -> None:
+def capture_budget(schedule: bytes) -> dict[str, Any]:
+    lines = [line for line in schedule.decode("utf-8").splitlines() if line and not line.startswith("#")]
+    if not lines or lines[0] != "sequence\tevent_id\tphase\tblock_id\tatomic_group_id\tsegment_id":
+        raise RuntimeError("smoke_schedule_header_invalid")
+    rows = [line.split("\t") for line in lines[1:]]
+    if any(len(row) != 6 for row in rows):
+        raise RuntimeError("smoke_schedule_row_invalid")
+    phases = {name: sum(row[2] == name for row in rows) for name in ("calibration", "residency", "aa")}
+    if phases != {"calibration": 60, "residency": 180, "aa": 24}:
+        raise RuntimeError(f"smoke_schedule_counts_invalid:{phases}")
+    # 180 s conditioning once per frozen segment; reserve 45 s for each
+    # calibration event. The common R per unit can require several geometric
+    # trials and the first real N=3 run exceeded the earlier 15 s allowance.
+    # Each retained sample reserves 2.5 s plus both 0.2 s margins; qualification
+    # has a 420 s allowance. EMON stops explicitly after the final block.
+    calibration_budget_s = phases["calibration"] * 45.0
+    planned_s = 180.0 + calibration_budget_s + (phases["residency"] + phases["aa"]) * 2.9 + 420.0
+    headroom = 1.20
+    limit = math.ceil(planned_s * headroom / 0.050)
+    if planned_s > 4200 or limit <= 0:
+        raise RuntimeError(f"capture_budget_unbounded:{planned_s}")
+    raw_bytes_per_second = 128 * 1024  # 3x the measured EMON rate in recent R16 attempts.
+    return {"schedule_phases": phases, "segment_conditioning_s": 180.0,
+            "calibration_target_s": 2.5, "calibration_candidate_trials_factor": 2.0,
+            "calibration_budget_s": calibration_budget_s, "residency_target_and_margins_s": 2.9,
+            "qa_qualification_allowance_s": 420.0, "headroom_factor": headroom,
+            "estimated_capture_s": round(planned_s, 3), "emon_interval_s": 0.050,
+            "emon_loops": limit, "maximum_capture_s": limit * 0.050,
+            "raw_bytes_per_second_budget": raw_bytes_per_second,
+            "estimated_max_raw_bytes": int(limit * 0.050 * raw_bytes_per_second + 64 * 1024 * 1024),
+            "controlled_stop": "EMON -stop after final block marks and margins"}
+
+
+def prepare(attempt: Path, plan_path: Path, schedule_path: Path, edp_source: Path) -> dict[str, Any]:
     plan = json.loads(plan_path.read_text(encoding="utf-8"))
     schedule = schedule_path.read_bytes()
     if b"#plan_sha256=" + plan["sha256"].encode("ascii") + b"\n" not in schedule:
@@ -40,13 +85,20 @@ def prepare(attempt: Path, plan_path: Path, schedule_path: Path, edp_source: Pat
     source_edp = edp_source.read_text(encoding="utf-8-sig")
     if source_edp.count("-l3600") != 1:
         raise RuntimeError("source_EDP_expected_single_l3600")
-    edp = source_edp.replace("-l3600", "-l144000")
+    budget = capture_budget(schedule)
+    if budget["estimated_max_raw_bytes"] >= 1024**3:
+        raise RuntimeError(f"capture_attempt_estimate_exceeds_1GiB:{budget['estimated_max_raw_bytes']}")
+    edp = source_edp.replace("-l3600", f"-l{budget['emon_loops']}")
     store = SessionAttemptStore.create(attempt, session_id="residency-r16-SMOKE",
                                        attempt_id=attempt.name)
     store.write_raw("residency_plan_r16.json", plan_path.read_bytes())
     store.write_raw("residency_smoke_schedule_r16.tsv", schedule)
     store.write_raw("events.edp", edp.encode("utf-8"))
+    budget_bytes = _json_bytes(budget)
+    store.write_raw("capture_budget_r16.json", budget_bytes)
+    print(f"EMON_CAPTURE_BUDGET_R16 PASS loops={budget['emon_loops']} estimated_s={budget['estimated_capture_s']} max_s={budget['maximum_capture_s']} schedule_events=264");
     print(f"D13_R16_ATTEMPT PREPARED path={store.directory} plan_sha256={plan['sha256']} label=SMOKE AUTHORIZED_json=absent")
+    return budget
 
 
 def _lp_map(preflight: dict[str, Any]) -> list[dict[str, Any]]:

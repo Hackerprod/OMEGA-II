@@ -1,88 +1,104 @@
-param([string]$AttemptName=('smoke_r16_'+[DateTime]::Now.ToString('yyyyMMdd_HHmmssfff')))
+﻿param([string]$AttemptName=('smoke_r16_'+[DateTime]::Now.ToString('yyyyMMdd_HHmmssfff')))
 $ErrorActionPreference='Stop'
 $here=$PSScriptRoot
 $root=Split-Path (Split-Path $here -Parent) -Parent
-$obj=Join-Path $here 'logs_r16\obj_r16'
 $collector=Join-Path $root 'T0P\collector'
-$exe=Join-Path $obj 'harness_r16.exe'
-$plan=Join-Path $collector 'logs_r16\obj_r16\residency_plan_r16.json'
-$schedule=Join-Path $obj 'residency_smoke_schedule_r16.tsv'
+$obj=Join-Path $collector 'logs_r16\obj_r16'
+$hobj=Join-Path $here 'logs_r16\obj_r16'
+$cap=Join-Path $obj $AttemptName
+$exe=Join-Path $hobj 'harness_r16.exe'
+$plan=Join-Path $obj 'residency_plan_r16.json'
+$schedule=Join-Path $hobj 'residency_smoke_schedule_r16.tsv'
 $emon='C:\Program Files (x86)\Intel\oneAPI\vtune\2026.4\bin64\emon.exe'
 $sourceEdp=Join-Path $root 'T0P\telemetry\reader\emon_joint_qualification.edp'
-$cap=Join-Path $obj $AttemptName
 $telemetry=Join-Path $collector 'telemetry_r16.py'
-$derive=Join-Path $collector 'residency_derive_r16.py'
-$attemptProc=$null;$emonProc=$null
-foreach($path in @($exe,$plan,$schedule,$emon,$sourceEdp,$telemetry,$derive)){if(!(Test-Path -LiteralPath $path)){throw "required file missing: $path"}}
-if(Test-Path -LiteralPath $cap){throw "new D13 attempt directory required: $cap"}
-& python -B $telemetry prepare --attempt $cap --plan $plan --schedule $schedule --edp-source $sourceEdp
-if($LASTEXITCODE -ne 0){throw "D13 prepare failed exit=$LASTEXITCODE"}
-$emonRaw=Join-Path $cap 'emon_raw.txt';$emonErr=Join-Path $cap 'emon_stderr.txt'
-$harnessOut=Join-Path $cap 'harness_stdout.txt';$harnessErr=Join-Path $cap 'harness_stderr.txt'
-$edp=Join-Path $cap 'events.edp'
-try{
-  $emonProc=Start-Process -FilePath $emon -ArgumentList @('-collect-edp',"edp_file=$edp") -WorkingDirectory $cap `
-    -RedirectStandardOutput $emonRaw -RedirectStandardError $emonErr -PassThru -WindowStyle Hidden
-  Start-Sleep -Seconds 3;$emonProc.Refresh()
-  if($emonProc.HasExited){throw "EMON exited before harness start exit=$($emonProc.ExitCode)"}
-  $arguments=@('--residency-smoke-r16',$cap,$schedule)|ForEach-Object{'"'+$_+'"'}
-  $attemptProc=Start-Process -FilePath $exe -ArgumentList $arguments -WorkingDirectory $root `
-    -RedirectStandardOutput $harnessOut -RedirectStandardError $harnessErr -PassThru -WindowStyle Hidden
-  $deadline=[DateTime]::UtcNow.AddSeconds(14400);$earlyExit=$false
-  while($true){
-    $attemptProc.Refresh();$emonProc.Refresh()
-    if($attemptProc.HasExited){$attemptProc.WaitForExit();break}
-    if($emonProc.HasExited){$earlyExit=$true}
-    if([DateTime]::UtcNow -gt $deadline){throw 'R16 smoke/EMON exceeded 14400 seconds'}
-    Start-Sleep -Seconds 1
-  }
-  $attemptProc.Refresh();$emonProc.Refresh()
-  if($earlyExit){throw "EMON stopped before harness completed exit=$($emonProc.ExitCode)"}
-  $emonDeadline=[DateTime]::UtcNow.AddSeconds(14400)
-  while(-not $emonProc.HasExited){
-    if([DateTime]::UtcNow -gt $emonDeadline){throw 'EMON did not finish within 14400 seconds after harness'}
-    Start-Sleep -Seconds 2;$emonProc.Refresh()
-  }
-  $emonProc.WaitForExit();$attemptProc.Refresh()
-  $emonExitCode=$emonProc.ExitCode
-  $emonError=Get-Content -LiteralPath $emonErr -Raw
-  $emonTail=Get-Content -LiteralPath $emonRaw -Tail 5
-  $emonHasFooter=[bool]($emonTail -match '^\s*\d+\.\d+s real\s+\d+\.\d+s user\s+\d+\.\d+s system\s*$')
-  if([string]::IsNullOrWhiteSpace([string]$emonExitCode)){
-    if(-not [string]::IsNullOrWhiteSpace($emonError) -or -not $emonHasFooter){throw "EMON exit code unavailable without clean stderr and complete footer; see $emonErr"}
-    "EMON_EXIT_CODE_UNAVAILABLE accepted=footer_complete stderr_empty=true"
-  }elseif([int]$emonExitCode -ne 0){throw "EMON exit=$emonExitCode; see $emonErr"}
-  $harnessText=Get-Content -LiteralPath $harnessOut -Raw
-  $harnessError=Get-Content -LiteralPath $harnessErr -Raw
-  if($harnessError -match 'HARNESS_R16_ERROR|fatal error|Traceback'){throw "harness failed: $harnessError"}
-  $harnessExitCode=$attemptProc.ExitCode
-  $harnessComplete=$harnessText -match 'RESIDENCY_SMOKE_R16 BLOCKED_REAL|SMOKE_R16_CAPTURE PASS'
-  if([string]::IsNullOrWhiteSpace([string]$harnessExitCode)){
-    if(-not [string]::IsNullOrWhiteSpace($harnessError) -or -not $harnessComplete){throw "harness exit code unavailable without clean stderr and completion marker; see $harnessOut"}
-    "HARNESS_EXIT_CODE_UNAVAILABLE accepted=completion_marker stderr_empty=true"
-  }elseif([int]$harnessExitCode -ne 0 -and $harnessText -notmatch 'BLOCKED_REAL'){
-    throw "harness exit=$harnessExitCode; see $harnessOut"
-  }
-  if(-not $harnessComplete){
-    throw "harness lacks completion or real OS blocker; see $harnessOut"
-  }
-  & python -B $telemetry postprocess --attempt $cap --output (Join-Path $cap 'telemetry_status_r16.json')
-  if($LASTEXITCODE -ne 0){throw "S20/D13 postprocess failed exit=$LASTEXITCODE"}
-  if((Test-Path -LiteralPath (Join-Path $cap 'residency_events_r16.jsonl')) -and
-     (Test-Path -LiteralPath (Join-Path $cap 'residency_episodes_r16.jsonl'))){
-    & python -B $derive derive --plan $plan --events (Join-Path $cap 'residency_events_r16.jsonl') `
-      --episodes (Join-Path $cap 'residency_episodes_r16.jsonl') --attempt-directory $cap `
-      --output (Join-Path $cap 'residency_derive_status_r16.json')
-    if($LASTEXITCODE -ne 0){throw "D11 smoke derive failed exit=$LASTEXITCODE"}
-  }else{
-    "RESIDENCY_DERIVE_R16 NOT_RUN real_OS_blocker=$(if($harnessText -match 'BLOCKED_REAL'){($harnessText -split 'BLOCKED_REAL')[-1].Trim()}else{'harness_artifacts_missing'}) synthetic_branches=PASS"
-  }
-  "SMOKE_R16_PIPELINE COMPLETE attempt=$cap harness_exit=$($attemptProc.ExitCode) emon_exit=$($emonProc.ExitCode)"
-}catch{
-  if($attemptProc){$attemptProc.Refresh();if(-not $attemptProc.HasExited){Stop-Process -Id $attemptProc.Id -Force -ErrorAction SilentlyContinue}}
-  if($emonProc){$emonProc.Refresh();if(-not $emonProc.HasExited){Stop-Process -Id $emonProc.Id -Force -ErrorAction SilentlyContinue}}
-  throw
-}finally{
-  if($attemptProc){$attemptProc.Dispose()}
-  if($emonProc){$emonProc.Dispose()}
+$official=Join-Path $collector 'official_run_r16.py'
+$verify=Join-Path $collector 'verify_residency_smoke_r16.py'
+$python='C:\Program Files\Python313\python.exe'
+$gateProc=$null
+function Get-FreeC { (Get-PSDrive C).Free }
+function Get-AttemptBytes([string]$Path) {
+  if(!(Test-Path -LiteralPath $Path)){return [long]0}
+  $sum=Get-ChildItem -LiteralPath $Path -File -Recurse | Measure-Object -Property Length -Sum
+  return [long]$sum.Sum
 }
+function Write-Status([string]$Reason,[long]$FreeBytes,[long]$AttemptBytes) {
+  $status=Join-Path $collector 'STATUS_r16.md'
+@("# STATUS R16","","- Estado: STOP por seguridad de recursos o plazo de captura.","- Motivo: $Reason",
+    "- C: libre: $FreeBytes bytes","- Intento: $cap","- Intento: $AttemptBytes bytes",
+    "- EMON: cierre solicitado con `emon -stop`.") | Set-Content -LiteralPath $status -Encoding UTF8
+}
+function Stop-GateTree([System.Diagnostics.Process]$Gate) {
+  if(!$Gate){return}
+  $children=Get-CimInstance Win32_Process -Filter "ParentProcessId=$($Gate.Id)" -ErrorAction SilentlyContinue
+  foreach($child in $children){
+    if($child.Name -eq 'harness_r16.exe' -and $child.ExecutablePath -eq $exe){
+      Stop-Process -Id $child.ProcessId -Force -ErrorAction SilentlyContinue
+    }
+  }
+  Stop-Process -Id $Gate.Id -Force -ErrorAction SilentlyContinue
+}
+foreach($path in @($exe,$plan,$schedule,$emon,$sourceEdp,$telemetry,$official,$python)){
+  if(!(Test-Path -LiteralPath $path)){throw "required file missing: $path"}
+}
+if(Test-Path -LiteralPath $cap){throw "new D13 attempt directory required: $cap"}
+$free=Get-FreeC
+if($free -lt 4GB){throw "STOP BEFORE SMOKE: C free below 4GiB ($free bytes)"}
+& $python -B $telemetry prepare --attempt $cap --plan $plan --schedule $schedule --edp-source $sourceEdp
+if($LASTEXITCODE -ne 0){throw "capture budget / D13 prepare failed exit=$LASTEXITCODE"}
+$budget=Get-Content -LiteralPath (Join-Path $cap 'capture_budget_r16.json') -Raw | ConvertFrom-Json
+if([long]$budget.estimated_max_raw_bytes -ge 1GB){throw "attempt estimate is not below 1GiB: $($budget.estimated_max_raw_bytes)"}
+$free=Get-FreeC
+if($free -lt 4GB){Write-Status 'C: <4GiB after D13 preparation' $free (Get-AttemptBytes $cap); throw 'STOP BEFORE EMON: C: below 4GiB'}
+$stdout=Join-Path $cap 'official_run_stdout_r16.txt'
+$stderr=Join-Path $cap 'official_run_stderr_r16.txt'
+$arguments=@('-B',$official,'--smoke','--integrated-executable',$exe,
+  '--plan',(Join-Path $cap 'residency_plan_r16.json'),
+  '--attempt-directory',$cap,'--emon',$emon)|ForEach-Object{'"'+$_+'"'}
+try {
+  $gateProc=Start-Process -FilePath $python -ArgumentList $arguments -WorkingDirectory $root `
+    -RedirectStandardOutput $stdout -RedirectStandardError $stderr -PassThru -WindowStyle Hidden
+  $maximum=[double]$budget.maximum_capture_s
+  $deadline=[DateTime]::UtcNow.AddSeconds($maximum+120.0)
+  while($true){
+    $gateProc.Refresh()
+    if($gateProc.HasExited){$gateProc.WaitForExit();break}
+    $free=Get-FreeC;$attemptBytes=Get-AttemptBytes $cap
+    if($free -lt 4GB -or $attemptBytes -ge 1GB){
+      $reason=if($free -lt 4GB){'C: free below 4GiB'}else{'attempt reached 1GiB'}
+      Stop-GateTree $gateProc
+      & $emon -stop *> $null
+      Write-Status $reason $free $attemptBytes
+      throw "STOP DURING SMOKE: $reason"
+    }
+    if([DateTime]::UtcNow -gt $deadline){
+      Stop-GateTree $gateProc
+      & $emon -stop *> $null
+      $free=Get-FreeC;$attemptBytes=Get-AttemptBytes $cap
+      Write-Status 'computed_capture_budget_deadline_exceeded' $free $attemptBytes
+      throw 'STOP: acquisition exceeded computed capture budget'
+    }
+    Start-Sleep -Milliseconds 250
+  }
+} finally {
+  if($gateProc){$gateProc.Dispose()}
+}
+$free=Get-FreeC;$attemptBytes=Get-AttemptBytes $cap
+if($attemptBytes -ge 1GB){throw "attempt exceeded 1GiB: $attemptBytes"}
+if((Test-Path -LiteralPath (Join-Path $cap 'emon_raw.txt')) -and
+   (Test-Path -LiteralPath (Join-Path $cap 'preflight_r16.json'))){
+  & $python -B $telemetry postprocess --attempt $cap --output (Join-Path $cap 'telemetry_status_r16.json')
+  if($LASTEXITCODE -ne 0){throw "S20/D13 postprocess failed exit=$LASTEXITCODE"}
+}
+if((Test-Path -LiteralPath (Join-Path $cap 'residency_events_r16.jsonl')) -and
+   (Test-Path -LiteralPath (Join-Path $cap 'residency_episodes_r16.jsonl')) -and
+   (Test-Path -LiteralPath (Join-Path $cap 'phase_residency_r16.json')) -and
+   (Test-Path -LiteralPath (Join-Path $cap 'capture_timing_r16.json')) -and
+   (Test-Path -LiteralPath (Join-Path $cap 'preflight_r16.json'))){
+  & $python -B $verify --attempt $cap
+  if($LASTEXITCODE -ne 0){throw "residency smoke verification failed exit=$LASTEXITCODE"}
+  "D11 NOT_RUN: derivador R16 pendiente de D11; smoke sin metricas adjudicables"
+} else {
+  "RESIDENCY_SMOKE_R16 NOT_REACHED gate_exit=$($gateProc.ExitCode) reason=early_gate_decision_or_real_blocker" 
+}
+"SMOKE_R16_PIPELINE COMPLETE attempt=$cap gate_exit=$($gateProc.ExitCode) attempt_bytes=$attemptBytes C_free_bytes=$free"

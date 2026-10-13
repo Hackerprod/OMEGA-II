@@ -1,0 +1,1 @@
+{"acquisition_evidence_sha256":"ffe33435e22a804fb7b9b0501e92dc55057926c429d0d2b327c77bbe6667b38d","global_retry_exhausted":true,"phase":"qualification","reason":"qualification_instrument_hold","retry_reason":"TELEMETRY_TRANSIENT_LOSS","status":"HOLD_INSTRUMENTATION"}

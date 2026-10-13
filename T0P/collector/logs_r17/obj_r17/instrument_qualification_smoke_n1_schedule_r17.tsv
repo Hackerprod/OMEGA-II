@@ -1,0 +1,12 @@
+#plan_sha256=f384596a19e15f834bd42e1e487d98699cb9bbc88abb54d006dab50f49a1afe9
+#diagnostic=INSTRUMENT_QUALIFICATION_R17;mode=SMOKE_N1
+#condition_order=source_plan_order;replica_major;within_block_seeded_order_frozen
+#calibration=R(W288,m,K)_common_A_B_C;target_region_s=75;minimum_region_s=60
+#conditioning_seconds=180;no_fill=true;retry_until_pass=false
+sequence	event_id	phase	block_id	atomic_group_id	segment_id
+18514	calibration|W288|O1024|m1|K1|A	calibration	cal|W288|O1024|m1|K1	cal|W288|O1024|m1|K1	
+18515	calibration|W288|O1024|m1|K1|B	calibration	cal|W288|O1024|m1|K1	cal|W288|O1024|m1|K1	
+18516	calibration|W288|O1024|m1|K1|C	calibration	cal|W288|O1024|m1|K1	cal|W288|O1024|m1|K1	
+19080	residency|architecture|A|m1|K1|W288|O1024|r1	residency	W288|O1024|r1	m1|K1	R01
+19081	residency|architecture|B|m1|K1|W288|O1024|r1	residency	W288|O1024|r1	m1|K1	R01
+19082	residency|architecture|C|m1|K1|W288|O1024|r1	residency	W288|O1024|r1	m1|K1	R01

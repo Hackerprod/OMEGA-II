@@ -1,0 +1,1 @@
+{"capture_bytes":44263800,"capture_duration_s":1287.5089248,"controlled_stop":true,"elapsed_wall_s":1287.511,"emon_exit":0,"qpc_end":1369412815989,"qpc_source":"parent_QueryPerformanceCounter","qpc_start":1356537726741,"qpf_hz":10000000,"stop_command":"emon -stop","stop_exit":0}

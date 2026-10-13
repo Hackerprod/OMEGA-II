@@ -1,0 +1,1 @@
+HOT_PROBE_STAMP_ORDER_R18 PASS measured_dispatch<binary_stamp_copy<post_margin<pad_end<validation synthetic_measured_overhead=0.000133 stale_margin_overhead=7.021203

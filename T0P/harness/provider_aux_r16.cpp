@@ -117,8 +117,8 @@ void emit_aux(std::ofstream& raw,std::ofstream& summary,const std::string&label,
   bool sink_verified=mark.sink_ok;
   if(provider=="P_instr")sink_verified=mark.sink_ok&&std::uint32_t(mark.sink)==std::uint32_t(std::uint64_t(672)*unsigned(chains)*unsigned(u)*r);
   raw<<"{\"label\":\""<<label<<"\",\"provider\":\""<<provider<<"\",\"cell\":\""<<cell<<"\",\"frontier\":\""<<frontier<<"\",\"O\":1024,\"m\":"<<m<<",\"chains\":"<<chains<<",\"U\":"<<u<<",\"replica\":"<<rep<<",\"worker\":"<<worker<<",\"p_core\":"<<lp.p_core<<",\"lp\":"<<lp.lp<<",\"N\":"<<n<<",\"warmup\":5,\"R\":"<<r<<",\"R_common\":"<<r<<",\"R_policy\":\"concurrent_8_workers_minimum_duration_2.5s\",\"t_app_us\":"<<std::fixed<<std::setprecision(3)<<worker_wall_us<<",\"tsc_start\":"<<mark.t0<<",\"tsc_end\":"<<mark.t1<<",\"qpc_start\":"<<mark.q0<<",\"qpc_end\":"<<mark.q1<<",\"large_pages\":"<<(pages?"true":"false")<<",\"affinity\":\""<<(mark.affinity?"PASS":"FAIL")<<"\",\"sink\":"<<mark.sink<<",\"sink_verified\":"<<(sink_verified?"true":"false")<<",\"all_workers_concurrent\":true";
-  if(provider=="BW_DRAM")raw<<",\"bytes_per_pass_per_worker\":"<<kBufferBytes;
-  if(provider=="P_instr")raw<<",\"disassembly_qa\":\"PASS\",\"disassembly_sha256\":\""<<disassembly_sha<<"\"";
+  if(provider=="BW_DRAM")raw<<",\"bytes_per_pass_per_worker\":"<<kBufferBytes<<",\"calibration_all_workers\":true,\"calibration_target_seconds\":2.5";
+  if(provider=="P_instr")raw<<",\"disassembly_qa\":\"PASS\",\"disassembly_sha256\":\""<<disassembly_sha<<"\",\"calibration_all_workers\":true,\"calibration_target_seconds\":2.5";
   raw<<",\"status\":\""<<(label=="SMOKE"?"SMOKE_TIMED":"PASS")<<"\"}\n";raw.flush();summary<<"{\"label\":\""<<label<<"\",\"provider\":\""<<provider<<"\",\"cell\":\""<<cell<<"\",\"frontier\":\""<<frontier<<"\",\"replica\":"<<rep<<",\"worker\":"<<worker<<",\"R_common\":"<<r<<",\"t_app_us\":"<<std::fixed<<std::setprecision(3)<<wall_us<<",\"status\":\""<<(label=="SMOKE"?"SMOKE_ONLY":"PASS")<<"\"}\n";summary.flush();
 }
 }

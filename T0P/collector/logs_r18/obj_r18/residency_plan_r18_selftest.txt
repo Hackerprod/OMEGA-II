@@ -1,0 +1,9 @@
+RESIDENCY_PLAN_R18_QA PASS
+qualification_units=72 selection=11718 comparison=6696 winner_slots=OMEGA,ggml_winner,Torch_winner PASS
+residency conditions=420 calibration_units=140 W_replica_blocks=496 AA_pairs=124 PASS
+segments=qualification:6 residency:31 (16 W blocks per replica segment) indivisible_unit_boundaries=PASS
+events=32102 order_sha256=7fabbe0f85660d2e7215701693cebf9f1452d5fd41c47dbffb431cc449181330 plan_sha256=b397c17102f7bf06b748c18f641aa82f98a1bd514bc785dc87472aa28bb7524d
+mutations=duplicate=REJECTED,missing=REJECTED,reordered=REJECTED,AA_pair_separated=REJECTED,replica_W_split=REJECTED,BW_DRAM_segment_mismatch=REJECTED multiplicity_order_AA_adjacency=PASS
+S25-C=PASS 31_replica_orders hash=PASS 16_unique_W_per_segment=PASS pause_only_between_replica_segments=PASS
+OP4=PASS BW_DRAM+H-KQ+Dprime planned in one Q segment; auxiliary_events=372
+smoke_N3=PASS complete_W288_replica_blocks=3 calibration=60 residency=180 AA=24 segments=R01,R02,R03

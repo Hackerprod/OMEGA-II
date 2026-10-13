@@ -471,7 +471,7 @@ def self_test(out: Path) -> list[str]:
     lines = ["RESIDENCY_PLAN_R16_QA PASS",
              "qualification_units=72 selection=11718 comparison=6696 winner_slots=OMEGA,ggml_winner,Torch_winner PASS",
              "residency conditions=420 calibration_units=140 W_replica_blocks=496 AA_pairs=124 PASS",
-             "segments=qualification:6 residency:31 indivisible_unit_boundaries=PASS",
+             "segments=qualification:6 residency:16 (31 blocks_per_segment) indivisible_unit_boundaries=PASS",
              f"events={plan['event_count']} order_sha256={plan['order_sha256']} plan_sha256={plan['sha256']}",
              "mutations=" + ",".join(cases) + " multiplicity_order_AA_adjacency=PASS",
              "smoke_N3=PASS complete_W288_replica_blocks=3 calibration=60 residency=180 AA=24 same_segment=true"]

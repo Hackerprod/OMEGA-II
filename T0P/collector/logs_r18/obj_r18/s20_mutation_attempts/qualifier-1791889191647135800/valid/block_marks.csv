@@ -1,0 +1,2 @@
+sample_id,p_core,replica,condition,t_pad_ini,t_ini,t_fin,t_pad_fin,worker_lp,comparison_set,clock_domain
+fixture-1,0,1,fixture-condition,250000,500000,1500000,1750000,0,,qpc_ticks

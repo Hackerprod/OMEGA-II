@@ -1,0 +1,1 @@
+{"acquisition_evidence_sha256":null,"phase":"residency","reason":"acquisition_adapter_error:GateError:acquisition_process_failed:residency:exit=1:HARNESS_R18_ERROR D9_INSTRUMENTATION_OVERHEAD_GT_1_PERCENT:event=residency|architecture|B|m8|K1|W288|O1024|r1:fraction=0.010413 measurements_label=SMOKE numeric_metrics_used=false\n","retry_reason":null,"status":"HOLD_INSTRUMENTATION"}

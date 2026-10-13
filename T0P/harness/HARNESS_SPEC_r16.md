@@ -2,45 +2,36 @@
 
 ## Alcance
 
-`harness_r16.exe` implementa la adquisición SMOKE S-19/S-23 para una celda (`W=288`, `O=1024`, `m=1`, `K=16`), tres réplicas A/B/C y tres pares A/A. No lanza la sesión oficial. El plan completo y sus IDs están en `collector/residency_plan_r16.py`: 420 condiciones y 31 réplicas.
+`harness_r16.exe` es el ejecutable integrado de adquisición S-24. `build_r16.cmd` enlaza kernel, common, mapa de topología, residencia, expulsión, proveedores OMEGA/ggml/Torch (fronteras prepared y dynamic), BW_DRAM y P_instr. No modifica los árboles fuente de kernel, evict ni validator. Todos los binarios y salidas de ejecución viven bajo `T0P/harness/logs_r16/obj_r16` o `T0P/collector/logs_r16/obj_r16`.
 
-La entrada integrada `--official` delega al orquestador R16; sin AUTH válido falla cerrado antes de medir. `--synthetic-self-test` recorre la máquina de fases con lector/harness sintéticos etiquetados, y `--qa-r16` ejecuta QA del kernel sin abrir sesión.
+La entrada `--acquire-r16` implementa las fases preflight, QA/instrumentos/expulsión, cualificación, residencia, controles finales y derivación/veredicto. Cada fase valida la identidad del plan, topología y hash de la evidencia previa inmediata antes de producir su propio registro. `--synthetic-self-test` prueba el corte de transiciones; `--plan-qa-r16`, `--provider-qa-r16`, `--instrument-qa-r16` y `--qa-r16` son pruebas etiquetadas, no resultados científicos. `--official` requiere una sesión autorizada y no se usa en smoke.
 
-## Construcción y ejecución
+## Construcción y pruebas
 
-- Construir: `T0P\harness\build_r16.cmd`; genera `logs_r16\obj_r16\harness_r16.exe` y enlaza `T0P\evict\evict.cpp/.hpp` sin modificarlos.
-- Smoke integral: `T0P\harness\run_residency_smoke_r16.ps1 -AttemptName <nombre-nuevo>`; prepara D13, EMON `-collect-edp` continuo, ejecuta el harness, espera el cierre normal de EMON, llama al único validador S-20 y al derivador.
-- Harness directo: `harness_r16.exe --residency-smoke-r16 <directorio> <schedule.tsv>`.
-- QA kernel: `harness_r16.exe --qa-r16`.
-- Cadena sintética: `harness_r16.exe --synthetic-self-test`.
+- Construcción: `T0P\\harness\\build_r16.cmd`.
+- Plan y orden: `python -B T0P\\collector\\residency_plan_r16.py self-test`.
+- QA de plan ejecutable: `harness_r16.exe --plan-qa-r16 <plan> <schedule>`.
+- QA integrado de proveedores/kernel: `harness_r16.exe --provider-qa-r16` y `harness_r16.exe --qa-r16`.
+- Cualificación auxiliar: `harness_r16.exe --instrument-qa-r16 <obj_r16> <disassembly.json>`.
+- Smoke real con EMON: `T0P\\harness\\run_residency_smoke_r16.ps1 -AttemptName <nombre>`; exige al menos 4 GiB libres en C:, impone tope de 1 GiB por intento y detiene EMON de forma controlada tras la adquisición.
+- Pruebas de gate: `python -B T0P\\collector\\official_run_r16.py --self-test`.
 
-El entry integrado invoca `t0common::enable_large_page_privilege()` antes de delegar a Python. Si Windows deniega el privilegio o la asignación de páginas grandes falla, devuelve un HOLD con el error del sistema y no registra medidas válidas.
+La entrada habilita `SeLockMemoryPrivilege` en su propio token antes de reservar páginas grandes. Los ocho workers P se enlazan al mapa de topología; el coordinador queda en otro LP. Se registra y comprueba la correspondencia worker→LP, incluidos los LP observados por cada aplicación. La calibración TSC restaura la afinidad del coordinador y no cambia IRQ.
 
-## Buffers y condiciones
+## Contrato de residencia
 
-- A y C comparten los mismos objetos `PackedWeights` vivos: dirección, longitud, SHA-256 y `region_instance_id` quedan registrados por worker. No se crea una copia A/C para el tratamiento.
-- B reserva K copias independientes por worker y verifica que no se solapen y que tengan los mismos bytes antes de medir.
-- Las activaciones y pesos se preparan antes de los episodios; A/B/C expulsan mediante la primitiva enlazada `omega_evict::evict_range_record`.
-- S-12 valida las salidas de los workers y las huellas verifican igualdad de bytes para A/C y observaciones A/A.
+El ejecutable lee el plan oficial y el schedule completo suministrado. Comprueba hash, IDs, orden, fases, multiplicidad y adyacencia de unidades A/B/C, pares A/A y bloques completos. Un grupo A/B/C y cada par A/A se ejecutan sin pausas entre componentes; el orden interno procede de la semilla congelada. Las condiciones de A y C reutilizan por worker el mismo buffer vivo de pesos y las mismas regiones de activación; B comprueba K buffers disjuntos. Las variantes despachan el proveedor efectivo por worker y frontera.
 
-## Temporización y expulsión
+La ruta adquirida calibra R antes de medir y fija el mismo R para A/B/C durante N=31. Cada dispatch agrupa sus repeticiones en el worker, con buffers de evidencia preasignados y sin callback atómico por línea. Por muestra se verifica la región continua de condición (objetivo 2,5 s, mínimo 2,0 s), kernel-only por worker (objetivo 150 ms, mínimo 100 ms), intercambio del coordinador ≤1 %, márgenes pre/post ≥0,200 s, sink y timestamps QPC/TSC enteros. No se añade espera ni trabajo sintético para rellenar duración.
 
-Cada aplicación registra `start_tsc`, `end_tsc`, `start_qpc`, `end_qpc` y `t_app_us`; cada episodio conserva límites QPC/TSC y número de episodio. El sampler registra QPC antes/después y FILETIME. Cada observación de residencia tiene margen pre y post de la misma condición ≥0.200 s, con carga continua. R se duplica hasta que los eventos A/B/C del mismo `W,m,K` alcancen 2.5 s agregados de kernel; A/B/C usan el mismo R.
+La expulsión medida usa solo `omega_evict::evict_range` y las regiones de pesos; la QA de instrumentación se adquiere en fase separada. Las llamadas observadas se contrastan con variante, K y R. Los hashes, persistencia y serialización se escriben fuera de las ventanas medidas. El mismo mapa de topología se entrega a workers, proveedores, QA y validadores.
 
-La única primitiva de expulsión invocada es `omega_evict::evict_range_record`. Cada episodio deja `eviction_manifest_r16.jsonl` con método, llamadas observadas/esperadas y líneas expulsadas. Los contadores separan rangos de pesos y activaciones y fallan ante discrepancias. Las fuentes R16 no contienen rutina paralela de flush/expulsión.
+## BW_DRAM y P_instr
 
-## D13 y artefactos
+BW_DRAM barre el buffer contiguo de 256 MiB en secuencia desenrollada ×4 con ocho workers concurrentes; la fase adquirida registra páginas, sink, calentamiento, calibración y duración por worker. P_instr adquiere nueve variantes, N=31 en cualificación completa, conserva el desensamblado y exige calibración de duración para todos los workers. Los datos auxiliares de smoke llevan `numeric_metrics_used=false`.
 
-`telemetry_r16.py prepare` crea un intento D13 nuevo mediante `CREATE_NEW`, copia plan, schedule y EDP y registra hashes. Los crudos se cierran y sellan al terminar harness/EMON; el validador único escribe su resultado sin reescribir el original. `derive()` solo escribe salidas derivadas en el intento.
+## Salidas y límites
 
-Crudos principales: eventos, episodios, calibraciones R, márgenes, bloqueos, mapa de reloj, manifiesto de expulsión, raw/stderr EMON, stdout/stderr del harness, plan, schedule y `events.edp`. Toda ejecución SMOKE lleva `numeric_metrics_used=false`.
+Los JSON/JSONL incluyen eventos, episodios por worker, calibración, marcas y márgenes, reloj, afinidades, manifiesto de expulsión, configuración efectiva de providers y hashes. El runner cierra EMON con `emon -stop`, guarda QPC del proceso padre y rechaza capturas ausentes o de 1 GiB o más; el footer EMON es diagnóstico.
 
-En la corrida R16 del 2026-10-12: el harness N=3 pasó y D9 fue PASS; EMON terminó con footer completo tras 144,000 grupos. S-20 rechazó la captura por `FREQ_WINDOW_EXCURSION` y el derivador informó `SMOKE_ONLY` con unión de 18/13,688 eventos. La adquisición se conserva como prueba de cadena, no como resultado adjudicable.
-
-## Pruebas reproducibles
-
-- `python -B T0P\collector\residency_plan_r16.py self-test`
-- `python -B T0P\collector\qualify_r16.py --self-test`
-- `python -B T0P\collector\telemetry_r16.py self-test`
-- `python -B T0P\collector\residency_derive_r16.py self-test`
-- `rg -n 'flush_region|CLFLUSH|clflush|clflushopt|_mm_clflush|evict_weights_regions_record' T0P\harness\residency_r16.cpp T0P\harness\main_r16.cpp T0P\harness\harness_r16.hpp T0P\harness\provider_common_r16.hpp` (sin coincidencias).
+El smoke usa el plan congelado, N=3 y etiqueta `SMOKE`; no autoriza resultados numéricos ni una sesión oficial. Las fases de revalidación D8 desde crudos y derivación D11 dependen del validador/derivador, pendientes D10/D11. AUTH real, sesión oficial, ensayo de 36 bloques y estimación permanecen fuera de esta ejecución.

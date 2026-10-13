@@ -1,0 +1,1 @@
+{"acquisition_evidence_sha256":"2cd3cc9167b9c69e9c4eeb04245b9b210ac6cd821ecda6eff01e316058adc38b","large_pages":true,"phase":"preflight","plan_sha256":"b397c17102f7bf06b748c18f641aa82f98a1bd514bc785dc87472aa28bb7524d","qpc_hz":10000000,"status":"PASS","topology_map_sha256":"07bdddbecb69616304f25e247287239ea800be7dff8936671c4f08e88b702a59","worker_lps":[0,2,4,6,8,10,12,14]}

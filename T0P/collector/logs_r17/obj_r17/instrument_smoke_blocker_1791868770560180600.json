@@ -1,0 +1,1 @@
+{"attempt_bytes":30439850,"capture_bytes":87697,"controlled_emon_stop":true,"reason":"GateError:instrument_qualification_acquisition_exit=3:INSTRUMENT_QUALIFICATION_R17 HOLD_INSTRUMENTATION_QUALIFICATION reason=schedule_row_field_count_invalid measurements_started=possible\n","state":"SMOKE_BLOCKED_OR_FAILED"}

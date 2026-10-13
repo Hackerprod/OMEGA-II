@@ -1,0 +1,22 @@
+OFFICIAL_RUN_R18_SYNTHETIC_QA PASS
+D14_authorization=PASS field_mutations_rejected=40 phases=6 retry_budget=global_one
+D10_postprocess=PASS missing_governing_preflight_fails_closed
+D1_positive=PASS calls=preflight,QA+instrumentos+expulsion,qualification,residency,D8,derivation
+D1_injection=PASS FALLIDA_CUALIFICACION -> automatic_cut STOP; residency_adapter_calls=0
+D1_injection=PASS QA/instrument HOLD -> qualification/residency adapter calls=0
+D1_injection=PASS qualification HOLD -> residency adapter calls=0
+D14_runtime_retry=PASS typed=DURATION_INSUFFICIENT,FREQUENCY_UNSTABLE,TELEMETRY_TRANSIENT_LOSS,EMON_TRANSIENT_LOSS adapter_observed=qualification_attempt_1+technical_retry_01 planned_pause_consumes=0
+D14_second_hold=PASS retry_budget_exhausted final_state=HOLD_INSTRUMENTATION
+D14_scientific_fail=PASS FALLIDA_CUALIFICACION retries=0
+D1_smoke=PASS minimum qualification diagnostic cut -> one complete residency slice; no final controls
+D8_negative=H2_over_0_10 HOLD PASS
+D8_negative=H3_over_0_10 HOLD PASS
+D8_negative=denominator_under_10000 HOLD PASS
+D8_negative=missing_LP HOLD PASS
+D8_negative=capture_window_mismatch HOLD PASS
+D8_negative=numerator_denominator_window_mismatch HOLD PASS
+D8_negative=cold_ratio_below_1_50 HOLD PASS
+D8_negative=cold_LLC_miss_below_0_90 HOLD PASS
+OP1_positive=PASS cold_M3/OFFCORE=0.996 (cold LLC misses >= 0.90)
+OP1_negative=HOLD cold_M3/OFFCORE=0.001 (cold LLC hit >= 0.90) rejected
+D8_Q_R=PASS different capture IDs accepted; IDs equal only within each capture/scope

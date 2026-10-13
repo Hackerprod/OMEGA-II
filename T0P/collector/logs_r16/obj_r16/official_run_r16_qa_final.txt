@@ -1,0 +1,12 @@
+OFFICIAL_RUN_R16_SYNTHETIC_QA PASS
+D1_positive=PASS calls=preflight,QA+instrumentos+expulsion,qualification,residency,D8,derivation
+D1_injection=PASS FALLIDA_CUALIFICACION -> automatic_cut STOP; residency_adapter_calls=0
+D1_injection=PASS QA/instrument HOLD -> qualification/residency adapter calls=0
+D8_negative=H2_over_0_10 HOLD PASS
+D8_negative=H3_over_0_10 HOLD PASS
+D8_negative=denominator_under_10000 HOLD PASS
+D8_negative=missing_LP HOLD PASS
+D8_negative=capture_window_mismatch HOLD PASS
+D8_negative=numerator_denominator_window_mismatch HOLD PASS
+D8_negative=cold_ratio_below_1_50 HOLD PASS
+D8_Q_R=PASS different capture IDs accepted; IDs equal only within each capture/scope

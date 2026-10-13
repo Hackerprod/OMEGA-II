@@ -1,0 +1,33 @@
+QUALIFIER_R18_SYNTHETIC_QA PASS
+case=all_pass state=QUALIFIED_FOR_RESIDENCY campaign=OPEN residency=NOT_STARTED PASS
+case=G_ggml_below state=FALLIDA_CUALIFICACION campaign=CLOSED_Q4_256_THIS_I7 residency=NOT_STARTED PASS
+case=G_Torch_below state=FALLIDA_CUALIFICACION campaign=CLOSED_Q4_256_THIS_I7 residency=NOT_STARTED PASS
+case=H_KQ_median_below state=FALLIDA_CUALIFICACION campaign=CLOSED_Q4_256_THIS_I7 residency=NOT_STARTED PASS
+case=H_KQ_worker_below state=FALLIDA_CUALIFICACION campaign=CLOSED_Q4_256_THIS_I7 residency=NOT_STARTED PASS
+case=D_prime_below state=FALLIDA_CUALIFICACION campaign=CLOSED_Q4_256_THIS_I7 residency=NOT_STARTED PASS
+case=P_instr_unqualified state=HOLD_INSTRUMENTATION campaign=HOLD residency=NOT_STARTED PASS
+case=instrument_invalid state=HOLD_INSTRUMENTATION campaign=HOLD residency=NOT_STARTED PASS
+D3_fixture reference_selection=8 comparison=10 omega=10 G=0.80 gate=FAIL PASS
+D3_existing_fixture OMEGA=100 Torch=80 G_Torch=0.80 gate=FAIL PASS
+D3_selection samples=31 comparison_samples=31 reused=false selected_reference_time_us=8 PASS
+official_fixture all_gates state=QUALIFIED_FOR_RESIDENCY G_pairs=144 PASS
+D3_team_interval team_MAC_per_ns=97.997757 worker_median=13.107200 interval=107000_TSC_ticks PASS
+D3_worker_to_LP=PASS single-worker LP permutation rejected
+D3_unit_R=PASS R/calibration/order/map mismatch across candidates rejected
+D4_fixture prepared_O1024_m1=FAIL dynamic_and_m8=PASS governing=prepared_8P_m1 FAIL PASS
+D4_counterexample governing_prepared_m1=32.768 dynamic_m1=52.429 prepared_m8=419.430 MAC_per_call=512*O*m PASS
+D4_real_work_formula m1=524288,m4=2097152,m8=4194304,m16=8388608 PASS
+D5_fixture mutated_bytes_per_pass=256MiB-64 state=HOLD_INSTRUMENTATION reason=BW_DRAM_BYTES_PER_PASS_NOT_256_MIB PASS
+D6_plateau_valid=PASS contrasts=12/U8:14/U8,12/U16:12/U8,14/U16:14/U8
+D6_counterexample p12U8=.98 p14U8=1 p12U16=1.02 p14U16=1 => HOLD on 12/U16:12/U8 PASS
+D3_missing_mandatory_candidate state=HOLD_INSTRUMENTATION FAIL_CLOSED PASS
+strict_json case=duplicate_key rejected=PASS
+strict_json case=nan rejected=PASS
+strict_json case=overflow rejected=PASS
+strict_json case=trailing rejected=PASS
+S20_control D13_new_attempt=PASS validator=S20-R2-v1 state=VALID PASS
+D13_immutability derive_overwrite=refused raw_sha_unchanged=true attempt_reuse=refused PASS
+S20_mutation actual_field=f_tsc_qpc_hz plus=2% input_label=VALID rejected=true reason=S20_TSC_QPC_DISAGREEMENT PASS
+S20_mutation actual_field=EMON_windows retained=1/100 input_label=VALID rejected=true reason=S20_CACHE_DENOM_ZERO_CHANNEL_VALUE_MISSING_COVERAGE_LOW_ENERGY_VALUE_INVALID_GAP_TOO_LARGE_THERMAL_READING_INVALID PASS
+D10_S20_FULL=PASS raw_D13_validation=VALID groups=2 actual_conditions=alpha,beta replicas=2 each PASS
+D10_raw_mutation REF_TSC_first_LP=125000000->121000000 raw_LABEL=VALID rejected=true reason=S20_ACTIVITY_FACTOR_OUT_OF_RANGE_FREQ_WINDOW_EXCURSION PASS

@@ -1,0 +1,13 @@
+PROCESS_PRIVILEGE_R18 SeLockMemoryPrivilege=ENABLED
+BW_DRAM_QA bytes=268435456 cache_lines=4194304 sequential_contiguous=true unroll=4 loads_each_line=2 last_cacheline_mutations_caught=4/4 modular_sink=PASS
+AUX_MEASURE provider=P_instr chains=1 U=8 N=3 warmup=5 R_common=536870912 frontier=same-load-margins label=SMOKE metrics_used=false
+AUX_MEASURE provider=P_instr chains=2 U=8 N=3 warmup=5 R_common=536870912 frontier=same-load-margins label=SMOKE metrics_used=false
+AUX_MEASURE provider=P_instr chains=4 U=8 N=3 warmup=5 R_common=536870912 frontier=same-load-margins label=SMOKE metrics_used=false
+AUX_MEASURE provider=P_instr chains=8 U=8 N=3 warmup=5 R_common=536870912 frontier=same-load-margins label=SMOKE metrics_used=false
+AUX_MEASURE provider=P_instr chains=10 U=8 N=3 warmup=5 R_common=536870912 frontier=same-load-margins label=SMOKE metrics_used=false
+AUX_MEASURE provider=P_instr chains=12 U=8 N=3 warmup=5 R_common=268435456 frontier=same-load-margins label=SMOKE metrics_used=false
+AUX_MEASURE provider=P_instr chains=12 U=16 N=3 warmup=5 R_common=134217728 frontier=same-load-margins label=SMOKE metrics_used=false
+AUX_MEASURE provider=P_instr chains=14 U=8 N=3 warmup=5 R_common=268435456 frontier=same-load-margins label=SMOKE metrics_used=false
+AUX_MEASURE provider=P_instr chains=14 U=16 N=3 warmup=5 R_common=134217728 frontier=same-load-margins label=SMOKE metrics_used=false
+AUX_MEASURE provider=BW_DRAM bytes_per_worker=268435456 quarters=4 loads=4x256bit_per_iteration coverage=full sink=verified R_common=128 N=3 large_pages=PASS label=SMOKE metrics_used=false
+ACQUIRE_R18 phase=qualification state=SMOKE_ONLY plan_sha256=b397c17102f7bf06b748c18f641aa82f98a1bd514bc785dc87472aa28bb7524d topology_map_sha256=07bdddbecb69616304f25e247287239ea800be7dff8936671c4f08e88b702a59 previous_evidence=VERIFIED

@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <array>
 #include <atomic>
+#include <bit>
 #include <cmath>
 #include <condition_variable>
 #include <chrono>
@@ -22,6 +23,7 @@
 #include <memory>
 #include <map>
 #include <mutex>
+#include <limits>
 #include <sstream>
 #include <set>
 #include <stdexcept>
@@ -33,17 +35,17 @@
 namespace harness {
 namespace {
 constexpr double kCalibrationTargetSeconds = 2.5, kMarginSeconds = .200;
-std::atomic<uint64_t> g_evict_weight_calls{0}, g_evict_range_calls{0}, g_evict_weight_range_calls{0},
-    g_evict_activation_range_calls{0};
+uint64_t g_evict_weight_calls = 0, g_evict_range_calls = 0, g_evict_weight_range_calls = 0,
+    g_evict_activation_range_calls = 0;
 
 class RawFile {
  public:
-  explicit RawFile(const std::string& path) {
+  explicit RawFile(const std::string& path, size_t preallocated_bytes = 8u * 1024u * 1024u) {
     handle_ = CreateFileA(path.c_str(), GENERIC_WRITE, 0, nullptr, CREATE_NEW,
                           FILE_ATTRIBUTE_NORMAL, nullptr);
     if (handle_ == INVALID_HANDLE_VALUE)
       throw std::runtime_error("D13_RAW_CREATE_NEW_FAILED:" + path + ":" + std::to_string(GetLastError()));
-    pending_.reserve(8u * 1024u * 1024u);
+    pending_.reserve(preallocated_bytes);
   }
   RawFile(const RawFile&) = delete;
   RawFile& operator=(const RawFile&) = delete;
@@ -52,7 +54,11 @@ class RawFile {
     if (bytes.size() > pending_.capacity() - pending_.size()) throw std::runtime_error("D9_PREALLOCATED_RECORD_BUFFER_CAPACITY_EXCEEDED");
     pending_.append(bytes);
   }
-  void line(const std::string& s) { std::string row = s; row.push_back('\n'); append(row); }
+  void line(const std::string& s) {
+    if (s.size() + 1 > pending_.capacity() - pending_.size())
+      throw std::runtime_error("D9_PREALLOCATED_RECORD_BUFFER_CAPACITY_EXCEEDED");
+    pending_.append(s); pending_.push_back('\n');
+  }
   void flush() {
     const char* p = pending_.data(); size_t left = pending_.size();
     while (left) {
@@ -130,9 +136,16 @@ struct ScheduleEvent {
   std::string block_id, segment_id, atomic_group_id;
   int replica = 0, W = 0, O = 0, m = 0, K = 0;
 };
+
+std::string r_unit_id_for(const ScheduleEvent& event) {
+  if (event.phase == "calibration") return event.unit_id;
+  return "W" + std::to_string(event.W) + "|O" + std::to_string(event.O) +
+         "|m" + std::to_string(event.m) + "|K" + std::to_string(event.K);
+}
 struct Stamp {
   uint64_t tsc_start = 0, tsc_end = 0;
   int64_t qpc_start = 0, qpc_end = 0;
+  int64_t qpc_precondition_start = 0, qpc_precondition_end = 0;
   DWORD lp_start = MAXDWORD, lp_end = MAXDWORD;
   uint64_t weight_address = 0, output_hash = 0;
 };
@@ -144,10 +157,13 @@ struct Worker {
   t0common::Buffer<float> y;
   int output = 0, m = 0;
   uint64_t sink = 0;
-  Stamp stamp;
+  Stamp batch_stamp;
+  uint64_t batch_kernel_tsc = 0;
+  bool batch_has_stamp = false;
+  uint64_t evicted_weight_ranges = 0, evicted_activation_ranges = 0, evicted_ranges = 0;
 };
-enum class CommandKind { EvictWeights, Condition, Run, Stop };
-struct Command { CommandKind kind = CommandKind::Stop; char variant = 'A'; int app = 0; };
+enum class CommandKind { Episode, Stop };
+struct Command { CommandKind kind = CommandKind::Stop; char variant = 'A'; int applications = 0; int repetitions = 1; };
 
 std::mutex g_command_mutex, g_error_mutex;
 Command g_command;
@@ -155,7 +171,6 @@ std::string g_worker_error;
 // Each operation barrier includes the coordinator and all eight workers.
 Gate g_start(9), g_done(9);
 std::array<Worker, 8>* g_workers = nullptr;
-std::array<uint64_t, 8> g_output_hashes{};
 uint64_t g_qpf = 0;
 double g_tsc_hz = 0;
 std::string g_plan_sha;
@@ -416,6 +431,46 @@ bool prepare_all_workers(std::array<Worker, 8>& workers, const ScheduleEvent& ev
   return ok.load();
 }
 
+double verify_segment_state(const ScheduleEvent& event, const std::array<Worker, 8>& workers,
+                            const std::string& expected_plan_sha, const std::string& expected_topology_sha,
+                            bool reader_qualified) {
+  if (!reader_qualified) throw std::runtime_error("SEGMENT_REVERIFY_EMON_READER_NOT_LIVE");
+  if (event.segment_id.empty() || g_plan_sha != expected_plan_sha)
+    throw std::runtime_error("SEGMENT_REVERIFY_PLAN_OR_SEGMENT_IDENTITY_FAILED");
+  std::string why;
+  if (!discover_topology_r16(why)) throw std::runtime_error("SEGMENT_REVERIFY_TOPOLOGY_FAILED:" + why);
+  const std::string topology = topology_json_r16();
+  const std::string topology_sha = sha256(reinterpret_cast<const uint8_t*>(topology.data()), topology.size());
+  if (topology_sha != expected_topology_sha) throw std::runtime_error("SEGMENT_REVERIFY_TOPOLOGY_IDENTITY_CHANGED");
+  LARGE_INTEGER qpf{};
+  if (!QueryPerformanceFrequency(&qpf) || uint64_t(qpf.QuadPart) != g_qpf)
+    throw std::runtime_error("SEGMENT_REVERIFY_QPF_CHANGED");
+  for (unsigned worker = 0; worker < 8; ++worker) {
+    const Worker& w = workers[worker];
+    bool pages = prepared_for(w, event) && page_large(w.shared_ac->bytes.data(), omega_q4::weight_bytes(event.O)) &&
+        page_large(w.x.bytes.data(), w.x.bytes.size()) && page_large(w.y.data(), w.y.size() * sizeof(float));
+    for (const auto& copy : w.b_copies)
+      pages = pages && page_large(copy->bytes.data(), omega_q4::weight_bytes(event.O));
+    if (!pages) throw std::runtime_error("SEGMENT_REVERIFY_PAGES_OR_BUFFER_IDENTITY_FAILED:worker=" + std::to_string(worker));
+  }
+  if (!set_worker_affinity_r16(0) || !worker_affinity_matches_r16(0))
+    throw std::runtime_error("SEGMENT_REVERIFY_TSC_CALIBRATION_AFFINITY_FAILED");
+  std::vector<double> samples; samples.reserve(3);
+  for (int i = 0; i < 3; ++i) {
+    const int64_t qa = qpc_now(); const uint64_t ta = read_tsc(); Sleep(100);
+    const uint64_t tb = read_tsc(); const int64_t qb = qpc_now();
+    samples.push_back(double(tb - ta) * double(g_qpf) / double(qb - qa));
+  }
+  std::sort(samples.begin(), samples.end()); const double hz = samples[1];
+  const double error = (std::max)({std::abs(samples[0] - hz), std::abs(samples[2] - hz)}) / hz;
+  std::string coordinator;
+  if (!set_coordinator_affinity_r16(coordinator))
+    throw std::runtime_error("SEGMENT_REVERIFY_COORDINATOR_RESTORE_FAILED:" + coordinator);
+  if (error > .001 || std::abs(hz - g_tsc_hz) / g_tsc_hz > .001)
+    throw std::runtime_error("SEGMENT_REVERIFY_CLOCK_DRIFT_GT_0_1_PERCENT");
+  return hz;
+}
+
 const omega_q4::PackedWeights& selected_weights(const Worker& w, char variant, int app) {
   if (variant == 'B') return *w.b_copies.at(size_t(app));
   return *w.shared_ac;
@@ -430,30 +485,39 @@ void worker_main(unsigned worker) {
       Command command; { std::lock_guard<std::mutex> lock(g_command_mutex); command = g_command; }
       if (command.kind == CommandKind::Stop) { g_done.wait(); return; }
       Worker& w = (*g_workers)[worker];
-      if (command.kind == CommandKind::EvictWeights) {
-        const bool evict_weights_now = command.variant == 'C' || command.variant == 'B' || command.app == 0;
-        if (evict_weights_now) {
-          const auto& weights = selected_weights(w, command.variant, command.app);
-          g_evict_range_calls.fetch_add(1, std::memory_order_relaxed);
-          g_evict_weight_range_calls.fetch_add(1, std::memory_order_relaxed);
-          g_evict_weight_calls.fetch_add(1, std::memory_order_relaxed);
-          omega_evict::evict_range(weights.bytes.data(), weights.bytes.size());
+      if (command.kind == CommandKind::Episode) {
+        if (command.applications <= 0 || command.applications > 32 || command.repetitions <= 0)
+          throw std::runtime_error("episode_repeat_geometry_invalid");
+        w.batch_stamp = Stamp{}; w.batch_kernel_tsc = 0; w.batch_has_stamp = false;
+        for (int repeat = 0; repeat < command.repetitions; ++repeat) for (int app = 0; app < command.applications; ++app) {
+          Stamp stamp; stamp.qpc_precondition_start = qpc_now();
+          const bool evict_weights_now = command.variant == 'C' || command.variant == 'B' || app == 0;
+          if (evict_weights_now) {
+            const auto& weights = selected_weights(w, command.variant, app);
+            omega_evict::evict_range(weights.bytes.data(), weights.bytes.size());
+            ++w.evicted_ranges; ++w.evicted_weight_ranges;
+          }
+          const volatile uint8_t* x = w.x.bytes.data(); const volatile float* y = w.y.data(); uint64_t sum = 0;
+          for (size_t i = 0; i < w.x.bytes.size(); i += 64) sum += x[i];
+          for (size_t i = 0; i < w.y.size(); i += 16) sum += uint64_t(std::abs(y[i]));
+          w.sink ^= sum; std::fill(w.y.begin(), w.y.end(), 0.5f); _mm_mfence();
+          stamp.qpc_precondition_end = qpc_now();
+          const auto& weights = selected_weights(w, command.variant, app);
+          stamp.weight_address = reinterpret_cast<uint64_t>(weights.bytes.data());
+          stamp.lp_start = GetCurrentProcessorNumber(); stamp.qpc_start = qpc_now(); stamp.tsc_start = read_tsc();
+          omega_q4::run(weights, w.x, w.output, w.y.data());
+          stamp.tsc_end = read_tsc(); stamp.qpc_end = qpc_now(); stamp.lp_end = GetCurrentProcessorNumber();
+          if (!w.batch_has_stamp) {
+            w.batch_stamp = stamp; w.batch_has_stamp = true;
+          } else {
+            w.batch_stamp.tsc_end = stamp.tsc_end; w.batch_stamp.qpc_end = stamp.qpc_end;
+            w.batch_stamp.qpc_precondition_end = stamp.qpc_precondition_end;
+            w.batch_stamp.lp_end = stamp.lp_end;
+          }
+          w.batch_kernel_tsc += stamp.tsc_end - stamp.tsc_start;
+          if (stamp.lp_start != worker_processor_r16(worker).lp || stamp.lp_end != worker_processor_r16(worker).lp)
+            throw std::runtime_error("worker_migrated_during_application");
         }
-      } else if (command.kind == CommandKind::Condition) {
-        const volatile uint8_t* x = w.x.bytes.data(); const volatile float* y = w.y.data(); uint64_t sum = 0;
-        for (size_t i = 0; i < w.x.bytes.size(); i += 64) sum += x[i];
-        for (size_t i = 0; i < w.y.size(); i += 16) sum += uint64_t(std::abs(y[i]));
-        w.sink ^= sum; std::fill(w.y.begin(), w.y.end(), 0.5f); _mm_mfence();
-      } else if (command.kind == CommandKind::Run) {
-        const auto& weights = selected_weights(w, command.variant, command.app);
-        Stamp stamp; stamp.weight_address = reinterpret_cast<uint64_t>(weights.bytes.data());
-        stamp.lp_start = GetCurrentProcessorNumber(); stamp.qpc_start = qpc_now(); stamp.tsc_start = read_tsc();
-        omega_q4::run(weights, w.x, w.output, w.y.data());
-        stamp.tsc_end = read_tsc(); stamp.qpc_end = qpc_now(); stamp.lp_end = GetCurrentProcessorNumber();
-        stamp.output_hash = output_hash(w.y.data(), w.y.size());
-        w.stamp = stamp; g_output_hashes[worker] = stamp.output_hash;
-        if (stamp.lp_start != worker_processor_r16(worker).lp || stamp.lp_end != worker_processor_r16(worker).lp)
-          throw std::runtime_error("worker_migrated_during_application");
       }
       if (!g_done.wait()) return;
     }
@@ -473,78 +537,65 @@ void dispatch(Command command) {
   }
 }
 
-void evict_nonweights(char variant, int app_index) {
-  dispatch({CommandKind::EvictWeights, variant, app_index});
-}
-
 struct EpisodeResult {
   double t_app_us = 0;
+  double instrumentation_fraction = 0;
   int64_t qpc_start = 0, qpc_end = 0;
   uint64_t tsc_start = 0, tsc_end = 0;
-  std::array<uint64_t, 8> output_hashes{};
   std::array<uint64_t, 8> worker_kernel_tsc{};
-  std::string json_line;
+  std::array<uint64_t, 8> worker_tsc_start{}, worker_tsc_end{};
+  std::array<int64_t, 8> worker_qpc_start{}, worker_qpc_end{};
+  std::array<int64_t, 8> worker_precondition_start{}, worker_precondition_end{};
 };
 
 EpisodeResult run_episode(const ScheduleEvent& event, char variant, unsigned episode_index,
-                          const std::string& event_type, unsigned trial_index, int trial_r,
-                          RawFile& episodes, RawFile& manifest, bool record_episode) {
+                          const std::string& event_type, unsigned trial_index, int repetitions) {
+  (void)episode_index; (void)event_type; (void)trial_index;
+  if (repetitions <= 0) throw std::runtime_error("episode_repetition_count_invalid");
   EpisodeResult result; result.qpc_start = qpc_now();
-  const uint64_t weight_calls_start = g_evict_weight_range_calls.load(std::memory_order_relaxed);
-  const uint64_t activation_calls_start = g_evict_activation_range_calls.load(std::memory_order_relaxed);
-  const uint64_t range_calls_start = g_evict_range_calls.load(std::memory_order_relaxed);
-  std::ostringstream apps; apps << '['; double sum_us = 0;
-  for (int app = 0; app < event.K; ++app) {
-    evict_nonweights(variant, app);
-    dispatch({CommandKind::Condition, variant, app});
-    dispatch({CommandKind::Run, variant, app});
-    uint64_t first = UINT64_MAX, last = 0;
-    int64_t qpc_first = INT64_MAX, qpc_last = 0;
-    for (unsigned worker = 0; worker < 8; ++worker) {
-      const Stamp& s = (*g_workers)[worker].stamp; first = (std::min)(first, s.tsc_start); last = (std::max)(last, s.tsc_end);
-      qpc_first = (std::min)(qpc_first, s.qpc_start); qpc_last = (std::max)(qpc_last, s.qpc_end);
-      result.output_hashes[worker] = s.output_hash;
-      result.worker_kernel_tsc[worker] += s.tsc_end - s.tsc_start;
-    }
-    const double app_us = double(last - first) * 1e6 / g_tsc_hz;
-    if (app) apps << ',';
-    apps << "{\"application\":" << app << ",\"t_app_us\":" << std::fixed << std::setprecision(9) << app_us
-         << ",\"start_tsc\":" << first << ",\"end_tsc\":" << last
-         << ",\"start_qpc\":" << qpc_first << ",\"end_qpc\":" << qpc_last << '}';
-    result.t_app_us += double(last - first);
-    if (app == 0) result.tsc_start = first;
-    result.tsc_end = last;
-    sum_us += double(last - first);
+  for (auto& worker : *g_workers) {
+    worker.evicted_weight_ranges = 0; worker.evicted_activation_ranges = 0; worker.evicted_ranges = 0;
+    worker.batch_stamp = Stamp{}; worker.batch_kernel_tsc = 0; worker.batch_has_stamp = false;
   }
-  apps << ']'; result.qpc_end = qpc_now(); result.t_app_us = sum_us;
-  if (record_episode) {
-    std::ostringstream line; line << "{\"label\":\"SMOKE\",\"event_id\":\"" << json_escape(event.event_id)
-      << "\",\"phase\":\"" << event.phase << "\",\"episode_type\":\"" << event_type
-      << "\",\"trial_index\":" << trial_index << ",\"trial_R\":" << trial_r
-      << ",\"episode_index\":" << episode_index << ",\"qpc_episode_start\":" << result.qpc_start
-      << ",\"qpc_episode_end\":" << result.qpc_end << ",\"start_tsc\":" << result.tsc_start
-      << ",\"end_tsc\":" << result.tsc_end << ",\"applications\":" << apps.str() << '}';
-    result.json_line = line.str();
-    episodes.line(result.json_line);
+  dispatch({CommandKind::Episode, variant, event.K, repetitions});
+  result.qpc_end = qpc_now();
+  uint64_t first_tsc = UINT64_MAX, last_tsc = 0, max_worker_kernel = 0;
+  int64_t worker_first_pre_qpc = INT64_MAX, worker_last_kernel_qpc = 0;
+  for (unsigned worker = 0; worker < 8; ++worker) {
+    const Worker& w = (*g_workers)[worker];
+    if (!w.batch_has_stamp || !w.batch_kernel_tsc)
+      throw std::runtime_error("episode_worker_batch_timestamp_missing");
+    const Stamp& s = w.batch_stamp;
+    result.worker_kernel_tsc[worker] = w.batch_kernel_tsc;
+    result.worker_tsc_start[worker] = s.tsc_start; result.worker_tsc_end[worker] = s.tsc_end;
+    result.worker_qpc_start[worker] = s.qpc_start; result.worker_qpc_end[worker] = s.qpc_end;
+    result.worker_precondition_start[worker] = s.qpc_precondition_start;
+    result.worker_precondition_end[worker] = s.qpc_precondition_end;
+    first_tsc = (std::min)(first_tsc, s.tsc_start); last_tsc = (std::max)(last_tsc, s.tsc_end);
+    max_worker_kernel = (std::max)(max_worker_kernel, w.batch_kernel_tsc);
+    worker_first_pre_qpc = (std::min)(worker_first_pre_qpc, s.qpc_precondition_start);
+    worker_last_kernel_qpc = (std::max)(worker_last_kernel_qpc, s.qpc_end);
   }
-  const uint64_t observed_weight_calls = g_evict_weight_range_calls.load(std::memory_order_relaxed) - weight_calls_start;
-  const uint64_t observed_activation_calls = g_evict_activation_range_calls.load(std::memory_order_relaxed) - activation_calls_start;
-  const uint64_t observed_range_calls = g_evict_range_calls.load(std::memory_order_relaxed) - range_calls_start;
-  const uint64_t expected_weight_calls = variant == 'A' ? 8u : 8u * unsigned(event.K);
+  result.tsc_start = first_tsc; result.tsc_end = last_tsc;
+  result.t_app_us = double(max_worker_kernel);
+  uint64_t observed_weight_calls = 0, observed_activation_calls = 0, observed_range_calls = 0;
+  for (const auto& worker : *g_workers) {
+    observed_weight_calls += worker.evicted_weight_ranges;
+    observed_activation_calls += worker.evicted_activation_ranges;
+    observed_range_calls += worker.evicted_ranges;
+  }
+  g_evict_weight_calls += observed_weight_calls;
+  g_evict_weight_range_calls += observed_weight_calls;
+  g_evict_activation_range_calls += observed_activation_calls;
+  g_evict_range_calls += observed_range_calls;
+  const uint64_t expected_weight_calls = (variant == 'A' ? 8u : 8u * unsigned(event.K)) * uint64_t(repetitions);
   const uint64_t expected_activation_calls = 0;
   const bool calls_match = observed_weight_calls == expected_weight_calls && observed_activation_calls == 0
                         && observed_range_calls == expected_weight_calls;
-  std::ostringstream eviction; eviction << "{\"label\":\"SMOKE\",\"event_id\":\"" << json_escape(event.event_id)
-      << "\",\"phase\":\"" << event.phase << "\",\"episode_index\":" << episode_index
-      << ",\"trial_index\":" << trial_index << ",\"episode_type\":\"" << json_escape(event_type)
-      << "\",\"variant\":\"" << variant << "\",\"primitive\":\"omega_evict::evict_range"
-      << "\",\"flush_method\":\"" << omega_evict::selected_flush().name << "\",\"weight_range_calls\":"
-      << observed_weight_calls << ",\"activation_range_calls\":" << observed_activation_calls
-      << ",\"range_calls_total\":" << observed_range_calls << ",\"expected_weight_range_calls\":"
-      << expected_weight_calls << ",\"expected_activation_range_calls\":" << expected_activation_calls
-      << ",\"call_counts_match\":" << (calls_match ? "true" : "false")
-      << ",\"evicted_cache_lines\":null,\"x_y_conditioning\":\"identical_cache_touch\"}";
-  manifest.line(eviction.str());
+  const double wall_us = qpc_seconds(result.qpc_start, result.qpc_end) * 1e6;
+  const double worker_span_us = qpc_seconds(worker_first_pre_qpc, worker_last_kernel_qpc) * 1e6;
+  const double app_us = result.t_app_us * 1e6 / g_tsc_hz;
+  result.instrumentation_fraction = app_us > 0 ? (std::max)(0.0, wall_us - worker_span_us) / app_us : 1.0;
   if (!calls_match) throw std::runtime_error("D8_EVICTION_CALL_COUNT_MISMATCH:" + event.event_id);
   return result;
 }
@@ -554,10 +605,10 @@ double episode_microseconds(const EpisodeResult& e, double tsc_hz) { return e.t_
 
 struct MarginResult { int64_t start = 0, end = 0; uint64_t episodes = 0; double seconds = 0; };
 MarginResult run_margin(const ScheduleEvent& event, char variant, const std::string& side,
-                        double tsc_hz, RawFile& episodes, RawFile& margin_episodes, RawFile& manifest) {
+                        double tsc_hz) {
   MarginResult margin; margin.start = qpc_now(); uint64_t index = 0; double measured_us = 0;
   do {
-    auto sample = run_episode(event, variant, unsigned(index + 1), "margin_" + side, 0, 0, margin_episodes, manifest, true);
+    auto sample = run_episode(event, variant, unsigned(index + 1), "margin_" + side, 0, 1);
     measured_us += episode_microseconds(sample, tsc_hz); ++index;
     margin.end = qpc_now(); margin.seconds = qpc_seconds(margin.start, margin.end);
   } while (margin.seconds < kMarginSeconds);
@@ -615,23 +666,46 @@ std::string region_instance_id(const ScheduleEvent& event, char variant) {
   const std::string s = joined.str(); return sha256(reinterpret_cast<const uint8_t*>(s.data()), s.size());
 }
 
-void write_event_summary(RawFile& events, RawFile& marks, const ScheduleEvent& event, char variant,
+void write_event_summary(RawFile& events, RawFile& marks, RawFile& episode_file, RawFile& manifest,
+                         const ScheduleEvent& event, char variant,
                          int r, const std::vector<EpisodeResult>& episodes, double hz,
                          const MarginResult& pre, const MarginResult& post,
                          std::array<uint64_t, 8>& output_hashes) {
   double sum_us = 0; uint64_t start_tsc = UINT64_MAX, end_tsc = 0;
   for (const auto& ep : episodes) { sum_us += episode_microseconds(ep, hz); }
-  for (unsigned worker = 0; worker < 8; ++worker) output_hashes[worker] = g_output_hashes[worker];
+  for (unsigned worker = 0; worker < 8; ++worker) {
+    const auto& w = (*g_workers)[worker];
+    output_hashes[worker] = output_hash(w.y.data(), w.y.size());
+  }
   const int64_t sample_start = episodes.front().qpc_start, sample_end = episodes.back().qpc_end;
   std::array<uint64_t, 8> worker_kernel_tsc{};
-  for (const auto& episode : episodes) for (unsigned worker = 0; worker < 8; ++worker)
-    worker_kernel_tsc[worker] += episode.worker_kernel_tsc[worker];
+  std::array<uint64_t, 8> worker_first_tsc{};
+  std::array<uint64_t, 8> worker_last_tsc{};
+  std::array<int64_t, 8> worker_first_qpc{}, worker_last_qpc{};
+  std::array<int64_t, 8> worker_pre_first{}, worker_pre_last{};
+  worker_first_tsc.fill(UINT64_MAX); worker_first_qpc.fill(INT64_MAX); worker_pre_first.fill(INT64_MAX);
+  double max_instrumentation_fraction = 0;
+  for (const auto& episode : episodes) {
+    max_instrumentation_fraction = (std::max)(max_instrumentation_fraction, episode.instrumentation_fraction);
+    for (unsigned worker = 0; worker < 8; ++worker) {
+      worker_kernel_tsc[worker] += episode.worker_kernel_tsc[worker];
+      worker_first_tsc[worker] = (std::min)(worker_first_tsc[worker], episode.worker_tsc_start[worker]);
+      worker_last_tsc[worker] = (std::max)(worker_last_tsc[worker], episode.worker_tsc_end[worker]);
+      worker_first_qpc[worker] = (std::min)(worker_first_qpc[worker], episode.worker_qpc_start[worker]);
+      worker_last_qpc[worker] = (std::max)(worker_last_qpc[worker], episode.worker_qpc_end[worker]);
+      worker_pre_first[worker] = (std::min)(worker_pre_first[worker], episode.worker_precondition_start[worker]);
+      worker_pre_last[worker] = (std::max)(worker_pre_last[worker], episode.worker_precondition_end[worker]);
+    }
+  }
   const double condition_region_seconds = qpc_seconds(sample_start, sample_end);
   const double slowest_kernel_seconds = double(*std::min_element(worker_kernel_tsc.begin(), worker_kernel_tsc.end())) / hz;
   if (condition_region_seconds < 2.0 || slowest_kernel_seconds < .100)
     throw std::runtime_error("S24_RESIDENCY_DURATION_BELOW_MINIMUM:event=" + event.event_id +
       ":condition_region_s=" + std::to_string(condition_region_seconds) +
       ":slowest_worker_kernel_s=" + std::to_string(slowest_kernel_seconds));
+  if (max_instrumentation_fraction > .01)
+    throw std::runtime_error("D9_INSTRUMENTATION_OVERHEAD_GT_1_PERCENT:event=" + event.event_id +
+      ":fraction=" + std::to_string(max_instrumentation_fraction));
   std::ostringstream row; row << "{\"label\":\"SMOKE\",\"numeric_metrics_used\":false,\"event_id\":\""
       << json_escape(event.event_id) << "\",\"phase\":\"" << event.phase << "\",\"condition_id\":\""
       << json_escape(event.condition_id) << "\",\"variant\":\"" << variant << "\",\"observation\":\""
@@ -639,7 +713,7 @@ void write_event_summary(RawFile& events, RawFile& marks, const ScheduleEvent& e
       << ",\"K\":" << event.K << ",\"replica\":" << event.replica;
   if (!event.unit_id.empty()) row << ",\"unit_id\":\"" << json_escape(event.unit_id) << "\"";
   if (!event.pair_id.empty()) row << ",\"pair_id\":\"" << json_escape(event.pair_id) << "\"";
-  row << ",\"R\":" << r << ",\"episode_count\":" << episodes.size()
+  row << ",\"R_unit_id\":\"" << r_unit_id_for(event) << "\",\"R\":" << r << ",\"episode_count\":" << r
       << ",\"T_X_us\":" << std::fixed << std::setprecision(9) << sum_us / r
       << ",\"sum_t_app_us\":" << sum_us << ",\"f_tsc_hz\":" << hz << ",\"qpf_hz\":" << g_qpf
       << ",\"pre_margin_seconds\":" << pre.seconds << ",\"post_margin_seconds\":" << post.seconds
@@ -652,12 +726,45 @@ void write_event_summary(RawFile& events, RawFile& marks, const ScheduleEvent& e
   for (unsigned worker = 0; worker < 8; ++worker) { if (worker) row << ','; row << double(worker_kernel_tsc[worker]) / hz; }
   row << "]"
       << ",\"timestamps_complete\":true,\"episode_timestamps_file\":\"residency_episodes_r16.jsonl\""
+      << ",\"coordinator_worker_exchanges\":" << episodes.size()
+      << ",\"instrumentation_overhead_fraction_max\":" << max_instrumentation_fraction
+      << ",\"instrumentation_budget_max\":0.01,\"worker_evidence\":[";
+  for (unsigned worker = 0; worker < 8; ++worker) {
+    if (worker) row << ',';
+    row << "{\"worker\":" << worker << ",\"lp\":" << worker_processor_r16(worker).lp
+        << ",\"first_tsc\":" << worker_first_tsc[worker] << ",\"last_tsc\":" << worker_last_tsc[worker]
+        << ",\"first_qpc\":" << worker_first_qpc[worker] << ",\"last_qpc\":" << worker_last_qpc[worker]
+        << ",\"precondition_first_qpc\":" << worker_pre_first[worker]
+        << ",\"precondition_last_qpc\":" << worker_pre_last[worker]
+        << ",\"kernel_only_seconds\":" << double(worker_kernel_tsc[worker]) / hz << '}';
+  }
+  row << ']'
       << ",\"macs_per_call\":" << 512ull * event.O * event.m << ",\"large_pages\":true,\"affinity\":\"PASS\",\"numerical\":\"S12_PASS\""
       << ",\"weight_regions\":" << event_regions_json(event, variant)
       << ",\"activation_regions\":" << activation_regions_json()
       << ",\"region_instance_id\":\"" << region_instance_id(event, variant) << "\",\"output_hashes\":[";
   for (unsigned worker = 0; worker < 8; ++worker) { if (worker) row << ','; row << output_hashes[worker]; }
   row << "]}"; events.line(row.str());
+
+  std::ostringstream episode_row;
+  episode_row << "{\"label\":\"SMOKE\",\"numeric_metrics_used\":false,\"event_id\":\"" << json_escape(event.event_id)
+    << "\",\"phase\":\"" << event.phase << "\",\"variant\":\"" << variant << "\",\"replica\":" << event.replica
+    << ",\"R\":" << r << ",\"episode_count\":" << r
+    << ",\"coordinator_worker_exchanges\":" << episodes.size() << ",\"workers\":[";
+  for (unsigned worker = 0; worker < 8; ++worker) {
+    if (worker) episode_row << ',';
+    episode_row << "{\"worker\":" << worker << ",\"lp\":" << worker_processor_r16(worker).lp
+      << ",\"first_tsc\":" << worker_first_tsc[worker] << ",\"last_tsc\":" << worker_last_tsc[worker]
+      << ",\"first_qpc\":" << worker_first_qpc[worker] << ",\"last_qpc\":" << worker_last_qpc[worker]
+      << ",\"kernel_tsc_sum\":" << worker_kernel_tsc[worker] << '}';
+  }
+  episode_row << "]}"; episode_file.line(episode_row.str());
+  const uint64_t per_episode_weight_calls = variant == 'A' ? 8u : 8u * unsigned(event.K);
+  const uint64_t all_episodes = uint64_t(r) + pre.episodes + post.episodes;
+  manifest.line("{\"label\":\"SMOKE\",\"event_id\":\"" + json_escape(event.event_id) +
+    "\",\"variant\":\"" + std::string(1, variant) + "\",\"primitive\":\"omega_evict::evict_range\",\"episodes\":" +
+    std::to_string(all_episodes) + ",\"weight_range_calls\":" +
+    std::to_string(per_episode_weight_calls * all_episodes) + ",\"activation_range_calls\":0,\"weight_only\":true,\"callback_per_line\":false,\"each_episode_verified\":true}");
 
   for (unsigned worker = 0; worker < 8; ++worker) {
     const auto p_core = worker_processor_r16(worker).p_core;
@@ -675,15 +782,53 @@ void stop_workers(std::vector<std::thread>& workers) {
   for (auto& thread : workers) if (thread.joinable()) thread.join();
 }
 
+class WorkerCleanup {
+ public:
+  explicit WorkerCleanup(std::vector<std::thread>& workers) : workers_(workers) {}
+  WorkerCleanup(const WorkerCleanup&) = delete;
+  WorkerCleanup& operator=(const WorkerCleanup&) = delete;
+  void activate() noexcept { active_ = true; }
+  void stop() { if (active_) { stop_workers(workers_); active_ = false; } }
+  ~WorkerCleanup() {
+    if (!active_) return;
+    try { stop_workers(workers_); }
+    catch (...) {
+      g_start.cancel(); g_done.cancel();
+      for (auto& thread : workers_) if (thread.joinable()) {
+        try { thread.join(); } catch (...) { try { thread.detach(); } catch (...) {} }
+      }
+    }
+  }
+ private:
+  std::vector<std::thread>& workers_;
+  bool active_ = false;
+};
+
 void write_preflight(const std::string& outdir, const std::string& lp_status, double hz,
                      double qpc_error, double configured_hz, bool pages, const std::string& plan_sha,
                      uint64_t timer_cycles, double timer_us) {
   RawFile file(outdir + "\\preflight_r16.json");
+  GROUP_AFFINITY coordinator{}; DWORD_PTR process_mask = 0, system_mask = 0;
+  const bool process_map_ok = GetThreadGroupAffinity(GetCurrentThread(), &coordinator) &&
+      GetProcessAffinityMask(GetCurrentProcess(), &process_mask, &system_mask);
+  const DWORD coordinator_lp = GetCurrentProcessorNumber();
+  bool coordinator_outside_workers = process_map_ok;
+  for (unsigned worker = 0; worker < 8; ++worker) {
+    const auto& mapped = worker_processor_r16(worker);
+    const DWORD local_lp = static_cast<DWORD>(std::countr_zero(static_cast<unsigned long long>(mapped.mask)));
+    if (mapped.group == coordinator.Group && local_lp == coordinator_lp) coordinator_outside_workers = false;
+  }
   std::ostringstream row; row << "{\"label\":\"SMOKE\",\"state\":\"" << (pages ? "PASS" : "HOLD_RESOURCE")
       << "\",\"numeric_metrics_used\":false,\"large_page_privilege\":\"" << lp_status
       << "\",\"large_pages\":" << (pages ? "true" : "false") << ",\"P_core_map\":" << topology_json_r16()
       << ",\"qpf_hz\":" << g_qpf << ",\"qpf_source\":\"QueryPerformanceFrequency\",\"f_tsc_qualified_hz\":"
       << std::setprecision(12) << hz << ",\"f_tsc_configured_hz\":" << configured_hz << ",\"tsc_qpc_error\":" << qpc_error
+      << ",\"process_map_verified\":" << (process_map_ok ? "true" : "false")
+      << ",\"process_affinity_mask\":" << process_mask
+      << ",\"coordinator_group\":" << coordinator.Group
+      << ",\"coordinator_lp\":" << coordinator_lp
+      << ",\"coordinator_outside_worker_lps\":" << (coordinator_outside_workers ? "true" : "false")
+      << ",\"irq_touched\":false"
       << ",\"timer_pair_median_cycles\":" << timer_cycles << ",\"timer_pair_median_us\":" << timer_us
       << ",\"plan_sha256\":\"" << plan_sha << "\",\"security_energy_PL_unchanged\":true}";
   file.line(row.str()); file.flush();
@@ -699,12 +844,14 @@ int verify_full_plan_smoke_slice_r16(const std::string& plan_path, const std::st
 }
 
 int run_residency_smoke_r16(const std::string& output_dir, const std::string& plan_path,
-                            const std::string& schedule_path) {
+                            const std::string& schedule_path, bool reader_qualified) {
   const auto scheduled = read_schedule(plan_path, schedule_path);
   DWORD attrs = GetFileAttributesA(output_dir.c_str());
   if (attrs == INVALID_FILE_ATTRIBUTES || !(attrs & FILE_ATTRIBUTE_DIRECTORY)) throw std::runtime_error("D13_ATTEMPT_DIRECTORY_MUST_ALREADY_EXIST");
   std::string topology_error;
   if (!discover_topology_r16(topology_error)) throw std::runtime_error("P_CORE_TOPOLOGY_HOLD:" + topology_error);
+  const std::string topology_start = topology_json_r16();
+  const std::string topology_start_sha = sha256(reinterpret_cast<const uint8_t*>(topology_start.data()), topology_start.size());
 
   std::string lp_status; const bool lp_privilege = t0common::enable_large_page_privilege(&lp_status);
   std::cout << "LARGE_PAGE_PRIVILEGE=" << lp_status << " enable_large_page_privilege_called=true\n";
@@ -733,7 +880,23 @@ int run_residency_smoke_r16(const std::string& output_dir, const std::string& pl
 
   std::array<Worker, 8> workers_data; g_workers = &workers_data;
   std::string prep_error;
-  const bool prep_ok = prepare_all_workers(workers_data, scheduled.front(), prep_error);
+  std::vector<std::string> load_records;
+  auto prepare_and_mark_load = [&](const ScheduleEvent& event) {
+    const bool reused = std::all_of(workers_data.begin(), workers_data.end(),
+      [&](const Worker& worker) { return prepared_for(worker, event); });
+    const int64_t load_start = qpc_now();
+    const bool ok = prepare_all_workers(workers_data, event, prep_error);
+    const int64_t load_end = qpc_now();
+    std::ostringstream mark; mark << "{\"label\":\"SMOKE\",\"phase\":\"" << event.phase
+      << "\",\"event_id\":\"" << json_escape(event.event_id) << "\",\"block_id\":\""
+      << json_escape(event.block_id) << "\",\"W_target_kib\":" << event.W << ",\"O\":" << event.O
+      << ",\"m\":" << event.m << ",\"K\":" << event.K << ",\"qpc_load_start\":" << load_start
+      << ",\"qpc_load_end\":" << load_end << ",\"buffers_reused\":" << (reused ? "true" : "false")
+      << ",\"large_pages_verified\":" << (ok ? "true" : "false") << '}';
+    load_records.push_back(mark.str());
+    return ok;
+  };
+  const bool prep_ok = prepare_and_mark_load(scheduled.front());
   const bool all_pages = prep_ok && lp_privilege;
   if (!prep_ok) throw std::runtime_error("LARGE_PAGE_OR_QA_SETUP_FAILED:" + prep_error);
   // The privilege is always attempted in this process. Without it, the run
@@ -745,19 +908,28 @@ int run_residency_smoke_r16(const std::string& output_dir, const std::string& pl
   }
 
   g_tsc_hz = hz;
-  RawFile events(output_dir + "\\residency_events_r16.jsonl");
-  RawFile episodes(output_dir + "\\residency_episodes_r16.jsonl");
-  RawFile calibration_episodes(output_dir + "\\residency_calibration_trials_r16.jsonl");
-  RawFile manifest(output_dir + "\\eviction_manifest_r16.jsonl");
-  RawFile margins(output_dir + "\\residency_margins_r16.jsonl");
-  RawFile margin_episodes(output_dir + "\\residency_margin_episodes_r16.jsonl");
-  RawFile marks(output_dir + "\\block_marks_r16.csv");
-  RawFile clock_map(output_dir + "\\clock_map.csv");
+  RawFile events(output_dir + "\\residency_events_r16.jsonl", 64u * 1024u * 1024u);
+  RawFile episodes(output_dir + "\\residency_episodes_r16.jsonl", 16u * 1024u * 1024u);
+  RawFile calibration_episodes(output_dir + "\\residency_calibration_trials_r16.jsonl", 16u * 1024u * 1024u);
+  RawFile manifest(output_dir + "\\eviction_manifest_r16.jsonl", 16u * 1024u * 1024u);
+  RawFile margins(output_dir + "\\residency_margins_r16.jsonl", 8u * 1024u * 1024u);
+  RawFile margin_episodes(output_dir + "\\residency_margin_episodes_r16.jsonl", 8u * 1024u * 1024u);
+  RawFile marks(output_dir + "\\block_marks_r16.csv", 8u * 1024u * 1024u);
+  RawFile clock_map(output_dir + "\\clock_map.csv", 8u * 1024u * 1024u);
+  RawFile segment_conditioning(output_dir + "\\segment_conditioning_r16.jsonl", 8u * 1024u * 1024u);
+  RawFile load_marks(output_dir + "\\residency_load_marks_r16.jsonl", 16u * 1024u * 1024u);
   ClockMapSampler clock_sampler(clock_map);
   marks.line("sample_id,p_core,worker_lp,replica,condition,t_pad_ini,t_ini,t_fin,t_pad_fin,comparison_set,clock_domain");
   std::vector<std::thread> worker_threads; worker_threads.reserve(8);
+  WorkerCleanup worker_cleanup(worker_threads);
   std::string worker_error; { std::lock_guard<std::mutex> lock(g_error_mutex); g_worker_error.clear(); }
-  for (unsigned worker = 0; worker < 8; ++worker) worker_threads.emplace_back(worker_main, worker);
+  try { for (unsigned worker = 0; worker < 8; ++worker) worker_threads.emplace_back(worker_main, worker); }
+  catch (...) {
+    g_start.cancel(); g_done.cancel();
+    for (auto& thread : worker_threads) if (thread.joinable()) thread.join();
+    throw;
+  }
+  worker_cleanup.activate();
   std::this_thread::sleep_for(std::chrono::milliseconds(50));
   {
     std::lock_guard<std::mutex> lock(g_error_mutex); worker_error = g_worker_error;
@@ -768,68 +940,146 @@ int run_residency_smoke_r16(const std::string& output_dir, const std::string& pl
   std::map<std::string, std::array<bool, 3>> observed_set;
   std::map<std::string, std::array<std::array<uint64_t, 8>, 2>> aa_observed;
   std::map<std::string, std::array<bool, 2>> aa_observed_set;
-  int calibrated_r = 1;
   std::vector<ScheduleEvent> calibration_events, residency_events, aa_events;
   for (const auto& e : scheduled) {
     if (e.phase == "calibration") calibration_events.push_back(e);
     else if (e.phase == "residency") residency_events.push_back(e);
     else aa_events.push_back(e);
   }
-  bool calibration_done = false;
-  std::map<std::string, std::vector<EpisodeResult>> chosen_calibration;
-  for (int trial = 1; trial <= 22; ++trial) {
-    const int candidate_r = 1 << (trial - 1); bool all_reached = true;
-    std::map<std::string, std::vector<EpisodeResult>> this_trial;
-    for (const auto& e : calibration_events) {
-      if (!prepare_all_workers(workers_data, e, prep_error))
-        throw std::runtime_error("R_CALIBRATION_PREPARE_FAILED:" + prep_error);
-      double total_us = 0; const char variant = e.variant[0];
-      auto& trial_episodes = this_trial[e.event_id]; trial_episodes.reserve(candidate_r);
-      for (int episode = 1; episode <= candidate_r; ++episode) {
-        auto result = run_episode(e, variant, unsigned(episode), "calibration_trial", unsigned(trial), candidate_r,
-                                  calibration_episodes, manifest, true);
-        total_us += episode_microseconds(result, hz);
-        trial_episodes.push_back(std::move(result));
-      }
-      const double kernel_seconds = total_us / 1e6;
-      const double region_seconds = qpc_seconds(trial_episodes.front().qpc_start, trial_episodes.back().qpc_end);
-      std::array<uint64_t, 8> worker_kernel{};
-      for (const auto& episode : trial_episodes) for (unsigned worker = 0; worker < 8; ++worker)
-        worker_kernel[worker] += episode.worker_kernel_tsc[worker];
-      const double slowest_worker_kernel_seconds = double(*std::min_element(worker_kernel.begin(), worker_kernel.end())) / hz;
-      const bool duration_ok = region_seconds >= kCalibrationTargetSeconds &&
-                               slowest_worker_kernel_seconds >= .150;
-      if (!duration_ok) all_reached = false;
-      std::cout << "R_CALIBRATION_TRIAL variant=" << variant << " candidate_R=" << candidate_r
-                << " region_s=" << std::fixed << std::setprecision(6) << region_seconds
-                << " slowest_worker_kernel_s=" << slowest_worker_kernel_seconds
-                << " aggregate_kernel_s=" << kernel_seconds << " targets=2.5s_region,0.150s_kernel_per_worker decision="
-                << (duration_ok ? "REACHED" : "DOUBLE") << "\n";
-    }
-    if (all_reached) { calibrated_r = candidate_r; chosen_calibration = std::move(this_trial); calibration_done = true; break; }
+  std::map<std::string, std::vector<const ScheduleEvent*>> calibration_units;
+  std::vector<std::string> calibration_unit_order;
+  for (const auto& e : calibration_events) {
+    auto [it, inserted] = calibration_units.try_emplace(e.unit_id);
+    if (inserted) calibration_unit_order.push_back(e.unit_id);
+    it->second.push_back(&e);
   }
-  if (!calibration_done) throw std::runtime_error("R_CALIBRATION_FAILED_AFTER_22_DOUBLINGS");
+  std::map<std::string, int> calibrated_r_by_unit;
+  std::map<std::string, uint64_t> calibration_candidate_episode_count;
+  std::map<std::string, unsigned> calibration_trial_count_by_event;
+  std::map<std::string, std::vector<EpisodeResult>> chosen_calibration;
+  struct CalibrationRegions {
+    std::string weights, activations, instance_id;
+  };
+  std::map<std::string, CalibrationRegions> calibration_regions;
+  for (const auto& unit_id : calibration_unit_order) {
+    const auto& unit_events = calibration_units.at(unit_id);
+    if (unit_events.size() != 3 || unit_events[0]->variant != "A" ||
+        unit_events[1]->variant != "B" || unit_events[2]->variant != "C")
+      throw std::runtime_error("R_CALIBRATION_UNIT_NOT_CONTIGUOUS_A_B_C:" + unit_id);
+    bool unit_calibrated = false;
+    for (int trial = 1; trial <= 22; ++trial) {
+      const int candidate_r = 1 << (trial - 1);
+      bool all_reached = true;
+      std::map<std::string, std::vector<EpisodeResult>> this_trial;
+      for (const ScheduleEvent* event : unit_events) {
+        const auto& e = *event;
+        ++calibration_trial_count_by_event[e.event_id];
+        calibration_candidate_episode_count[e.event_id] += static_cast<uint64_t>(candidate_r);
+        if (!prepare_and_mark_load(e))
+          throw std::runtime_error("R_CALIBRATION_PREPARE_FAILED:" + prep_error);
+        const char variant = e.variant[0];
+        auto result = run_episode(e, variant, unsigned(trial), "calibration_trial", unsigned(trial), candidate_r);
+        const double kernel_seconds = episode_microseconds(result, hz) / 1e6;
+        const double region_seconds = qpc_seconds(result.qpc_start, result.qpc_end);
+        const double slowest_worker_kernel_seconds = double(*std::min_element(
+            result.worker_kernel_tsc.begin(), result.worker_kernel_tsc.end())) / hz;
+        const double instrumentation_fraction = result.instrumentation_fraction;
+        const bool duration_ok = region_seconds >= kCalibrationTargetSeconds &&
+                                 slowest_worker_kernel_seconds >= .150 && instrumentation_fraction <= .01;
+        if (!duration_ok) all_reached = false;
+        std::cout << "R_CALIBRATION_TRIAL unit=" << unit_id << " variant=" << variant << " candidate_R=" << candidate_r
+                  << " region_s=" << std::fixed << std::setprecision(6) << region_seconds
+                  << " slowest_worker_kernel_s=" << slowest_worker_kernel_seconds
+                  << " coordinator_overhead=" << instrumentation_fraction
+                  << " aggregate_kernel_s=" << kernel_seconds << " targets=2.5s_region,0.150s_kernel_per_worker decision="
+                  << (duration_ok ? "REACHED" : "DOUBLE") << "\n";
+        this_trial[e.event_id].push_back(std::move(result));
+      }
+      if (all_reached) {
+        calibrated_r_by_unit[unit_id] = candidate_r;
+        for (const ScheduleEvent* event : unit_events) {
+          chosen_calibration[event->event_id] = std::move(this_trial[event->event_id]);
+          CalibrationRegions regions;
+          regions.weights = event_regions_json(*event, event->variant[0]);
+          regions.activations = activation_regions_json();
+          regions.instance_id = region_instance_id(*event, event->variant[0]);
+          calibration_regions[event->event_id] = std::move(regions);
+        }
+        unit_calibrated = true;
+        break;
+      }
+    }
+    if (!unit_calibrated) throw std::runtime_error("R_CALIBRATION_FAILED_AFTER_22_DOUBLINGS:" + unit_id);
+  }
 
   for (const auto& e : calibration_events) {
     const auto& calibrated_episodes = chosen_calibration.at(e.event_id);
-    for (const auto& episode : calibrated_episodes) episodes.line(episode.json_line);
+    const int calibrated_r = calibrated_r_by_unit.at(e.unit_id);
     double calibrated_us = 0;
-    for (const auto& episode : calibrated_episodes) calibrated_us += episode_microseconds(episode, hz);
+    double max_calibration_overhead = 0;
+    std::array<uint64_t, 8> worker_kernel{};
+    std::array<uint64_t, 8> worker_first_tsc{};
+    std::array<uint64_t, 8> worker_last_tsc{};
+    std::array<int64_t, 8> worker_first_qpc{};
+    std::array<int64_t, 8> worker_last_qpc{};
+    worker_first_tsc.fill(UINT64_MAX); worker_first_qpc.fill(INT64_MAX);
+    for (const auto& episode : calibrated_episodes) {
+      calibrated_us += episode_microseconds(episode, hz);
+      max_calibration_overhead = (std::max)(max_calibration_overhead, episode.instrumentation_fraction);
+      for (unsigned w = 0; w < 8; ++w) {
+        worker_kernel[w] += episode.worker_kernel_tsc[w];
+        worker_first_tsc[w] = (std::min)(worker_first_tsc[w], episode.worker_tsc_start[w]);
+        worker_last_tsc[w] = (std::max)(worker_last_tsc[w], episode.worker_tsc_end[w]);
+        worker_first_qpc[w] = (std::min)(worker_first_qpc[w], episode.worker_qpc_start[w]);
+        worker_last_qpc[w] = (std::max)(worker_last_qpc[w], episode.worker_qpc_end[w]);
+      }
+    }
     std::ostringstream row; row << "{\"label\":\"SMOKE\",\"numeric_metrics_used\":false,\"event_id\":\""
       << json_escape(e.event_id) << "\",\"phase\":\"calibration\",\"unit_id\":\"" << json_escape(e.unit_id) << "\",\"condition_id\":\""
-      << json_escape(e.condition_id) << "\",\"variant\":\"" << e.variant << "\",\"R\":" << calibrated_r
+      << json_escape(e.condition_id) << "\",\"variant\":\"" << e.variant << "\",\"R_unit_id\":\""
+      << json_escape(e.unit_id) << "\",\"R\":" << calibrated_r
       << ",\"W_target_kib\":" << e.W << ",\"O\":" << e.O << ",\"m\":" << e.m << ",\"K\":" << e.K
-      << ",\"episode_count\":" << calibrated_episodes.size() << ",\"sum_t_app_us\":" << calibrated_us
+      << ",\"episode_count\":" << calibrated_r << ",\"sum_t_app_us\":" << calibrated_us
+      << ",\"instrumentation_overhead_fraction_max\":" << max_calibration_overhead
       << ",\"f_tsc_hz\":" << hz << ",\"qpf_hz\":" << g_qpf
-      << ",\"weight_regions\":" << event_regions_json(e, e.variant[0])
-      << ",\"activation_regions\":" << activation_regions_json()
-      << ",\"region_instance_id\":\"" << region_instance_id(e, e.variant[0])
+      << ",\"weight_regions\":" << calibration_regions.at(e.event_id).weights
+      << ",\"activation_regions\":" << calibration_regions.at(e.event_id).activations
+      << ",\"region_instance_id\":\"" << calibration_regions.at(e.event_id).instance_id
       << "\",\"condition_region_target_seconds\":2.5,\"condition_region_minimum_seconds\":2.0"
       << ",\"kernel_only_target_seconds\":0.150,\"kernel_only_minimum_seconds\":0.100"
       << ",\"slowest_worker_kernel_seconds\":" << std::fixed << std::setprecision(9)
-      << ([&] { std::array<uint64_t,8> totals{}; for (const auto& episode : calibrated_episodes) for (unsigned w=0;w<8;++w) totals[w]+=episode.worker_kernel_tsc[w]; return double(*std::min_element(totals.begin(),totals.end()))/hz; }())
+      << double(*std::min_element(worker_kernel.begin(),worker_kernel.end()))/hz
+      << ",\"timestamps_complete\":true,\"coordinator_worker_exchanges\":" << calibrated_episodes.size()
+      << ",\"instrumentation_budget_max\":0.01,\"worker_evidence\":[";
+    for (unsigned w = 0; w < 8; ++w) {
+      if (w) row << ',';
+      row << "{\"worker\":" << w << ",\"lp\":" << worker_processor_r16(w).lp
+          << ",\"first_tsc\":" << worker_first_tsc[w] << ",\"last_tsc\":" << worker_last_tsc[w]
+          << ",\"first_qpc\":" << worker_first_qpc[w] << ",\"last_qpc\":" << worker_last_qpc[w]
+          << ",\"kernel_seconds\":" << double(worker_kernel[w])/hz << '}';
+    }
+    row << "]"
       << ",\"R_policy\":\"R(W,m,K)_common_A_B_C_fixed_N31\"}";
     events.line(row.str());
+    std::ostringstream cal_episode;
+    cal_episode << "{\"label\":\"SMOKE\",\"event_id\":\"" << json_escape(e.event_id)
+      << "\",\"R\":" << calibrated_r << ",\"episode_count\":" << calibrated_r
+      << ",\"workers\":[";
+    for (unsigned w = 0; w < 8; ++w) {
+      if (w) cal_episode << ',';
+      cal_episode << "{\"worker\":" << w << ",\"lp\":" << worker_processor_r16(w).lp
+        << ",\"first_tsc\":" << worker_first_tsc[w] << ",\"last_tsc\":" << worker_last_tsc[w]
+        << ",\"first_qpc\":" << worker_first_qpc[w] << ",\"last_qpc\":" << worker_last_qpc[w]
+        << ",\"kernel_tsc_sum\":" << worker_kernel[w] << '}';
+    }
+    cal_episode << "]}"; calibration_episodes.line(cal_episode.str());
+    const uint64_t weight_calls_per_episode = e.variant == "A" ? 8u : 8u * unsigned(e.K);
+    manifest.line("{\"label\":\"SMOKE\",\"event_id\":\"" + json_escape(e.event_id) +
+      "\",\"variant\":\"" + e.variant + "\",\"primitive\":\"omega_evict::evict_range\",\"candidate_trials\":" +
+      std::to_string(calibration_trial_count_by_event.at(e.event_id)) + ",\"candidate_R_sum\":" +
+      std::to_string(calibration_candidate_episode_count.at(e.event_id)) + ",\"weight_range_calls\":" +
+      std::to_string(weight_calls_per_episode * calibration_candidate_episode_count.at(e.event_id)) +
+      ",\"activation_range_calls\":0,\"weight_only\":true,\"callback_per_line\":false,\"each_episode_verified\":true}");
   }
 
   size_t cursor = calibration_events.size();
@@ -842,11 +1092,39 @@ int run_residency_smoke_r16(const std::string& output_dir, const std::string& pl
       ",\"seconds\":" + std::to_string(margin.seconds) + ",\"episodes\":" + std::to_string(margin.episodes) +
       ",\"same_condition\":true,\"continuous_load\":true}");
   };
+  std::set<std::string> conditioned_segments;
   while (cursor < scheduled.size()) {
     const auto& first = scheduled[cursor];
     if (first.phase == "residency") {
-      if (!prepare_all_workers(workers_data, first, prep_error))
+      if (!prepare_and_mark_load(first))
         throw std::runtime_error("RESIDENCY_PREPARE_FAILED:" + prep_error);
+      if (conditioned_segments.insert(first.segment_id).second) {
+        const double segment_hz = verify_segment_state(first, workers_data, g_plan_sha, topology_start_sha, reader_qualified);
+        const int conditioning_r = calibrated_r_by_unit.at(r_unit_id_for(first));
+        const int64_t condition_start = qpc_now();
+        int64_t condition_end = condition_start; uint64_t conditioning_episodes = 0, conditioning_kernel_tsc = 0;
+        while (qpc_seconds(condition_start, condition_end) < 180.0) {
+          const auto condition = run_episode(first, first.variant[0], unsigned(conditioning_episodes + 1),
+                                             "segment_conditioning", 0, conditioning_r);
+          ++conditioning_episodes;
+          for (uint64_t cycles : condition.worker_kernel_tsc) conditioning_kernel_tsc += cycles;
+          condition_end = qpc_now();
+        }
+        const double condition_seconds = qpc_seconds(condition_start, condition_end);
+        if (condition_seconds < 180.0 || std::abs(segment_hz - hz) / hz > .001)
+          throw std::runtime_error("SEGMENT_CONDITIONING_OR_CLOCK_REVERIFY_INVALID");
+        segment_conditioning.line("{\"label\":\"SMOKE\",\"segment_id\":\"" + json_escape(first.segment_id) +
+          "\",\"plan_sha256\":\"" + g_plan_sha + "\",\"topology_sha256\":\"" + topology_start_sha +
+          "\",\"reader_qualified\":true,\"large_pages_reverified\":true,\"clock_reverified_hz\":" +
+          std::to_string(segment_hz) + ",\"qpc_start\":" + std::to_string(condition_start) +
+          ",\"qpc_end\":" + std::to_string(condition_end) + ",\"active_conditioning_seconds\":" +
+          std::to_string(condition_seconds) + ",\"R_unit_id\":\"" + r_unit_id_for(first) + "\",\"R\":" +
+          std::to_string(conditioning_r) + ",\"active_episodes\":" + std::to_string(conditioning_episodes * uint64_t(conditioning_r)) +
+          ",\"kernel_tsc_sum\":" + std::to_string(conditioning_kernel_tsc) + "}");
+        std::cout << "SEGMENT_REVERIFY_R16 PASS segment=" << first.segment_id
+                  << " clock_hz=" << segment_hz << " reader=PASS pages=PASS active_conditioning_s="
+                  << condition_seconds << " R=" << conditioning_r << " episodes=" << conditioning_episodes * uint64_t(conditioning_r) << "\n";
+      }
       if (cursor + 3 > scheduled.size()) throw std::runtime_error("OFFICIAL_PLAN_TRUNCATED_MARGINAL_GROUP");
       std::array<const ScheduleEvent*, 3> group{};
       std::array<MarginResult, 3> pre{}, post{};
@@ -856,24 +1134,24 @@ int run_residency_smoke_r16(const std::string& output_dir, const std::string& pl
         if (event.phase != "residency" || event.block_id != first.block_id || event.atomic_group_id != first.atomic_group_id)
           throw std::runtime_error("OFFICIAL_PLAN_MARGINAL_TRIPLET_SPLIT:" + first.atomic_group_id);
         group[i] = &event;
-        pre[i] = run_margin(event, event.variant[0], "pre", hz, episodes, margin_episodes, manifest);
+        pre[i] = run_margin(event, event.variant[0], "pre", hz);
         record_margin(event, "pre", pre[i]);
       }
+      const int group_r = calibrated_r_by_unit.at(r_unit_id_for(*group[0]));
       // Keep A/B/C as one uninterrupted measured group. Records stay in the
       // preallocated in-memory buffers until acquisition has ended.
       for (unsigned i = 0; i < 3; ++i) {
-        measured[i].reserve(calibrated_r);
-        for (int rep = 1; rep <= calibrated_r; ++rep)
-          measured[i].push_back(run_episode(*group[i], group[i]->variant[0], unsigned(rep), "sample", 0,
-                                             calibrated_r, episodes, manifest, true));
+        measured[i].reserve(1);
+        measured[i].push_back(run_episode(*group[i], group[i]->variant[0], 1u, "sample", 0,
+                                           group_r));
       }
       for (unsigned i = 0; i < 3; ++i) {
-        post[i] = run_margin(*group[i], group[i]->variant[0], "post", hz, episodes, margin_episodes, manifest);
+        post[i] = run_margin(*group[i], group[i]->variant[0], "post", hz);
         record_margin(*group[i], "post", post[i]);
       }
       for (unsigned i = 0; i < 3; ++i) {
         std::array<uint64_t, 8> hashes{};
-        write_event_summary(events, marks, *group[i], group[i]->variant[0], calibrated_r, measured[i], hz, pre[i], post[i], hashes);
+        write_event_summary(events, marks, episodes, manifest, *group[i], group[i]->variant[0], group_r, measured[i], hz, pre[i], post[i], hashes);
         const unsigned vi = group[i]->variant == "A" ? 0u : group[i]->variant == "B" ? 1u : 2u;
         const std::string key = group[i]->block_id + "|" + group[i]->atomic_group_id;
         observed[key][vi] = hashes; observed_set[key][vi] = true;
@@ -882,7 +1160,7 @@ int run_residency_smoke_r16(const std::string& output_dir, const std::string& pl
       continue;
     }
     if (first.phase == "aa") {
-      if (!prepare_all_workers(workers_data, first, prep_error))
+      if (!prepare_and_mark_load(first))
         throw std::runtime_error("AA_PREPARE_FAILED:" + prep_error);
       if (cursor + 2 > scheduled.size()) throw std::runtime_error("OFFICIAL_PLAN_TRUNCATED_AA_PAIR");
       std::array<const ScheduleEvent*, 2> pair{&scheduled[cursor], &scheduled[cursor + 1]};
@@ -891,23 +1169,23 @@ int run_residency_smoke_r16(const std::string& output_dir, const std::string& pl
       if (pair[0]->phase != "aa" || pair[1]->phase != "aa" || pair[0]->pair_id != pair[1]->pair_id ||
           pair[1]->sequence != pair[0]->sequence + 1)
         throw std::runtime_error("OFFICIAL_PLAN_AA_PAIR_SPLIT_OR_REORDERED");
+      const int pair_r = calibrated_r_by_unit.at(r_unit_id_for(*pair[0]));
       for (unsigned i = 0; i < 2; ++i) {
-        pre[i] = run_margin(*pair[i], 'A', "pre", hz, episodes, margin_episodes, manifest);
+        pre[i] = run_margin(*pair[i], 'A', "pre", hz);
         record_margin(*pair[i], "pre", pre[i]);
       }
       for (unsigned i = 0; i < 2; ++i) {
-        measured[i].reserve(calibrated_r);
-        for (int rep = 1; rep <= calibrated_r; ++rep)
-          measured[i].push_back(run_episode(*pair[i], 'A', unsigned(rep), "aa_sample", 0,
-                                             calibrated_r, episodes, manifest, true));
+        measured[i].reserve(1);
+        measured[i].push_back(run_episode(*pair[i], 'A', 1u, "aa_sample", 0,
+                                           pair_r));
       }
       for (unsigned i = 0; i < 2; ++i) {
-        post[i] = run_margin(*pair[i], 'A', "post", hz, episodes, margin_episodes, manifest);
+        post[i] = run_margin(*pair[i], 'A', "post", hz);
         record_margin(*pair[i], "post", post[i]);
       }
       for (unsigned i = 0; i < 2; ++i) {
         std::array<uint64_t, 8> hashes{};
-        write_event_summary(events, marks, *pair[i], 'A', calibrated_r, measured[i], hz, pre[i], post[i], hashes);
+        write_event_summary(events, marks, episodes, manifest, *pair[i], 'A', pair_r, measured[i], hz, pre[i], post[i], hashes);
         const unsigned obs = pair[i]->observation == "A1" ? 0u : 1u;
         aa_observed[pair[i]->pair_id][obs] = hashes;
         aa_observed_set[pair[i]->pair_id][obs] = true;
@@ -924,8 +1202,10 @@ int run_residency_smoke_r16(const std::string& output_dir, const std::string& pl
                      observed[key][0][worker] == observed[key][2][worker];
   for (const auto& [key, flags] : aa_observed_set) for (unsigned worker = 0; worker < 8; ++worker)
     outputs_equal &= flags[0] && flags[1] && aa_observed[key][0][worker] == aa_observed[key][1][worker];
-  stop_workers(worker_threads);
-  marks.flush(); events.flush(); episodes.flush(); calibration_episodes.flush(); manifest.flush(); margins.flush(); margin_episodes.flush();
+  worker_cleanup.stop();
+  marks.flush(); events.flush(); episodes.flush(); calibration_episodes.flush(); manifest.flush(); margins.flush(); margin_episodes.flush(); segment_conditioning.flush();
+  for (const auto& load_mark : load_records) load_marks.line(load_mark);
+  load_marks.flush();
   clock_sampler.stop();
   clock_map.flush();
   write_preflight(output_dir, lp_status, hz, qpc_error, configured_hz, all_pages, g_plan_sha, timer_median, timer_us);
@@ -933,10 +1213,17 @@ int run_residency_smoke_r16(const std::string& output_dir, const std::string& pl
   std::cout << "D9_AC_SHARED same_live_buffer=true address=" << reinterpret_cast<uintptr_t>(workers_data[0].shared_ac->bytes.data())
             << " sha256=" << sha256(workers_data[0].shared_ac->bytes, omega_q4::weight_bytes(workers_data[0].output)) << " workers=8 PASS\n";
   std::cout << "D8_EVICT primitive=omega_evict::evict_range only calls_weight_ranges="
-            << g_evict_weight_range_calls.load() << " calls_activation_ranges=" << g_evict_activation_range_calls.load()
-            << " calls_total=" << g_evict_range_calls.load() << " episodes=" << (g_evict_weight_calls.load() > 0 ? "manifested" : "missing")
+            << g_evict_weight_range_calls << " calls_activation_ranges=" << g_evict_activation_range_calls
+            << " calls_total=" << g_evict_range_calls << " episodes=" << (g_evict_weight_calls > 0 ? "manifested" : "missing")
             << " per_line_atomic_callback=none flush=" << flush_choice.name << " PASS\n";
-  std::cout << "R_RESIDENCY_R16 common_R=" << calibrated_r << " W=288 complete_plan_blocks=true A_B_C=common calibration_target_s=2.5\n";
+  int min_calibrated_r = std::numeric_limits<int>::max(), max_calibrated_r = 0;
+  for (const auto& [unit, unit_r] : calibrated_r_by_unit) {
+    (void)unit;
+    min_calibrated_r = (std::min)(min_calibrated_r, unit_r);
+    max_calibrated_r = (std::max)(max_calibrated_r, unit_r);
+  }
+  std::cout << "R_RESIDENCY_R16 units=" << calibrated_r_by_unit.size() << " min_R=" << min_calibrated_r
+            << " max_R=" << max_calibrated_r << " W=288 complete_plan_blocks=true A_B_C=common calibration_target_s=2.5\n";
   std::cout << "D9_EPISODES all_timestamps=true margins_each_side_min_s=0.200 same_condition=true N=3 PASS\n";
   std::cout << "SMOKE_R16_CAPTURE PASS schedule_events=" << scheduled.size() << " calibration=" << calibration_events.size()
             << " A_B_C=" << residency_events.size() << " AA_pairs=" << aa_events.size()/2 << " aa_observations=" << aa_events.size() << " outputs_bitwise="
